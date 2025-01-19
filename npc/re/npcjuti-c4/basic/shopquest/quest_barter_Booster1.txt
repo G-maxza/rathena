@@ -1,0 +1,27 @@
+// Bosscoin
+//============================================================
+-	script	#Tradeitem1	4_BLACKDRAGON,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" อาวุธ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop1",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกอาวุธ เริ่มต้น",0;
+	end;
+}
+hu_in01,112,382,4	duplicate(#Tradeitem1)	ร้านเเลกอาวุธ เริ่มต้น#1	4_BLACKDRAGON

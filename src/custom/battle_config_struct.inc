@@ -11,4 +11,19 @@
  * Format:
  *	 <datatype> name;
  **/
+  
+int limit_sell_weapon;
+int limit_sell_armor;
+int limit_sell_etc;
 
+/**
+* Extended Vending system [Lilith]
+**/
+int extended_vending;
+int show_broadcast_info;
+int show_item_vending;
+int ex_vending_info;
+int ex_vending_report;
+int ex_buying_bound;
+int item_zeny;
+int item_cash;

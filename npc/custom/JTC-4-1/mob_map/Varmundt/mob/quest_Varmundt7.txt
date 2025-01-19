@@ -1,0 +1,291 @@
+//===== quest_Varmundt7 monster=================================
+oasis,184,200,4	script	quest_Varmundt7_Controller#1	2108,{
+	set .@gm_level, 99; // ระดับ GM ต้องใช้เพื่อเริ่ม / หยุดกิจกรรม
+
+	mes "[quest Varmundt Soul]";
+	mes "ยินดีต้อนรับสู่ quest Varmundt Soul!";
+	next;
+	switch(select("^FF0000•^000000 เข้าสู่quest Varmundt Soul.:" + ((getgmlevel() >= .@gm_level) ? "^FF0000•^000000 GM Menu." : "") + ":^FF0000•^000000 ยกเลิก.")) {
+	case 1:
+		if (.start != 1) { // ระยะเวลาการลงทะเบียน
+			mes "[quest VarmundtSoul]";
+			mes "quest Varmundt Soul ถูกปิดแล้ว.";
+			mes "มันจะเปิดในเวลาเหล่านี้:";
+			mes "ทุกกลางชั้วโมง"; // แสดงเวลาของคุณที่นี่
+			mes "เริ่ม01:30 - 20:00 น. "; // แสดงเวลาของคุณที่นี่
+			close;
+		}
+		if (BaseLevel < 290 || Zeny < 1000000 || countitem(7227) < 10) {
+			mes "คุณไม่สามารถเข้าสู่ quest Varmundt Soul ได้เพราะไม่ตรงตามเงื่อนไข";
+			mes "ข้อกำหนด:";
+			mes " - Base Level ต้อง 290 ขึ้นไป";
+			mes " - ใช้ Zeny 1,000,000";
+			mes " - ใช้ไอเท็ม ID 7227 จำนวน 10 ชิ้น";
+		}
+		Zeny -= 1000000;
+		delitem 7227, 10;
+		announce strcharinfo(0) + " ได้เข้าสู่ quest Varmundt Soul.", bc_npc;
+		warp "bl_soul", 155, 16;
+		close;
+	case 2:
+		mes "[quest Varmundt Soul]";
+		switch (.start) { // event states
+			case 0: mes "quest Varmundt Soul ยังไม่ได้เริ่ม."; break;
+			case 1: mes "quest Varmundt Soul กำลังรับผู้เข้าร่วม."; break;
+		}
+		next;
+		switch(select("^FF0000•^000000 เริ่มกิจกรรม.:^FF0000•^000000 หยุดกิจกรรม.:^FF0000•^000000 ยกเลิก.")) {
+		case 1:
+			mes "[quest Varmundt Soul]";
+			if (.start)
+				mes "quest Varmundt Soul เริ่มแล้ว.";
+			else {
+				mes "ที่เริ่มต้น quest Varmundt Soul...";
+				donpcevent strnpcinfo(0)+"::OnStartEvent";
+			}
+			close;
+		case 2:
+			mes "[quest Varmundt Soul]";
+			if (!.start)
+				mes "quest Varmundt Soul ยังไม่ได้เริ่ม.";
+			else {
+				mes "การหยุด quest Varmundt Soul...";
+				donpcevent strnpcinfo(0)+"::OnStopEvent";
+			}
+			close;
+		case 3:
+			break;
+		}
+		break;
+	case 3:
+		break;
+	}
+	mes "[quest Varmundt Soul]";
+	mes "ลาก่อน.";
+	close;
+	
+OnClock0130: // เปิดกิจกรรมครั้งแรกตอน 01:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0200: // ปิดกิจกรรมครั้งแรกตอน 01:30
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+
+OnClock0230: // เปิดกิจกรรมครั้งที่สองตอน 02:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0300: // ปิดกิจกรรมครั้งที่สองตอน 02:30
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0330: // เปิดกิจกรรมครั้งที่สองตอน 03:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0400: // ปิดกิจกรรมครั้งที่สองตอน 03:30
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0430: // เปิดกิจกรรมครั้งที่สองตอน 04:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0500: // ปิดกิจกรรมครั้งที่สองตอน 04:30
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0530: // เปิดกิจกรรมครั้งที่สองตอน 05:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0600: // ปิดกิจกรรมครั้งที่สองตอน 05:30
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0630: // เปิดกิจกรรมครั้งที่สองตอน 06:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0700: // ปิดกิจกรรมครั้งที่สองตอน 06:30
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0730: // เปิดกิจกรรมครั้งที่สองตอน 07:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0800: // ปิดกิจกรรมครั้งที่สองตอน 07:30
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0830:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0900:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0930:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1000:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1030:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1100:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1130:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1200:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1230:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1300:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1330:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1400:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1430:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1500:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1530:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1600:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1630:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1700:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1730:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1800:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1830:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1900:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1930:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock2000:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnSpawnMonsters:
+	.start = 2;
+	.round = 1;
+	set .mob, 1; // ตั้งค่าจำนวนมอนสเตอร์ที่ต้องการ
+	// สร้างมอนสเตอร์ ID 21943 จำนวน 1 ตัว
+	set .@monster_count1, 1;
+	for (set .@i, 0; .@i < .@monster_count1; set .@i, .@i + 1) {
+		monster "bl_soul", 0 + rand(0), 0 + rand(0), "Boss Monster",21943,1,strnpcinfo(0)+"::OnMonsterKilled";
+	}
+	end;
+	
+OnMonsterKilled:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "Boss Monster"+ .mob +"Bossที่เหลืออยู่ในแผนที่.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "Boss Monster ถูกำจัดหมดเเล้ว", bc_map;
+		goto OnSpawnMonsters;
+	}
+	end;
+	
+OnStartEvent:
+	.start = 1;
+	enablenpc "quest_Varmundt7_Controller#1";
+	disablenpc "เควสquest Varmundt Soul#2"; // ปิด NPC ที่ใช้ในการออกจากกิจกรรม
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "bl_soul", .@map$, .@x, .@y;
+	announce "quest Varmundt Soul จะเริ่มใน 5 นาที.", bc_all;
+	sleep 60000*5;
+	announce "quest Varmundt Soul ได้เริ่มขึ้นแล้ว!", bc_all;
+	disablenpc "quest_Varmundt7_Controller#1"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	donpcevent strnpcinfo(0) + "::OnSpawnMonsters"; // เรียกใช้งานฟังก์ชันเกิดมอนสเตอร์
+	end;
+	
+OnStopEvent:
+	announce "quest Varmundt Soulถูกปิดแล้ว.", bc_all;
+	killmonsterall "bl_soul"; // ลบมอนสเตอร์ทั้งหมดในแผนที่
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "bl_soul", .@map$, .@x, .@y;
+	disablenpc "quest_Varmundt7_Controller#1"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	enablenpc "เควสquest Varmundt Soul#2";
+	.start = .round = .mob = 0; // รีเซ็ตสถานะของกิจกรรมทั้งหมด
+	end;
+	
+OnInit:
+	waitingroom "quest Varmundt Soul",0;
+	end;
+}
+bl_soul,155,16,4	script	เควสquest Varmundt Soul#2	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+}
+
+bl_soul	mapflag	nowarp
+bl_soul	mapflag	nowarpto
+bl_soul	mapflag	nosave	SavePoint
+bl_soul	mapflag	nomemo
+bl_soul	mapflag	nobranch
+bl_soul	mapflag	nopenalty
+bl_soul	mapflag	noicewall
+
+//===== quest_Varmundt6 monster=================================
+
+bl_soul,0,0	monster	Soul Nightmare	21936,35,5000
+bl_soul,0,0	monster	Soul Whisper	21937,35,5000
+bl_soul,0,0	monster	Soul Marionette	21938,35,5000
+bl_soul,0,0	monster	Soul Noxious	21939,10,5000
+bl_soul,0,0	monster	Soul The Paper	21940,25,5000
+bl_soul,0,0	monster	Soul Gajomart	21941,35,5000
+bl_soul,0,0	monster	Soul Odium	21942,35,5000

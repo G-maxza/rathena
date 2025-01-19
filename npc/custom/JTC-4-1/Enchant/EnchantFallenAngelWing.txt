@@ -1,0 +1,189 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : แม่มดน้อย จอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : rAthena & Hercules
+// Contacts
+// Facebook https://www.facebook.com/appleroplus2
+// Gmail appleroplus@gmail.com
+// Skype appleroplus@hotmail.com
+//==============================================
+//==============================================
+//==============================================
+oasis,156,157,4	script	เพิ่มออฟชั่น Fallen Angel Wing#1	931,{
+
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes "คุณมีไอเทมมากเกินไป เอาไปเก็บก่อน!";
+		close;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes "คุณมีน้ำหนักมากเกินไป";
+		close;
+	}
+	if (getequipid(EQI_GARMENT) == 2589) {
+		if (Zeny >= 1000000)
+			set .@menu$, "เสริมพลัง Fallen Angel Wing";
+		else
+			set .@menu$, "^999999เงินคุณไม่เพียงพอ!^000000";
+	} else
+		set .@menu$, "^999999คุณไม่ได้ใส่ Fallen Angel Wing!^000000";
+	mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+	mes "วันนี้ อากาศดีจังเลยเนอะ";
+	next;
+	mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+	mes "ถ้าคุณมี Fallen Angel Wing ฉันจะเสริมพลังให้";
+	next;
+	switch(select("^FF0000•^000000 คืออะไรหรอ:"+.@menu$+":^FF0000•^000000 ลบล้างพลัง")) {
+	case 1:
+		switch(select("^FF0000•^000000 ไร้สาระ:^FF0000•^000000 คุณกำลังจะทำอะไร?")) {
+		case 1:
+			mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+			mes "พูดอะไรของคุณ?";
+			close;
+		case 2:
+			mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+			mes "ฉันสามารถเสริมพลังให้กับปีกของคุณได้ แต่ว่ามันก็^ff0000มีโอกาสเล็กน้อยที่มันจะเสียหาย^000000!";
+			close;
+		}
+	case 2:
+		if (Zeny < 1000000) {
+			mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+			mes "คุณมีเงินไม่พอนะ";
+			close;
+		}
+		mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+		mes "การเสริมพลังจะต้องใช้เงิน ^0000ff1,000,000 zeny^000000.";
+		mes "^ff0000มีโอกาสเล็กน้อยที่มันจะถูกทำลอย^000000!";
+ 		mes "ถ้าคุณยอมรับแล้ว ฉันจะเสริมพลังให้.";
+		next;
+		if(select("^FF0000•^000000 ฉันไม่แน่ใจแล้ว...:^FF0000•^000000 ก็ได้,จัดการเลย") == 1) {
+			mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+			mes "ตกลง! ใช้เวลาในการพิจารณา!";
+			close;
+		}
+		specialeffect2 EF_REPAIRWEAPON;
+		progressbar "ffff00",0;
+		if (getequipisequiped(EQI_GARMENT) == 0) {
+			mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+			mes "เจ้าถอดออกหรอ";
+			close;
+		}
+		if (getequipid(EQI_GARMENT) != 2589) {
+			mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+			mes "เจ้าไม่ได้ใส่มันนิ";
+			close;
+		}
+		if (getequipcardid(EQI_GARMENT,3)) {
+			mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+			mes "ปีกนี้มีการเสริมพลังอยู่แล้ว ,รบกวนเจ้าไปลบของเก่าออกก่อน";
+			close;
+		}
+		set .@equip_refine, getequiprefinerycnt(EQI_GARMENT);
+		setarray .@equip_card[0], getequipcardid(EQI_GARMENT,0),getequipcardid(EQI_GARMENT,1),getequipcardid(EQI_GARMENT,2);
+
+		set .@i, rand(1,900);
+		     if (.@i < 2)   set .@enchant,4848; //Immuned1
+		else if (.@i < 3)   set .@enchant,4849; //Cranial1
+		else if (.@i < 4)   set .@enchant,4852; //Heal_Amount5
+		else if (.@i < 9)   set .@enchant,4853; //S_Str
+		else if (.@i < 14)  set .@enchant,4854; //S_Agi
+		else if (.@i < 19)  set .@enchant,4855; //S_Vital
+		else if (.@i < 24)  set .@enchant,4856; //S_Int
+		else if (.@i < 29)  set .@enchant,4857; //S_Dex
+		else if (.@i < 34)  set .@enchant,4858; //S_Luck
+		else if (.@i < 39)  set .@enchant,4851; //Heal_Amount4
+		else if (.@i < 49)  set .@enchant,4850; //Heal_Amount3
+		else if (.@i < 74)  set .@enchant,4760; //Matk1
+		else if (.@i < 84)  set .@enchant,4761; //Matk2
+		else if (.@i < 109) set .@enchant,4817; //Sharp2
+		else if (.@i < 119) set .@enchant,4816; //Sharp3
+		else if (.@i < 144) set .@enchant,4814; //Spell2
+		else if (.@i < 154) set .@enchant,4813; //Spell3
+		else if (.@i < 179) set .@enchant,4833; //Expert_Archer2
+		else if (.@i < 189) set .@enchant,4834; //Expert_Archer3
+		else if (.@i < 214) set .@enchant,4810; //Fighting_Spirit2
+		else if (.@i < 224) set .@enchant,4809; //Fighting_Spirit3
+		else if (.@i < 259) set .@enchant,4701; //Strength2
+		else if (.@i < 294) set .@enchant,4731; //Agility2
+		else if (.@i < 329) set .@enchant,4721; //Dexterity2
+		else if (.@i < 364) set .@enchant,4741; //Vitality2
+		else if (.@i < 399) set .@enchant,4751; //Luck2
+		else if (.@i < 434) set .@enchant,4711; //Inteligence2
+		else if (.@i < 504) set .@enchant,4700; //Strength1
+		else if (.@i < 574) set .@enchant,4730; //Agility1
+		else if (.@i < 644) set .@enchant,4720; //Dexterity1
+		else if (.@i < 714) set .@enchant,4740; //Vitality1
+		else if (.@i < 784) set .@enchant,4750; //Luck1
+		else if (.@i < 854) set .@enchant,4710; //Inteligence1
+		else set .@enchant,0;
+
+		set Zeny, Zeny - 1000000;
+		delequip EQI_GARMENT;
+		if (.@enchant == 0) {
+			mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+			mes "จงมีเมตตาต่อผู้รอดชีวิต,";
+			mes "ส่งดอกไม้ไปให้คนตาย";
+			next;
+			mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+			mes "ช่วยเรื่องความยุติธรรม,";
+			mes "กำจัดความชั่วร้าย.";
+			next;
+			mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+			mes "เสียใจด้วย Fallen Angel Wing ถูกทำลายไปแล้ว!";
+			close;
+		}
+		getitem2 2589,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],.@enchant; //Fallen Angel_Wing
+		if (.@i < 4)
+		announce strcharinfo(0)+" ได้หลงเสน่ห์ Fallen Angel Wing ด้วยความสามารถอันน่าทึ่ง!",bc_all,0xFF0000,FW_NORMAL,10;
+		mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+		mes "รับไปซะ!";
+		mes "ฉันเชื่อว่าคุณจะกลายเป็นผู้ปกครองของโลกใหม่!";
+		close;
+	case 3:
+		mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+		mes "การลบพลังต้องใช้^0000ffSilvervine Fruit 3 ea.^000000.";
+		next;
+		if(select("^FF0000•^000000 ขอคิดดูก่อนนะ...:^FF0000•^000000 โอเค,จัดการเลย.") == 1) {
+			mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+			mes "ตกลง! ใช้เวลาในการพิจารณา!";
+			close;
+		}
+		specialeffect2 EF_REPAIRWEAPON;
+		progressbar "ffff00",0;
+		if (getequipisequiped(EQI_GARMENT) == 0) {
+			mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+			mes "Fallen Angel Wing ถูกนำออกไป!";
+			close;
+		}
+		if (getequipid(EQI_GARMENT) != 2589) {
+			mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+			mes "เจ้าไม่ได้ใส่ Fallen Angel Wing!";
+			close;
+		}
+		if (countitem(6417) < 3) {
+			mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+			mes "คุณมี Silvervine Fruit ไม่พอ!";
+			close;
+		}
+		if (getequipcardid(EQI_GARMENT,3) < 4700) { // ระบบ Enchant เกราะ
+			mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+			mes "ปีกนี้ยังไม่ได้เสริมพลังเลยนะ!";
+			close;
+		}
+		set .@equip_refine, getequiprefinerycnt(EQI_GARMENT);
+		setarray .@equip_card[0], getequipcardid(EQI_GARMENT,0),getequipcardid(EQI_GARMENT,1),getequipcardid(EQI_GARMENT,2);
+		delitem 6417,3; //Silvervine
+		delequip EQI_GARMENT;
+		getitem2 2589,1,1,.@equip_refine,0,.@equip_card[0],.@equip_card[1],.@equip_card[2],0; //Fallen Angel_Wing
+		mes "[เพิ่มออฟชั่น Fallen Angel Wing]";
+		mes "รับไปซะ!";
+		close;
+	}
+end;
+OnInit:
+waitingroom "เพิ่มออฟชั่น Fallen Angel Wing",0;
+end;
+}
+

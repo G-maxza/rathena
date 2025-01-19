@@ -1,0 +1,495 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : แม่มดน้อย จอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : rAthena & Hercules
+// Contacts
+// Facebook https://www.facebook.com/appleroplus2
+// Gmail appleroplus@gmail.com
+// Skype appleroplus@hotmail.com
+//==============================================
+//==============================================
+//==============================================
+//= 1.0
+//==============================================
+oasis,174,71,4	script	เควสBOSSWER_EN#1	821,{
+	set .@gm_level, 99; // ระดับ GM ต้องใช้เพื่อเริ่ม / หยุดกิจกรรม
+
+	mes "[BOSSWER_EN]";
+	mes "นี่คือทางเข้า ^FF0000BOSSWER_EN^000000.";
+	mes "หากคุณล้มเหลวหรือตายไปประตูจะปิดและคุณต้องรอจนกว่าเหตุการณ์จะเริ่มอีกครั้งเพื่อกลับเข้ามาอีกครั้ง";
+	next;
+	switch(select("^FF0000•^000000 เข้าสู่BOSSWER_EN.:^FF0000•^000000 ข้อมูล.:" + ((getgmlevel() >= .@gm_level) ? "^FF0000•^000000 GM Menu." : "") + ":^FF0000•^000000 ยกเลิก.")) {
+	case 1:
+		if (.start != 1) { // ระยะเวลาการลงทะเบียน
+			mes "[BOSSWER_EN]";
+			mes "BOSSWER_EN ถูกปิดแล้ว.";
+			mes "มันจะเปิดในเวลาเหล่านี้:";
+			mes "18:00"; // แสดงเวลาของคุณที่นี่
+			close;
+		}
+		if (BaseLevel < 250 || Zeny < 200000) { // ความต้องการ
+			mes "[BOSSWER_EN]";
+			mes "คุณไม่เป็นไปตามข้อกำหนดที่จะเข้าร่วม BOSSWER_EN.";
+			mes " ";
+			mes "ความต้องการ:";
+			mes " - Base Level 250";
+			mes " - ค่าลงทะเบียน 200,000z";
+			close;
+		}
+		Zeny -= 200000;
+		announce strcharinfo(0)+" ได้เข้าสู่ BOSSWER_EN.", bc_npc;
+		percentheal 100,100;
+		warp "herosria",35,181;
+		close;
+	case 2:
+		mes "[BOSSWER_EN]";
+		mes "ข้างในคุณจะพบกับคลื่นBoss 10 คลื่น Bossจะเติบโตแข็งแกร่งขึ้นในแต่ละคลื่น.";
+		next;
+		mes "[BOSSWER_EN]";
+		mes "หากคุณเอาชนะBossทั้งหมดคุณจะได้รับโอกาสในการเปิดหีบสมบัติ 1 ชิ้น";
+		close;
+	case 3:
+		mes "[BOSSWER_EN]";
+		switch (.start) { // event states
+			case 0: mes "BOSSWER_EN ยังไม่ได้เริ่ม."; break;
+			case 1: mes "BOSSWER_EN กำลังรับผู้เข้าร่วม."; break;
+			case 2: mes "BOSSWER_EN กิจกรรมกำลังทำงานในรอบ "+ .round +" กับ "+ .mob +" Bossที่เหลือ."; break;
+		}
+		next;
+		switch(select("^FF0000•^000000 เริ่มกิจกรรม.:^FF0000•^000000 หยุดกิจกรรม.:^FF0000•^000000 ยกเลิก.")) {
+		case 1:
+			mes "[BOSSWER_EN]";
+			if (.start)
+				mes "BOSSWER_EN เริ่มแล้ว.";
+			else {
+				mes "ที่เริ่มต้น BOSSWER_EN...";
+				donpcevent strnpcinfo(0)+"::OnStartEvent";
+			}
+			close;
+		case 2:
+			mes "[BOSSWER_EN]";
+			if (!.start)
+				mes "BOSSWER_EN ยังไม่ได้เริ่ม.";
+			else {
+				mes "การหยุด BOSSWER_EN...";
+				donpcevent strnpcinfo(0)+"::OnStopEvent";
+			}
+			close;
+		case 3:
+			break;
+		}
+		break;
+	case 4:
+		break;
+	}
+	mes "[BOSSWER_EN]";
+	mes "ลาก่อน.";
+	close;
+
+OnStartEvent:
+OnClock1800:
+	.start = 1;
+	disablenpc "เควสBOSSWER_EN#2";
+	mapannounce "herosria","BOSSWER_EN ถูกปิดแล้ว.", bc_map;
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "herosria", .@map$, .@x, .@y;
+	killmonsterall "herosria";
+	announce "BOSSWER_EN เปิด. เหตุการณ์จะเริ่มใน 5 นาที.", bc_all;
+	sleep 60000;
+	announce "BOSSWER_EN จะเริ่มใน 4 นาที.", bc_all;
+	sleep 60000;
+	announce "BOSSWER_EN จะเริ่มใน 3 นาที.", bc_all;
+	sleep 60000;
+	announce "BOSSWER_EN จะเริ่มใน 2 นาที.", bc_all;
+	sleep 60000;
+	announce "BOSSWER_EN จะเริ่มใน 1 นาที.", bc_all;
+	sleep 60000;
+	announce "BOSSWER_EN ได้เริ่มขึ้นแล้ว!", bc_all;
+	if ( !getmapusers("herosria") )
+		goto OnStopEvent;
+	.start = 2;
+	.round = 1;
+	.mob = 12;
+	areamonster "herosria",32,227,90,206,"[EN] DR_BIG_EGGRING",3505,1,strnpcinfo(0)+"::OnDevilDead";
+	areamonster "herosria",32,227,90,206,"[EN] MD_KING_PORING",3810,1,strnpcinfo(0)+"::OnDevilDead";
+	areamonster "herosria",32,227,90,206,"[EN] ORK_HERO",1087,1,strnpcinfo(0)+"::OnDevilDead";
+	areamonster "herosria",32,227,90,206,"[EN] MAYA",1147,1,strnpcinfo(0)+"::OnDevilDead";
+	areamonster "herosria",32,227,90,206,"[EN] ORC_LORD",1190,1,strnpcinfo(0)+"::OnDevilDead";
+	areamonster "herosria",32,227,90,206,"[EN] GOLDEN_BUG",1086,1,strnpcinfo(0)+"::OnDevilDead";
+	areamonster "herosria",32,227,90,206,"[EN] EDDGA",1115,1,strnpcinfo(0)+"::OnDevilDead";
+	areamonster "herosria",32,227,90,206,"[EN] OSIRIS",1038,1,strnpcinfo(0)+"::OnDevilDead";
+	areamonster "herosria",32,227,90,206,"[EN] AMON_RA",1511,1,strnpcinfo(0)+"::OnDevilDead";
+	areamonster "herosria",32,227,90,206,"[EN] PHREEONI",1159,1,strnpcinfo(0)+"::OnDevilDead";
+	areamonster "herosria",32,227,90,206,"[EN] GHOSTRING",1120,1,strnpcinfo(0)+"::OnDevilDead";
+	areamonster "herosria",32,227,90,206,"[EN] DEVILING",1582,1,strnpcinfo(0)+"::OnDevilDead";
+	end;
+
+OnDevilDead:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "BOSSWER_EN : "+ .mob +" Bossที่เหลืออยู่ในรอบที่ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "BOSSWER_EN กำลังเข้าสู่รอบ 2...", bc_map;
+		goto OnDevil2;
+	}
+	end;
+
+OnDevil2:
+	.round = 2;
+	.mob = 15;              
+	areamonster "herosria",32,227,90,206,"[EN] DRACULA",1389,1,strnpcinfo(0)+"::OnDevilDead2";
+	areamonster "herosria",32,227,90,206,"[EN] DOPPELGANGER",1046,1,strnpcinfo(0)+"::OnDevilDead2";
+	areamonster "herosria",32,227,90,206,"[EN] MOONLIGHT",1150,1,strnpcinfo(0)+"::OnDevilDead2";
+	areamonster "herosria",32,227,90,206,"[EN] LADY_TANEE",1688,1,strnpcinfo(0)+"::OnDevilDead2";
+	areamonster "herosria",32,227,90,206,"[EN] BAPHOMET",1039,1,strnpcinfo(0)+"::OnDevilDead2";
+	areamonster "herosria",32,227,90,206,"[EN] PHARAOH",1157,1,strnpcinfo(0)+"::OnDevilDead2";
+	areamonster "herosria",32,227,90,206,"[EN] ENTWEIHEN",1957,1,strnpcinfo(0)+"::OnDevilDead2";
+	areamonster "herosria",32,227,90,206,"[EN] DRAKE",1112,1,strnpcinfo(0)+"::OnDevilDead2";
+	areamonster "herosria",32,227,90,206,"[EN] KNIGHT_OF_WINENTORM",1251,1,strnpcinfo(0)+"::OnDevilDead2";
+	areamonster "herosria",32,227,90,206,"[EN] BOITATA",2068,1,strnpcinfo(0)+"::OnDevilDead2";
+	areamonster "herosria",32,227,90,206,"[EN] LORD_OF_DEATH",1373,1,strnpcinfo(0)+"::OnDevilDead2";
+	areamonster "herosria",32,227,90,206,"[EN] LEAK",2156,1,strnpcinfo(0)+"::OnDevilDead2";
+	areamonster "herosria",32,227,90,206,"[EN] MD_GIANT_OCTOPUS",2194,1,strnpcinfo(0)+"::OnDevilDead2";
+	areamonster "herosria",32,227,90,206,"[EN] DARK_LORD",1272,1,strnpcinfo(0)+"::OnDevilDead2";
+	areamonster "herosria",32,227,90,206,"[EN] ARCHANGELING",1388,1,strnpcinfo(0)+"::OnDevilDead2";
+	end;
+
+OnDevilDead2:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "BOSSWER_EN : "+ .mob +" Bossที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "BOSSWER_EN กำลังเข้าสู่รอบ 3...", bc_map;
+		goto OnDevil3;
+	}
+	end;
+
+OnDevil3:
+	.round = 3;
+	.mob = 14;              
+	areamonster "herosria",206,261,249,202,"[EN] BACSOJIN_",1630,1,strnpcinfo(0)+"::OnDevilDead3";
+	areamonster "herosria",206,261,249,202,"[EN] GOPINICH",1885,1,strnpcinfo(0)+"::OnDevilDead3";
+	areamonster "herosria",206,261,249,202,"[EN] GARM",1252,1,strnpcinfo(0)+"::OnDevilDead3";
+	areamonster "herosria",206,261,249,202,"[EN] KTULLANUX",1779,1,strnpcinfo(0)+"::OnDevilDead3";
+	areamonster "herosria",206,261,249,202,"[EN] PORING_V",1502,1,strnpcinfo(0)+"::OnDevilDead3";
+	areamonster "herosria",206,261,249,202,"[EN] THANATOS",1708,1,strnpcinfo(0)+"::OnDevilDead3";
+	areamonster "herosria",206,261,249,202,"[EN] ANGELING",1096,1,strnpcinfo(0)+"::OnDevilDead3";
+	areamonster "herosria",206,261,249,202,"[EN] MAYA_PUPLE",1289,1,strnpcinfo(0)+"::OnDevilDead3";
+	areamonster "herosria",206,261,249,202,"[EN] NAGHT_SIEGER",1956,1,strnpcinfo(0)+"::OnDevilDead3";
+	areamonster "herosria",206,261,249,202,"[EN] INCANTATION_SAMURAI",1492,1,strnpcinfo(0)+"::OnDevilDead3";
+	areamonster "herosria",206,261,249,202,"[EN] RSX_0806",1623,1,strnpcinfo(0)+"::OnDevilDead3";
+	areamonster "herosria",206,261,249,202,"[EN] COELACANTH_N_A",2187,1,strnpcinfo(0)+"::OnDevilDead3";
+	areamonster "herosria",206,261,249,202,"[EN] COELACANTH_N_M",2188,1,strnpcinfo(0)+"::OnDevilDead3";
+	areamonster "herosria",206,261,249,202,"[EN] MD_LICH_LORD_100",3658,1,strnpcinfo(0)+"::OnDevilDead3";
+	end;
+
+OnDevilDead3:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "BOSSWER_EN : "+ .mob +" Bossที่เหลืออยู่ในรอบ 3.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "BOSSWER_EN กำลังเข้าสู่รอบ 4...", bc_map;
+		goto OnDevil4;
+	}
+	end;
+
+OnDevil4:
+	.round = 4;
+	.mob = 15;              
+	areamonster "herosria",206,261,249,202,"[EN] MIN_EDDGA",3426,1,strnpcinfo(0)+"::OnDevilDead4";
+	areamonster "herosria",206,261,249,202,"[EN] MIN_OSIRIS",3427,1,strnpcinfo(0)+"::OnDevilDead4";
+	areamonster "herosria",206,261,249,202,"[EN] DARK_SNAKE_LORD",1418,1,strnpcinfo(0)+"::OnDevilDead4";
+	areamonster "herosria",206,261,249,202,"[EN] MIN_PHREEONI",3428,1,strnpcinfo(0)+"::OnDevilDead4";
+	areamonster "herosria",206,261,249,202,"[EN] MIN_ORK_HERO",3429,1,strnpcinfo(0)+"::OnDevilDead4";
+	areamonster "herosria",206,261,249,202,"[EN] TURTLE_GENERAL",1312,1,strnpcinfo(0)+"::OnDevilDead4";
+	areamonster "herosria",206,261,249,202,"[EN] TAO_GUNKA",1583,1,strnpcinfo(0)+"::OnDevilDead4";
+	areamonster "herosria",206,261,249,202,"[EN] EP16_2_H_HUNTER_EV",3628,1,strnpcinfo(0)+"::OnDevilDead4";
+	areamonster "herosria",206,261,249,202,"[EN] EP16_2_VENOM_KIMERA",3633,1,strnpcinfo(0)+"::OnDevilDead4";
+	areamonster "herosria",206,261,249,202,"[EN] ATROCE",1785,1,strnpcinfo(0)+"::OnDevilDead4";
+	areamonster "herosria",206,261,249,202,"[EN] BANGUNGOT_1",2317,1,strnpcinfo(0)+"::OnDevilDead4";
+	areamonster "herosria",206,261,249,202,"[EN] BIJOU",3450,1,strnpcinfo(0)+"::OnDevilDead4";
+	areamonster "herosria",206,261,249,202,"[EN] MD_MIGUEL",20346,1,strnpcinfo(0)+"::OnDevilDead4";
+	areamonster "herosria",206,261,249,202,"[EN] S_NYDHOG",2022,1,strnpcinfo(0)+"::OnDevilDead4";
+	areamonster "herosria",206,261,249,202,"[EN] ILL_MOONLIGHT",3758,1,strnpcinfo(0)+"::OnDevilDead4";
+	end;
+
+OnDevilDead4:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "BOSSWER_EN : "+ .mob +" Bossที่เหลืออยู่ในรอบ 4.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "BOSSWER_EN กำลังเข้าสู่รอบ 5...", bc_map;
+		goto OnDevil5;
+	}
+	end;
+
+OnDevil5:
+	.round = 5;
+	.mob = 20;
+	areamonster "herosria",206,113,265,42,"[EN] MD_EL_A17T",20340,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] EP16_2_MM_CUTIE",3621,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] KRAKEN",2202,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] KIEL_",1734,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] APOCALIPS_H",1685,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] DETALE",1719,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] LOST_DRAGON",2131,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] ILL_KTULLANUX",3796,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] FALLINGBISHOP",1871,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] MD_PITAYA_BOSS",20659,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] GLOOMUNDERNIGHT",1768,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] ILL_DRACULA",3757,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] MD_SWEETY",20642,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] QUEEN_SCARABA",2087,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] I_QUEEN_SCARABA",2165,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] GRAND_PERE",3073,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] B_YGNIZEM",1658,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] RANDGRIS",1751,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] PYURIEL",2249,1,strnpcinfo(0)+"::OnDevilDead5";
+	areamonster "herosria",206,113,265,42,"[EN] DAEHYON",2253,1,strnpcinfo(0)+"::OnDevilDead5";
+	end;
+
+OnDevilDead5:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "BOSSWER_EN : "+ .mob +" Bossที่เหลืออยู่ในรอบ 5.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "BOSSWER_EN กำลังเข้าสู่รอบ 6...", bc_map;
+		goto OnDevil6;
+	}
+	end;
+
+OnDevil6:
+	.round = 6;
+	.mob = 20;
+	areamonster "herosria",206,113,265,42,"[EN] KADES",2255,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] N_AMON_RA",2362,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] CHARLESTON3",3124,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] MD_SILVA_PAPILIA",20667,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] IFRIT",1832,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] GIOIA",2251,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] BEELZEBUB_",1874,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] MG_CORRUPTION_ROOT",2475,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] MG_AMDARAIS",2476,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] MOROCC_",1917,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] BUWAYA",2319,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] NG_BAPHOMET",2483,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] COELACANTH_H_M",2189,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] COELACANTH_H_A",2190,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] FACEWORM_QUEEN",2529,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] FACEWORM_QUEEN_R",2532,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] FACEWORM_QUEEN_G",2533,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] FACEWORM_QUEEN_B",2534,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] FACEWORM_QUEEN_Y",2535,1,strnpcinfo(0)+"::OnDevilDead6";
+	areamonster "herosria",206,113,265,42,"[EN] BAKONAWA_3",2322,1,strnpcinfo(0)+"::OnDevilDead6";
+	end;
+
+OnDevilDead6:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "BOSSWER_EN : "+ .mob +" Bossที่เหลืออยู่ในรอบ 6.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "BOSSWER_EN กำลังเข้าสู่รอบ 7...", bc_map;
+		goto OnDevil7;
+	}
+	end;
+
+OnDevil7:
+	.round = 7;
+	.mob = 20;
+	areamonster "herosria",91,58,32,117,"[EN] MECHASPIDER",3741,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] B_SEYREN",1646,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] B_EREMES",1647,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] B_HARWORD",1648,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] B_MAGALETA",1649,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] B_SHECIL",1650,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] B_KATRINN",1651,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] B_RANDEL",2235,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] B_FLAMEL",2236,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] B_CELIA",2237,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] B_CHEN",2238,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] B_GERTIE",2239,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] B_ALPHOCCIO",2240,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] B_TRENTINI",2241,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] GEFFEN_FENRIR",2564,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] XM_CELINE_KIMI",2996,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] AS_RAGGED_GOLEM",3473,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] MD_LICH_LORD_160",3659,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] T_W_O",3254,1,strnpcinfo(0)+"::OnDevilDead7";
+	areamonster "herosria",91,58,32,117,"[EN] ILL_TURTLE_GENERAL",3804,1,strnpcinfo(0)+"::OnDevilDead7";
+	end;
+
+OnDevilDead7:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "BOSSWER_EN : "+ .mob +" Bossที่เหลืออยู่ในรอบ 7.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "BOSSWER_EN กำลังเข้าสู่รอบ 8...", bc_map;
+		goto OnDevil8;
+	}
+	end;
+
+OnDevil8:
+	.round = 8;
+	.mob = 25;
+	areamonster "herosria",91,58,32,117,"[EN] ILL_KRAKEN",20811,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] EP17_2_PITAYA_BOSS",20648,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] ILL_TAO_GUNKA",20273,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] ILL_WOOTAN_DEFENDER",20277,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] TIMEHOLDER",3074,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] EP17_1_R4885_BESTIA",20381,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] MM_MOROCC_ADT",3097,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] ILL_MAYA",21395,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] MG_AMDARAIS_H",3150,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] MG_CORRUPTION_ROOT_H",3151,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] V_B_FLAMEL",3241,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] V_B_ALPHOCCIO",3245,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] V_B_TRENTINI",3246,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] V_B_MAGALETA",3221,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] V_B_HARWORD",3223,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] V_B_KATRINN",3224,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] V_B_RANDEL",3240,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] V_B_CELIA",3242,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] V_B_CHEN",3243,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] V_B_GERTIE",3244,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] MUSPELLSKOLL_H",20419,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] V_B_EREMES",3220,1,strnpcinfo(0)+"::OnDevilDead8";	
+	areamonster "herosria",91,58,32,117,"[EN] V_B_SHECIL",3222,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] V_B_SEYREN",3225,1,strnpcinfo(0)+"::OnDevilDead8";
+	areamonster "herosria",91,58,32,117,"[EN] EP14_MORS_BOSSA",2999,1,strnpcinfo(0)+"::OnDevilDead8";
+	end;
+
+OnDevilDead8:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "BOSSWER_EN : "+ .mob +" Bossที่เหลืออยู่ในรอบ 8.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "BOSSWER_EN กำลังเข้าสู่รอบ 9...", bc_map;
+		goto OnDevil9;
+	}
+	end;
+	
+OnDevil9:
+	.round = 9;
+	.mob = 46;
+	areamonster "herosria",114,219,171,92,"[EN] EP19_MD_AQUILA",21531,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] EP19_MD_JUNCEA_S",21533,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_BROKEN_THANATOS",20785,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_THANATOS",20784,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_ED_B_YGNIZEM",20536,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_C_CORRUPTION_ROOT",20575,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_C_AMDARAIS",20573,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_C_HEMEL",20572,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] ILL_BAPHOMET",20520,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_GH_KING_SCHMIDT_H",20387,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MM_MOROCC_KID",3096,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MM_MUSPELLSKOL",3092,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MM_BRINARANEA",3091,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] GRIM_REAPER_ANKOU",3029,1,strnpcinfo(0)+"::OnDevilDead9";
+	
+	areamonster "herosria",114,219,171,92,"[EN] EP20_BOSS_CLANER",21980,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] EP18_MD_SCHULANG_L",21360,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] EP18_MD_DEMI_FREYJA_L",21361,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] DARK_LORD_H",20422,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] BRINARANEA_H",20421,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_GRAN_PAPILIA",20668,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] JUNGOLIANT",20601,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] REGINLEIF",20610,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] INGRID",20611,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] BONE_DETALE",20618,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] EP18_BURNING_FANG",21301,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] R001_BESTIA",20934,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_EP20_BOSS_LASGAND",21981,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_EP20_FALLENANGEL",21982,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] EP20_ANGEL_ICESLUG",21983,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] EP20_SNOW_ANGEL",21996,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_SAKRAY",20892,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_TIARA",20893,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_BETELGEUSE",20994,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_Airboat_Boss4",21063,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] CHIMERA_FULGOR",20921,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] CHIMERA_THEONE",20928,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] EP19_LIMACINA_BOSS",21537,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_BETELGEUSE",20994,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] EP20_BOSS_CLANER",21980,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] DEATH_WITCH",20943,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] RENIRE",21955,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_PRI_RIGEL",22174,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_PRI_RIGEL_AC",22175,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_PRI_DRAGON_1",22177,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_PRI_DRAGON_2",22178,1,strnpcinfo(0)+"::OnDevilDead9";
+	areamonster "herosria",114,219,171,92,"[EN] MD_PRI_DRAGON_3",22179,1,strnpcinfo(0)+"::OnDevilDead9";
+	end;
+
+OnDevilDead9:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "BOSSWER_EN : "+ .mob +" Bossที่เหลืออยู่ในรอบ 9.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "BOSSWER_EN กำลังเข้าสู่รอบ 10...", bc_map;
+		goto OnDevil10;
+	}
+	end;
+
+OnDevil10:
+	.round = 10;
+	.mob = 1;
+	monster "herosria",149,184,"GM_MEN",2493,1,strnpcinfo(0)+"::OnDevilDead10";
+	end;
+
+OnDevilDead10:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "BOSSWER_EN : "+ .mob +" Bossที่เหลืออยู่ในรอบสุดท้าย.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "BOSSWER_EN : ขอแสดงความยินดี 1 หีบสมบัติเหล่านี้เป็นของคุณ.", bc_map;
+		goto OnDevil11;
+	}
+	end;
+
+OnDevil11:
+	.round = 11;
+	.mob = 1;
+	monster "herosria",149,184,"Treasure Chest",1324,1,strnpcinfo(0)+"::OnTreasureDead";
+	end;
+
+OnTreasureDead:
+	.mob--;
+	announce "BOSSWER_EN : "+ strcharinfo(0) +" ได้เปิดหีบสมบัติที่ BOSSWER_EN.", bc_all;
+	if ( .mob <= 0 )
+		goto OnStopEvent;
+		//getitem 5000033,100; // เพิ่มของรางวัลcc
+		//getitem 20000023,30; // เพิ่มของรางวัลเกลือ
+		//getitem 20000024,5; // เพิ่มของรางวัลใบกาชาทิกเก็ต
+		//set Zeny,Zeny + 3000000; // เพิ่มของรางวัลเงิน
+	end;
+
+OnStopEvent:
+	killmonsterall "herosria";
+	enablenpc "เควสBOSSWER_EN#2";
+	.start = .round = .mob = 0;
+	end;
+	
+OnInit:
+	waitingroom "BOSSWER_EN 18:00 น.",0;
+	end;
+}
+
+herosria,149,198,6	script	เควสBOSSWER_EN#2	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+}
+
+herosria	mapflag	nowarp
+herosria	mapflag	nowarpto
+herosria	mapflag	noteleport
+herosria	mapflag	monster_noteleport
+herosria	mapflag	nosave	SavePoint
+herosria	mapflag	nomemo
+herosria	mapflag	nobranch
+herosria	mapflag	nopenalty
+herosria	mapflag	noicewall

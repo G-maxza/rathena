@@ -40,6 +40,10 @@ Body:
   - ID: 0
     Name: "Storage"
     Table: storage
+  - ID: 1
+    Name: "Collection"
+    Table: storage_collection
+    Max: 5
 
 Footer:
   Imports:

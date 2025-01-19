@@ -1,0 +1,136 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : แม่มดน้อย จอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : rAthena & Hercules
+// Contacts
+// Facebook https://www.facebook.com/appleroplus2
+// Gmail appleroplus@gmail.com
+// Skype appleroplus@hotmail.com
+//==============================================
+//==============================================
+//==============================================
+-	script	Auto_GuildWar1	-1,{
+	end;
+
+Oninit:
+	//เริ่มจากอาทิตย์ จันทร์ อังคาร พุธ พฤหััส ศุกร์ เสาร์
+	setarray $DAY[0],1,1,1,1,1,1,1;
+
+end;
+	
+OnClock1900:	//เวลาเปิด มหาสงครามศักดิ์สิทธิ์ The War of Emperium
+OnClock2000:	//เปิดปิด มหาสงครามศักดิ์สิทธิ์ The War of Emperium
+
+OnAgitInit:
+	// การตรวจสอบเวลาเริ่มต้น
+	if(	$DAY[gettime(DT_DAYOFWEEK)] && (gettime(DT_HOUR)>=19 && gettime(DT_HOUR)<20)) {
+		if (!agitcheck()){
+			AgitStart;
+			announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium ได้เริ่มขึ้นแล้ว",16;
+			set .counter,0;
+			initnpctimer;
+		}
+	}
+
+	// การตรวจสอบเวลาสิ้นสุด
+	if ( $DAY[gettime(DT_DAYOFWEEK)] &&  (gettime(DT_HOUR)==20)) {
+		if (agitcheck()) {
+			AgitEnd;
+			announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium ได้จบลงแล้ว",16;
+			set .counter,0;
+			stopnpctimer;
+		}
+	}
+end;
+
+OnTimer1000:
+	set .counter,.counter+1;
+	if((.counter == 1800 || .counter == 2400 || ( .counter >= 3000 && .counter <= 3540)) && .counter%60 == 0){ //30นาที 40นาที 50นาที ผ่านไป
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก "+((3600-.counter)/60)+" นาที จะจบลงแล้ว",16;
+	}else if(.counter > 3540){ //วินาที
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก "+(3600-.counter)+" วินาที จะจบลงแล้ว",16;
+	}
+	initnpctimer;
+	end;
+}
+//==============================================
+//==============================================
+//==============================================
+-	script	Auto_GuildWar2	-1,{
+	end;
+
+Oninit:
+	//เริ่มจากอาทิตย์ จันทร์ อังคาร พุธ พฤหััส ศุกร์ เสาร์
+	setarray $DAY[0],1,1,1,1,1,1,1;
+
+end;
+	
+OnClock2100:	//เวลาเปิด มหาสงครามศักดิ์สิทธิ์ The War of Emperium
+OnClock2200:	//เปิดปิด มหาสงครามศักดิ์สิทธิ์ The War of Emperium
+
+OnAgitInit:
+	// การตรวจสอบเวลาเริ่มต้น
+	if(	$DAY[gettime(DT_DAYOFWEEK)] && (gettime(DT_HOUR)>=21 && gettime(DT_HOUR)<22)) {
+		if (!agitcheck()){
+			AgitStart;
+			announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium ได้เริ่มขึ้นแล้ว",16;
+			set .counter,0;
+			initnpctimer;
+		}
+	}
+
+	// การตรวจสอบเวลาสิ้นสุด
+	if ( $DAY[gettime(DT_DAYOFWEEK)] &&  (gettime(DT_HOUR)==22)) {
+		if (agitcheck()) {
+			AgitEnd;
+			announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium ได้จบลงแล้ว",16;
+			set .counter,0;
+			stopnpctimer;
+		}
+	}
+end;
+
+OnTimer1000:
+	set .counter,.counter+1;
+	if((.counter == 1800 || .counter == 2400 || ( .counter >= 3000 && .counter <= 3540)) && .counter%60 == 0){ //30นาที 40นาที 50นาที ผ่านไป
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก "+((3600-.counter)/60)+" นาที จะจบลงแล้ว",16;
+	}else if(.counter > 3540){ //วินาที
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก "+(3600-.counter)+" วินาที จะจบลงแล้ว",16;
+	}
+	initnpctimer;
+	end;
+}
+//==============================================
+//==============================================
+//==============================================
+-	script	Auto_GuildWarAnnounce1	-1,{
+end;
+OnClock1850:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 10 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock1851:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 9 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock1852:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 8 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock1853:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 7 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock1854:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 6 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock1855:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 5 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock1856:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 4 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock1857:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 3 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock1858:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 2 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock1859:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 1 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+}
+//==============================================
+//==============================================
+//==============================================
+-	script	Auto_GuildWarAnnounce2	-1,{
+end;
+OnClock2050:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 10 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock2051:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 9 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock2052:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 8 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock2053:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 7 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock2054:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 6 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock2055:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 5 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock2056:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 4 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock2057:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 3 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock2058:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 2 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+OnClock2059:announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 1 นาที จะเริ่มขึ้นแล้ว !!!",16;end;
+}

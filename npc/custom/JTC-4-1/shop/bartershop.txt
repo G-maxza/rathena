@@ -1,0 +1,868 @@
+// ร้านเเลกTCG TO CC
+//============================================================
+hu_in01,113,382,4	script	#Tradeitem	4_BASIL_SLAVE,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" TCG TO CC ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกTCG TO CC",0;
+	end;
+}
+//hu_in01,113,382,4	duplicate(#Tradeitem)	ร้านเเลกTCG TO CC#1	4_BASIL_SLAVE
+//============================================================
+// Booster Weapons-Shadow
+//============================================================
+oasis,171,157,4	script	#Booster_Weapons-Shadow	4_M_POPFESTA,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 Booster Weapons ",
+		""+.sb$+" ^FF0000•^000000 Booster Weapons 2 Slots ",
+		""+.sb$+" ^FF0000•^000000 Booster Shadow ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop11",1;
+			end;
+		case 2:
+			close2;
+			callshop "Bartershop12",1;
+			end;
+		case 3:
+			close2;
+			callshop "Bartershop13",1;
+			end;
+		case 4:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC Booster Weapons-Shadow",0;
+	end;
+}
+//oasis,171,157,4	duplicate(#Booster_Weapons-Shadow)	NPC Booster Weapons-Shadow EN#1	4_M_POPFESTA
+//============================================================
+// King Schmidt's
+//============================================================
+oasis,150,161,4	script	#King_Schmidt	4_BASIL_SLAVE,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" ETC TO King Schmidt ",
+		""+.sb$+" ETC Old Glast Heim ",
+		""+.sb$+" Royal & Guardian Weapons ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop14",1;
+			end;
+		case 2:
+			close2;
+			callshop "Bartershop15",1;
+			end;
+		case 3:
+			close2;
+			callshop "Bartershop16",1;
+			end;
+		case 4:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกETC TO King Schmidt",0;
+	end;
+}
+//oasis,150,161,4	duplicate(#King_Schmidt)	ร้านเเลกETC TO King Schmidt#1	4_BASIL_SLAVE
+//============================================================
+// Shadow EN
+//============================================================
+oasis,189,92,4	script	#Shadow_EN	M_LOKI,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 Shadow Server EN ",
+		""+.sb$+" ^FF0000•^000000 Shadow Weapon Server5 ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop50",1;
+			end;
+		case 2:
+			close2;
+			callshop "Bartershop51",1;
+			end;
+		case 3:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC Craft Shadow EN",0;
+	end;
+}
+//oasis,189,92,4	duplicate(#Shadow_EN)	NPC Craft Shadow EN#1	M_LOKI
+//============================================================
+// Purchase Additional Gemstone & Gemstone Exchange
+//============================================================
+oasis,165,115,4	script	#Gemstone_Exchange	4_EP17_NIHIL_K,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 Additional Gemstone ",
+		""+.sb$+" ^FF0000•^000000 Gemstone Exchange ",
+		""+.sb$+" ^FF0000•^000000 Gemstone Exchange 2 ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop200",1;
+			end;
+		case 2:
+			close2;
+			callshop "Bartershop201",1;
+			end;
+		case 3:
+			close2;
+			callshop "Bartershop202",1;
+			end;
+		case 4:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC Craft Gemstone",0;
+	end;
+}
+//oasis,165,115,4	duplicate(#Gemstone_Exchange)	NPC Craft Gemstone EN#1	4_EP17_NIHIL_K
+//============================================================
+// Gemstone Dynite & Mjolnir's Energy
+//============================================================
+oasis,168,165,4	script	#Dynite_Mjolnir_Energy	4_M_AC_RUMIN,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 Dynite & Mjolnir's Energy ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop205",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC Dynite & Mjolnir's Energy",0;
+	end;
+}
+//oasis,168,165,4	duplicate(#Dynite_Mjolnir_Energy)	NPC Dynite & Mjolnir's Energy#1	4_M_AC_RUMIN
+//============================================================
+// Dynite einbech weapon ITEM Reform Flush weapon
+//============================================================
+oasis,168,169,4	script	#Dynite_Reform_weapon	4_M_PEPPERROTI,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 Dynite weapon ",
+		""+.sb$+" ^FF0000•^000000 Reform Dynite weapon ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop206",1;
+			end;
+		case 2:
+			close2;
+			callshop "Bartershop207",1;
+			end;
+		case 3:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC Reform Dynite weapon",0;
+	end;
+}
+//oasis,168,169,4	duplicate(#Dynite_Reform_weapon)	NPC Reform Dynite weapon#1	4_M_PEPPERROTI
+//============================================================
+// ITEM Reform Muqaddas Weapons & ETC
+//============================================================
+oasis,161,171,4	script	#ITEM_ETC_Reform_Mu	4_RAGFES_11,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 ITEM ETC ",
+		""+.sb$+" ^FF0000•^000000 ITEM Reform Muqaddas Weapons ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop208",1;
+			end;
+		case 2:
+			close2;
+			callshop "Bartershop209",1;
+			end;
+		case 3:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC Reform Muqaddas Weapons & ETC",0;
+	end;
+}
+//oasis,161,171,4	duplicate(#ITEM_ETC_Reform_Mu)	NPC Reform Muqaddas Weapons & ETC#1	4_RAGFES_11
+//============================================================
+// EP17.1 ARMOR-ETC-OS Weapons
+//============================================================
+oasis,165,119,4	script	#ITEM_EP_17_1	4_SYS_MSG,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลก ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 ITEM EP 17.1 ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop210",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC EP_17_1",0;
+	end;
+}
+//oasis,165,119,4	duplicate(#ITEM_EP_17_1)	NPC EP_17_1#1	4_SYS_MSG
+//============================================================
+// EP17.2 ETC
+//============================================================
+oasis,173,134,4	script	#ITEM_EP17.2_ETC	4_EP17_GUARD_B_NG,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลก ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 ITEM EP17.2 ETC ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop211",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC EP17.2_ETC",0;
+	end;
+}
+//oasis,173,134,4	duplicate(#ITEM_EP17.2_ETC)	NPC EP17.2_ETC#1	4_EP17_GUARD_B_NG
+//============================================================
+// EP17.2 ARMOR
+//============================================================
+oasis,177,134,4	script	#ITEM_EP17.2_ARMOR	4_EP17_GUARD_B,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลก ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 ITEM EP17.2 ARMOR ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop212",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC EP17.2_ARMOR",0;
+	end;
+}
+//oasis,177,134,4	duplicate(#ITEM_EP17.2_ARMOR)	NPC EP17.2_ARMOR#1	4_EP17_GUARD_B
+//============================================================
+// EP18. ARMOR Grey Wolf
+//============================================================
+oasis,185,134,4	script	#ITEM_EP18_ARMOR_Grey_Wolf	4_EP18_KAMIL,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลก ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 ITEM EP18. ARMOR Grey Wolf ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop213",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC EP18. ARMOR Grey Wolf",0;
+	end;
+}
+//oasis,185,134,4	duplicate(#ITEM_EP18_ARMOR_Grey_Wolf)	NPC EP18. ARMOR Grey Wolf#1	4_EP18_KAMIL
+//============================================================
+// EP18. Nebula ETC
+//============================================================
+oasis,197,134,4	script	#ITEM_EP18_Nebula_ETC	2_VENDING_MACHINE1,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลก ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 ITEM EP18. Nebula ETC ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop214",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC EP18. Nebula ETC",0;
+	end;
+}
+//oasis,197,134,4	duplicate(#ITEM_EP18_Nebula_ETC)	NPC EP18. Nebula ETC#1	2_VENDING_MACHINE1
+//============================================================
+// EP18. Nebula ARMOR
+//============================================================
+oasis,199,140,4	script	#ITEM_EP18_Nebula_ARMOR	2_DROP_MACHINE,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลก ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 ITEM EP18. Nebula ARMOR ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop215",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC EP18. Nebula ARMOR",0;
+	end;
+}
+//oasis,199,140,4	duplicate(#ITEM_EP18_Nebula_ARMOR)	NPC EP18. Nebula ARMOR#1	2_DROP_MACHINE
+//============================================================
+// EP18. Item reform Varmundt  //  EP18. Item Rune Stones & Item ETC & Item reform
+//============================================================
+oasis,179,200,4	script	#ITEM_EP18_Varmundt_-_ETC	4_EP18_MERCHANT,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 Item reform Varmundt ",
+		""+.sb$+" ^FF0000•^000000 Item reform Rune ",
+		""+.sb$+" ^FF0000•^000000 Item reform Rune Upgrade ",
+		""+.sb$+" ^FF0000•^000000 Item reform Engraved Rune ",
+		""+.sb$+" ^FF0000•^000000 Item reform Accessories ",
+		""+.sb$+" ^FF0000•^000000 Item reform ETC ",
+		""+.sb$+" ^FF0000•^000000 Item reform ETC Advanced ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop216",1;
+			end;
+		case 2:
+			close2;
+			callshop "Bartershop228",1;
+			end;
+		case 3:
+			close2;
+			callshop "Bartershop229",1;
+			end;
+		case 4:
+			close2;
+			callshop "Bartershop230",1;
+			end;
+		case 5:
+			close2;
+			callshop "Bartershop231",1;
+			end;
+		case 6:
+			close2;
+			callshop "Bartershop217",1;
+			end;
+		case 7:
+			close2;
+			callshop "Bartershop232",1;
+			end;
+		case 8:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC Varmundt",0;
+	end;
+}
+//oasis,179,200,4	duplicate(#ITEM_EP18_Varmundt_-_ETC)	NPC Varmundt EN#1	4_EP18_MERCHANT
+//============================================================
+// EP18. Item Thanos Weapon & Helm
+//============================================================
+oasis,199,179,4	script	#ITEM_EP18_Thanos_Weapon_Helm	4_4JOB_EINHAR,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 Item Thanos Weapon ",
+		""+.sb$+" ^FF0000•^000000 Item Thanos Helm ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop218",1;
+			end;
+		case 2:
+			close2;
+			callshop "Bartershop219",1;
+			end;
+		case 3:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC EP18. Item Thanos Weapon & Helm",0;
+	end;
+}
+//oasis,199,179,4	duplicate(#ITEM_EP18_Thanos_Weapon_Helm)	NPC EP18. Item Thanos Weapon & Helm EN#1	4_4JOB_EINHAR
+//============================================================
+// EP18. Clock Tower Unknown Basement
+//============================================================
+oasis,199,156,4	script	#ITEM_Clock_Tower_Unknown	BIG_BEN,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลก ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 ITEM Clock Tower Unknown",
+		""+.sb$+" ^FF0000•^000000 ITEM Reform Weapon ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop220",1;
+			end;
+		case 2:
+			close2;
+			callshop "Bartershop221",1;
+			end;
+		case 3:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC Clock Tower Unknown",0;
+	end;
+}
+//oasis,199,156,4	duplicate(#ITEM_Clock_Tower_Unknown)	NPC Clock Tower Unknown#1	BIG_BEN
+//============================================================
+// EP19. ETC
+//============================================================
+oasis,191,180,4	script	#ITEM_EP19_ETC	4_EP19_IWIN,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลก ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 ITEM EP19. ETC ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop222",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC EP19. ETC",0;
+	end;
+}
+//oasis,191,180,4	duplicate(#ITEM_EP19_ETC)	NPC EP19 ETC#1	4_EP19_IWIN
+//============================================================
+// EP19. Snow Flower Armor
+//============================================================
+oasis,187,180,4	script	#ITEM_EP19_Snow_Flower_Armor	4_EP19_VELLGUNDE,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลก ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 Snow Flower Armor ",
+		""+.sb$+" ^FF0000•^000000 ITEM Reform Glacier ",
+		""+.sb$+" ^FF0000•^000000 ITEM Reform Dim Glacier ",
+		""+.sb$+" ^FF0000•^000000 Warrior Crown ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop223",1;
+			end;
+		case 2:
+			close2;
+			callshop "Bartershop225",1;
+			end;
+		case 3:
+			close2;
+			callshop "Bartershop226",1;
+			end;
+		case 4:
+			close2;
+			callshop "Bartershop227",1;
+			end;
+		case 5:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC EP19. Armor",0;
+	end;
+}
+//oasis,187,180,4	duplicate(#ITEM_EP19_Snow_Flower_Armor)	NPC EP19 Armor#1	4_EP19_VELLGUNDE
+//============================================================
+// EP19. Glacier Weapon
+//============================================================
+oasis,179,178,4	script	#ITEM_EP19_Glacier_Weapon	4_EP19_LEON,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 Glacier Weapon",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop224",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC EP19. Glacier Weapon",0;
+	end;
+}
+//oasis,179,178,4	duplicate(#ITEM_EP19_Glacier_Weapon)	NPC EP19. Glacier Weapon#1	4_EP19_LEON
+//============================================================
+// ITEM ETC Shard Exchange & ITEM Sinful Accessories & ITEM Light Accessories & ITEM  Crown of Good & ITEM  Sinful Weapons & ITEM Brilliant Light Weapons @ Boots of Good and Evil
+//============================================================
+oasis,173,199,4	script	#ITEM_Sinful_Light_All	4_F_ESTLOVELOY,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลก ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 ITEM ETC Shard Exchange ",
+		""+.sb$+" ^FF0000•^000000 ITEM Sinful Accessories ",
+		""+.sb$+" ^FF0000•^000000 ITEM Light Accessories ",
+		""+.sb$+" ^FF0000•^000000 ITEM Crown of Good ",
+		""+.sb$+" ^FF0000•^000000 ITEM Sinful Weapons ",
+		""+.sb$+" ^FF0000•^000000 ITEM Brilliant Light Weapons ",
+		""+.sb$+" ^FF0000•^000000 Boots of Good and Evil ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop240",1;
+			end;
+		case 2:
+			close2;
+			callshop "Bartershop241",1;
+			end;
+		case 3:
+			close2;
+			callshop "Bartershop242",1;
+			end;
+		case 4:
+			close2;
+			callshop "Bartershop243",1;
+			end;
+		case 5:
+			close2;
+			callshop "Bartershop244",1;
+			end;
+		case 6:
+			close2;
+			callshop "Bartershop245",1;
+			end;
+		case 7:
+			close2;
+			callshop "Bartershop246",1;
+			end;
+		case 8:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC ITEM Sinful Light All",0;
+	end;
+}
+//oasis,173,199,4	duplicate(#ITEM_Sinful_Light_All)	NPC ITEM Sinful Light All#1	4_F_ESTLOVELOY
+//============================================================
+// ITEM Reform Red_Force_Pendant_LT Blue_Mental_Pendant_LT Officer_Cap_LT Dolor_HatK_LT
+//============================================================
+oasis,173,207,4	script	#ITEM_Reform_LTS	4_F_COATNEIS,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลก ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 ITEM Reform Red_Force_Pendant_LT Blue_Mental_Pendant_LT Officer_Cap_LT Dolor_HatK_LT",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop247",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC Reform Red Bluel Officer Dolor LT",0;
+	end;
+}
+//oasis,173,207,4	duplicate(#ITEM_Reform_LTS)	NPC Reform Red Bluel Officer Dolor LT#1	4_F_COATNEIS
+//============================================================
+// ITEM ETC Time Dimensions Rune Crowns are crafted & Time Dimensions Rune Crowns crafted & ITEM Dimensions Weapons crafted
+//============================================================
+oasis,150,207,4	script	#ITEM_ETC_Dimensions_Crowns_Weapons	4_RUNESTONE,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลก ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 ITEM ETC Time Dimensions ",
+		""+.sb$+" ^FF0000•^000000 ITEM Time Dimensions Rune Crowns crafted ",
+		""+.sb$+" ^FF0000•^000000 ITEM Dimensions Weapons crafted ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop250",1;
+			end;
+		case 2:
+			close2;
+			callshop "Bartershop251",1;
+			end;
+		case 3:
+			close2;
+			callshop "Bartershop252",1;
+			end;
+		case 4:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC ITEM ETC Crowns Weapons crafted",0;
+	end;
+}
+//oasis,150,207,4	duplicate(#ITEM_ETC_Dimensions_Crowns_Weapons)	NPC ITEM ETC Crowns Weapons crafted#1	4_EP19_JUNCEA_D
+//============================================================
+// ITEM Dimensional Accessory ETC
+//============================================================
+oasis,140,202,4	script	#ITEM_Dimensional_Accessory_ETC	4_EP21_REINHARDT,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลก ?";
+	next;
+	switch ( select(
+		""+.sb$+" ^FF0000•^000000 ITEM ETC Dimensional Accessory ",
+		""+.sb$+" ^FF0000•^000000 ITEM Dimensional Accessory ",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop253",1;
+			end;
+		case 2:
+			close2;
+			callshop "Bartershop254",1;
+			end;
+		case 3:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "NPC ITEM ETC Dimensional Accessory ",0;
+	end;
+}
+//============================================================
+// ITEM garden_of_time
+//============================================================
+oasis,143,187,4	script	Subspace vending machine#1	HEROS_IN_ORB_1,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลก ?";
+	next;
+	switch( select( "ยกเลิก", "Energy transaction by attribute", "Energy transaction by season", "Various consumable transaction" ) ) {
+	case 1:
+		end;
+	case 2:
+		callshop( "barter_t_garden_1" );
+		break;
+	case 3:
+		callshop( "barter_t_garden_2" );
+		break;
+	case 4:
+		callshop( "barter_t_garden_3" );
+		break;
+	}
+	end;
+
+OnInit:
+	setunittitle( getnpcid(0), "<Welcome to various goods trading>" );
+	waitingroom "Welcome to various goods trading",0;
+	end;
+}
+oasis,143,182,4	script	Subspace vending machine#2	HEROS_IN_ORB_2,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลก ?";
+	next;
+	switch( select( "กเลิก", "Purchase Circulation of Life Accessories", "Purchase Divine Beast's Cloak", "Upgrade Divine Beast's Cloak" ) ) {
+	case 1:
+		end;
+	case 2:
+		callshop( "barter_t_garden_4" );
+		end;
+	case 3:
+		callshop( "barter_t_garden_5" );
+		end;
+	case 4:
+		item_reform("Season_H_Upgrade");
+		end;
+	}
+	end;
+
+OnInit:
+	setunittitle( getnpcid(0), "<Clothing Upgrade Specialist>" );
+	waitingroom "Clothing Upgrade Specialist",0;
+	end;
+}

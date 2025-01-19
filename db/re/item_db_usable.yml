@@ -1276,7 +1276,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1002;
   - Id: 620
     AegisName: Orange_Juice
     Name: Orange Juice
@@ -1288,7 +1288,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1113;
   - Id: 621
     AegisName: Bitter_Herb
     Name: Bitter Herb
@@ -1300,7 +1300,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1031;
   - Id: 622
     AegisName: Rainbow_Carrot
     Name: Rainbow Carrot
@@ -1312,7 +1312,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1063;
   - Id: 623
     AegisName: Earthworm_The_Dude
     Name: Earthworm the Dude
@@ -1324,7 +1324,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1049;
   - Id: 624
     AegisName: Rotten_Fish
     Name: Rotten Fish
@@ -1336,7 +1336,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1011;
   - Id: 625
     AegisName: Lusty_Iron
     Name: Rusty Iron
@@ -1348,7 +1348,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1042;
   - Id: 626
     AegisName: Monster_Juice
     Name: Monster Juice
@@ -1360,7 +1360,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1035;
   - Id: 627
     AegisName: Sweet_Milk
     Name: Sweet Milk
@@ -1372,7 +1372,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1167;
   - Id: 628
     AegisName: Well_Dried_Bone
     Name: Well-Dried Bone
@@ -1384,7 +1384,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1107;
   - Id: 629
     AegisName: Singing_Flower
     Name: Singing Flower
@@ -1396,7 +1396,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1052;
   - Id: 630
     AegisName: Dew_Laden_Moss
     Name: Dew Laden Moss
@@ -1408,7 +1408,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1014;
   - Id: 631
     AegisName: Deadly_Noxious_Herb
     Name: Deadly Noxious Herb
@@ -1420,7 +1420,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1077;
   - Id: 632
     AegisName: Fatty_Chubby_Earthworm
     Name: Fatty Chubby Earthworm
@@ -1432,7 +1432,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1019;
   - Id: 633
     AegisName: Baked_Yam
     Name: Sweet Potato
@@ -1444,7 +1444,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1056;
   - Id: 634
     AegisName: Tropical_Banana
     Name: Tropical Banana
@@ -1456,7 +1456,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1057;
   - Id: 635
     AegisName: Horror_Of_Tribe
     Name: Orc Trophy
@@ -1468,7 +1468,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1023;
   - Id: 636
     AegisName: No_Recipient
     Name: No Recipient
@@ -1480,7 +1480,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1026;
   - Id: 637
     AegisName: Old_Broom
     Name: Old Broom
@@ -1492,7 +1492,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1110;
   - Id: 638
     AegisName: Silver_Knife_Of_Chaste
     Name: Silver Knife of Chastity
@@ -1504,7 +1504,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1170;
   - Id: 639
     AegisName: Armlet_Of_Obedience
     Name: Armlet of Obedience
@@ -1516,7 +1516,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1029;
   - Id: 640
     AegisName: Shining_Stone
     Name: Shining Stone
@@ -1528,7 +1528,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1155;
   - Id: 641
     AegisName: Contracts_In_Shadow
     Name: Contract in Shadow
@@ -1540,7 +1540,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1109;
   - Id: 642
     AegisName: Book_Of_Devil
     Name: Book of the Devil
@@ -1552,7 +1552,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1101;
   - Id: 643
     AegisName: Pet_Incubator
     Name: Pet Incubator
@@ -1668,7 +1668,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1188;
   - Id: 660
     AegisName: Prohibition_Red_Candle
     Name: Forbidden Red Candle
@@ -1680,7 +1680,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1200;
   - Id: 661
     AegisName: Sway_Apron
     Name: Soft Apron
@@ -1692,7 +1692,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1275;
   - Id: 662
     AegisName: Inspector_Certificate
     Name: Authoritative Badge
@@ -2422,14 +2422,14 @@ Body:
       NoAuction: true
     Script: |
       specialeffect2 EF_POTION_BERSERK;
-      sc_start4 SC_LIMIT_POWER_BOOSTER,1800000,30,1,5,0;
+      sc_start SC_LIMIT_POWER_BOOSTER,1800000,30;
   - Id: 9897
     AegisName: E_Glittering_Doll_B
     Name: Shiny Doll Button
     Type: Usable
     Weight: 10
     Script: |
-      pet;
+      pet 21089;
   - Id: 9908
     AegisName: DF_Mental_Potion
     Name: "[Scroll] Mental Potion"
@@ -3958,7 +3958,7 @@ Body:
     Weight: 30
     Script: |
       itemheal 45,0;
-      transform 1508,600000,SC_MTF_HITFLEE,20,30;
+      transform 1508,600000,SC_MTF_HITFLEE,10,20;
       specialeffect2 EF_CLOAKING;
       showscript "Trans-Form-!! Cube Fo-rm!!";
   - Id: 11596
@@ -3997,9 +3997,14 @@ Body:
     Flags:
       BuyingStore: true
     Script: |
-      specialeffect2 EF_GUARD;
-      heal 1000,0;
-      sc_start SC_EP16_DEF,180000,10;
+      if (strcharinfo(3) == "prt_q") {
+         specialeffect2 EF_GUARD;
+         bonus_script "{ bonus2 bSubSize,Size_All,10; }",600;
+         sc_end SC_SILENCE;
+         sc_end SC_POISON;
+         sc_end SC_CURSE;
+         heal 1000,0;
+      }
   - Id: 11601
     AegisName: Tasty_Anchovy
     Name: Delicious Anchovy
@@ -4400,7 +4405,7 @@ Body:
       itemheal 0,180; /* average value */
   - Id: 11638
     AegisName: 24_A_Ev_Choco_C
-    Name: Symposium Choco Egg Cookie
+    Name: Academic Festival Choco Egg Cookie    # !todo check english name
     Type: Healing
     Weight: 1
     EquipLevelMin: 100
@@ -4416,7 +4421,7 @@ Body:
       itemheal 2650,0; /* average value */
   - Id: 11639
     AegisName: 24_A_Ev_Egg_C
-    Name: Symposium Egg Cookie
+    Name: Academic Festival Egg Cookie    # !todo check english name
     Type: Healing
     Weight: 1
     EquipLevelMin: 100
@@ -4430,36 +4435,6 @@ Body:
       NoAuction: true
     Script: |
       itemheal 0,260; /* average value */
-  - Id: 11640
-    AegisName: E_Deli_BBQ
-    Name: Well-cooked Meat    # !todo check english name
-    Type: Healing
-    Weight: 1
-    EquipLevelMin: 70
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
-    Script: |
-      itemheal 1750,0; /* average value */
-  - Id: 11641
-    AegisName: E_Leather_Bottle
-    Name: Leather Canteen    # !todo check english name
-    Type: Healing
-    Weight: 1
-    EquipLevelMin: 70
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
-    Script: |
-      itemheal 0,160; /* average value */
   - Id: 11701
     AegisName: Girl_Bunch_Of_Flower
     Name: Girl's Bouquet
@@ -4499,7 +4474,7 @@ Body:
     Buy: 1
     Weight: 10
     Script: |
-      itemheal 425,0;
+      itemheal rand(425,425),0;
   - Id: 11706
     AegisName: Steak
     Name: Steak
@@ -4925,7 +4900,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      sc_start SC_INTRAVISION,30000,0;
+      sc_start SC_Intravision,30000,0;
   - Id: 12034
     AegisName: Painting_Box
     Name: Box of Panting
@@ -7207,7 +7182,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1245;
   - Id: 12226
     AegisName: Examination1
     Name: Examination 1
@@ -8660,7 +8635,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      pet;
+      pet 1815;
   - Id: 12341
     AegisName: Special_Alloy_Trap_Box
     Name: Special Alloy Trap Box
@@ -8801,7 +8776,7 @@ Body:
       BuyingStore: true
     Script: |
       specialeffect2 EF_ANGELUS;
-      sc_start SC_BUCHEDENOEL,600000,1;
+      bonus_script "{ bonus bHPrecovRate,3; bonus bSPrecovRate,3; bonus bHit,3; bonus bCritical,7; }",600,0,0,EFST_BUCHEDENOEL;
   - Id: 12355
     AegisName: Xmas_Gift
     Name: Xmas Gift
@@ -8831,7 +8806,7 @@ Body:
     Buy: 20
     Weight: 50
     Script: |
-      pet;
+      pet 1630;
   - Id: 12358
     AegisName: Fan_Of_Wind
     Name: Fan Of Wind
@@ -8843,7 +8818,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1513;
   - Id: 12359
     AegisName: Very_Soft_Plant
     Name: Very Soft Plant
@@ -8855,7 +8830,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1586;
   - Id: 12360
     AegisName: Very_Red_Juice
     Name: Very Red Juice
@@ -8867,7 +8842,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1505;
   - Id: 12361
     AegisName: Delicious_Shaved_Ice
     Name: Delicious Shaved Ice
@@ -8883,7 +8858,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      pet;
+      pet 1143;
   - Id: 12362
     AegisName: Kuloren
     Name: Kuloren
@@ -8895,7 +8870,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1401;
   - Id: 12363
     AegisName: Fit_Pipe
     Name: Fit Pipe
@@ -8911,7 +8886,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      pet;
+      pet 1179;
   - Id: 12364
     AegisName: Staff_Of_Leader
     Name: Staff Of Leader
@@ -8923,7 +8898,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1299;
   - Id: 12365
     AegisName: Charming_Lotus
     Name: Charming Lotus
@@ -8935,7 +8910,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1416;
   - Id: 12366
     AegisName: Gril_Doll
     Name: Girl's Doll
@@ -8947,7 +8922,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1404;
   - Id: 12367
     AegisName: Luxury_Whisky_Bottle
     Name: Luxury Whisky Bottle
@@ -8959,7 +8934,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1504;
   - Id: 12368
     AegisName: Splendid_Mirror
     Name: Splendid Mirror
@@ -8971,7 +8946,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1148;
   - Id: 12369
     AegisName: Oilpalm_Coconut
     Name: Oilpalm Coconut
@@ -8983,7 +8958,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1495;
   - Id: 12370
     AegisName: Gril's_Naivety
     Name: Girl's Naivety
@@ -8999,7 +8974,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      pet;
+      pet 1374;
   - Id: 12371
     AegisName: Magical_Lithography
     Name: Magical Lithography
@@ -9011,7 +8986,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1040;
   - Id: 12372
     AegisName: Hell_Contract
     Name: Hell Contract
@@ -9023,7 +8998,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1379;
   - Id: 12373
     AegisName: Boy's_Naivety
     Name: Boy's Pure Heart
@@ -9035,7 +9010,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1370;
   - Id: 12374
     AegisName: Flaming_Ice
     Name: Ice Fireworks
@@ -9047,7 +9022,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      pet;
+      pet 1837;
   - Id: 12375
     AegisName: Acaraje
     Name: Akaraje
@@ -9055,7 +9030,7 @@ Body:
     Weight: 80
     Script: |
       specialeffect2 EF_STEAL;
-      sc_start2 SC_ACARAJE,1200000,10,5;
+      sc_start SC_ACARAJE,1200000,0;
   - Id: 12376
     AegisName: Mysterious_Can2
     Name: Mysterious Can2
@@ -9344,7 +9319,7 @@ Body:
     Flags:
       BuyingStore: true
     Script: |
-      pet;
+      pet 1631;
   - Id: 12396
     AegisName: Fools_Day_Box
     Name: Gift Box?
@@ -9470,7 +9445,7 @@ Body:
       NoAuction: true
     Script: |
       specialeffect2 EF_STEAL;
-      sc_start SC_VITALIZE_POTION,120000,2;
+      sc_start SC_VITALIZE_POTION,120000,3;
   - Id: 12405
     AegisName: Underripe_Yggseed
     Name: Underripe Yggseed
@@ -9528,7 +9503,7 @@ Body:
     Name: Hydra Ball
     Type: Usable
     Script: |
-      pet;
+      pet 2081;
   - Id: 12409
     AegisName: Pork_Belly_H
     Name: 1st Class Pork Belly
@@ -12850,7 +12825,7 @@ Body:
     Flags:
       BuyingStore: true
     Script: |
-      pet;
+      pet 2313;
   - Id: 12700
     AegisName: Insideout_Shirt
     Name: Inside-out Shirt
@@ -13368,7 +13343,7 @@ Body:
       NoAuction: true
     Script: |
       specialeffect2 EF_POTION_BERSERK;
-      sc_start SC_STR_SCROLL,60000,20;
+      bonus_script "{ bonus bStr,20; }",60,0,0,EFST_STR_SCROLL;
   - Id: 12741
     AegisName: Inc_Int_Scroll
     Name: Intellect Amplification Scroll
@@ -13385,7 +13360,7 @@ Body:
       NoAuction: true
     Script: |
       specialeffect2 EF_SPELLBREAKER;
-      sc_start SC_INT_SCROLL,60000,20;
+      bonus_script "{ bonus bInt,20; }",60,0,0,EFST_INT_SCROLL;
   - Id: 12742
     AegisName: Valentine_Gift_Box1
     Name: Valentine Gift Box
@@ -14433,7 +14408,7 @@ Body:
     Buy: 10
     Weight: 50
     Script: |
-      pet;
+      pet 2398;
   - Id: 12847
     AegisName: Old_Equipment_Box
     Name: Old Equipment Box
@@ -14726,7 +14701,7 @@ Body:
       NoAuction: true
     Script: |
       specialeffect2 EF_BASH3D;
-      sc_start SC_ALMIGHTY,1800000,30;
+      sc_start SC_ALMIGHTY,1800000,10;
       sc_start SC_FOOD_STR_CASH,1800000,10;
       sc_start SC_FOOD_AGI_CASH,1800000,10;
       sc_start SC_FOOD_INT_CASH,1800000,10;
@@ -35320,7 +35295,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      pet;
+      pet 1122;
   - Id: 14570
     AegisName: Flail_Goblin_Ring
     Name: Flail Goblin Ring
@@ -35335,7 +35310,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      pet;
+      pet 1123;
   - Id: 14571
     AegisName: Hammer_Goblin_Ring
     Name: Hammer Goblin Ring
@@ -35350,7 +35325,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      pet;
+      pet 1125;
   - Id: 14572
     AegisName: Holy_Marble
     Name: Holy Marble
@@ -35365,7 +35340,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      pet;
+      pet 1385;
   - Id: 14573
     AegisName: Red_Burning_Stone
     Name: Red Burning Stone
@@ -35380,7 +35355,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      pet;
+      pet 1382;
   - Id: 14574
     AegisName: Skull_Of_Vagabond
     Name: Vagabond's Skull
@@ -35389,7 +35364,7 @@ Body:
     Trade:
       NoDrop: true
     Script: |
-      pet;
+      pet 1208;
   - Id: 14575
     AegisName: Str_Dish05_
     Name: Lutie Lady's Pancake
@@ -36220,7 +36195,7 @@ Body:
       NoAuction: true
     Script: |
       specialeffect2 EF_BASH3D;
-      sc_start SC_ALMIGHTY,1800000,30;
+      sc_start SC_ALMIGHTY,1800000,10;
   - Id: 14663
     AegisName: Sealed_D_Lord_Scroll
     Name: Sealed Dark Lord Scroll
@@ -36316,7 +36291,8 @@ Body:
     Buy: 20
     Weight: 10
     Script: |
-      sc_start SC_CUP_OF_BOZA,120000,0;
+      sc_start SC_Cup_Of_Boza,120000,0;
+      /*aegis data 2 Minutes*/
   - Id: 14675
     AegisName: Shadow_Box2
     Name: Shadow Stat Box
@@ -36852,7 +36828,7 @@ Body:
       NoAuction: true
     Script: |
       specialeffect2 EF_POTION_BERSERK;
-      sc_start4 SC_LIMIT_POWER_BOOSTER,1800000,30,1,5,0;
+      sc_start SC_LIMIT_POWER_BOOSTER,1800000,30;
   - Id: 14780
     AegisName: Pump_Of_Spirit_Scroll
     Name: Soul Plunger Scroll
@@ -57744,6 +57720,7 @@ Body:
     Script: |
       specialeffect2 EF_ENHANCE;
       sc_start SC_BEEF_RIB_STEW,180000,0;
+      /*aegis data 3 Minutes*/
   - Id: 22659
     AegisName: BraisedSpareribs
     Name: Pig Steamed Ribs
@@ -57753,6 +57730,7 @@ Body:
     Script: |
       specialeffect2 EF_ENHANCE;
       sc_start SC_PORK_RIB_STEW,180000,0;
+      /*aegis data 3 Minutes*/
   - Id: 22660
     AegisName: Sealed_Letter
     Name: Sealed Envelope
@@ -58687,7 +58665,7 @@ Body:
       BuyingStore: true
     Script: |
       specialeffect2 EF_BASH3D;
-      sc_start SC_ALMIGHTY,3600000,30;
+      sc_start SC_ALMIGHTY,3600000,10;
       sc_start SC_FOOD_STR_CASH,3600000,10;
       sc_start SC_FOOD_AGI_CASH,3600000,10;
       sc_start SC_FOOD_INT_CASH,3600000,10;
@@ -58960,8 +58938,8 @@ Body:
     AegisName: JanuaryGiftBox
     Name: January Gift Box
     Type: Usable
-    Flags:
-      Container: true
+    Buy: 10
+    Weight: 100
     Trade:
       NoDrop: true
       NoTrade: true
@@ -58971,13 +58949,13 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      getgroupitem(IG_JANUARYGIFTBOX);
+      rentitem 19052,604800;
   - Id: 22851
     AegisName: FebruaryGiftBox
     Name: February Gift Box
     Type: Usable
-    Flags:
-      Container: true
+    Buy: 10
+    Weight: 100
     Trade:
       NoDrop: true
       NoTrade: true
@@ -58987,13 +58965,13 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      getgroupitem(IG_FEBRUARYGIFTBOX);
+      getitem 12105,2;
   - Id: 22852
     AegisName: MarchGiftBox
     Name: March Gift Box
     Type: Usable
-    Flags:
-      Container: true
+    Buy: 10
+    Weight: 100
     Trade:
       NoDrop: true
       NoTrade: true
@@ -59003,7 +58981,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      getgroupitem(IG_MARCHGIFTBOX);
+      /*2 Lucky Eggs*/
   - Id: 22853
     AegisName: AprilGiftBox
     Name: April Gift Box
@@ -59025,8 +59003,8 @@ Body:
     AegisName: MayGiftBox
     Name: May Gift Box
     Type: Usable
-    Flags:
-      Container: true
+    Buy: 10
+    Weight: 100
     Trade:
       NoDrop: true
       NoTrade: true
@@ -59036,13 +59014,13 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      getgroupitem(IG_MAYGIFTBOX);
+      getitem 22777,2;
   - Id: 22855
     AegisName: JuneGiftBox
     Name: June Gift Box
     Type: Usable
-    Flags:
-      Container: true
+    Buy: 10
+    Weight: 100
     Trade:
       NoDrop: true
       NoTrade: true
@@ -59052,13 +59030,13 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      getgroupitem(IG_JUNEGIFTBOX);
+      /*1 Potion Box*/
   - Id: 22856
     AegisName: JulyGiftBox
     Name: July Gift Box
     Type: Usable
-    Flags:
-      Container: true
+    Buy: 10
+    Weight: 100
     Trade:
       NoDrop: true
       NoTrade: true
@@ -59068,13 +59046,13 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      getgroupitem(IG_JULYGIFTBOX);
+      getitem 20212,1;
   - Id: 22857
     AegisName: AugustGiftBox
     Name: August Gift Box
     Type: Usable
-    Flags:
-      Container: true
+    Buy: 10
+    Weight: 100
     Trade:
       NoDrop: true
       NoTrade: true
@@ -59084,7 +59062,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      getgroupitem(IG_AUGUSTGIFTBOX);
+      getitem 12246,1;
   - Id: 22858
     AegisName: SeptemberGiftBox
     Name: September Gift Box
@@ -59106,8 +59084,8 @@ Body:
     AegisName: OctoberGiftBox
     Name: October Gift Box
     Type: Usable
-    Flags:
-      Container: true
+    Buy: 10
+    Weight: 100
     Trade:
       NoDrop: true
       NoTrade: true
@@ -59117,7 +59095,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      getgroupitem(IG_OCTOBERGIFTBOX);
+      getitem 12529,5;
   - Id: 22860
     AegisName: NovemberGiftBox
     Name: November Gift Box
@@ -59139,8 +59117,8 @@ Body:
     AegisName: DecemberGiftBox
     Name: December Gift Box
     Type: Usable
-    Flags:
-      Container: true
+    Buy: 10
+    Weight: 100
     Trade:
       NoDrop: true
       NoTrade: true
@@ -59150,7 +59128,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      getgroupitem(IG_DECEMBERGIFTBOX);
+      getitem 22869,10;
   - Id: 22868
     AegisName: Enchant_Stone_Box5
     Name: Costume Enchant Stone Box 5
@@ -60036,7 +60014,7 @@ Body:
     Buy: 6
     Weight: 10
     Script: |
-      sc_start SC_DORAM_BUF_01,180000,0;
+      sc_start SC_DORAM_BUF_01, 180000, 0;
   - Id: 22985
     AegisName: Dr_Life_Potion_02
     Name: Basil
@@ -60044,7 +60022,7 @@ Body:
     Buy: 10
     Weight: 10
     Script: |
-      sc_start SC_DORAM_BUF_02,180000,0;
+      sc_start SC_DORAM_BUF_02, 180000, 0;
   - Id: 22988
     AegisName: Sealed_Hat_Box2
     Name: Sealed Hat Box II
@@ -60753,22 +60731,6 @@ Body:
       Container: true
     Script: |
       getgroupitem(IG_Enchant_Stone_Box9);
-  - Id: 23059
-    AegisName: Face_Paint_Box
-    Name: Face Paint Box
-    Type: Usable
-    Buy: 20
-    Weight: 150
-    Script: |
-      getitem 6120,50; /* Face Paint */
-  - Id: 23060
-    AegisName: Surface_Paint_Box
-    Name: Surface Paint Box
-    Type: Usable
-    Buy: 20
-    Weight: 150
-    Script: |
-      getitem 6123,50; /* Surface Paint */
   - Id: 23061
     AegisName: Incisive_Arrow_Cntr
     Name: Sharp Arrow Quiver
@@ -61534,9 +61496,15 @@ Body:
       getgroupitem(IG_GUNSLINGER_SCROLL);
   - Id: 23165
     AegisName: Service30_AID_Buff
-    Name: Premium Service Personnel
-    Type: Usable
+    Name: Premium Service Staff
+    Type: DelayConsume
+    Delay:
+      Duration: 60000
+    NoUse:
+      Override: 100
+      Sitting: true
     Trade:
+      Override: 100
       NoDrop: true
       NoTrade: true
       NoSell: true
@@ -61544,8 +61512,9 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
-#   Script: |
-#     /* TODO */
+    Script: |
+      if (#APACHE_PREMIUM_TIME > gettimetick(2))
+         callfunc "ps_item";
   - Id: 23167
     AegisName: Green_Scroll_K
     Name: July Green Scroll
@@ -61697,21 +61666,21 @@ Body:
     Type: Usable
     Buy: 10
     Script: |
-      pet;
+      pet 1180;
   - Id: 23188
     AegisName: Airship_Part
     Name: Unprocessed Parts
     Type: Usable
     Buy: 10
     Script: |
-      pet;
+      pet 1632;
   - Id: 23189
     AegisName: Little_Dall_Needle
     Name: Small Needle Kit
     Type: Usable
     Buy: 10
     Script: |
-      pet;
+      pet 1622;
   - Id: 23191
     AegisName: Varetyr_5_Scroll
     Name: Level 5 Varetyr Spear
@@ -61928,7 +61897,12 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      /* TODO */
+      vip_time(60*24*30);
+      getitem 23165,1;
+      #APACHE_PREMIUM_TIME = gettimetick(2)+2592000;
+      sc_start SC_APACHE_STORAGE,2592000000,300;
+      sc_start SC_APACHE_EXPBOOST_A,2592000000,20;
+      sc_start SC_APACHE_ITEMBOOST_A,2592000000,20;
   - Id: 23209
     AegisName: Premium_Box_1d
     Name: "[1Day] Premium Subscription Box"
@@ -62392,7 +62366,7 @@ Body:
     Type: Usable
     Buy: 10
     Script: |
-      pet;
+      pet 1041;
   - Id: 23257
     AegisName: Dew_Of_Old_Tree
     Name: Old Tree's Dew
@@ -62708,7 +62682,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      duplicate_dynamic("Shorty#fgtg01");
+      /* TODO */
   - Id: 23280
     AegisName: N_Fly_Wing2
     Name: Novice Fly Wing
@@ -64422,7 +64396,7 @@ Body:
       getitem 23505,25;
       getitem 23583,1;
       getitem 23582,1;
-      getitem 25427,1;
+      getitem 23427,1;
       getitem 23586,1;
   - Id: 23586
     AegisName: Rebeginer_Box_110
@@ -64440,7 +64414,7 @@ Body:
     Script: |
       getitem 23506,20;
       getitem 23582,2;
-      getitem 25428,1;
+      getitem 23428,1;
       getitem 23587,1;
   - Id: 23587
     AegisName: Rebeginer_Box_120
@@ -64468,7 +64442,7 @@ Body:
       BuyingStore: true
     Script: |
       specialeffect2 EF_BASH3D;
-      sc_start SC_ALMIGHTY,1800000,30;
+      sc_start SC_ALMIGHTY,1800000,10;
   - Id: 23605
     AegisName: Challenge_Drink
     Name: Challenger Drink
@@ -64478,7 +64452,7 @@ Body:
       BuyingStore: true
     Script: |
       specialeffect2 EF_POTION_BERSERK;
-      sc_start4 SC_LIMIT_POWER_BOOSTER,1800000,30,1,5,0;
+      sc_start SC_LIMIT_POWER_BOOSTER,1800000,30;
   - Id: 23606
     AegisName: Power_Drink
     Name: Power Drink
@@ -64919,7 +64893,7 @@ Body:
       NoAuction: true
     Script: |
       specialeffect2 EF_BASH3D;
-      sc_start SC_ALMIGHTY,1800000,30;
+      sc_start SC_ALMIGHTY,1800000,10;
   - Id: 23726
     AegisName: E_Challenge_Drink
     Name: "[Event] Challenger Drink"
@@ -64933,7 +64907,7 @@ Body:
       NoAuction: true
     Script: |
       specialeffect2 EF_POTION_BERSERK;
-      sc_start4 SC_LIMIT_POWER_BOOSTER,1800000,30,1,5,0;
+      sc_start SC_LIMIT_POWER_BOOSTER,1800000,30;
   - Id: 23727
     AegisName: E_Unlimited_Drink
     Name: "[Event] Unlimited Drink"
@@ -66092,7 +66066,7 @@ Body:
       NoAuction: true
     Script: |
       specialeffect2 EF_POTION_BERSERK;
-      sc_start4 SC_LIMIT_POWER_BOOSTER,1800000,30,1,5,0;
+      sc_start SC_LIMIT_POWER_BOOSTER,1800000,30;
   - Id: 23899
     AegisName: Comp_Almighty
     Name: "[Not For Sale] Almighty"
@@ -66108,7 +66082,7 @@ Body:
       NoAuction: true
     Script: |
       specialeffect2 EF_BASH3D;
-      sc_start SC_ALMIGHTY,1800000,30;
+      sc_start SC_ALMIGHTY,1800000,10;
       sc_start SC_FOOD_STR_CASH,1800000,10;
       sc_start SC_FOOD_AGI_CASH,1800000,10;
       sc_start SC_FOOD_INT_CASH,1800000,10;
@@ -66480,7 +66454,7 @@ Body:
       Sitting: true
     Script: |
       specialeffect2 EF_POTION_BERSERK;
-      sc_start4 SC_LIMIT_POWER_BOOSTER,3600000,30,1,5,0;
+      sc_start SC_LIMIT_POWER_BOOSTER,3600000,30;
       sc_start SC_SPEEDUP0,600000,25;
   - Id: 100008
     AegisName: G_Infinity_Drink
@@ -70461,7 +70435,7 @@ Body:
     Flags:
       BuyingStore: true
     Script: |
-      pet;
+      pet 1198;
   - Id: 100810
     AegisName: BroadcastBox_
     Name: Broadcast Box
@@ -70765,7 +70739,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      warp "ba_in01",87,389;
+      warp "ba_in",87,389;
   - Id: 100903
     AegisName: Teleport_Ep17_01
     Name: Border Area Cor Transport Wing
@@ -70812,7 +70786,7 @@ Body:
       sc_start2 SC_M_LIFEPOTION,3600000,-4,3;
       sc_start2 SC_M_DEFSCROLL,3600000,500,200;
       sc_start2 SC_S_MANAPOTION,3600000,-5,5;
-      sc_start SC_ALMIGHTY,3600000,30;
+      sc_start SC_ALMIGHTY,3600000,10;
       sc_start SC_INFINITY_DRINK,3600000,0;
       sc_start SC_FOOD_STR_CASH,3600000,20;
       sc_start SC_FOOD_AGI_CASH,3600000,20;
@@ -70824,7 +70798,7 @@ Body:
       sc_start SC_HITFOOD,3600000,30;
       sc_start SC_ATKPOTION,3600000,20;
       sc_start SC_MATKPOTION,3600000,20;
-      sc_start4 SC_LIMIT_POWER_BOOSTER,3600000,30,1,5,0;
+      sc_start SC_LIMIT_POWER_BOOSTER,3600000,30;
       sc_start SC_SPEEDUP0,3600000,25;
   - Id: 100908
     AegisName: S_M_Piercing_Box
@@ -73723,7 +73697,7 @@ Body:
       BuyingStore: true
     Script: |
       /* TODO : pet 21632; */
-      pet;
+      pet 1005;
   - Id: 101336
     AegisName: aegis_101336
     Name: "[Scroll] DEX Biscuit Stick"
@@ -76810,8 +76784,8 @@ Body:
       BuyingStore: true
     Script: |
       specialeffect2 EF_POTION_BERSERK;
-      sc_start2 SC_M_DEFSCROLL,3600000,500,200;
-      sc_start4 SC_LIMIT_POWER_BOOSTER,3600000,30,1,5,0;
+      sc_start SC_M_DEFSCROLL,3600000,0;
+      sc_start SC_LIMIT_POWER_BOOSTER,3600000,30;
       sc_start SC_INFINITY_DRINK,3600000,0;
       sc_start SC_SPEEDUP0,600000,25;
   - Id: 102129
@@ -76849,7 +76823,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      pet;
+      pet 21965;
   - Id: 102213
     AegisName: Hero_Weapon_Up_S_Box
     Name: Hero's Weapon Mod Selection Box    # !todo check english name
@@ -77246,7 +77220,7 @@ Body:
     NoUse:
       Sitting: true
     Script: |
-      sc_start SC_INTRAVISION,60000,0;
+      sc_start SC_Intravision,60000,0;
   - Id: 102413
     AegisName: aegis_102413
     Name: Ancient Hero Box 2
@@ -78011,7 +77985,7 @@ Body:
       getgroupitem(IG_BL_DEPTH_EV_2);
   - Id: 102723
     AegisName: aegis_102723
-    Name: Beehive Box
+    Name: Beehive    # !todo check english name
     Type: Usable
   - Id: 102732
     AegisName: IsgardCrown_Box
@@ -78199,10 +78173,6 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
-    Script: |
-      sc_start SC_CONTENTS_1,900000,10;
-      specialeffect2 EF_POTION_BERSERK;
-      specialeffect2 EF_PROVIDENCE;
   - Id: 102781
     AegisName: 2401_ev_Galbi
     Name: New Year Galbi-jjim
@@ -78216,10 +78186,6 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
-    Script: |
-      sc_start SC_CONTENTS_2,900000,10;
-      specialeffect2 EF_POTION_BERSERK;
-      specialeffect2 EF_SPELLBREAKER;
   - Id: 102782
     AegisName: 2401_ev_Rice_Soup
     Name: New Year Rice Cake Soup
@@ -78233,10 +78199,6 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
-    Script: |
-      sc_start SC_CONTENTS_3,900000,15;
-      specialeffect2 EF_POTION_BERSERK;
-      specialeffect2 EF_HASTEUP;
   - Id: 102783
     AegisName: 2401_ev_Lunch_Box
     Name: Sulki's Lunch Box
@@ -78266,13 +78228,8 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
-    Script: |
-      if (strcharinfo(3) == "for_dun01")
-         warp "for_dun01",0,0;
-      else {
-         specialeffect2 EF_FREEZING;
-         showscript "It doesn't seem to have any effect here.", playerattached(), SELF;
-      }
+#   Script: |
+#     /* TODO */
   - Id: 102796
     AegisName: Forgotten_Crystal_2
     Name: Crystal of Forgotten Time (Area 2)
@@ -78285,13 +78242,8 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
-    Script: |
-      if (strcharinfo(3) == "for_dun02")
-         warp "for_dun02",0,0;
-      else {
-         specialeffect2 EF_FREEZING;
-         showscript "It doesn't seem to have any effect here.", playerattached(), SELF;
-      }
+#   Script: |
+#     /* TODO */
   - Id: 102797
     AegisName: Super_Sonic_pack
     Name: Super Sonic Package
@@ -78442,7 +78394,7 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      pet;
+      pet 22318;
   - Id: 102881
     AegisName: Gaebolg_A_Hammer_1
     Name: +9 Gaebolg Equipment Refine Hammer
@@ -78567,7 +78519,7 @@ Body:
 #     /* TODO */
   - Id: 102913
     AegisName: 2403_ev_Spray_1
-    Name: Abundant Spray
+    Name: Abundant flower branches    # !todo check english name
     Type: Usable
     Weight: 1
     Flags:
@@ -78584,7 +78536,7 @@ Body:
 #     /* TODO */
   - Id: 102924
     AegisName: 2403_ev_Crepe
-    Name: Sweet Crepe
+    Name: Sweet Crepe    # !todo check english name
     Type: Usable
     Weight: 1
     Flags:
@@ -78601,7 +78553,7 @@ Body:
 #     /* TODO */
   - Id: 102925
     AegisName: 2403_ev_Melon_Parfait
-    Name: Melon Parfait
+    Name: Melon Parfait    # !todo check english name
     Type: Usable
     Weight: 1
     Flags:
@@ -78638,7 +78590,7 @@ Body:
       getgroupitem(IG_AEGIS_102948);
   - Id: 102949
     AegisName: Sonic_Costume_Pack
-    Name: Sonic Costume Selection Box
+    Name: Sonic Costume Selection Box    # !todo check english name
     Type: DelayConsume
     Trade:
       NoDrop: true
@@ -78797,19 +78749,6 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
-  - Id: 103061
-    AegisName: Change_Gender_Card
-    Name: Gender Change Card    # !todo check english name
-    Type: Usable
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoStorage: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 103063
     AegisName: Enchant_Stone_Box35
     Name: Costume Enchant Stone Box 35
@@ -78914,7 +78853,7 @@ Body:
       percentheal 100,100;
   - Id: 103094
     AegisName: CLB_SS_Box
-    Name: Shiba Says Costume Selection Box
+    Name: Shiva Seizu Costume Selection Box    # !todo check english name
     Type: DelayConsume
     Trade:
       NoDrop: true
@@ -79009,7 +78948,7 @@ Body:
       getgroupitem(IG_STOVE_CHANNELING_BOX_4);
   - Id: 103114
     AegisName: 2024ROS_Box_1st
-    Name: ROS Korea Representative 1st Place Box
+    Name: ROS Korea Representative 1st Place Box    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79025,7 +78964,7 @@ Body:
       getgroupitem(IG_2024ROS_BOX_1ST);
   - Id: 103115
     AegisName: 2024ROS_Box_2nd
-    Name: ROS Korea Representative 2nd Place Box
+    Name: ROS Korea Representative 2nd Place Box    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79041,7 +78980,7 @@ Body:
       getgroupitem(IG_2024ROS_BOX_2ND);
   - Id: 103116
     AegisName: 2024ROS_Box_3rd
-    Name: ROS Korea Representative 3rd Place Box
+    Name: ROS Korea Representative 3rd Place Box    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79057,7 +78996,7 @@ Body:
       getgroupitem(IG_2024ROS_BOX_3RD);
   - Id: 103117
     AegisName: 2024ROS_Box_4th
-    Name: ROS Korea Participant Box
+    Name: ROS Korea Participant Box    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79073,7 +79012,7 @@ Body:
       getgroupitem(IG_2024ROS_BOX_4TH);
   - Id: 103118
     AegisName: 2024ROS_Box_5th
-    Name: ROS Korea Applicant Box
+    Name: ROS Korea Applicant Box    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79089,7 +79028,7 @@ Body:
       getgroupitem(IG_2024ROS_BOX_5TH);
   - Id: 103234
     AegisName: aegis_103234
-    Name: Costume Enchant Stone Box 36
+    Name: Costume Enchant Stone Box36    # !todo check english name
     Type: Usable
     Weight: 10
     Flags:
@@ -79098,17 +79037,17 @@ Body:
       getgroupitem(IG_AEGIS_103234);
   - Id: 103260
     AegisName: Summer_Select_Box1
-    Name: Summer Costume Selection Box (Paeonia)
+    Name: Summer Costume Selection Box (Pioneer)    # !todo check english name
     Type: DelayConsume
     Weight: 10
   - Id: 103261
     AegisName: Summer_Select_Box2
-    Name: Summer Costume Selection Box (Parasol)
+    Name: Summer Costume Selection Box (Parasol)    # !todo check english name
     Type: DelayConsume
     Weight: 10
   - Id: 103262
     AegisName: Summer_Select_Box3
-    Name: Summer Costume Selection Box (Sunbed)
+    Name: Summer Costume Selection Box (Sunbed)    # !todo check english name
     Type: DelayConsume
     Weight: 10
   - Id: 103263
@@ -79118,7 +79057,7 @@ Body:
     Weight: 10
   - Id: 103266
     AegisName: Kr_B_Special11
-    Name: Sweet Poring Cake
+    Name: Sweet Poring Cake    # !todo check english name
     Type: Usable
     Weight: 10
     Trade:
@@ -79131,7 +79070,7 @@ Body:
       NoAuction: true
   - Id: 103272
     AegisName: E_Speed_Booster
-    Name: "[Not For Sale] Speed Booster"
+    Name: "[Non-Sellable] Speed ​​Booster"    # !todo check english name
     Type: Usable
     Weight: 10
     Trade:
@@ -79144,7 +79083,7 @@ Body:
       NoAuction: true
   - Id: 103273
     AegisName: E_Force_Booster
-    Name: "[Not For Sale] Force Booster"
+    Name: "[Non-Sellable] Force Booster"    # !todo check english name
     Type: Usable
     Weight: 10
     Trade:
@@ -79157,7 +79096,7 @@ Body:
       NoAuction: true
   - Id: 103278
     AegisName: 2024Sports_Box
-    Name: 2024 World Sports Cheer Box
+    Name: 2024 World Sports Cheer Box    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79173,7 +79112,7 @@ Body:
       getgroupitem(IG_2024SPORTS_BOX);
   - Id: 103307
     AegisName: CharSlot_Open_Card
-    Name: Character Slot Expansion Card
+    Name: Character Slot Expansion Card    # !todo check english name
     Type: Usable
     Trade:
       NoDrop: true
@@ -79185,7 +79124,7 @@ Body:
       NoAuction: true
   - Id: 103308
     AegisName: Time_Gap_Refine_Hammer
-    Name: Time Gap Refine Hammer
+    Name: Time Gap Refining Hammer    # !todo check english name
     Type: DelayConsume
     Weight: 10
     EquipLevelMin: 250
@@ -79195,13 +79134,13 @@ Body:
       item_reform();
   - Id: 103309
     AegisName: Reform_4th_Skill_Shadow
-    Name: 4th Class Jobs Skills Random Option Grant Cube
+    Name: 4th Job Skill Random Option Granting Cube    # !todo check english name
     Type: DelayConsume
     Script: |
       item_reform();
   - Id: 103314
     AegisName: 22th_Present_Box
-    Name: 22nd Anniversary Gift Box
+    Name: 22nd Anniversary Gift Box    # !todo check english name
     Type: Usable
     Weight: 10
     Flags:
@@ -79217,7 +79156,7 @@ Body:
       getgroupitem(IG_22TH_PRESENT_BOX);
   - Id: 103316
     AegisName: aegis_103316
-    Name: Trait Status Shadow Cube
+    Name: Characteristic Status Shadow Cube    # !todo check english name
     Type: Usable
     Flags:
       BuyingStore: true
@@ -79226,7 +79165,7 @@ Body:
       getgroupitem(IG_AEGIS_103316);
   - Id: 103318
     AegisName: Enriched_Refine_Box
-    Name: Enriched Refine Ore Selection Box
+    Name: Concentrated Refining Stone Selection Box    # !todo check english name
     Type: DelayConsume
     Trade:
       NoDrop: true
@@ -79238,7 +79177,7 @@ Body:
       NoAuction: true
   - Id: 103319
     AegisName: Henriched_Refine_Box
-    Name: High Enriched Refine Ore Selection Box
+    Name: High Concentrated Refining Stone Selection Box    # !todo check english name
     Type: DelayConsume
     Trade:
       NoDrop: true
@@ -79278,7 +79217,7 @@ Body:
       getgroupitem(IG_SVIP_GIFT_22THANIV);
   - Id: 103335
     AegisName: Rt_Ep17_Doubt_A
-    Name: Doubtful Components Activation Reward
+    Name: Mysterious Accessory Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79294,7 +79233,7 @@ Body:
       getgroupitem(IG_RT_EP17_DOUBT_A);
   - Id: 103339
     AegisName: Rt_Ep17_Doubt_3
-    Name: Doubtful Components 3 Set Reward
+    Name: Mysterious Accessory 3-Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79310,7 +79249,7 @@ Body:
       getgroupitem(IG_RT_EP17_DOUBT_3);
   - Id: 103340
     AegisName: Rt_Ep17_Doubt_C
-    Name: Doubtful Components Completion Reward
+    Name: Mysterious Accessory Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79326,7 +79265,7 @@ Body:
       getgroupitem(IG_RT_EP17_DOUBT_C);
   - Id: 103347
     AegisName: Rt_Ep17_Auto_A
-    Name: Automatic Armor Activation Reward
+    Name: Automatic Armor Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79342,7 +79281,7 @@ Body:
       getgroupitem(IG_RT_EP17_AUTO_A);
   - Id: 103348
     AegisName: Rt_Ep17_Auto_C
-    Name: Automatic Armor Completion Reward
+    Name: Automatic Armor Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79358,7 +79297,7 @@ Body:
       getgroupitem(IG_RT_EP17_AUTO_C);
   - Id: 103349
     AegisName: Rt_Ep17_Secret_A
-    Name: Secret Facility Activation Reward
+    Name: Secret Facility Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79374,7 +79313,7 @@ Body:
       getgroupitem(IG_RT_EP17_SECRET_A);
   - Id: 103350
     AegisName: Rt_Ep17_Secret_C
-    Name: Secret Facility Completion Reward
+    Name: Secret Facility Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79390,7 +79329,7 @@ Body:
       getgroupitem(IG_RT_EP17_SECRET_C);
   - Id: 103351
     AegisName: Rt_Ep17_Mutant_A
-    Name: Mutant Activation Reward
+    Name: Variant Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79406,7 +79345,7 @@ Body:
       getgroupitem(IG_RT_EP17_MUTANT_A);
   - Id: 103352
     AegisName: Rt_Ep17_Mutant_C
-    Name: Mutant Completion Reward
+    Name: Variant Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79422,7 +79361,7 @@ Body:
       getgroupitem(IG_RT_EP17_MUTANT_C);
   - Id: 103353
     AegisName: Rt_Ep17_Miguel_A
-    Name: Secret Activation Reward
+    Name: Secret Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79438,7 +79377,7 @@ Body:
       getgroupitem(IG_RT_EP17_MIGUEL_A);
   - Id: 103354
     AegisName: Rt_Ep17_Miguel_C
-    Name: Secret Completion Reward
+    Name: Secret Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79454,7 +79393,7 @@ Body:
       getgroupitem(IG_RT_EP17_MIGUEL_C);
   - Id: 103355
     AegisName: Rt_Ep17_Miguel_2
-    Name: Secret 2 Set Reward
+    Name: Secret 2 Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79470,7 +79409,7 @@ Body:
       getgroupitem(IG_RT_EP17_MIGUEL_2);
   - Id: 103356
     AegisName: Rt_Ep17_Overload_A
-    Name: Spell Addict Activation Reward
+    Name: Magic Addiction Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79486,7 +79425,7 @@ Body:
       getgroupitem(IG_RT_EP17_OVERLOAD_A);
   - Id: 103357
     AegisName: Rt_Ep17_Overload_C
-    Name: Spell Addict Completion Reward
+    Name: Magic Addiction Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79502,7 +79441,7 @@ Body:
       getgroupitem(IG_RT_EP17_OVERLOAD_C);
   - Id: 103358
     AegisName: Rt_Ep17_Overload_3
-    Name: Spell Addict 3 Set Reward
+    Name: Magic Addiction 3 Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79518,7 +79457,7 @@ Body:
       getgroupitem(IG_RT_EP17_OVERLOAD_3);
   - Id: 103359
     AegisName: Rt_Ep17_Bath_A
-    Name: Baths Administration Activation Reward
+    Name: Bathhouse Management Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79534,7 +79473,7 @@ Body:
       getgroupitem(IG_RT_EP17_BATH_A);
   - Id: 103360
     AegisName: Rt_Ep17_Bath_C
-    Name: Baths Administration Completion Reward
+    Name: Bathhouse Management Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79550,7 +79489,7 @@ Body:
       getgroupitem(IG_RT_EP17_BATH_C);
   - Id: 103361
     AegisName: Rt_Ep17_Garden_A
-    Name: Garden Administration Activation Reward
+    Name: Garden Management Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79566,7 +79505,7 @@ Body:
       getgroupitem(IG_RT_EP17_GARDEN_A);
   - Id: 103362
     AegisName: Rt_Ep17_Garden_C
-    Name: Garden Administration Completion Reward
+    Name: Garden Management Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79582,7 +79521,7 @@ Body:
       getgroupitem(IG_RT_EP17_GARDEN_C);
   - Id: 103364
     AegisName: Rt_Ep17_Garden_3
-    Name: Garden Administration 3 Set Reward
+    Name: Garden Management 3 Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79598,7 +79537,7 @@ Body:
       getgroupitem(IG_RT_EP17_GARDEN_3);
   - Id: 103365
     AegisName: Rt_Ep17_Garden_5
-    Name: Garden Administration 5 Set Reward
+    Name: Garden Management 5 Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79614,7 +79553,7 @@ Body:
       getgroupitem(IG_RT_EP17_GARDEN_5);
   - Id: 103366
     AegisName: Rt_Ep17_Green_A
-    Name: Greenhouse Administration Activation Reward
+    Name: Greenhouse Management Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79630,7 +79569,7 @@ Body:
       getgroupitem(IG_RT_EP17_GREEN_A);
   - Id: 103367
     AegisName: Rt_Ep17_Green_C
-    Name: Greenhouse Administration Completion Reward
+    Name: Greenhouse Management Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79646,7 +79585,7 @@ Body:
       getgroupitem(IG_RT_EP17_GREEN_C);
   - Id: 103368
     AegisName: Rt_Ep17_Green_2
-    Name: Greenhouse Administration 2 Set Reward
+    Name: Greenhouse Management 2 Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79662,7 +79601,7 @@ Body:
       getgroupitem(IG_RT_EP17_GREEN_2);
   - Id: 103369
     AegisName: Rt_Ep17_Green_4
-    Name: Greenhouse Administration 4 Set Reward
+    Name: Greenhouse Management 4-Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79694,7 +79633,7 @@ Body:
       getgroupitem(IG_RT_EP17_WING_A);
   - Id: 103371
     AegisName: Rt_Ep17_Wing_C
-    Name: Wing Completion Reward
+    Name: Wing Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79710,7 +79649,7 @@ Body:
       getgroupitem(IG_RT_EP17_WING_C);
   - Id: 103372
     AegisName: Rt_Ep17_Wing_2
-    Name: Wing 2 Set Reward
+    Name: Wing 2-Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79726,7 +79665,7 @@ Body:
       getgroupitem(IG_RT_EP17_WING_2);
   - Id: 103373
     AegisName: Rt_Ep17_Wing_4
-    Name: Wing 4 Set Reward
+    Name: Wing 4-Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79742,7 +79681,7 @@ Body:
       getgroupitem(IG_RT_EP17_WING_4);
   - Id: 103374
     AegisName: Rt_Ep17_Harmful_A
-    Name: Toxic Symptom Activation Reward
+    Name: Addiction Symptom Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79758,7 +79697,7 @@ Body:
       getgroupitem(IG_RT_EP17_HARMFUL_A);
   - Id: 103375
     AegisName: Rt_Ep17_Harmful_C
-    Name: Toxic Symptom Completion Reward
+    Name: Addiction Symptom Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79774,7 +79713,7 @@ Body:
       getgroupitem(IG_RT_EP17_HARMFUL_C);
   - Id: 103376
     AegisName: Rt_Ep17_Harmful_2
-    Name: Toxic Symptom 2 Set Reward
+    Name: Addiction Symptom 2-Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79790,7 +79729,7 @@ Body:
       getgroupitem(IG_RT_EP17_HARMFUL_2);
   - Id: 103377
     AegisName: Rt_Ep17_Harmful_4
-    Name: Toxic Symptom 4 Set Reward
+    Name: Addiction Symptom 4-Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79806,7 +79745,7 @@ Body:
       getgroupitem(IG_RT_EP17_HARMFUL_4);
   - Id: 103378
     AegisName: Rt_Ep17_Boss_A
-    Name: Strongest Activation Reward
+    Name: Strongest Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79822,7 +79761,7 @@ Body:
       getgroupitem(IG_RT_EP17_BOSS_A);
   - Id: 103379
     AegisName: Rt_Ep17_Boss_C
-    Name: Strongest Completion Reward
+    Name: Strongest Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79838,7 +79777,7 @@ Body:
       getgroupitem(IG_RT_EP17_BOSS_C);
   - Id: 103381
     AegisName: Rt_Ep17_Boss_3
-    Name: Strongest 3 Set Reward
+    Name: Strongest 3-Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79854,7 +79793,7 @@ Body:
       getgroupitem(IG_RT_EP17_BOSS_3);
   - Id: 103383
     AegisName: Rt_Ep17_Boss_5
-    Name: Strongest 5 Set Reward
+    Name: Strongest 5-Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79870,7 +79809,7 @@ Body:
       getgroupitem(IG_RT_EP17_BOSS_5);
   - Id: 103385
     AegisName: Rt_Ep17_Malfun_A
-    Name: Malfunction Activation Reward
+    Name: Broken Reason Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79886,7 +79825,7 @@ Body:
       getgroupitem(IG_RT_EP17_MALFUN_A);
   - Id: 103386
     AegisName: Rt_Ep17_Malfun_C
-    Name: Malfunction Completion Reward
+    Name: Broken Reason Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79902,7 +79841,7 @@ Body:
       getgroupitem(IG_RT_EP17_MALFUN_C);
   - Id: 103387
     AegisName: Rt_Ep17_Malfun_3
-    Name: Malfunction 3 Set Reward
+    Name: Broken Reason 3-Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -79918,7 +79857,7 @@ Body:
       getgroupitem(IG_RT_EP17_MALFUN_3);
   - Id: 103428
     AegisName: 24_A_Ev_Docu
-    Name: Confidential Document
+    Name: Secret Document    # !todo check english name
     Type: Usable
     Weight: 10
     Trade:
@@ -79929,13 +79868,9 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
-    Script: |
-      specialeffect2 EF_POTION_BERSERK;
-      specialeffect2 EF_PROVIDENCE;
-      sc_start2 SC_CONTENTS_26,900000,30,10;
   - Id: 103429
     AegisName: 24_A_Ev_Rice
-    Name: Symposium Rice Cake
+    Name: Academic Festival Rice Crackers    # !todo check english name
     Type: Usable
     Weight: 10
     Trade:
@@ -79946,12 +79881,9 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
-    Script: |
-      specialeffect2 EF_SPELLBREAKER;
-      sc_start2 SC_CONTENTS_27,900000,15,10;
   - Id: 103430
     AegisName: 24_A_Ev_Butter
-    Name: Symposium Butter Cookie
+    Name: Academic Festival Butter Crackers    # !todo check english name
     Type: Usable
     Weight: 10
     Trade:
@@ -79962,12 +79894,9 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
-    Script: |
-      specialeffect2 EF_HASTEUP;
-      sc_start2 SC_CONTENTS_28,900000,15,12;
   - Id: 103431
     AegisName: 24_A_Ev_Coffee
-    Name: Symposium Coffee Stick
+    Name: Academic Festival Coffee Sticks    # !todo check english name
     Type: Usable
     Weight: 10
     Trade:
@@ -79978,17 +79907,11 @@ Body:
       NoGuildStorage: true
       NoMail: true
       NoAuction: true
-    Script: |
-      specialeffect2 EF_STEAL;
-      sc_start2 SC_CONTENTS_29,900000,15,-10;
   - Id: 103432
     AegisName: 24_A_Ev_Cookie
-    Name: Symposium Commemorative Cookie
+    Name: Academic Festival Commemorative Cookies    # !todo check english name
     Type: Usable
     Weight: 50
-    Delay:
-      Duration: 3000
-      Status: Reuse_Limit_H
     Trade:
       NoDrop: true
       NoTrade: true
@@ -79998,11 +79921,10 @@ Body:
       NoMail: true
       NoAuction: true
     Script: |
-      specialeffect2 EF_POTION4;
       percentheal 100,100;
   - Id: 103437
     AegisName: Rt_Ep18_Armor_A
-    Name: Gray Wolf Activation Reward
+    Name: Gray Wolf Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80018,7 +79940,7 @@ Body:
       getgroupitem(IG_RT_EP18_ARMOR_A);
   - Id: 103438
     AegisName: Rt_Ep18_Armor_C
-    Name: Gray Wolf Completion Reward
+    Name: Gray Wolf Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80034,7 +79956,7 @@ Body:
       getgroupitem(IG_RT_EP18_ARMOR_C);
   - Id: 103439
     AegisName: Rt_Ep18_Melee_A
-    Name: False Warrior Activation Reward
+    Name: False Warrior Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80050,7 +79972,7 @@ Body:
       getgroupitem(IG_RT_EP18_MELEE_A);
   - Id: 103440
     AegisName: Rt_Ep18_Magic_C
-    Name: False Magician Completion Reward
+    Name: False Shaman Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80066,7 +79988,7 @@ Body:
       getgroupitem(IG_RT_EP18_MAGIC_C);
   - Id: 103441
     AegisName: Rt_Ep18_Melee_C
-    Name: False Warrior Completion Reward
+    Name: False Warrior Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80082,7 +80004,7 @@ Body:
       getgroupitem(IG_RT_EP18_MELEE_C);
   - Id: 103442
     AegisName: Rt_Ep18_Magic_A
-    Name: False Magician Activation Reward
+    Name: False Sorcerer Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80098,7 +80020,7 @@ Body:
       getgroupitem(IG_RT_EP18_MAGIC_A);
   - Id: 103443
     AegisName: Rt_Ep18_Range_A
-    Name: False Shooter Activation Reward
+    Name: False Marksman Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80114,7 +80036,7 @@ Body:
       getgroupitem(IG_RT_EP18_RANGE_A);
   - Id: 103444
     AegisName: Rt_Ep18_Range_C
-    Name: False Shooter Completion Reward
+    Name: False Marksman Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80130,7 +80052,7 @@ Body:
       getgroupitem(IG_RT_EP18_RANGE_C);
   - Id: 103445
     AegisName: Rt_Ep18_Field_A
-    Name: Ashy Forest Activation Reward
+    Name: Gray Forest Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80146,7 +80068,7 @@ Body:
       getgroupitem(IG_RT_EP18_FIELD_A);
   - Id: 103446
     AegisName: Rt_Ep18_Field_C
-    Name: Ashy Forest Completion Reward
+    Name: Gray Forest Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80162,7 +80084,7 @@ Body:
       getgroupitem(IG_RT_EP18_FIELD_C);
   - Id: 103447
     AegisName: Rt_Ep18_Field_3
-    Name: Ashy Forest 3 Set Reward
+    Name: Gray Forest 3-Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80178,7 +80100,7 @@ Body:
       getgroupitem(IG_RT_EP18_FIELD_3);
   - Id: 103449
     AegisName: Rt_Ep18_Lava_A
-    Name: Lava Zone Activation Reward
+    Name: Lava Fields Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80194,7 +80116,7 @@ Body:
       getgroupitem(IG_RT_EP18_LAVA_A);
   - Id: 103450
     AegisName: Rt_Ep18_Lava_C
-    Name: Lava Zone Completion Reward
+    Name: Lava Fields Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80210,7 +80132,7 @@ Body:
       getgroupitem(IG_RT_EP18_LAVA_C);
   - Id: 103451
     AegisName: Rt_Ep18_Lava_2
-    Name: Lava Zone 2 Set Reward
+    Name: Lava Fields 2-Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80226,7 +80148,7 @@ Body:
       getgroupitem(IG_RT_EP18_LAVA_2);
   - Id: 103452
     AegisName: Rt_Ep18_Total_A
-    Name: Grey Wilderness Activation Reward
+    Name: Ashen Wastes Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80242,7 +80164,7 @@ Body:
       getgroupitem(IG_RT_EP18_TOTAL_A);
   - Id: 103453
     AegisName: Rt_Ep18_Total_C
-    Name: Grey Wilderness Completion Reward
+    Name: Ashen Wastes Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80258,7 +80180,7 @@ Body:
       getgroupitem(IG_RT_EP18_TOTAL_C);
   - Id: 103454
     AegisName: Rt_Ep18_Total_3
-    Name: Grey Wilderness 3 Set Reward
+    Name: Ashen Wastes 3-Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80274,7 +80196,7 @@ Body:
       getgroupitem(IG_RT_EP18_TOTAL_3);
   - Id: 103455
     AegisName: Rt_Ep18_Total_6
-    Name: Grey Wilderness 6 Set Reward
+    Name: Ashen Wastes 6-Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80290,7 +80212,7 @@ Body:
       getgroupitem(IG_RT_EP18_TOTAL_6);
   - Id: 103456
     AegisName: Rt_Ep18_Fang_A
-    Name: Burning Fang Activation Reward
+    Name: Burning Fangs Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80306,7 +80228,7 @@ Body:
       getgroupitem(IG_RT_EP18_FANG_A);
   - Id: 103457
     AegisName: Rt_Ep18_Fang_C
-    Name: Burning Fang Completion Reward
+    Name: Burning Fangs Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80322,7 +80244,7 @@ Body:
       getgroupitem(IG_RT_EP18_FANG_C);
   - Id: 103458
     AegisName: Rt_Ep18_Demi_A
-    Name: Demigod Activation Reward
+    Name: Demi-Body Activation Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80338,7 +80260,7 @@ Body:
       getgroupitem(IG_RT_EP18_DEMI_A);
   - Id: 103459
     AegisName: Rt_Ep18_Demi_C
-    Name: Demigod Completion Reward
+    Name: Demi-Body Completion Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80354,7 +80276,7 @@ Body:
       getgroupitem(IG_RT_EP18_DEMI_C);
   - Id: 103460
     AegisName: Rt_Ep18_Demi_2
-    Name: Demigod 2 Set Reward
+    Name: Demi-Body 2-Set Reward    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80386,7 +80308,7 @@ Body:
       getgroupitem(IG_VVIP_GIFT_22THANIV);
   - Id: 103462
     AegisName: VIP_Gift_22thAniv
-    Name: VIP 22nd Anniversary Gift    # !todo check english name
+    Name: VIP 22nd Anniversary Gift    # !todo check english name  # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80402,7 +80324,7 @@ Body:
       getgroupitem(IG_VIP_GIFT_22THANIV);
   - Id: 103463
     AegisName: 2409_Songpyeon
-    Name: Self-made Songpyeon
+    Name: Songpyeon I Made    # !todo check english name
     Type: Usable
     Weight: 30
     Trade:
@@ -80415,21 +80337,21 @@ Body:
       NoAuction: true
   - Id: 103501
     AegisName: aegis_103501
-    Name: Yorscalp 1st Floor Travel Scale
+    Name: Yorskalp 1st Floor Transfer Scale    # !todo check english name
     Type: Usable
     Weight: 30
     Flags:
       BuyingStore: true
   - Id: 103502
     AegisName: aegis_103502
-    Name: Yorscalp 2nd Floor Travel Scale
+    Name: Yorskalp 2nd Floor Transfer Scale    # !todo check english name
     Type: Usable
     Weight: 30
     Flags:
       BuyingStore: true
   - Id: 103503
     AegisName: Yorscalp_Scroll_A
-    Name: Yorscalp Upgrade
+    Name: Yorskalp Upgrade    # !todo check english name
     Type: DelayConsume
     Trade:
       NoDrop: true
@@ -80444,7 +80366,7 @@ Body:
       item_reform();
   - Id: 103505
     AegisName: Yorscalp_Refin_Hammer
-    Name: +10 Yorscalp Equipment Refine Hammer
+    Name: +10 Yorskalp Armor Refining Hammer    # !todo check english name
     Type: DelayConsume
     Weight: 100
     Flags:
@@ -80453,7 +80375,7 @@ Body:
       item_reform();
   - Id: 103512
     AegisName: Yor_Card_P_Box
-    Name: Past Heroes Fragment Box
+    Name: Past Hero Fragment Box    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80468,14 +80390,14 @@ Body:
       getgroupitem(IG_YOR_CARD_P_BOX);
   - Id: 103523
     AegisName: aegis_103523
-    Name: Encroached Fruit
+    Name: Encroached Fruit    # !todo check english name
     Type: Usable
     Weight: 30
     Flags:
       BuyingStore: true
   - Id: 103524
     AegisName: EP21_Costume_Box1
-    Name: Costume Gift Box I
+    Name: Costume Gift Box I    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80491,7 +80413,7 @@ Body:
       getgroupitem(IG_EP21_COSTUME_BOX1);
   - Id: 103525
     AegisName: EP21_Costume_Box2
-    Name: Costume Gift Box II
+    Name: Costume Gift Box II    # !todo check english name
     Type: Usable
     Flags:
       Container: true
@@ -80507,7 +80429,7 @@ Body:
       getgroupitem(IG_EP21_COSTUME_BOX2);
   - Id: 103537
     AegisName: aegis_103537
-    Name: Antiquity of Giant Snake (Encroached Tan Hard)
+    Name: Giant Serpent Artifact (Encroached Tan Hard)    # !todo check english name
     Type: Usable
     Weight: 200
     Flags:
@@ -80517,54 +80439,16 @@ Body:
       getgroupitem(IG_AEGIS_103537);
   - Id: 103582
     AegisName: aegis_103582
-    Name: Time Gap Dagger Box
+    Name: Time Gap Dagger Box    # !todo check english name
     Type: Usable
     Weight: 100
     Flags:
       Container: true
     Script: |
       getgroupitem(IG_AEGIS_103582);
-  - Id: 103597
-    AegisName: Calender_Costume_Box
-    Name: Box    # !todo check english name
-    Type: DelayConsume
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
-  - Id: 103608
-    AegisName: Zonda_Support
-    Name: Zonda Support    # !todo check english name
-    Type: Usable
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoStorage: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
-  - Id: 103609
-    AegisName: Battle_Buff
-    Name: Battle Buff    # !todo check english name
-    Type: Usable
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoStorage: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
   - Id: 103617
     AegisName: aegis_103617
-    Name: Costume Enchant Stone Box 37
+    Name: Costume Enchant Stone Box 37    # !todo check english name
     Type: Usable
     Weight: 10
     Flags:
@@ -80573,7 +80457,7 @@ Body:
       getgroupitem(IG_AEGIS_103617);
   - Id: 103619
     AegisName: Ifirit_Promotion_Pack
-    Name: New Server Launch Thank You Box
+    Name: New Server Launch Appreciation Box    # !todo check english name
     Type: Usable
     Weight: 10
     Flags:
@@ -80591,7 +80475,7 @@ Body:
       getgroupitem(IG_IFIRIT_PROMOTION_PACK);
   - Id: 103622
     AegisName: aegis_103622
-    Name: 3rd Stone (Upper) Box
+    Name: 3rd Stone (Upper) Box    # !todo check english name
     Type: Usable
     Weight: 10
     Flags:
@@ -80600,7 +80484,7 @@ Body:
       getgroupitem(IG_AEGIS_103622);
   - Id: 103623
     AegisName: aegis_103623
-    Name: 3rd Stone (Middle) Box
+    Name: 3rd Stone (Middle) Box    # !todo check english name
     Type: Usable
     Weight: 10
     Flags:
@@ -80609,7 +80493,7 @@ Body:
       getgroupitem(IG_AEGIS_103623);
   - Id: 103624
     AegisName: aegis_103624
-    Name: 3rd Stone (Lower) Box
+    Name: 3rd Stone (Lower) Box    # !todo check english name
     Type: Usable
     Weight: 10
     Flags:
@@ -80618,7 +80502,7 @@ Body:
       getgroupitem(IG_AEGIS_103624);
   - Id: 103625
     AegisName: aegis_103625
-    Name: High Expansion Stone (Upper) Box
+    Name: Upper Expansion Stone (Upper) Box    # !todo check english name
     Type: Usable
     Weight: 10
     Flags:
@@ -80627,7 +80511,7 @@ Body:
       getgroupitem(IG_AEGIS_103625);
   - Id: 103626
     AegisName: aegis_103626
-    Name: High Expansion Stone (Middle) Box
+    Name: Upper Expansion Stone (Mid) Box    # !todo check english name
     Type: Usable
     Weight: 10
     Flags:
@@ -80636,166 +80520,13 @@ Body:
       getgroupitem(IG_AEGIS_103626);
   - Id: 103627
     AegisName: aegis_103627
-    Name: High Expansion Stone (Lower) Box
+    Name: Upper Expansion Stone (Lower) Box    # !todo check english name
     Type: Usable
     Weight: 10
     Flags:
       Container: true
     Script: |
       getgroupitem(IG_AEGIS_103627);
-  - Id: 103634
-    AegisName: 2024GoldPcBox
-    Name: Gold PC Room Box    # !todo check english name
-    Type: Usable
-    Flags:
-      Container: true
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoStorage: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
-    Script: |
-      getgroupitem(IG_2024GOLDPCBOX);
-  - Id: 103635
-    AegisName: Plus7_Refine_NPC
-    Name: +7 Refining Hammer for NPC    # !todo check english name
-    Type: DelayConsume
-    Script: |
-      item_reform();
-  - Id: 103653
-    AegisName: E_Meat_Sandwich
-    Name: Thick Meat Sandwich    # !todo check english name
-    Type: Usable
-    Weight: 10
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
-    Script: |
-      specialeffect2 EF_POTION_BERSERK;
-      sc_start SC_CONTENTS_31,900000,10;
-  - Id: 103654
-    AegisName: E_Vin_Chaud
-    Name: Warm Bang Show    # !todo check english name
-    Type: Usable
-    Weight: 10
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
-    Script: |
-      specialeffect2 EF_ASPERSIO;
-      sc_start SC_CONTENTS_32,900000,10;
-  - Id: 103655
-    AegisName: E_Egg_Nog
-    Name: Smooth Eggnog    # !todo check english name
-    Type: Usable
-    Weight: 10
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
-    Script: |
-      specialeffect2 EF_HASTEUP;
-      specialeffect2 EF_PROVIDENCE;
-      sc_start SC_CONTENTS_33,900000,10;
-  - Id: 103656
-    AegisName: E_Winter_Stew
-    Name: Deep-flavored Meat Stew    # !todo check english name
-    Type: Usable
-    Weight: 50
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
-    Script: |
-      percentheal 100,100;
-  - Id: 103657
-    AegisName: E_Card_Pack
-    Name: Celebrity Card Pack    # !todo check english name
-    Type: Usable
-    Weight: 10
-    Flags:
-      Container: true
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
-    Script: |
-      getgroupitem(IG_E_CARD_PACK);
-  - Id: 103658
-    AegisName: True_Hunting_Set
-    Name: Troua Hunting Armor Box    # !todo check english name
-    Type: Usable
-    Weight: 2500
-    Flags:
-      Container: true
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoStorage: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
-    Script: |
-      getgroupitem(IG_TRUE_HUNTING_SET);
-  - Id: 103659
-    AegisName: Regia_Hunting_Set
-    Name: Regia Hunting Armor Box    # !todo check english name
-    Type: Usable
-    Weight: 2500
-    Flags:
-      Container: true
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoStorage: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
-    Script: |
-      getgroupitem(IG_REGIA_HUNTING_SET);
-  - Id: 103675
-    AegisName: Mysterious_Fruit_Box
-    Name: Mysterious Fruit 5-piece Basket    # !todo check english name
-    Type: Usable
-    Weight: 10
-    Flags:
-      Container: true
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
-    Script: |
-      getgroupitem(IG_MYSTERIOUS_FRUIT_BOX);
   - Id: 200000
     AegisName: IDTest_Cash
     Name: IDTest Cash
@@ -82363,8 +82094,8 @@ Body:
       getgroupitem(IG_LI_NYANGVINE_BOX3_32);
   - Id: 200325
     AegisName: CostumeMilePack_32_1
-#   Name: Nyangvine Costume Mileage Package I (Stone Box 32)
-    Name: Costume Mileage Package I (Stone Box 32)
+#   Name: Nyangdarae Costume Mileage Package I (Stone Box 32)
+    Name: Nyangdarae Costume Mileage Package I (Stone Box 3    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -82380,8 +82111,8 @@ Body:
       getgroupitem(IG_COSTUMEMILEPACK_32_1);
   - Id: 200326
     AegisName: CostumeMilePack_32_2
-#   Name: Nyangvine Costume Mileage Package II (Stone Box 32)
-    Name: Costume Mileage Package II (Stone Box 32)
+#   Name: Nyangdarae Costume Mileage Package II (Stone Box 32)
+    Name: Nyangdarae Costume Mileage Package II (Stone Box     # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -82397,8 +82128,8 @@ Body:
       getgroupitem(IG_COSTUMEMILEPACK_32_2);
   - Id: 200327
     AegisName: CostumeMilePack_32_3
-#   Name: Nyangvine Costume Mileage Package III (Stone Box 32)
-    Name: Costume Mileage Package III (Stone Box 32)
+#   Name: Nyangdarae Costume Mileage Package III (Stone Box 32)
+    Name: Nyangdarae Costume Mileage Package III (Stone Box    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -82415,7 +82146,7 @@ Body:
   - Id: 200330
     AegisName: LI_Nyangvine_Box1_33
 #   Name: (Limited) Nyangvine Fruit Package I (Stone Box 33)
-    Name: (Limited) Fruit Package I (Stone Box 33)
+    Name: (Limited) Nyangvine Fruit Package I (Stone Box 33
     Type: Cash
     Flags:
       Container: true
@@ -82432,7 +82163,7 @@ Body:
   - Id: 200331
     AegisName: LI_Nyangvine_Box2_33
 #   Name: (Limited) Nyangvine Fruit Package II (Stone Box 33)
-    Name: (Limited) Fruit Package II (Stone Box 33)
+    Name: (Limited) Nyangvine Fruit Package II (Stone Box 3
     Type: Cash
     Flags:
       Container: true
@@ -82449,7 +82180,7 @@ Body:
   - Id: 200332
     AegisName: LI_Nyangvine_Box3_33
 #   Name: (Limited) Nyangvine Fruit Package III (Stone Box 33)
-    Name: (Limited) Fruit Package III (Stone Box 33)
+    Name: (Limited) Nyangvine Fruit Package III (Stone Box
     Type: Cash
     Flags:
       Container: true
@@ -82619,7 +82350,7 @@ Body:
   - Id: 200351
     AegisName: CostumeMilePack_33_1
 #   Name: Nyangvine Costume Mileage Package I (Stone Box 33)
-    Name: Costume Mileage Package I (Stone Box 33)
+    Name: Nyangvine Costume Mileage Package I (Stone Box 33
     Type: Cash
     Flags:
       Container: true
@@ -82636,7 +82367,7 @@ Body:
   - Id: 200352
     AegisName: CostumeMilePack_33_2
 #   Name: Nyangvine Costume Mileage Package II (Stone Box 33)
-    Name: Costume Mileage Package II (Stone Box 33)
+    Name: Nyangvine Costume Mileage Package II (Stone Box 3
     Type: Cash
     Flags:
       Container: true
@@ -82653,7 +82384,7 @@ Body:
   - Id: 200353
     AegisName: CostumeMilePack_33_3
 #   Name: Nyangvine Costume Mileage Package III (Stone Box 33)
-    Name: Costume Mileage Package III (Stone Box 33)
+    Name: Nyangvine Costume Mileage Package III (Stone Box
     Type: Cash
     Flags:
       Container: true
@@ -82869,8 +82600,8 @@ Body:
       getgroupitem(IG_CHAOS_EMERALD_PACK_);
   - Id: 200385
     AegisName: CostumeMilePack_34_1
-#   Name: Nyangvine Costume Mileage Package I (Stone Box 34)
-    Name: Costume Mileage Package I (Stone Box 34)
+#   Name: Nyandarae Costume Mileage Package I (Stone Box 34)
+    Name: Nyandarae Costume Mileage Package I (Stone Box 34    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -82886,8 +82617,8 @@ Body:
       getgroupitem(IG_COSTUMEMILEPACK_34_1);
   - Id: 200386
     AegisName: CostumeMilePack_34_2
-#   Name: Nyangvine Costume Mileage Package II (Stone Box 34)
-    Name: Costume Mileage Package II (Stone Box 34)
+#   Name: Nyandarae Costume Mileage Package II (Stone Box 34)
+    Name: Nyandarae Costume Mileage Package II (Stone Box 3    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -82903,8 +82634,8 @@ Body:
       getgroupitem(IG_COSTUMEMILEPACK_34_2);
   - Id: 200387
     AegisName: CostumeMilePack_34_3
-#   Name: Nyangvine Costume Mileage Package III (Stone Box 34)
-    Name: Costume Mileage Package III (Stone Box 34)
+#   Name: Nyandarae Costume Mileage Package III (Stone Box 34)
+    Name: Nyandarae Costume Mileage Package III (Stone Box     # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -82921,7 +82652,7 @@ Body:
   - Id: 200405
     AegisName: LI_Nyangvine_Box1_35
 #   Name: (Limited) Nyangvine Fruit Package I (Stone Box 35)
-    Name: (Limited) Fruit Package I (Stone Box 35)
+    Name: (Limited) Nyangvine Fruit Package I (Stone Box 35
     Type: Cash
     Flags:
       Container: true
@@ -82938,7 +82669,7 @@ Body:
   - Id: 200406
     AegisName: LI_Nyangvine_Box2_35
 #   Name: (Limited) Nyangvine Fruit Package II (Stone Box 35)
-    Name: (Limited) Fruit Package II (Stone Box 35)
+    Name: (Limited) Nyangvine Fruit Package II (Stone Box 3
     Type: Cash
     Flags:
       Container: true
@@ -82955,7 +82686,7 @@ Body:
   - Id: 200407
     AegisName: LI_Nyangvine_Box3_35
 #   Name: (Limited) Nyangvine Fruit Package III (Stone Box 35)
-    Name: (Limited) Fruit Package III (Stone Box 35)
+    Name: (Limited) Nyangvine Fruit Package III (Stone Box
     Type: Cash
     Flags:
       Container: true
@@ -83102,7 +82833,7 @@ Body:
   - Id: 200425
     AegisName: CostumeMilePack_35_1
 #   Name: Nyangvine Costume Mileage Package I (Stone Box 35)
-    Name: Costume Mileage Package I (Stone Box 35)
+    Name: Nyangvine Costume Mileage Package I (Stone Box 35
     Type: Cash
     Flags:
       Container: true
@@ -83119,7 +82850,7 @@ Body:
   - Id: 200426
     AegisName: CostumeMilePack_35_2
 #   Name: Nyangvine Costume Mileage Package II (Stone Box 35)
-    Name: Costume Mileage Package II (Stone Box 35)
+    Name: Nyangvine Costume Mileage Package II (Stone Box 3
     Type: Cash
     Flags:
       Container: true
@@ -83136,7 +82867,7 @@ Body:
   - Id: 200427
     AegisName: CostumeMilePack_35_3
 #   Name: Nyangvine Costume Mileage Package III (Stone Box 35)
-    Name: Costume Mileage Package III (Stone Box 35)
+    Name: Nyangvine Costume Mileage Package III (Stone Box
     Type: Cash
     Flags:
       Container: true
@@ -83152,8 +82883,8 @@ Body:
       getgroupitem(IG_COSTUMEMILEPACK_35_3);
   - Id: 200434
     AegisName: LI_Nyangvine_Box1_36
-#   Name: (Limited) Nyangvine Fruit Package I (Stone Box 36)
-    Name: (Limited) Fruit Package I (Stone Box 36)
+#   Name: (Account Limited) Cat's Eye Fruit Package I (Stone Box 36)
+    Name: (Account Limited) Cat's Eye Fruit Package I (Ston    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83169,8 +82900,8 @@ Body:
       getgroupitem(IG_LI_NYANGVINE_BOX1_36);
   - Id: 200435
     AegisName: LI_Nyangvine_Box2_36
-#   Name: (Limited) Nyangvine Fruit Package II (Stone Box 36)
-    Name: (Limited) Fruit Package II (Stone Box 36)
+#   Name: (Account Limited) Cat's Eye Fruit Package II (Stone Box 36)
+    Name: (Account Limited) Cat's Eye Fruit Package II (Sto    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83186,8 +82917,8 @@ Body:
       getgroupitem(IG_LI_NYANGVINE_BOX2_36);
   - Id: 200436
     AegisName: LI_Nyangvine_Box3_36
-#   Name: (Limited) Nyangvine Fruit Package III (Stone Box 36)
-    Name: (Limited) Fruit Package III (Stone Box 36)
+#   Name: (Account Limited) Cat's Eye Fruit Package III (Stone Box 36)
+    Name: (Account Limited) Cat's Eye Fruit Package III (St    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83203,7 +82934,7 @@ Body:
       getgroupitem(IG_LI_NYANGVINE_BOX3_36);
   - Id: 200438
     AegisName: 2024_Summer_Pack_1
-    Name: (Limited) 2024 Summer Vacation Package I
+    Name: (Account Limited) 2024 Summer Vacation Package I    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83219,7 +82950,7 @@ Body:
       getgroupitem(IG_2024_SUMMER_PACK_1);
   - Id: 200439
     AegisName: 2024_Summer_Pack_2
-    Name: (Limited) 2024 Summer Vacation Package II
+    Name: (Account Limited) 2024 Summer Vacation Package II    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83236,7 +82967,7 @@ Body:
   - Id: 200440
     AegisName: 2024_Summer_Pack_3
 #   Name: (Account Limited) 2024 Summer Vacation Package III
-    Name: (Limited) 2024 Summer Vacation Package III
+    Name: (Account Limited) 2024 Summer Vacation Package II    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83252,7 +82983,7 @@ Body:
       getgroupitem(IG_2024_SUMMER_PACK_3);
   - Id: 200441
     AegisName: 2024_Summer_Pack_4
-    Name: (Limited) 2024 Summer Vacation Package IV
+    Name: (Account Limited) 2024 Summer Vacation Package IV    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83268,7 +82999,7 @@ Body:
       getgroupitem(IG_2024_SUMMER_PACK_4);
   - Id: 200442
     AegisName: LI_A_HD_CarniumBox
-    Name: HD Carnium Account Limited Package
+    Name: High Density Carnium Account-Limited Package    # !todo check english name
     Type: Cash
     Weight: 10
     Flags:
@@ -83285,7 +83016,7 @@ Body:
       getgroupitem(IG_LI_A_HD_CARNIUMBOX);
   - Id: 200443
     AegisName: LI_A_HD_BradiumBox
-    Name: HD Bradium Account Limited Package
+    Name: High Density Bradium Account-Limited Package    # !todo check english name
     Type: Cash
     Weight: 10
     Flags:
@@ -83302,7 +83033,7 @@ Body:
       getgroupitem(IG_LI_A_HD_BRADIUMBOX);
   - Id: 200445
     AegisName: 22th_Package_1
-    Name: 22nd Anniversary Monthly Package I
+    Name: 22nd Anniversary Monthly Package I    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83318,7 +83049,7 @@ Body:
       getgroupitem(IG_22TH_PACKAGE_1);
   - Id: 200446
     AegisName: 22th_Package_2
-    Name: 22nd Anniversary Monthly Package II
+    Name: 22nd Anniversary Monthly Package II    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83334,7 +83065,7 @@ Body:
       getgroupitem(IG_22TH_PACKAGE_2);
   - Id: 200447
     AegisName: 22th_Package_3
-    Name: 22nd Anniversary Monthly Package III
+    Name: 22nd Anniversary Monthly Package III    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83350,7 +83081,7 @@ Body:
       getgroupitem(IG_22TH_PACKAGE_3);
   - Id: 200448
     AegisName: 22th_Package_4
-    Name: 22nd Anniversary Monthly Package IV
+    Name: 22nd Anniversary Monthly Package IV    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83366,7 +83097,7 @@ Body:
       getgroupitem(IG_22TH_PACKAGE_4);
   - Id: 200449
     AegisName: CLB_SS_Nyang_Pack
-    Name: Shiba Says Nyangvine Package
+    Name: Shiba Seiz Nyandarae Package    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83382,7 +83113,7 @@ Body:
       getgroupitem(IG_CLB_SS_NYANG_PACK);
   - Id: 200450
     AegisName: CLB_SS_Refine1_Pack
-    Name: Shiba Says Enriched Refine Package
+    Name: Shiba Seiz Concentrated Refining Package    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83398,7 +83129,7 @@ Body:
       getgroupitem(IG_CLB_SS_REFINE1_PACK);
   - Id: 200451
     AegisName: CLB_SS_Refine2_Pack
-    Name: Shiba Says High Enriched Refine Package
+    Name: Shiba Seiz High Concentrated Refining Package    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83414,7 +83145,7 @@ Body:
       getgroupitem(IG_CLB_SS_REFINE2_PACK);
   - Id: 200452
     AegisName: CLB_SS_Exp_Pack
-    Name: Shiba Says Experience Package
+    Name: Shiba Seiz Experience Package    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83430,7 +83161,7 @@ Body:
       getgroupitem(IG_CLB_SS_EXP_PACK);
   - Id: 200463
     AegisName: C_CharSlot_Open_Box
-    Name: Character Slot Expansion Card Box
+    Name: Character Slot Expansion Card Box    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83446,8 +83177,8 @@ Body:
       getgroupitem(IG_C_CHARSLOT_OPEN_BOX);
   - Id: 200465
     AegisName: CostumeMilePack_36_1
-#   Name: Nyangvine Costume Mileage Package I (Stone Box 36)
-    Name: Costume Mileage Package I (Stone Box 36)
+#   Name: Nyangdare Costume Mileage Package I (Stone Box 36)
+    Name: Nyangdare Costume Mileage Package I (Stone Box 36    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83463,8 +83194,8 @@ Body:
       getgroupitem(IG_COSTUMEMILEPACK_36_1);
   - Id: 200466
     AegisName: CostumeMilePack_36_2
-#   Name: Nyangvine Costume Mileage Package II (Stone Box 36)
-    Name: Costume Mileage Package II (Stone Box 36)
+#   Name: Nyangdare Costume Mileage Package II (Stone Box 36)
+    Name: Nyangdare Costume Mileage Package II (Stone Box 3    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83480,8 +83211,8 @@ Body:
       getgroupitem(IG_COSTUMEMILEPACK_36_2);
   - Id: 200467
     AegisName: CostumeMilePack_36_3
-#   Name: Nyangvine Costume Mileage Package III (Stone Box 36)
-    Name: Costume Mileage Package III (Stone Box 36)
+#   Name: Nyangdare Costume Mileage Package III (Stone Box 36)
+    Name: Nyangdare Costume Mileage Package III (Stone Box     # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83497,7 +83228,7 @@ Body:
       getgroupitem(IG_COSTUMEMILEPACK_36_3);
   - Id: 200468
     AegisName: Nyangvine_Special_Pack1
-    Name: Nyangvine Special Package I
+    Name: Nyangdare Special Package I    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83513,7 +83244,7 @@ Body:
       getgroupitem(IG_NYANGVINE_SPECIAL_PACK1);
   - Id: 200469
     AegisName: Nyangvine_Special_Pack2
-    Name: Nyangvine Special Package II
+    Name: Nyangdare Special Package II    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83529,7 +83260,7 @@ Body:
       getgroupitem(IG_NYANGVINE_SPECIAL_PACK2);
   - Id: 200470
     AegisName: Nyangvine_Special_Pack3
-    Name: Nyangvine Special Package III
+    Name: Nyangdare Special Package III    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83543,26 +83274,10 @@ Body:
       NoAuction: true
     Script: |
       getgroupitem(IG_NYANGVINE_SPECIAL_PACK3);
-  - Id: 200476
-    AegisName: Zonda_Support_Package
-    Name: Zonda Support Package    # !todo check english name
-    Type: Cash
-    Flags:
-      Container: true
-    Trade:
-      NoDrop: true
-      NoTrade: true
-      NoSell: true
-      NoCart: true
-      NoGuildStorage: true
-      NoMail: true
-      NoAuction: true
-    Script: |
-      getgroupitem(IG_ZONDA_SUPPORT_PACKAGE);
   - Id: 200481
     AegisName: LI_Nyangvine_Box1_37
 #   Name: (Account Limited) Nyangdare Fruit Package I (Stone Box 37)
-    Name: (Limited) Nyangvine Fruit Package I (Stone Box 37)
+    Name: (Account Limited) Nyangdare Fruit Package I (Ston    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83578,8 +83293,8 @@ Body:
       getgroupitem(IG_LI_NYANGVINE_BOX1_37);
   - Id: 200482
     AegisName: LI_Nyangvine_Box2_37
-#   Name: (Limited) Nyangvine Fruit Package II (Stone Box 37)
-    Name: (Limited) Fruit Package II (Stone Box 37)
+#   Name: (Account Limited) Nyangdare Fruit Package II (Stone Box 37)
+    Name: (Account Limited) Nyangdare Fruit Package II (Sto    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83595,8 +83310,8 @@ Body:
       getgroupitem(IG_LI_NYANGVINE_BOX2_37);
   - Id: 200483
     AegisName: LI_Nyangvine_Box3_37
-#   Name: (Limited) Nyangvine Fruit Package III (Stone Box 37)
-    Name: (Limited) Fruit Package III (Stone Box 37)
+#   Name: (Account Limited) Nyangdare Fruit Package III (Stone Box 37)
+    Name: (Account Limited) Nyangdare Fruit Package III (St    # !todo check english name
     Type: Cash
     Flags:
       Container: true
@@ -83857,7 +83572,7 @@ Body:
       itemheal 0,120; /* average value */
   - Id: 1100021
     AegisName: 2403_ev_Berry_Cup
-    Name: Strawberry Fresh Cream Cupcake
+    Name: Strawberry whipped cream cupcake    # !todo check english name
     Type: Healing
     Weight: 1
     Flags:
@@ -83874,7 +83589,7 @@ Body:
       itemheal 0,200; /* average value */
   - Id: 1100022
     AegisName: 2403_ev_Macaron
-    Name: Moist Macaron
+    Name: Moist Macaron    # !todo check english name
     Type: Healing
     Weight: 1
     EquipLevelMin: 60

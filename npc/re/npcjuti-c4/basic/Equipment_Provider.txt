@@ -1,0 +1,58 @@
+//===== rAthena Script =======================================
+//= Equipment Provider
+//===== By: ==================================================
+//= DurexzOfficial
+//===== Current Version: =====================================
+//= Ver.1.0 รับไอเท็มเริ่มต้น +7 เมื่อคลาส 1
+//===== Compatible With: =====================================
+//= rAthena Project
+//============================================================
+
+new_1-2,97,27,7	script	Equipment Provider	123,{
+
+	if( Class < 0 ){	// check class @job
+		mes "อาชีพของท่านยังไม่เพียงพอ";
+		close;
+	}
+	
+	mes .NPCname$;
+	mes "ยินดีต้อนรับท่าน ^FF0000"+strcharinfo(0)+"^000000";
+	mes "ท่านต้องการรับไอเท็มเริ่มต้นใช่หรือไม่ ??";
+	mes "อาชีพของคุณคือ : ^0000FF"+jobname(Class)+"^000000";
+	
+	switch(select("Yes:No")){
+    Case 1:
+		switch(Class){
+		Case 0: // Novice
+			getitem2 20000021,1,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 101423,1,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 25000017,1,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 11572,30,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 11570,50,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 12323,50,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 12324,30,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 101454,1,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 100044,1,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 100340,1,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 26000002,1,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 14592,2,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 12208,2,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 15383,1,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 20939,1,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 22204,1,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 32221,1,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			getitem2 2829,1,0,0,0,0,0,0,0;	//item,amount,identify_flag,refine,attribute,card1,card2,card3,card4
+			break;
+		}
+		#Equipment_Provider = 1;
+	break;
+    Case 2:
+		mes "อ๊าา บะบาย แล้วพบกันใหม่ ....";
+    break;
+	}
+		
+	end;
+OnInit:
+	waitingroom "รับไอเท็มเริ่มต้น",0;
+	end;
+}

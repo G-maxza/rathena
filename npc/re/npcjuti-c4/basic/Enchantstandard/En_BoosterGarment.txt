@@ -1,0 +1,497 @@
+//===== Script =======================================
+//= EDDA Somatology Laboratory enchant
+//= By JumBo
+//= Location & NPC Sprite Unknown
+//====================================================
+oasis,131,78,4	script	Booste_enchant_Garment 	4_EP18_BAGOT,{
+	disable_items;
+	if ((MaxWeight - Weight) < 1000) {
+		mes "เจ้าแบกของมาหนักเกินไป. ลองลดน้ำหนักลงแล้วมาใหม่.";
+		close;
+	}
+	if (checkweight(501,1) == 0) {
+		mes "เจ้าพกของมามากเกินไป. ลองลดของลงแล้วมาใหม่.";
+		close;
+	}
+	setarray .@card[0], getequipcardid(EQI_GARMENT,0), getequipcardid(EQI_GARMENT,1), getequipcardid(EQI_GARMENT,2), getequipcardid(EQI_GARMENT,3);
+	.@refine = getequiprefinerycnt(EQI_GARMENT);
+	set @ennormal, callfunc("F_Rand",4832,4833,4834,4808,4820,4821,4818,4817,4816,4815,4814,4813,4863,4864,4865);
+	set @enclass, callfunc("F_Rand",29594,29595,29596,29598,29599,29600,29601,29602,29603,29604,29605,29606,29607);
+	set @enhighest, callfunc("F_Rand",29594,29595,29596,29598,29599,29600,29601,29602,29603,29604,29605,29606,29607);
+	
+	mes "[Booste_enchant]";
+	mes "ข้าสามารถอัพเกรดความสามารถของชุด Booster ได้.";
+	mes "จำเป็นต้องมี Oridecon และ.";
+	mes "Elunium สำหรับใช้ในการออฟ.";
+	next;
+	mes "^FF0000คำเตือน :ชุด Booster ลบออฟไม่ได้.^000000";
+	next;
+	switch( select( "ออฟชุด Booster", "รายละเอียด", "ออก" ) ) {
+	case 1:
+		.@equip_id = getequipid(EQI_GARMENT);
+		switch(.@equip_id) {
+			case 480000:// Attacker Booster Manteau
+			case 480001:// Elemental Booster Muffler
+			case 480002:// Defender Booster Muffler
+			case 480003:// Ranger Booster Manteau
+				break;
+			default:
+				mes "[Booste_enchant]";
+				mes "^FF0000เจ้าไม่ได้ใส่ชุด Booster มาด้วย.^000000";
+				close;
+		}
+		mes "[Booste_enchant]";
+		if (.@card[3] == 0) {
+			mes "ออฟช่องที่ 4 ออฟ.";
+			mes "^0000cdWolf Orb (Str) Lv3^000000";
+			mes "^0000cdWolf Orb (Dex) Lv3^000000";
+			mes "^0000cdWolf Orb (Agi) Lv3^000000";
+			mes "^0000cdWolf Orb (Int) Lv3^000000";
+			mes "^0000cdWolf Orb (Vit) Lv3^000000";
+			mes "^0000cdWolf Orb (Luk) Lv3^000000";
+			menu "Advanced enchant",L_Advanced,"ยกเลิก",L_Exit;
+		}
+		else if (.@card[2] == 0) {
+			mes "ออฟช่องที่ 3 ออฟ.";
+			mes "^0000cdWolf Orb (Speed) Lv3^000000";
+			mes "^0000cdWolf Orb (Caster) Lv3^000000";
+			mes "^0000cdWolf Orb (Critical) Lv3^000000";
+			mes "^0000cdWolf Orb (Guide Attack) Lv3^000000";
+			menu "Determined enchantB",2_Determined,"ยกเลิก",L_Exit;
+		}
+		else if (.@card[1] == 0) {
+			mes "ออฟช่องที่ 2 ออฟ.";
+			mes "^0000cdWolf Orb (Above All) Lv3^000000";
+			mes "^0000cdWolf Orb (Powerful) Lv3^000000";
+			mes "^0000cdWolf Orb (Mirror Counter) Lv3^000000";
+			menu "Determined enchantC",3_Determined,"ยกเลิก",L_Exit;
+		}
+		else
+			mes "^FF0000ออฟสูงสุดแล้วไม่สามารถออฟได้อีก.^000000";
+			close;
+	case 2:
+		mes "ข้าจะมีตัวเลือกในการออฟให้เจ้า 3 ข้อ.";
+		mes "1. ^0000cdAdvanced enchant^000000 : ต้องการวัตถุดิบน้อย สามารถเลือกออฟช่องที่ 4เองได้.";
+		mes "2. ^0000cdDetermined enchantB^000000 : ต้องการวัตถุดิบพอประมาณ สามารถเลือกออฟช่องที่ 3เองได้.";
+		mes "3. ^0000cdDetermined enchantC^000000 : ต้องการวัตถุดิบจำนวนมาก สามารถเลือกออฟช่องที่ 2เองได้."; 
+		mes "^FF0000คำเตือน :ชุด Booster ลบออฟไม่ได้.^000000";
+		close;
+	case 3:
+		mes "[Booste_enchant]";
+		mes "ข้ารอเจ้าเสมอ.";
+		close;
+	}
+	
+	L_Exit:
+		next;
+		mes "[Booste_enchant]";
+		mes "ข้ารอเจ้าเสมอ.";
+		close;
+
+	L_Advanced:	
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", EQI_GARMENT, .@equip_id) || callfunc("F_IsEquipCardHack", EQI_GARMENT, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", EQI_GARMENT, .@refine))
+		close;
+		if ((countitem(984) < 10) || (countitem(985) < 10)) {
+			mes "^FF0000กาสออฟเจ้าต้องมี Oridecon 10 อัน.^000000";
+			mes "^FF0000กาสออฟเจ้าต้องมี Elunium 10 อัน.^000000";
+			mes "^FF0000เจ้ามี Oridecon หรือ Elunium ไม่ถึง 10 อัน.^000000";
+			close;
+		}
+		next;
+		mes "[Booste_enchant]";
+		mes "^0000cdโอกาสออฟสำเร็จ 100%.^000000";
+		mes "เจ้าสามารถเลือกออฟที่ต้องการใส่ชุด Boosterได้เลย.";
+		next;
+		switch( select( "Wolf_Orb_Str_3", "Wolf_Orb_Dex_3", "Wolf_Orb_Agi_3", "Wolf_Orb_Int_3", "Wolf_Orb_Vit_3", "Wolf_Orb_luk_3") ) {
+	case 1:
+		mes "^0000cdWolf_Orb_Str_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_GARMENT;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310490;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 2:
+		mes "^0000cdWolf_Orb_Dex_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_GARMENT;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310491;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 3:
+		mes "^0000cdWolf_Orb_Agi_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_GARMENT;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310492;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 4:
+		mes "^0000cdWolf_Orb_Int_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_GARMENT;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310493;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 5:
+		mes "^0000cdWolf_Orb_Vit_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_GARMENT;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310494;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;		
+	case 6:
+		mes "^0000Wolf_Orb_luk_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_GARMENT;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310495;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	}	
+		
+	2_Determined:	
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", EQI_GARMENT, .@equip_id) || callfunc("F_IsEquipCardHack", EQI_GARMENT, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", EQI_GARMENT, .@refine))
+		close;
+		if ((countitem(984) < 30) || (countitem(985) < 30)) {
+			mes "^FF0000กาสออฟเจ้าต้องมี Oridecon 30 อัน.^000000";
+			mes "^FF0000กาสออฟเจ้าต้องมี Elunium 30 อัน.^000000";
+			mes "^FF0000เจ้ามี Oridecon หรือ Elunium ไม่ถึง 30 อัน.^000000";
+			close;
+		}
+		next;
+		mes "[Booste_enchant]";
+		mes "^0000cdโอกาสออฟสำเร็จ 100%.^000000";
+		mes "เจ้าสามารถเลือกออฟที่ต้องการใส่ชุด Boosterได้เลย.";
+		next;
+		switch( select( "Wolf Orb (Speed) Level 3", "Wolf Orb (Caster) Level 3", "Wolf Orb (Critical) Level 3", "Wolf Orb (Guide Attack) Level 3") ) {
+	case 1:
+		mes "^0000cdWolf Orb (Speed) Level 3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_GARMENT;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310575,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 2:
+		mes "^0000cdWolf Orb (Caster) Level 3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_GARMENT;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310576,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 3:
+		mes "^0000cdWolf Orb (Critical) Level 3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_GARMENT;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310577,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 4:
+		mes "^0000cdWolf Orb (Guide Attack) Level 3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_GARMENT;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310578,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	}
+	3_Determined:	
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", EQI_GARMENT, .@equip_id) || callfunc("F_IsEquipCardHack", EQI_GARMENT, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", EQI_GARMENT, .@refine))
+		close;
+		if ((countitem(984) < 50) || (countitem(985) < 50)) {
+			mes "^FF0000กาสออฟเจ้าต้องมี Oridecon 50 อัน.^000000";
+			mes "^FF0000กาสออฟเจ้าต้องมี Elunium 50 อัน.^000000";
+			mes "^FF0000เจ้ามี Oridecon หรือ Elunium ไม่ถึง 50 อัน.^000000";
+			close;
+		}
+		next;
+		mes "[Booste_enchant]";
+		mes "^0000cdโอกาสออฟสำเร็จ 100%.^000000";
+		mes "เจ้าสามารถเลือกออฟที่ต้องการใส่ชุด Boosterได้เลย.";
+		next;
+		switch( select( "Wolf Orb (Above All) Level 3", "Wolf Orb (Powerful) Level 3", "Wolf Orb (Mirror Counter) Level 3") ) {
+	case 1:
+		mes "^0000cdWolf Orb (Above All) Level 3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_GARMENT;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310581,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 2:
+		mes "^0000cdWolf Orb (Powerful) Level 3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_GARMENT;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310584,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;		
+	case 3:
+		mes "^0000cdWolf Orb (Mirror Counter) Level 3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_GARMENT;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310587,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	}	
+	
+	L_General:	
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", EQI_GARMENT, .@equip_id) || callfunc("F_IsEquipCardHack", EQI_GARMENT, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", EQI_GARMENT, .@refine))
+		close;
+		if ((countitem(984) < 50) || (countitem(985) < 50)) {
+			mes "^FF0000เจ้ามี Somatology Experimental Fragment หรือ Somatology Research Document ไม่ถึง 50 อัน.^000000";
+			close;
+		}
+		next;
+		mes "[Booste_enchant]";
+		mes "^FF0000มีโอกาสอาวุธเสียหาย 5%.^000000";
+		mes "อาวุธยังอยู่แต่ออฟไม่ติด 35%.";
+		mes "^0000cdโอกาสออฟสำเร็จ 65%.^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		set .rate,rand(100);
+		progressbar "000000",1;
+		delitem 984, 50;// Somatology Experimental Fragment
+		delitem 985, 50;// Somatology Research Document
+		delequip EQI_GARMENT;
+			if (.rate < 5) {
+			specialeffect2 EF_SUI_EXPLOSION;
+			mes "[Booste_enchant]";
+			mes "^FF0000อาวุธกลายเป็นฝุ่นไปแล้ว^000000.";
+			close;
+			}
+			else if (.rate < 40) {
+			specialeffect2 155;
+			getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+			mes "[Booste_enchant]";
+			mes "โชคดีที่อาวุธยังอยู่.";
+			close;
+			}
+			else {
+			specialeffect2 154;
+			getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],@ennormal;
+			mes "[Booste_enchant]";
+			mes "^0000cdออฟสำเร็จ.^000000";
+			close;
+			}
+			
+	L_General2:	
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", EQI_GARMENT, .@equip_id) || callfunc("F_IsEquipCardHack", EQI_GARMENT, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", EQI_GARMENT, .@refine))
+		close;
+		if ((countitem(984) < 50) || (countitem(985) < 50)) {
+			mes "^FF0000เจ้ามี Somatology Experimental Fragment หรือ Somatology Research Document ไม่ถึง 50 อัน.^000000";
+			close;
+		}
+		next;
+		mes "[Booste_enchant]";
+		mes "^FF0000มีโอกาสอาวุธเสียหาย 20%.^000000";
+		mes "อาวุธยังอยู่แต่ออฟไม่ติด 50%.";
+		mes "^0000cdโอกาสออฟสำเร็จ 30%.^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		set .rate,rand(100);
+		progressbar "000000",1;
+		delitem 984, 50;// Somatology Experimental Fragment
+		delitem 985, 50;// Somatology Research Document
+		delequip EQI_GARMENT;
+			if (.rate < 20) {
+			specialeffect2 EF_SUI_EXPLOSION;
+			mes "[Booste_enchant]";
+			mes "^FF0000อาวุธกลายเป็นฝุ่นไปแล้ว^000000.";
+			close;
+			}
+			else if (.rate < 70) {
+			specialeffect2 155;
+			getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+			mes "[Booste_enchant]";
+			mes "โชคดีที่อาวุธยังอยู่.";
+			close;
+			}
+			else {
+			specialeffect2 154;
+			getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],@enclass,.@card[3];
+			mes "[Booste_enchant]";
+			mes "^0000cdออฟสำเร็จ.^000000";
+			close;
+			}	
+		
+	L_Advanced2:	
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", EQI_GARMENT, .@equip_id) || callfunc("F_IsEquipCardHack", EQI_GARMENT, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", EQI_GARMENT, .@refine))
+		close;
+		if ((countitem(984) < 500) || (countitem(985) < 500)) {
+			mes "^FF0000เจ้ามี Somatology Experimental Fragment หรือ Somatology Research Document ไม่ถึง 500 อัน.^000000";
+			close;
+		}
+		next;
+		mes "[Booste_enchant]";
+		mes "^FF0000ไม่มีโอกาสอาวุธเสียหาย.^000000";
+		mes "อาวุธยังอยู่แต่ออฟไม่ติด 30%.";
+		mes "^0000cdโอกาสออฟสำเร็จ 70%.^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		set .rate,rand(100);
+		progressbar "000000",1;
+		delitem 984, 500;// Somatology Experimental Fragment
+		delitem 985, 500;// Somatology Research Document
+		delequip EQI_GARMENT;
+			if (.rate < 30) {
+			specialeffect2 155;
+			getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+			mes "[Booste_enchant]";
+			mes "โชคดีที่อาวุธยังอยู่.";
+			close;
+			}
+			else {
+			specialeffect2 154;
+			getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],@enclass,.@card[3];
+			mes "[Booste_enchant]";
+			mes "^0000cdออฟสำเร็จ.^000000";
+			close;
+			}
+	OnInit:
+		waitingroom "เพิ่มออฟชั่นส่วน Garment",0;
+		end;			
+	}	
+	

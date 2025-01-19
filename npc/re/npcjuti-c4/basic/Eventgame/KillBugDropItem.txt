@@ -1,0 +1,48 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : แม่มดน้อย จอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : rAthena & Hercules
+// Contacts
+// Facebook https://www.facebook.com/appleroplus2
+// Gmail appleroplus@gmail.com
+// Skype appleroplus@hotmail.com
+//==============================================
+//==============================================
+//==============================================
+//if (.@raterditem < 5)คือโอกาศที่จะได้
+//if (.@raterditem > 5)คือโอกาศที่จะไม่ได้
+-	script	Auto_KillBugDropItem	-1,{
+OnNPCKillEvent:
+setarray .mobid[0],
+20527,
+20528,
+20530,
+1095,
+1105,
+1160,
+1176,
+3507,
+1387,
+1382,
+1367,
+1088,
+1408,
+2883;
+//^รหัส มอนสเตอร์ BOSS
+for (set .@c, 0; .@c < getarraysize(.mobid); set .@c, .@c + 1){
+if (killedrid == .mobid[.@c]){
+set .@raterditem,rand(1,100);
+if (.@raterditem < 10)
+
+{
+getitem 20000032,1;
+soundeffect "rareitemshop.wav",0;
+announce "[ระบบ] : ยินดีด้วย คุณ [ "+strcharinfo(0)+" ] โชคดีจริงๆ ที่สังหาร มอนเตอร์ประเภทแมลง ได้รับ insect catcher DK RO2 1 ea.",0,0xFF3399;
+}
+
+}
+}
+end;
+}

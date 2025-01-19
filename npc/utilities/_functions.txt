@@ -1,0 +1,785 @@
+// Open storage
+function	script	TheBoxStorage	{
+	if(getcharid(2) > 0)
+	menu "คลังปกติ",-
+	,"คลัง Guild",L_GuildStorage
+	,"คลังปกติ #2",L_Storage2
+	,"คลังปกติ #3",L_Storage3
+	,"คลังปกติ #4",L_Storage4
+	,"คลังปกติ #5",L_Storage5
+	,"คลังปกติ #6",L_Storage6
+	,"คลังปกติ #7",L_Storage7
+	,"คลังปกติ #8",L_Storage8
+	,"คลังปกติ #9",L_Storage9
+	,"คลังปกติ #10",L_Storage10;
+	else
+	menu "คลังปกติ",-
+	,"คลังปกติ #2",L_Storage2
+	,"คลังปกติ #3",L_Storage3
+	,"คลังปกติ #4",L_Storage4
+	,"คลังปกติ #5",L_Storage5
+	,"คลังปกติ #6",L_Storage6
+	,"คลังปกติ #7",L_Storage7
+	,"คลังปกติ #8",L_Storage8
+	,"คลังปกติ #9",L_Storage9
+	,"คลังปกติ #10",L_Storage10;
+	openstorage;
+	end;
+	
+	L_GuildStorage:
+	guildopenstorage();
+	end;
+	
+	L_Storage2:
+	callsub(L_AdditionalStorage,2);
+	end;
+	
+	L_Storage3:
+	callsub(L_AdditionalStorage,3);
+	end;
+	
+	L_Storage4:
+	callsub(L_AdditionalStorage,4);
+	end;
+	
+	L_Storage5:
+	callsub(L_AdditionalStorage,5);
+	end;
+	
+	L_Storage6:
+	callsub(L_AdditionalStorage,6);
+	end;
+	
+	L_Storage7:
+	callsub(L_AdditionalStorage,7);
+	end;
+	
+	L_Storage8:
+	callsub(L_AdditionalStorage,8);
+	end;
+	
+	L_Storage9:
+	callsub(L_AdditionalStorage,9);
+	end;
+	
+	L_Storage10:
+	callsub(L_AdditionalStorage,10);
+	end;
+	
+	L_AdditionalStorage:
+	openstorage2 (getarg(0) - 1),STOR_MODE_GET|STOR_MODE_PUT;
+	
+	return;
+}
+
+// Get 100% based wording from 10000 amount
+function	script	F_PercentBase10000	{
+	.@v = getarg(0,0);
+	if(.@v < 10)
+	return "0.0" + .@v + "%";
+	else if(.@v < 100)
+	return "0." + .@v + "%";
+	else{
+		.@percent = (.@v / 100);
+		.@decimal = (.@v % 100) / 10;
+		return .@percent + "." + .@decimal + "%";
+	}
+	
+	return;
+}
+
+// Is dummy monster?
+function	script	F_IsDummyMonster	{
+	.@v = getarg(0,0);
+	.@isSkipSpawnCheck = getarg(1,0);
+	if((.@v == 2408)									// Dummy
+			|| (.@v == 2409)							// Dummy
+			|| (.@v == 2410)							// Dummy
+			|| (.@v == 2411)							// Dummy
+			|| (.@v == 2413)							// Dummy
+			|| ((.@v >= 21064) && (.@v <= 21086))		// Dummy
+			|| (.@v == 1288)							// Emperium
+			|| (.@v == 2401)							// Poring on initial land maps
+			|| (.@v == 2337)							// Hidden Mob
+			|| (.@v == 2343)							// Hidden Mob
+			|| (.@v == 2536)							// Hidden Mob
+			|| (.@v == 2537)							// Hidden Mob
+			|| (.@v == 2539)							// Hidden Mob
+			|| (.@v == 3038)							// Hidden Mob
+			//|| (getmonsterinfo(.@v,MOB_MAXHP) < 60)		// HP below Poring is not allowed
+			|| (!isspawn(.@v) && !.@isSkipSpawnCheck))							// It's not spawn in official servers
+	return true;
+	else
+	return false;
+}
+
+// Get grade naming
+function	script	GetGradeName	{
+	.@grade = getarg(0,0);
+	return (.@grade == 4) ? "A" : (.@grade == 3) ? "B" : (.@grade == 2) ? "C" : (.@grade == 1) ? "D" : "-";
+}
+
+// Is town map?
+function	script	IsTownMap	{
+	.@mapName$ = strcharinfo(3);
+	
+	.@isTownMap = (
+	(.@mapName$ == "prontera")		// Main town
+	|| (.@mapName$ == "pvp_y_1-1")	// PvP
+	|| (.@mapName$ == "pvp_y_1-4")	// PvP
+	|| (.@mapName$ == "guild_vs1-1")	// Test
+	)
+	;
+	
+	return .@isTownMap;
+}
+
+// Get THE BOX rewards
+function	script	GetTheBoxItem	{
+	.@overrideItemId = getarg(0,0);
+	.@itemType = getarg(1,0);
+	
+	.@itemId = 501;
+	
+	if(.@overrideItemId <= 0){
+		// Random reward
+		.@rand = (.@itemType > 0) ? -1: rand(10000);
+		
+		// 40%
+		if((.@rand >= 6000)
+				|| (.@itemType == 1))
+		.@itemId = $weaponIds[rand(getarraysize($weaponIds))];
+		// 45%
+		else if((.@rand >= 1500)
+				|| (.@itemType == 2))
+		.@itemId = $equipmentIds[rand(getarraysize($equipmentIds))];
+		// 10%
+		else if((.@rand >= 500)
+				|| (.@itemType == 3))
+		.@itemId = $costumeIds[rand(getarraysize($costumeIds))];
+		// 2.5%
+		else if((.@rand >= 250)
+				|| (.@itemType == 4))
+		.@itemId = $cardIds[rand(getarraysize($cardIds))];
+		// 2.5%
+		else if((.@itemType == 0)
+				|| (.@itemType == 5))
+		.@itemId = $enchantIds[rand(getarraysize($enchantIds))];
+	}
+	else
+	.@itemId = .@overrideItemId;
+	
+	.@type = getiteminfo(.@itemId,ITEMINFO_TYPE);
+	
+	if((.@type == 4)
+			|| (.@type == 5)
+			|| (.@type == 12)){
+		.@optionIdIndex0 = callfunc("GetRandomOptionId");
+		.@optionIdIndex1 = callfunc("GetRandomOptionId");
+		.@optionIdIndex2 = callfunc("GetRandomOptionId");
+		.@optionIdIndex3 = callfunc("GetRandomOptionId");
+		.@optionIdIndex4 = callfunc("GetRandomOptionId");
+		
+		setarray .@optionIds[0],.@optionIdIndex0,.@optionIdIndex1,.@optionIdIndex2,.@optionIdIndex3,.@optionIdIndex4;
+		setarray .@optionValues[0],rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5);
+		setarray .@optionParams[0],0,0,0,0,0;
+		
+		getitem3 .@itemId,1,1,0,0,0,0,0,0,.@optionIds,.@optionValues,.@optionParams;
+	}
+	else
+	getitem .@itemId,1;
+
+	return;
+}
+
+// Get time remaining wording from seconds
+function	script	GetTimerWording	{
+	.@s = getarg(0,0);
+	
+	if(.@s >= 3600)
+	{
+		.@minutes = .@s % 60;
+		return (.@s / 3600) + " ชั่วโมง" + ((.@minutes > 0) ? " " + .@minutes + " นาที" : "");
+	}
+	else if(.@s >= 60){
+		.@seconds = .@s % 60;
+		return (.@s / 60) + " นาที" + ((.@seconds > 0) ? " " + .@seconds + " วินาที" : "");
+	}
+	else
+	return .@s + " วินาที";
+	
+	return;
+}
+
+// Hinting delay to players
+function	script	DelayHint	{
+	.@delay = getarg(0,0);
+	.@isContinueScript = getarg(1,1);
+	.@isSelfMessage = getarg(2,0);
+	.@additionalText$ = getarg(3,"");
+	
+	if (.@delay > gettimetick(2)){
+		if(.@isSelfMessage){
+			message strcharinfo(0),"โปรดรอ " + GetTimerWording(.@delay - gettimetick(2)) + .@additionalText$;
+			if(!.@isContinueScript)
+			end;
+		}
+		else{
+			mes "โปรดรอ " + GetTimerWording(.@delay - gettimetick(2)) + .@additionalText$;
+			if(!.@isContinueScript)
+			close;
+		}
+	}
+	
+	return;
+}
+
+// Refresh debuff
+function	script	RefreshDebuff	{
+	.@additionalDebuff = getarg(0,0);
+	atcommand "@debuff " + (debuff + tired + .@additionalDebuff);
+	atcommand "@bd 0";
+	
+	return;
+}
+
+// Gaining dismantle points
+function	script	GainDismantlePoints	{
+	.@itemId = 10000007;
+	.@amount = countitem(.@itemId);
+	dmPoints = cap_value(dmPoints + .@amount + 1,0,INT_MAX);
+	delitem .@itemId,.@amount;
+	
+	dispbottom "รับ " + F_InsertComma(.@amount + 1) + " Dismantle Points";
+	dispbottom "ขณะนี้คุณมี " + F_InsertComma(dmPoints) + " Dismantle Points";
+	
+	return;
+}
+
+// Life Orb
+function	script	LifeOrb	{
+	// Check cooldown
+	DelayHint(lifeOrbCd,0,1);
+	specialeffect2 830;
+	// Cooldown
+	lifeOrbCd = gettimetick(2) + (10 - lifeOrbUpg);
+	// Common debuffs
+	sc_end SC_POISON;
+	sc_end SC_SILENCE;
+	sc_end SC_BLIND;
+	sc_end SC_CONFUSION;
+	sc_end SC_CURSE;
+	sc_end SC_Hallucination;
+	// Advanced debuffs
+	sc_end SC_BLEEDING;
+	sc_end SC_DPOISON;
+	sc_end SC_FEAR;
+	sc_end SC_DECAGI;
+	sc_end SC_ORCISH;
+	sc_end SC_CHANGEUNDEAD;
+	sc_end SC_CURSEDCIRCLE;
+	sc_end SC_SLOWCAST;
+	sc_end SC_CRITICALWOUND;
+	sc_end SC_CRYSTALIZE;
+	// GX
+	sc_end SC_PARALYSE;
+	sc_end SC_PYREXIA;
+	sc_end SC_DEATHHURT;
+	sc_end SC_LEECHESEND;
+	sc_end SC_VENOMBLEED;
+	sc_end SC_TOXIN;
+	sc_end SC_MAGICMUSHROOM;
+	sc_end SC_OBLIVIONCURSE;
+	// 4th Patches
+	sc_end SC_HANDICAPSTATE_DEEPBLIND;
+	sc_end SC_HANDICAPSTATE_DEEPSILENCE;
+	sc_end SC_HANDICAPSTATE_LASSITUDE;
+	sc_end SC_HANDICAPSTATE_CONFLAGRATION;
+	sc_end SC_HANDICAPSTATE_MISFORTUNE;
+	sc_end SC_HANDICAPSTATE_DEADLYPOISON;
+	sc_end SC_HANDICAPSTATE_DEPRESSION;
+	sc_end SC_HANDICAPSTATE_HOLYFLAME;
+	// Heal
+	percentheal 100,100;
+	healap MaxAp;
+	return;
+}
+
+// Return Orb
+function	script	ReturnOrb	{
+	specialeffect2 779;
+	// Wait a bit
+	progressbar "",5;
+	// Mark as safe to return
+	if(!IsTownMap())
+	isSafeReturn = 1;
+	// Warp now
+	warp getsavepoint(0),getsavepoint(1),getsavepoint(2);
+	return;
+}
+
+// Increase level
+function	script	SoulOrb	{
+	.@itemId = getarg(0,0);
+	
+	// Unexpected error
+	if(!.@itemId)	
+	return;
+	
+	// Information for players
+	.@itemCount = countitem(.@itemId);
+	
+	// Unexpected error
+	if(BaseLevel >= 250){
+		if(.@itemCount >= 30000){
+			delitem .@itemId,30000;
+			soulRank++;
+			message strcharinfo(0),"ใช้ 30000 " + getitemname(.@itemId) + " เพิ่ม Soul Rank | Rank ขณะนี้ " + soulRank;
+			specialeffect2 1203;
+		}
+		return;
+	}
+	
+	if(!#isOneTapOrb){
+		mes "โปรดระบุ 1~" + .@itemCount;
+		input .@input;
+	}
+	else
+	.@input = .@itemCount;
+	// Prevent cheat
+	.@itemCount = countitem(.@itemId);
+	// Check input error
+	if(!.@input
+			|| (.@input > .@itemCount)){
+		mes "เกิดข้อผิดพลาด";
+		close2;
+		return;
+	}
+	freeloop(1);
+	.@currentLevel = BaseLevel;
+	// Get requirement from current level
+	for(.@i = 0; .@i < $soulOrbLvSize; .@i++){
+		if(.@currentLevel < $soulOrbLv[.@i]){
+			if(.@i > 0)
+			.@diff = $soulOrbLv[.@i] - $soulOrbLv[.@i - 1];
+			else
+			.@diff = $soulOrbLv[.@i] - 0;
+			.@remainingLevel = $soulOrbLv[.@i] - .@currentLevel;
+			.@multiplier = max(1,(.@diff - .@remainingLevel));
+			.@req = $soulOrbReq[.@i] * .@multiplier;
+			break;
+		}
+	}
+	// Delete item
+	delitem .@itemId,.@input;
+	.@usage = .@input;
+	while(.@input > 0){
+		// Amount greater than next requirement
+		if((.@input + soulOrb) >= .@req){
+			// Increase level
+			.@currentLevel++;
+			.@levelGained++;
+			// Decrease amount
+			.@input -= (.@req - soulOrb);
+			// Reset stack
+			soulOrb = 0;
+			for(.@i = 0; .@i < $soulOrbLvSize; .@i++){
+				if(.@currentLevel < $soulOrbLv[.@i]){
+					if(.@i > 0)
+					.@diff = $soulOrbLv[.@i] - $soulOrbLv[.@i - 1];
+					else
+					.@diff = $soulOrbLv[.@i] - 0;
+					.@remainingLevel = $soulOrbLv[.@i] - .@currentLevel;
+					.@multiplier = max(1,(.@diff - .@remainingLevel));
+					.@req = $soulOrbReq[.@i] * .@multiplier;
+					break;
+				}
+			}
+		}
+		// Amount less than next requirement
+		else{
+			
+			// Stack
+			soulOrb += .@input;
+			// Decrease amount
+			.@input = 0;
+			break;
+		}
+	}
+	freeloop(0);
+	if(.@levelGained)
+	{
+		atcommand "@lvup " + .@levelGained;
+		message strcharinfo(0),"ใช้ " + .@usage + " " + getitemname(.@itemId) + " Level สูงขึ้น " + .@levelGained + ((BaseLevel < 250) ? " Level ต่อไปต้องการอีก " + (.@req - soulOrb) + " " + getitemname(.@itemId) : "");
+	}
+	else
+	message strcharinfo(0),"ใช้ " + .@usage + " " + getitemname(.@itemId) + " Level ต่อไปต้องการอีก " + (.@req - soulOrb) + " " + getitemname(.@itemId);
+	specialeffect2 885;
+	if(!#isOneTapOrb)
+	close2;
+	return;
+}
+
+// Increase body
+function	script	BodyOrb	{
+	.@itemId = getarg(0,0);
+	// Unexpected error
+	if(!.@itemId
+			|| (rebornStatus >= 29990))
+	return;
+	// Information for players
+	.@itemCount = countitem(.@itemId);
+	if(!#isOneTapOrb){
+		mes "โปรดระบุ 1~" + .@itemCount;
+		input .@input;
+	}
+	else
+	.@input = .@itemCount;
+	// Prevent cheat
+	.@itemCount = countitem(.@itemId);
+	// Check input error
+	if(!.@input
+			|| (.@input > .@itemCount)){
+		mes "เกิดข้อผิดพลาด";
+		close2;
+		return;
+	}
+	freeloop(1);
+	.@currentLevel = rebornStatus;
+	// Get requirement from current level
+	for(.@i = 0; .@i < $bodyOrbLvSize; .@i++){
+		if(.@currentLevel < $bodyOrbLv[.@i]){
+			if(.@i > 0)
+			.@diff = $bodyOrbLv[.@i] - $bodyOrbLv[.@i - 1];
+			else
+			.@diff = $bodyOrbLv[.@i] - 0;
+			.@remainingLevel = $bodyOrbLv[.@i] - .@currentLevel;
+			.@multiplier = max(1,(.@diff - .@remainingLevel));
+			.@req = $bodyOrbReq[.@i] * .@multiplier;
+			break;
+		}
+	}
+	// Delete item
+	delitem .@itemId,.@input;
+	.@usage = .@input;
+	while(.@input > 0){
+		// Amount greater than next requirement
+		if((.@input + bodyOrb) >= .@req){
+			// Increase level
+			.@currentLevel++;
+			.@levelGained++;
+			// Decrease amount
+			.@input -= (.@req - bodyOrb);
+			// Reset stack
+			bodyOrb = 0;
+			for(.@i = 0; .@i < $bodyOrbLvSize; .@i++){
+				if(.@currentLevel < $bodyOrbLv[.@i]){
+					if(.@i > 0)
+					.@diff = $bodyOrbLv[.@i] - $bodyOrbLv[.@i - 1];
+					else
+					.@diff = $bodyOrbLv[.@i] - 0;
+					.@remainingLevel = $bodyOrbLv[.@i] - .@currentLevel;
+					.@multiplier = max(1,(.@diff - .@remainingLevel));
+					.@req = $bodyOrbReq[.@i] * .@multiplier;
+					break;
+				}
+			}
+		}
+		// Amount less than next requirement
+		else{
+			
+			// Stack
+			bodyOrb += .@input;
+			// Decrease amount
+			.@input = 0;
+			break;
+		}
+	}
+	freeloop(0);
+	if(.@levelGained){
+		rebornStatus = cap_value(rebornStatus + .@levelGained,0,29990);
+		message strcharinfo(0),"ใช้ " + .@usage + " " + getitemname(.@itemId) + " ค่าร่างกาย สูงขึ้น " + .@levelGained + ((rebornStatus < 30000) ? " ค่าร่างกายต่อไปต้องการอีก " + (.@req - bodyOrb) + " " + getitemname(.@itemId) : "") + " (Lv. " + rebornStatus + "/30000)";
+	}
+	else
+	message strcharinfo(0),"ใช้ " + .@usage + " " + getitemname(.@itemId) + " ค่าร่างกายต่อไปต้องการอีก " + (.@req - bodyOrb) + " " + getitemname(.@itemId) + " (Lv. " + rebornStatus + "/30000)";
+	specialeffect2 885;
+	if(!#isOneTapOrb)
+	close2;
+	return;
+}
+
+// Increase mind
+function	script	MindOrb	{
+	.@itemId = getarg(0,0);
+	// Unexpected error
+	if(!.@itemId
+			|| (rebornSkill >= 100))
+	return;
+	// Information for players
+	.@itemCount = countitem(.@itemId);
+	if(!#isOneTapOrb){
+		mes "โปรดระบุ 1~" + .@itemCount;
+		input .@input;
+	}
+	else
+	.@input = .@itemCount;
+	// Prevent cheat
+	.@itemCount = countitem(.@itemId);
+	// Check input error
+	if(!.@input
+			|| (.@input > .@itemCount)){
+		mes "เกิดข้อผิดพลาด";
+		close2;
+		return;
+	}
+	freeloop(1);
+	.@currentLevel = rebornSkill;
+	// Get requirement from current level
+	for(.@i = 0; .@i < $mindOrbLvSize; .@i++){
+		if(.@currentLevel < $mindOrbLv[.@i]){
+			if(.@i > 0)
+			.@diff = $mindOrbLv[.@i] - $mindOrbLv[.@i - 1];
+			else
+			.@diff = $mindOrbLv[.@i] - 0;
+			.@remainingLevel = $mindOrbLv[.@i] - .@currentLevel;
+			.@multiplier = max(1,(.@diff - .@remainingLevel));
+			.@req = $mindOrbReq[.@i] * .@multiplier;
+			break;
+		}
+	}
+	// Delete item
+	delitem .@itemId,.@input;
+	.@usage = .@input;
+	while(.@input > 0){
+		// Amount greater than next requirement
+		if((.@input + mindOrb) >= .@req){
+			// Increase level
+			.@currentLevel++;
+			.@levelGained++;
+			// Decrease amount
+			.@input -= (.@req - mindOrb);
+			// Reset stack
+			mindOrb = 0;
+			for(.@i = 0; .@i < $mindOrbLvSize; .@i++){
+				if(.@currentLevel < $mindOrbLv[.@i]){
+					if(.@i > 0)
+					.@diff = $mindOrbLv[.@i] - $mindOrbLv[.@i - 1];
+					else
+					.@diff = $mindOrbLv[.@i] - 0;
+					.@remainingLevel = $mindOrbLv[.@i] - .@currentLevel;
+					.@multiplier = max(1,(.@diff - .@remainingLevel));
+					.@req = $mindOrbReq[.@i] * .@multiplier;
+					break;
+				}
+			}
+		}
+		// Amount less than next requirement
+		else{
+			
+			// Stack
+			mindOrb += .@input;
+			// Decrease amount
+			.@input = 0;
+			break;
+		}
+	}
+	freeloop(0);
+	if(.@levelGained){
+		rebornSkill = cap_value(rebornSkill + .@levelGained,0,100);
+		message strcharinfo(0),"ใช้ " + .@usage + " " + getitemname(.@itemId) + " ค่าความรู้ สูงขึ้น " + .@levelGained + ((rebornSkill < 100) ? " ค่าความรู้ต่อไปต้องการอีก " + (.@req - mindOrb) + " " + getitemname(.@itemId) : "") + " (Lv. " + rebornSkill + "/100)";
+	}
+	else
+	message strcharinfo(0),"ใช้ " + .@usage + " " + getitemname(.@itemId) + " ค่าความรู้ต่อไปต้องการอีก " + (.@req - mindOrb) + " " + getitemname(.@itemId) + " (Lv. " + rebornSkill + "/100)";
+	specialeffect2 882;
+	if(!#isOneTapOrb)
+	close2;
+	return;
+}
+
+// Increase refine
+function	script	RefineOrb	{
+	atcommand "@refine 0 1";
+	specialeffect2 842;
+	return;
+}
+
+// Increase grade
+function	script	GradeOrb	{
+	atcommand "@grade 0 1";
+	specialeffect2 805;
+	return;
+}
+
+// Reborn
+function	script	Reborn	{
+	.@isSafeReborn = getarg(0,0);
+	// Mark as safe to return
+	isSafeReturn = 1;
+	// Remember previous values
+	.@previousLevel = BaseLevel;
+	.@previousJobLevel = JobLevel;
+	.@previousRebornStatus = rebornStatus;
+	.@previousRebornSkill = rebornSkill;
+	if(!.@isSafeReborn){
+		// Decrease body
+		rebornStatus = cap_value(rebornStatus - 1,0,30000);
+		// Decrease mind
+		rebornSkill = cap_value(rebornSkill - 1,0,100);
+		// Decrease level
+		if(BaseLevel > 1)
+		atcommand "@lvup -1";
+		// Decrease Refine
+		atcommand "@refine 0 -" + rand(1,20);
+		// Decrease Grade
+		atcommand "@grade 0 -" + rand(1,4);
+	}
+	// Wear new suit
+	jobchange $classes[rand(0,($classSize - 1))];
+	// Return job level back
+	if(.@previousJobLevel > 1)
+	atcommand "@joblvup " + (.@previousJobLevel - 1);
+	// Clear all status and trait
+	resetstatus;
+	// Forgot all skill
+	resetskill;
+	// Clear status point
+	StatusPoint = 0;
+	// Clear trait point
+	TraitPoint = 0;
+	// Clear skill point
+	SkillPoint = 0;
+	// Reborn now
+	// Grant random status
+	.@maxRebornStatus = .@previousRebornStatus + 10;
+	.@randomValue = rand(.@maxRebornStatus);
+	if(.@randomValue)
+	atcommand "@str " + .@randomValue;
+	.@randomValue = rand(.@maxRebornStatus);
+	if(.@randomValue)
+	atcommand "@agi " + .@randomValue;
+	.@randomValue = rand(.@maxRebornStatus);
+	if(.@randomValue)
+	atcommand "@vit " + .@randomValue;
+	.@randomValue = rand(.@maxRebornStatus);
+	if(.@randomValue)
+	atcommand "@int " + .@randomValue;
+	.@randomValue = rand(.@maxRebornStatus);
+	if(.@randomValue)
+	atcommand "@dex " + .@randomValue;
+	.@randomValue = rand(.@maxRebornStatus);
+	if(.@randomValue)
+	atcommand "@luk " + .@randomValue;
+	// Grant random trait
+	.@maxRebornTrait = cap_value(((.@previousRebornStatus < 100) ? .@previousRebornStatus : (100 + (.@previousRebornStatus / 100))) + 1,0,30000);
+	.@randomValue = rand(.@maxRebornTrait);
+	if(.@randomValue)
+	atcommand "@pow " + .@randomValue;
+	.@randomValue = rand(.@maxRebornTrait);
+	if(.@randomValue)
+	atcommand "@sta " + .@randomValue;
+	.@randomValue = rand(.@maxRebornTrait);
+	if(.@randomValue)
+	atcommand "@wis " + .@randomValue;
+	.@randomValue = rand(.@maxRebornTrait);
+	if(.@randomValue)
+	atcommand "@spl " + .@randomValue;
+	.@randomValue = rand(.@maxRebornTrait);
+	if(.@randomValue)
+	atcommand "@con " + .@randomValue;
+	.@randomValue = rand(.@maxRebornTrait);
+	if(.@randomValue)
+	atcommand "@crt " + .@randomValue;
+	// Grant 3 skills by every 30 level
+	.@skillAmount = specialRebornSkill + 3 + ((.@previousLevel + 30) / 30);
+	freeloop(1);
+	for(.@i = 0; .@i < .@skillAmount; .@i++){
+		.@randomSkillIndex = rand(0,($learnableSkillSize - 1));
+		// Check skill is same
+		for(.@j = 0; .@j < .@skillAmount; .@j++){
+			if(.@randomSkillIndex[.@j] == .@randomSkillIndex){
+				.@j = 0;
+				.@randomSkillIndex = rand(0,($learnableSkillSize - 1));
+			}
+		}
+		// Grant skill now
+		skill $learnableSkills$[.@randomSkillIndex],(max(1,.@previousRebornSkill)),3;
+		if(getskilllv($learnableSkills$[.@randomSkillIndex]) <= 0)
+		.@i--;
+	}
+	freeloop(0);
+	if(!.@isSafeReborn){
+		// Announce in map
+		//announce strcharinfo(0) + " ตายและได้ไปเกิดใหม่อีกครั้ง..",bc_area,0xFF2400;
+		// Styles
+		setarray .@maxStyles[1],getbattleflag("max_cloth_color"),getbattleflag("max_hair_style"),getbattleflag("max_hair_color");
+		// Official cloth color for expanded class was 0~3 ?
+		if((Class == 4239)
+				|| (Class == 4240)
+				|| (Class == 4064))
+		.@maxStyles[1] = .@maxStyles[1] - 1;
+		setarray .@looks[1],LOOK_CLOTHES_COLOR,LOOK_HAIR,LOOK_HAIR_COLOR;
+		for(.@s = 1; .@s < 4; .@s++){
+			.@selectedLook = .@s;
+			.@style = rand(0,.@maxStyles[.@selectedLook]);
+			if((.@selectedLook == 2)
+					&& (.@style <= 0))
+			.@style = 1;
+			
+			if((Class == 4308) && (.@selectedLook == 2) && (.@style > 10))
+			.@style = rand(1,10);
+			
+			setlook .@looks[.@selectedLook],.@style;
+		}
+	}
+	return;
+}
+
+// Random option
+function	script	GetRandomOptionId	{
+	.@optId = rand(1,254);
+	
+	freeloop(1);
+	
+	// Locking option
+	if(getarg(0,0) > 0){
+		while((.@optId == 86)
+		|| (.@optId == 173)
+		|| (.@optId == 174)
+		|| (.@optId == 204)
+		|| (.@optId == 205))
+		.@optId = rand(1,254);
+		
+		freeloop(0);
+		
+		return .@optId;
+	}
+	
+	while(((.@optId >= 76) && (.@optId <= 86))
+	|| ((.@optId >= 173) && (.@optId <= 184))
+	|| (.@optId == 204)
+	|| (.@optId == 205))
+	.@optId = rand(1,254);
+
+	freeloop(0);
+	
+	return .@optId;
+}
+
+// Gaining Orb
+function	script	GainOrb	{
+	.@targetItemId = getarg(0,0);
+	.@itemId = getarg(1,0);
+	// Unexpected error
+	if(!.@itemId
+			|| !.@targetItemId)
+	return;
+	// Information for players
+	.@itemCount = countitem(.@targetItemId);
+	if(.@itemCount){
+		mes "ห้ามถือ " + getitemname(.@targetItemId) + " เลยสักชิ้น";
+		close;
+	}
+	delitem .@itemId,1;
+	getitem .@targetItemId,30000;
+	return;
+}

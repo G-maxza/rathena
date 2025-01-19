@@ -1,0 +1,346 @@
+-	script	Payment	 -1,{
+	end;
+	
+	OnInit:
+
+	//แจกของตามราคาที่เติม
+	set .payment_item_id_100, 64070;
+	set .payment_item_id_500, 64071;
+	set .payment_item_id_1000, 64072;
+	set .payment_item_id_3000, 64073;
+	set .payment_item_id_5000, 64074;
+	set .payment_item_id_10000, 64075;
+
+	//จำนวนของที่จะได้รับตามราคาที่เติม
+	set .payment_item_amount_100, 1;
+	set .payment_item_amount_500, 1;
+	set .payment_item_amount_1000, 1;
+	set .payment_item_amount_3000, 1;
+	set .payment_item_amount_5000, 1;
+	set .payment_item_amount_10000, 1;
+	
+	//Item ที่จะได้รับหากลูกค้าเติมเงินสะสมถึงจำนวนที่กำหนด (ตั้งค่าเป็น 0 ทั้งคู่ หากไม่ต้องการแจก Item)
+	setarray .cash_bonus500_item_id[0], 0;
+	setarray .cash_bonus1000_item_id[0], 0;
+	setarray .cash_bonus2000_item_id[0], 0;
+	setarray .cash_bonus3000_item_id[0], 0;
+	setarray .cash_bonus3500_item_id[0], 0;
+	setarray .cash_bonus4000_item_id[0], 0;
+	setarray .cash_bonus5000_item_id[0], 0;
+	setarray .cash_bonus6000_item_id[0], 0;
+	
+	//จำนวน Item ที่จะได้รับหากลูกค้าเติมเงินสะสมถึงจำนวนที่กำหนด (ตั้งค่าเป็น 0 ทั้งคู่ หากไม่ต้องการแจก Item)
+	setarray .cash_bonus500_amount[0], 0;
+	setarray .cash_bonus1000_amount[0], 0;
+	setarray .cash_bonus2000_amount[0], 0;
+	setarray .cash_bonus3000_amount[0], 0;
+	setarray .cash_bonus3500_amount[0], 0;
+	setarray .cash_bonus4000_amount[0], 0;
+	setarray .cash_bonus5000_amount[0], 0;
+	setarray .cash_bonus6000_amount[0], 0;
+	
+	//ตั้งค่าจำนวน % เมื่อเป็นสมาชิกเมมเบอร์แต่ละระดับ (ตั้งค่าเป็น 0 หากไม่ต้องการให้คูณเพิ่ม)
+	setarray .@member_extra_multiple[0], 0;
+	setarray .@member_extra_multiple[1], 3;
+	setarray .@member_extra_multiple[2], 5;
+	setarray .@member_extra_multiple[3], 7;
+	setarray .@member_extra_multiple[4], 9;
+	setarray .@member_extra_multiple[5], 11;
+	setarray .@member_extra_multiple[6], 13;
+	setarray .@member_extra_multiple[7], 15;
+	
+	//ตั้งค่าการคูณ % ของเมมเบอร์ (ใส่ 1 หากเปิดการใช้งานการคูณ, ใส่ 0 ปิดการใช้งานการคูณ)
+	set .@member_extra_cash, 1; //เปิด-ปิด การคูณ CASH
+	set .@member_extra_bonus, 0; //เปิด-ปิด การคูณ BONUS
+
+	while (1)
+	{
+		query_sql "SELECT `scb_id`,`amount`,`user_id` FROM `payment` WHERE `status` = '00' ORDER BY RAND() LIMIT 100",.scbId$,.pay_amount,.pay_user_id;
+		sleep 500;
+		set .@s, getarraysize(.scbId$);
+		if (.@s > 0) {
+			for (set .i, 0; .i < .@s; set .i, .i + 1) {
+				set .cash_bonus_amount, 0;
+				set .cash_real_amount, 0;
+				if(.pay_amount[.i] && .pay_amount[.i] > 0){
+					set .cash_real_amount, .pay_amount[.i];
+				}
+				
+				switch(.pay_amount[.i]) {
+					//ตั้งค่าจำนวน CASHPOINT ที่จะได้รับ
+					case 100:
+						//จำนวน CASHPOINT สำหรับบัตร 100 บาท
+						set .pay_amount[.i], 2000;
+						//จำนวน CASHBONUS สำหรับบัตร 100 บาท
+						set .cash_bonus_amount, 100;
+						break;
+					case 500:
+						//จำนวน CASHPOINT สำหรับบัตร 500 บาท
+						set .pay_amount[.i], 10000;
+						//จำนวน CASHBONUS สำหรับบัตร 500 บาท
+						set .cash_bonus_amount, 500;
+						break;
+					case 1000:
+						//จำนวน CASHPOINT สำหรับบัตร 1000 บาท
+						set .pay_amount[.i], 20000;
+						//จำนวน CASHBONUS สำหรับบัตร 1000 บาท
+						set .cash_bonus_amount, 1000;
+						break;
+					case 3000:
+						//จำนวน CASHPOINT สำหรับบัตร 3000 บาท
+						set .pay_amount[.i], 60000;
+						//จำนวน CASHBONUS สำหรับบัตร 3000 บาท
+						set .cash_bonus_amount, 3000;
+						break;
+					case 5000:
+						//จำนวน CASHPOINT สำหรับบัตร 5000 บาท
+						set .pay_amount[.i], 100000;
+						//จำนวน CASHBONUS สำหรับบัตร 5000 บาท
+						set .cash_bonus_amount, 5000;
+						break;
+					case 10000:
+						//จำนวน CASHPOINT สำหรับบัตร 10000 บาท
+						set .pay_amount[.i], 300000;
+						//จำนวน CASHBONUS สำหรับบัตร 10000 บาท
+						set .cash_bonus_amount, 10000;
+						break;
+				}
+				
+				// IF USER ONLINE WILL GET CASH & ITEM
+				if(.pay_amount[.i] > 0 && attachrid(.pay_user_id[.i]))
+				{
+					//INSERT REAL TOPUP AMOUNT TO MEMBER SYSTEM
+					set .@member_lv, 0;
+					query_sql "INSERT INTO `tbl_member` (account_id,member_lv,sum_donate) VALUES ('" +.pay_user_id[.i]+ "','0','" +.cash_real_amount+ "') ON DUPLICATE KEY UPDATE sum_donate=sum_donate+" +.cash_real_amount;
+					
+					// MEMBER GET MORE CASH
+					cleararray .@sum_donate[0] , 0, getarraysize(.@sum_donate);
+					query_sql "SELECT `sum_donate` FROM `tbl_member` WHERE `account_id` = " + .pay_user_id[.i] + " LIMIT 1", .@sum_donate;
+					if(.@sum_donate[0])
+					{
+						if( .@sum_donate[0] >= 50000 )
+						{
+							set .@member_lv, 7;
+							query_sql "UPDATE `tbl_member` SET `member_lv`='7' WHERE `account_id` = " + .pay_user_id[.i];
+							//BUFF MEMBER 7
+						}
+						else if( .@sum_donate[0] >= 30000 )
+						{
+							set .@member_lv, 6;
+							query_sql "UPDATE `tbl_member` SET `member_lv`='6' WHERE `account_id` = " + .pay_user_id[.i];
+							//BUFF MEMBER 6
+						}
+						else if( .@sum_donate[0] >= 20000 )
+						{
+							set .@member_lv, 5;
+							query_sql "UPDATE `tbl_member` SET `member_lv`='5' WHERE `account_id` = " + .pay_user_id[.i];
+							//BUFF MEMBER 5
+						}
+						else if( .@sum_donate[0] >= 10000 )
+						{
+							set .@member_lv, 4;
+							query_sql "UPDATE `tbl_member` SET `member_lv`='4' WHERE `account_id` = " + .pay_user_id[.i];
+							//BUFF MEMBER 4
+						}
+						else if( .@sum_donate[0] >= 5000 )
+						{
+							set .@member_lv, 3;
+							query_sql "UPDATE `tbl_member` SET `member_lv`='3' WHERE `account_id` = " + .pay_user_id[.i];
+							//BUFF MEMBER 3
+						}
+						else if( .@sum_donate[0] >= 3000 )
+						{
+							set .@member_lv, 2;
+							query_sql "UPDATE `tbl_member` SET `member_lv`='2' WHERE `account_id` = " + .pay_user_id[.i];
+							//BUFF MEMBER 2
+						}
+						else if( .@sum_donate[0] >= 1000 )
+						{
+							set .@member_lv, 1;
+							query_sql "UPDATE `tbl_member` SET `member_lv`='1' WHERE `account_id` = " + .pay_user_id[.i];
+							//BUFF MEMBER 1
+						}
+						else
+						{
+							set .@member_lv, 0;
+							query_sql "UPDATE `tbl_member` SET `member_lv`='0' WHERE `account_id` = " + .pay_user_id[.i];
+						}
+					}
+					
+					if(.@member_extra_cash == 1 && .@member_extra_multiple[.@member_lv] && .@member_extra_multiple[.@member_lv] > 0)
+					{
+						set .@bonus_calculate, (.pay_amount[.i] * .@member_extra_multiple[.@member_lv])/100;
+						set .pay_amount[.i], (.pay_amount[.i] + .@bonus_calculate);
+					}
+					
+					if(.@member_extra_bonus == 1 && .@member_extra_multiple[.@member_lv] && .@member_extra_multiple[.@member_lv] > 0)
+					{
+						set .@bonus_calculate, (.cash_bonus_amount[.i] * .@member_extra_multiple[.@member_lv])/100;
+						set .cash_bonus_amount, (.cash_bonus_amount + .@bonus_calculate);
+					}
+					//
+					
+					// SET PLAYER CASHPOINT
+					set #CASHPOINTS,(#CASHPOINTS + .pay_amount[.i]);
+					set #CASHBONUS,(#CASHBONUS + .cash_bonus_amount);
+					dispbottom "[Payment Center System] คุณได้รับ " + .pay_amount[.i] + " Cash";
+					dispbottom "[Payment Center System] คุณมียอดเติมเงินสะสม " + #CASHBONUS + " แต้ม";
+
+					// GET ITEM EXACT AMOUNT
+					switch(.cash_real_amount){
+						case 100:
+							if(.payment_item_id_100 > 0 && .payment_item_amount_100 > 0){
+								getitem .payment_item_id_100, .payment_item_amount_100;
+								dispbottom "[Refill Center System] คุณได้รับ Bonus Item " + getitemname(.payment_item_id_100) + " จำนวน " + .payment_item_amount_100 + " ea";
+							}
+							break;
+						case 500:
+							if(.payment_item_id_500 > 0 && .payment_item_amount_500 > 0){
+								getitem .payment_item_id_500, .payment_item_amount_500;
+								dispbottom "[Refill Center System] คุณได้รับ Bonus Item " + getitemname(.payment_item_id_500) + " จำนวน " + .payment_item_amount_500 + " ea";
+							}
+							break;
+						case 1000:
+							if(.payment_item_id_1000 > 0 && .payment_item_amount_1000 > 0){
+								getitem .payment_item_id_1000, .payment_item_amount_1000;
+								dispbottom "[Refill Center System] คุณได้รับ Bonus Item " + getitemname(.payment_item_id_1000) + " จำนวน " + .payment_item_amount_1000 + " ea";
+							}
+							break;
+						case 3000:
+							if(.payment_item_id_3000 > 0 && .payment_item_amount_3000 > 0){
+								getitem .payment_item_id_3000, .payment_item_amount_3000;
+								dispbottom "[Refill Center System] คุณได้รับ Bonus Item " + getitemname(.payment_item_id_3000) + " จำนวน " + .payment_item_amount_3000 + " ea";
+							}
+							break;
+						case 5000:
+							if(.payment_item_id_5000 > 0 && .payment_item_amount_5000 > 0){
+								getitem .payment_item_id_5000, .payment_item_amount_5000;
+								dispbottom "[Refill Center System] คุณได้รับ Bonus Item " + getitemname(.payment_item_id_5000) + " จำนวน " + .payment_item_amount_5000 + " ea";
+							}
+ 							break;
+						case 10000:
+							if(.payment_item_id_10000 > 0 && .payment_item_amount_10000 > 0){
+								getitem .payment_item_id_10000, .payment_item_amount_10000;
+								dispbottom "[Refill Center System] คุณได้รับ Bonus Item " + getitemname(.payment_item_id_10000) + " จำนวน " + .payment_item_amount_10000 + " ea";
+							}
+							break;
+					}
+
+	/*				// #CASHBONUS && #CASHPOINTS หมายถึง GLOBAL PLAYER เป็นค่าแคชของผู้เล่นครับ ไม่ใช่ตัวแปร
+					// ด้านล่างนี่เป็นสคริปแจกของโบนัสสะสมครับ
+					if (#CASHBONUS >= 500 && #CASHBONUS_500_REWARD_STATUS == 0) 
+					{
+						set #CASHBONUS_500_REWARD_STATUS, 1;
+						for (set .@i, 0; .@i < getarraysize(.cash_bonus500_item_id); set .@i, .@i + 1)
+						{
+							if (.cash_bonus500_item_id[.@i] > 0 && .cash_bonus500_amount[.@i] > 0)
+							{
+								getitem .cash_bonus500_item_id[.@i], .cash_bonus500_amount[.@i];
+							}
+						}
+						
+					}
+
+					if (#CASHBONUS >= 1000 && #CASHBONUS_1000_REWARD_STATUS == 0) 
+					{
+						set #CASHBONUS_1000_REWARD_STATUS, 1;
+						for (set .@i, 0; .@i < getarraysize(.cash_bonus1000_item_id); set .@i, .@i + 1)
+						{
+							if (.cash_bonus1000_item_id[.@i] > 0 && .cash_bonus1000_amount[.@i] > 0)
+							{
+								getitem .cash_bonus1000_item_id[.@i], .cash_bonus1000_amount[.@i];
+							}
+						}
+						
+					}
+
+					if (#CASHBONUS >= 3000 && #CASHBONUS_3000_REWARD_STATUS == 0) 
+					{
+						set #CASHBONUS_3000_REWARD_STATUS, 1;
+						for (set .@i, 0; .@i < getarraysize(.cash_bonus3000_item_id); set .@i, .@i + 1)
+						{
+							if (.cash_bonus3000_item_id[.@i] > 0 && .cash_bonus3000_amount[.@i] > 0)
+							{
+								getitem .cash_bonus3000_item_id[.@i], .cash_bonus3000_amount[.@i];
+							}
+						}
+						
+					}
+
+					if (#CASHBONUS >= 5000 && #CASHBONUS_5000_REWARD_STATUS == 0) 
+					{
+						set #CASHBONUS_5000_REWARD_STATUS, 1;
+						for (set .@i, 0; .@i < getarraysize(.cash_bonus5000_item_id); set .@i, .@i + 1)
+						{
+							if (.cash_bonus5000_item_id[.@i] > 0 && .cash_bonus5000_amount[.@i] > 0)
+							{
+								getitem .cash_bonus5000_item_id[.@i], .cash_bonus5000_amount[.@i];
+							}
+						}
+						
+					}
+					
+					if (#CASHBONUS >= 10000 && #CASHBONUS_10000_REWARD_STATUS == 0) 
+					{
+						set #CASHBONUS_10000_REWARD_STATUS, 1;
+						for (set .@i, 0; .@i < getarraysize(.cash_bonus10000_item_id); set .@i, .@i + 1)
+						{
+							if (.cash_bonus10000_item_id[.@i] > 0 && .cash_bonus10000_amount[.@i] > 0)
+							{
+								getitem .cash_bonus10000_item_id[.@i], .cash_bonus10000_amount[.@i];
+							}
+						}
+						
+					}
+
+					if (#CASHBONUS >= 20000 && #CASHBONUS_20000_REWARD_STATUS == 0) 
+					{
+						set #CASHBONUS_20000_REWARD_STATUS, 1;
+						for (set .@i, 0; .@i < getarraysize(.cash_bonus20000_item_id); set .@i, .@i + 1)
+						{
+							if (.cash_bonus20000_item_id[.@i] > 0 && .cash_bonus20000_amount[.@i] > 0)
+							{
+								getitem .cash_bonus20000_item_id[.@i], .cash_bonus20000_amount[.@i];
+							}
+						}
+						
+					}
+
+					if (#CASHBONUS >= 30000 && #CASHBONUS_30000_REWARD_STATUS == 0) 
+					{
+						set #CASHBONUS_30000_REWARD_STATUS, 1;
+						for (set .@i, 0; .@i < getarraysize(.cash_bonus30000_item_id); set .@i, .@i + 1)
+						{
+							if (.cash_bonus30000_item_id[.@i] > 0 && .cash_bonus30000_amount[.@i] > 0)
+							{
+								getitem .cash_bonus30000_item_id[.@i], .cash_bonus30000_amount[.@i];
+							}
+						}
+						
+					}
+
+					if (#CASHBONUS >= 1000000 && #CASHBONUS_1000000_REWARD_STATUS == 0) 
+					{
+						set #CASHBONUS_1000000_REWARD_STATUS, 1;
+						for (set .@i, 0; .@i < getarraysize(.cash_bonus1000000_item_id); set .@i, .@i + 1)
+						{
+							if (.cash_bonus1000000_item_id[.@i] > 0 && .cash_bonus1000000_amount[.@i] > 0)
+							{
+								getitem .cash_bonus1000000_item_id[.@i], .cash_bonus1000000_amount[.@i];
+							}
+						}
+						
+					}
+   */
+					query_sql "UPDATE `payment` SET `status` = '02' WHERE `scb_id` = " + .scbId$[.i];
+					detachrid;
+				}
+			}
+			deletearray .scbId$[0], .@s;
+			deletearray .pay_amount[0], .@s;
+			deletearray .pay_user_id[0], .@s;
+		}
+		sleep 5000;
+	}
+	end;
+}

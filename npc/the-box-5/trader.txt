@@ -1,0 +1,143 @@
+prontera,300,280,3	script	พ่อค้าหน้าเลือด#THE_BOX	10287,300,300,{
+	if(strcharinfo(3) == "prontera")
+	end;
+	
+	// Setup
+	@monsterLv = getd("$@tml" + strcharinfo(3));
+	@itemId = getd("$@tii" + strcharinfo(3));
+	@itemAmount = getd("$@tia" + strcharinfo(3));
+	@tradeAmount = getd("$@tta" + strcharinfo(3));
+	@isTradable = getd("$@tit" + strcharinfo(3));
+	@tiredAmount = cap_value((BaseLevel > @monsterLv) ? (BaseLevel - @monsterLv) : (@monsterLv - BaseLevel),1,100);
+	
+	// Prevent cheating
+	if(!@itemId
+			|| !@itemAmount
+			|| (@tradeAmount >= .maxTradeAmount)
+			|| !@isTradable)
+	{
+		if(!@itemId)
+		mes "ไม่พบ Item ID";
+		else if(!@itemAmount)
+		mes "ไม่พบจำนวน Item";
+		else if(!@isTradable)
+		mes "ไม่สามารถแลกได้ในตอนนี้";
+		else if(@tradeAmount >= .maxTradeAmount)
+		mes "แลกครบแล้วโปรดกำจัด Monster ไปเรื่อย ๆ เพื่อ Reset รางวัล";
+		close;
+	}
+	
+	// Last trade
+	.@lastInteract = getd("$@tli" + strcharinfo(3));
+	if((.@lastInteract > 0)
+			&& ((gettimetick(2) - .@lastInteract) >= .noInteractSeconds)){
+		set getd("$@ttf" + strcharinfo(3)),1;
+		mes "ไม่มีคนแลกรางวัลนานเกิน โปรดกำจัด Monster ไปเรื่อย ๆ เพื่อ Reset รางวัล";
+		close;
+	}
+	
+	callsub L_Calculate;
+	
+	mes "เวลาคงเหลือ " + callfunc("GetTimerWording",(.noInteractSeconds - (gettimetick(2) - .@lastInteract)));
+	mes "พ่อค้าหน้าเลือด Lv." + @monsterLv;
+	mes "หากต้องการแลก จะต้องมี " + mesitemlink(@itemId);
+	mes "โอกาส Drop ^11B120" + callfunc("F_PercentBase10000",@itemAmount) + "^000000";
+	mes "Drop จาก ^11B120" + getmonsterinfo(getd("$@tmi" + strcharinfo(3)),MOB_NAME) + "^000000";
+	mes "คุณจะเหนื่อยเพิ่ม ^FF2929" + @tiredAmount + "^000000 แต้ม";
+	
+	next;
+	menu
+	"ตั้งค่าเก็บ Item ดังกล่าวอัตโนมัติ",L_Autoloot
+	,"Costume (^BA17F8ใช้ " + callfunc("F_InsertComma",@costumeTradeAmount) + " ชิ้น^000000)",L_Costume
+	,"อุปกรณ์สวมใส่ (^BA17F8ใช้ " + callfunc("F_InsertComma",@equipmentTradeAmount) + " ชิ้น^000000)",L_Equipment
+	,"อาวุธ (^BA17F8ใช้ " + callfunc("F_InsertComma",@weaponTradeAmount) + " ชิ้น^000000)",L_Weapon
+	,"การ์ด (^BA17F8ใช้ " + callfunc("F_InsertComma",@cardTradeAmount) + " ชิ้น^000000)",L_Card
+	,"Enchantment (^BA17F8ใช้ " + callfunc("F_InsertComma",@enchantmentTradeAmount) + " ชิ้น^000000)",L_Enchantment
+	;
+	end;
+	
+	L_Autoloot:
+	atcommand "@alootid reset";
+	atcommand "@alootid +" + @itemId;
+	close;
+	
+	L_Calculate:
+	@tradeAmount = getd("$@tta" + strcharinfo(3));
+	
+	if(@itemAmount == 1)
+	.@sumAmount = 1;
+	else
+	.@sumAmount = (cap_value(.baseAmount - @monsterLv,1,.baseAmount)) + (@itemAmount / .baseDivider);
+	
+	@weaponTradeAmount = (.@sumAmount * .weaponMultiplier);
+	@equipmentTradeAmount = (.@sumAmount * .equipmentMultiplier);
+	@costumeTradeAmount = (.@sumAmount * .costumeMultiplier);
+	@cardTradeAmount = (.@sumAmount * .cardMultiplier);
+	@enchantmentTradeAmount = (.@sumAmount * .enchantmentMultiplier);
+	return;
+	
+	L_Weapon:
+	callsub L_Calculate;
+	callsub L_Trade,@weaponTradeAmount,1;
+	L_Equipment:
+	callsub L_Calculate;
+	callsub L_Trade,@equipmentTradeAmount,2;
+	L_Costume:
+	callsub L_Calculate;
+	callsub L_Trade,@costumeTradeAmount,3;
+	L_Card:
+	callsub L_Calculate;
+	callsub L_Trade,@cardTradeAmount,4;
+	L_Enchantment:
+	callsub L_Calculate;
+	callsub L_Trade,@enchantmentTradeAmount,5;
+	
+	L_Trade:
+	// Prevent cheating
+	if(@tradeAmount >= .maxTradeAmount)
+	{
+		mes "มีคนแลกตัดหน้าคุณไปแล้ว";
+		close;
+	}
+
+	.@amount = getarg(0,30000);
+	
+	if(countitem(@itemId) >= .@amount){
+		mes "เรียบร้อยแล้ว";
+		delitem @itemId,.@amount;
+		GetTheBoxItem(0,getarg(1,0));
+		set getd("$@tli" + strcharinfo(3)),gettimetick(2);
+		set getd("$@tta" + strcharinfo(3)),@tradeAmount + 1;
+		if(getd("$@tta" + strcharinfo(3)) >= .maxTradeAmount)
+		set getd("$@ttf" + strcharinfo(3)),1;
+		tired = cap_value(tired + @tiredAmount,0,100);
+		RefreshDebuff();
+	}
+	else{
+		mes "ต้องการ " + callfunc("F_InsertComma",.@amount) + " " + mesitemlink(@itemId);
+	}
+	close;
+	
+OnTouch:
+	if(strcharinfo(3) != "prontera")
+	viewpoint 1,getd("$@tX" + strcharinfo(3)),getd("$@tY" + strcharinfo(3)),1,0xFF6D6D;
+	end;
+	
+OnInit:
+	.noInteractSeconds = 3600;
+	
+	.maxTradeAmount = 5;
+	
+	.baseAmount = 50;
+	.baseDivider = 100;
+	
+	.costumeMultiplier = 1;
+	.equipmentMultiplier = 2;
+	.weaponMultiplier = 3;
+	.cardMultiplier = 5;
+	.enchantmentMultiplier = 15;
+	
+	waitingroom "พ่อค้าหน้าเลือด",0;
+	
+	end;
+}

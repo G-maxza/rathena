@@ -1,0 +1,23 @@
+//===== rAthena Script =======================================
+//===== By: ==================================================
+//= rAthena Dev Team
+//===== Last Updated: ========================================
+//= 202309214
+//===== Description: ========================================= 
+//= Collection demonstrates.
+//============================================================
+//
+//prontera,157,181,4	script	Collection Sample	105,{
+//	openstorage2 1,STOR_MODE_GET|STOR_MODE_PUT;
+//	end;
+//}
+//-	script	storage	-1,{
+//	TheBoxStorage(1);
+//	end;
+//
+//OnInit:
+//	waitingroom "คลังเก็บของ",0;
+//	end;
+//}
+//
+//prontera,157,181,4	duplicate(storage)	คลังเก็บของ	10005

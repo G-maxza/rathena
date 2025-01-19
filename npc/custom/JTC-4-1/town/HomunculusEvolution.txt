@@ -1,0 +1,109 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : แม่มดน้อย จอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : rAthena & Hercules
+// Contacts
+// Facebook https://www.facebook.com/appleroplus2
+// Gmail appleroplus@gmail.com
+// Skype appleroplus@hotmail.com
+//==============================================
+//==============================================
+//==============================================
+hu_in01,103,391,5	script	โฮมุนครุส วิวัฒนาการ	769,{
+
+mes "สวัสดีค่ะ ยินดีให้บริการค่ะ";
+mes "เลือกเมนูที่คุณต้องการค่ะ";
+menu
+"^FF0000•^000000 โฮมุนครุส วิวัฒนาการ",Evolution,
+"^FF0000•^000000 โฮมุนครุส วิวัฒนาการ คลาส S",EvolutionS,
+"^FF0000•^000000 ยกเลิก ",CanceEvolution;
+
+Evolution:
+dispbottom "โฮมุนครุส วิวัฒนาการ เรียบร้อยแล้ว";
+atcommand "@homevolution";
+end;
+
+CanceEvolution:
+mes "ยินดีให้บริการค่ะ";
+end;
+
+EvolutionS:
+if (gethominfo(6) >= 99 && (gethominfo(1) >= 6048 && gethominfo(1) <= 6052)) goto noevo;
+if (gethominfo(6) < 99 || (gethominfo(1) < 6009 || gethominfo(1) > 6016)) goto nolvl;
+mes "ท่านต้องการพัฒนา Homunculus เหรอ";
+mes "Homunculus ของท่านต้องพัฒนาร่างและเลเวล 99 ก่อนนะ";
+mes "เมื่อตรงตามข้อกำหนดแล้ว ก็เลือก Homunculus S ";
+mes "ที่ท่านต้องการ พัฒนาได้เลย ";
+next;
+if (gethominfo(6) >= 99 && (gethominfo(1) >= 6048 && gethominfo(1) <= 6052)) goto noevo;
+if (gethominfo(6) < 99 || (gethominfo(1) < 6009 || gethominfo(1) > 6016)) goto nolvl;
+homuns:
+switch(select("^FF0000•^000000 Eira:^FF0000•^000000 Sera:^FF0000•^000000 Dieter:^FF0000•^000000 Bayeri:^FF0000•^000000 Eleanor")) {
+case 1:
+set .@Homunculus,6048; //MER_EIRA
+break;
+case 2:
+set .@Homunculus,6050; //MER_SERA
+break;
+case 3:
+set .@Homunculus,6051; //MER_DIETER
+break;
+case 4:
+set .@Homunculus,6049; //MER_BAYERI
+break;
+case 5:
+set .@Homunculus,6052; //MER_ELEANOR
+break;
+}
+mes "ท่านแน่ใจนะ ?";
+next;
+switch(select("^FF0000•^000000 ตกลก.:^FF0000•^000000 ยกเลิก.")) {
+case 1:
+specialeffect2 EF_BASH;
+specialeffect2 EF_PROVIDENCE;
+specialeffect2 EF_SUI_EXPLOSION;
+morphembryo;
+hommutate .@Homunculus;
+close;
+case 2:
+mes "ไว้เจอกันใหม่นะ.";
+close;
+}
+noevo:
+mes "Homunculusของท่านพัฒนาถึงจุดสูงสุดแล้ว.";
+close;
+nolvl:
+mes "Homunculusของท่าน ยังไม่ได้รับการพัฒนาไปยังร่าง 2.";
+mes "หรือเลเวลยังไม่ 99.";
+close;
+end;
+OnInit:
+waitingroom "โฮมุนครุส วิวัฒนาการ",0;
+end;
+}
+/*
+//==============================================
+//==============================================
+//==============================================
+// - Script By : แม่มดน้อย จอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : rAthena & Hercules
+// Contacts
+// Facebook https://www.facebook.com/appleroplus2
+// Gmail appleroplus@gmail.com
+// Skype appleroplus@hotmail.com
+//==============================================
+//==============================================
+//==============================================
+prontera,166,180,3	script	โฮมุนครุส วิวัฒนาการ	769,{
+
+dispbottom "โฮมุนครุส วิวัฒนาการ เรียบร้อยแล้ว";
+atcommand "@homevolution";
+end;
+//OnInit:
+//waitingroom "โฮมุนครุส วิวัฒนาการ",0;
+//end;
+}
+*/

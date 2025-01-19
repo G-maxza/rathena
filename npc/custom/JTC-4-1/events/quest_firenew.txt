@@ -1,0 +1,528 @@
+//===== quest_fire=================================
+oasis,139,80,4	script	Questfirenew	PHOENIX_ORG,{
+	set .@gm_level, 99; // ระดับ GM ต้องใช้เพื่อเริ่ม / หยุดกิจกรรม
+
+	mes "[Quest Fire]";
+	mes "นี่คือทางเข้า ^FF0000Quest Fire^000000.";
+	next;
+	switch(select("^FF0000•^000000 เลือกระดับการเล่น.:^FF0000•^000000 ข้อมูล.:^FF0000•^000000 ยกเลิก.")) {
+	case 1:
+		if (.start != 1) {
+			mes "[Quest Fire]";
+			mes "Quest Fireปิดอยู่ในขณะนี้. เวลาทำการคือ:";
+			mes "04:00 น. ถึง 04:30 น.";
+			mes "08:00 น. ถึง 08:30 น.";
+			mes "12:00 น. ถึง 12:30 น.";
+			mes "16:00 น. ถึง 16:30 น.";
+			close;
+		}
+
+		if (.difficulty > 0) {
+			mes "[Quest Fire]";
+			mes "ผู้เล่นคนแรกได้เลือกระดับแล้ว: "+(.difficulty == 1 ? "ทั่วไป" : .difficulty == 2 ? "ยาก" : "ยากมาก")+".";
+			mes "คุณสามารถเข้าร่วมได้เฉพาะระดับนี้เท่านั้น.";
+			if (.difficulty == 1) {
+				set .zeny_cost, 50000000;
+				set .item_cost, 200;
+			} else if (.difficulty == 2) {
+				set .zeny_cost, 20000000;
+				set .item_cost, 150;
+			} else if (.difficulty == 3) {
+				set .zeny_cost, 10000000;
+				set .item_cost, 100;
+			}
+		} else {
+			mes "[Quest Fire]";
+			mes "เลือกระดับการเล่นที่คุณต้องการ:";
+			switch(select("^FF0000•^000000 ทั่วไป:^FF0000•^000000 ยาก:^FF0000•^000000 ยากมาก:")) {
+			case 1:
+				set .difficulty, 1;
+				set .zeny_cost, 50000000;
+				set .item_cost, 200;
+				break;
+			case 2:
+				set .difficulty, 2;
+				set .zeny_cost, 20000000;
+				set .item_cost, 150;
+				break;
+			case 3:
+				set .difficulty, 3;
+				set .zeny_cost, 10000000;
+				set .item_cost, 100;
+				break;
+			}
+		}
+
+		if (Zeny < .zeny_cost || countitem(7227) < .item_cost) {
+			mes "[Quest Fire]";
+			mes "คุณไม่มี Zeny หรือ Item 7227 เพียงพอสำหรับระดับนี้.";
+			mes "";
+			mes "ต้องการ:";
+			mes " - Zeny: "+.zeny_cost+"";
+			mes " - Item 7227: "+.item_cost+" ชิ้น";
+			close;
+		}
+
+		Zeny -= .zeny_cost;
+		delitem 7227, .item_cost;
+		announce strcharinfo(0)+" ได้เข้าสู่ Quest Fire (ระดับ "+(.difficulty == 1 ? "ทั่วไป" : .difficulty == 2 ? "ยาก" : "ยากมาก")+").", bc_npc;
+		percentheal 100,100;
+		warp "sp_lava1", 77, 28;
+		close;
+
+	case 2:
+		mes "[Quest Fire]";
+		mes "ภายในคุณจะพบกับสัตว์ประหลาดหลายคลื่นที่แข็งแกร่งขึ้นในแต่ละระดับ.";
+		mes "";
+		mes "ระดับการเล่น:";
+		mes "แบ่งเป็น: 3 คลื่น";
+		mes " - ทั่วไป: monster 9 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes " - ทั่วไป: 3 กล่องสมบัติ";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยาก: monster 18 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยาก: 6 กล่องสมบัติ";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยากมาก: monster 30 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยากมาก: 10 กล่องสมบัติ";
+		mes "ระดับการเล่น:";
+		mes "ทุกระดับการเล่น:";
+		mes "Boss 1 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes "";
+		mes "รางวัลในแต่ละระดับจะขึ้นอยู่กับระดับความยากที่เลือก.";
+		close;
+	case 3:
+		mes "[Quest Fire]";
+		mes "ลาก่อน.";
+		close;
+	}
+OnStartEvent:
+OnClock0400:
+OnClock0800:
+OnClock1200:
+OnClock1600:
+	.start = 1;
+	enablenpc "Questfirenew";
+	disablenpc "quest_firenew#2";
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "sp_lava1", .@map$, .@x, .@y;
+	killmonsterall "sp_lava1";
+	announce "Quest Fire เปิด. เหตุการณ์จะเริ่มใน 5 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Fire จะเริ่มใน 4 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Fire จะเริ่มใน 3 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Fire จะเริ่มใน 2 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Fire จะเริ่มใน 1 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Fire ได้เริ่มขึ้นแล้ว!", bc_all;
+	disablenpc "Questfirenew"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	if ( !getmapusers("sp_lava1") )
+		goto OnStopEvent;
+
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_lava1",106,56,126,33,"monster",30770,1,strnpcinfo(0)+"::OnquestfireDead";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestfireDead:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "sp_lava1","Quest Fire : "+ .mob +" monsterที่เหลืออยู่ในรอบที่ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_lava1","Quest Fire กำลังเข้าสู่รอบ 2...", bc_map;
+		sleep 5000;
+		goto Onquestfire2;
+	}
+	end;
+	
+Onquestfire2:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_lava1",106,56,126,33,"monster",30769,1,strnpcinfo(0)+"::OnquestfireDead2";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestfireDead2:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "sp_lava1","Quest Fire : "+ .mob +" monsterที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_lava1","Quest Fire กำลังเข้าสู่รอบ 3...", bc_map;
+		sleep 5000;
+		goto Onquestfire3;
+	}
+	end;
+
+Onquestfire3:
+	if (.difficulty == 1) {
+		set .mob, 1;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 1;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 1;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_lava1",106,56,126,33,"Boss",30077,1,strnpcinfo(0)+"::OnquestfireDead3";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+	
+OnquestfireDead3:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "sp_lava1","Quest Fire : "+ .mob +" Bossที่เหลืออยู่ในรอบ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_lava1","Quest Fire กำลังเข้าสู่รอบ 4...", bc_map;
+		sleep 5000;
+		goto Onquestfire4;
+	}
+	end;
+	
+Onquestfire4:
+	if (.difficulty == 1) {
+		set .mob, 3;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 6;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 10;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_lava1",106,56,126,33,"Box",1324,1,strnpcinfo(0)+"::OnquestfireDead4";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestfireDead4:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "sp_lava1","Quest Fire : "+ .mob +" Boxที่เหลืออยู่ในรอบ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_lava1","Quest Fire กำลังเข้าสู่รอบ 5...", bc_map;
+		sleep 5000;
+		goto Onquestfire5;
+	}
+	end;
+	
+Onquestfire5:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_lava1",67,57,82,45,"monster",30115,1,strnpcinfo(0)+"::OnquestfireDead5";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestfireDead5:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "sp_lava1","Quest Fire : "+ .mob +" monsterที่เหลืออยู่ในรอบ 3.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_lava1","Quest Fire กำลังเข้าสู่รอบ 6...", bc_map;
+		sleep 5000;
+		goto Onquestfire6;
+	}
+	end;
+
+Onquestfire6:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_lava1",17,69,40,48,"monster",30864,1,strnpcinfo(0)+"::OnquestfireDead6";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestfireDead6:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "sp_lava1","Quest Fire : "+ .mob +" monsterที่เหลืออยู่ในรอบ 4.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_lava1","Quest Fire กำลังเข้าสู่รอบ 7...", bc_map;
+		sleep 5000;
+		goto Onquestfire7;
+	}
+	end;
+
+Onquestfire7:
+	if (.difficulty == 1) {
+		set .mob, 1;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 1;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 1;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_lava1",17,69,40,48,"Boss",30757,1,strnpcinfo(0)+"::OnquestfireDead7";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestfireDead7:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "sp_lava1","Quest Fire : "+ .mob +" Bossที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_lava1","Quest Fire กำลังเข้าสู่รอบ 8...", bc_map;
+		sleep 5000;
+		goto Onquestfire8;
+	}
+	end;
+
+Onquestfire8:
+	if (.difficulty == 1) {
+		set .mob, 3;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 6;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 10;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_lava1",17,69,40,48,"Box",1324,1,strnpcinfo(0)+"::OnquestfireDead8";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestfireDead8:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "sp_lava1","Quest Fire : "+ .mob +" Boxที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_lava1","Quest Fire กำลังเข้าสู่รอบ 9...", bc_map;
+		sleep 5000;
+		goto Onquestfire9;
+	}
+	end;
+Onquestfire9:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_lava1",52,119,88,86,"monster",30749,1,strnpcinfo(0)+"::OnquestfireDead9";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestfireDead9:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "sp_lava1","Quest Fire : "+ .mob +" monsterที่เหลืออยู่ในรอบ 5.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_lava1","Quest Fire กำลังเข้าสู่รอบ 10...", bc_map;
+		sleep 5000;
+		goto Onquestfire10;
+	}
+	end;
+
+Onquestfire10:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_lava1",52,119,88,86,"monster",30768,1,strnpcinfo(0)+"::OnquestfireDead10";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestfireDead10:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "sp_lava1","Quest Fire : "+ .mob +" monsterที่เหลืออยู่ในรอบ6.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_lava1","Quest Fire กำลังเข้าสู่รอบ 11...", bc_map;
+		sleep 5000;
+		goto Onquestfire11;
+	}
+	end;
+
+Onquestfire11:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_lava1",52,119,88,86,"monster",30954,1,strnpcinfo(0)+"::OnquestfireDead11";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestfireDead11:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "sp_lava1","Quest Fire : "+ .mob +" monsterที่เหลืออยู่ในรอบ7.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_lava1","Quest Fire กำลังเข้าสู่รอบ 12...", bc_map;
+		sleep 5000;
+		goto Onquestfire12;
+	}
+	end;
+Onquestfire12:
+	if (.difficulty == 1) {
+		set .mob, 1;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 1;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 1;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_lava1",52,119,88,86,"Boss",30823,1,strnpcinfo(0)+"::OnquestfireDead12";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestfireDead12:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "sp_lava1","Quest Fire : "+ .mob +" Bossที่เหลืออยู่ในรอบสุดท้าย.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_lava1","Quest Fire : ขอแสดงความยินดี หีบสมบัติเหล่านี้เป็นของคุณ.", bc_map;
+		sleep 5000;
+		goto Onquestfire13;
+	}
+	end;
+
+Onquestfire13:
+	if (.difficulty == 1) {
+		set .mob, 3;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 6;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 20;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_lava1",52,119,88,86,"Box",1324,1,strnpcinfo(0)+"::OnfireBoxDead";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+	
+OnfireBoxDead:
+	.mob--;
+	mapannounce "sp_lava1","Quest Fire : "+ strcharinfo(0) +" ได้เปิดหีบสมบัติที่ Quest Fire.", bc_all;
+	if ( .mob <= 0 )
+		goto OnStopEvent;
+	end;
+	
+OnStopEvent:
+	killmonsterall "sp_lava1";
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "sp_lava1", .@map$, .@x, .@y;
+	.start = .round = .difficulty = .mob = 0;
+	announce "[ระบบ] : Quest Fire  จบลงแล้ว!", bc_all;
+	enablenpc "quest_firenew#2";
+	disablenpc "Questfirenew"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	end;
+	
+OnClock0430:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0830:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1230:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1630:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+}
+sp_lava1,70,130,6	script	quest_firenew#2	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+}
+
+sp_lava1	mapflag	nowarp
+sp_lava1	mapflag	nowarpto
+sp_lava1	mapflag	noteleport
+sp_lava1	mapflag	monster_noteleport
+sp_lava1	mapflag	nosave	SavePoint
+sp_lava1	mapflag	nomemo
+sp_lava1	mapflag	nobranch
+sp_lava1	mapflag	nopenalty
+sp_lava1	mapflag	noicewall

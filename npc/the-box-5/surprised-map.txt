@@ -1,0 +1,141 @@
+force_3-3	mapflag	noloot
+force_3-3	mapflag	noexp
+force_3-3	mapflag	novending
+force_3-3	mapflag	nochat
+force_3-3	mapflag	nowarp
+force_3-3	mapflag	nowarpto
+force_3-3	mapflag	nosave
+force_3-3	mapflag	nobranch
+force_3-3	mapflag	notomb
+
+prontera,158,283,3	script	ฮุริ	10460,{
+	if((surprisedRewardCount >= $surprisedRewardPerMap) && ((surprisedCooldown - gettimetick(2)) >= 0))
+	message strcharinfo(0),"รางวัลสำหรับคุณหมดแล้ว โปรดรอ " + callfunc("GetTimerWording",(surprisedCooldown - gettimetick(2)));
+	mes "^0B9552--- [วิธีเล่น] ---^000000";
+	mes "• กำจัด Monster";
+	mes " ";
+	mes "^9D42C0--- [รางวัล] ---^000000";
+	mes "• ^3F28FFItem ประเภทที่อยากได้^000000 (โอกาส " + callfunc("F_PercentBase10000",$surprisedRewardChance) + ")";
+	mes " ";
+	mes "^C04264--- [โทษภายในห้อง] ---^000000";
+	mes "• ^F81717Monster จะไม่ให้ EXP, Item";
+	mes "• ^F81717คุณจะตัวใหญ่ และโดนผู้เล่นอื่นโจมตีได้";
+	mes "เมื่อกำจัด Monster";
+	mes "• ^F81717สุ่ม " + callfunc("F_PercentBase10000",.tiredChance) + " เหนื่อย +" + .tiredAmount;
+	mes "• ^F81717หาร Bonus สุ่ม " + .dividerMin + "~" + .dividerMax;
+	next;
+	menu "ตั้งค่าประเภทของที่อยากได้" + (surprisedMapType ? (" ^AF25ACคุณอยากได้ (" + .surprisedTypeName$[surprisedMapType] + ")^000000") : ""),L_Setup
+	,"เข้า",L_Enter;
+	close;
+	
+	L_Setup:
+	mes "เมื่อกำจัด Monster คุณจะมีโอกาส " + callfunc("F_PercentBase10000",$surprisedRewardChance) + " ที่จะได้รับ Item ประเภทที่ต้องการ";
+	next;
+	
+	for(.@i = 0; .@i < getarraysize(.surprisedTypeName$); .@i++)
+	.@menu$ += .surprisedTypeName$[.@i]+ ":";
+
+	surprisedMapType = select(.@menu$) - 1;
+	mes "คุณอยากได้ " + .surprisedTypeName$[surprisedMapType];
+	close;
+	
+	L_Enter:
+	if(!surprisedMapType)
+	goto L_Setup;
+
+	atcommand "@killable";
+	atcommand "@size 2";
+	@isKillable = 1;
+	
+	warp $surprisedMap$,0,0;
+	
+	end;
+
+	L_SpawnMonster:
+	.amount = getarg(0,1);
+	
+	freeloop(1);
+	for(.@i = 0; .@i < .amount; .@i++){
+		.@monsterId = $all_mob_ids[rand($all_mob_id_size)];
+		while(callfunc("F_IsDummyMonster",.@monsterId))
+		.@monsterId = $all_mob_ids[rand($all_mob_id_size)];
+		
+		monster $surprisedMap$,0,0,"--ja--",.@monsterId,1,strnpcinfo(0) + "::OnSurprisedMonsterKilled";
+	}
+	freeloop(0);
+
+	return;
+
+OnSurprisedMonsterKilled:
+	if(!playerattached())
+	end;
+
+	callsub OnDebuffPlayer;
+
+	if(surprisedRewardCount >= $surprisedRewardPerMap){
+		if((surprisedCooldown - gettimetick(2)) >= 0){
+			dispbottom "รางวัลสำหรับคุณหมดแล้ว โปรดรอ " + callfunc("GetTimerWording",(surprisedCooldown - gettimetick(2)));
+			end;
+		}
+		else
+		surprisedRewardCount = 0;
+	}
+
+	.@surprisedRand = rand(10000);
+	
+	dispbottom "คุณฆ่า Monster วุ่นวาย! ต้องสุ่มได้ <= " + $surprisedRewardChance + " คุณสุ่มได้ " + .@surprisedRand;
+	
+	if(.@surprisedRand <= $surprisedRewardChance){
+		GetTheBoxItem(0,(surprisedMapType + 1));
+		surprisedRewardCount++;
+		surprisedCooldown = gettimetick(2) + $surprisedCooldown;
+		dispbottom "รางวัลใน Map นี้สำหรับคุณเหลือ " + ($surprisedRewardPerMap - surprisedRewardCount) + " รางวัล";
+	}
+	end;
+	
+OnTimer60000:
+	.spawnAmount = .monsterAmount - mobcount($surprisedMap$,"all");
+	if(.spawnAmount > 0)
+	callsub L_SpawnMonster,.spawnAmount;
+
+	initnpctimer;
+
+	end;
+
+OnDebuffPlayer:
+	.@rand = rand(10000);
+	
+	atcommand "@bd " + rand(.dividerMin,.dividerMax);
+	
+	if(.@rand <= .tiredChance){
+		tired = cap_value(tired + .tiredAmount,0,100);
+		RefreshDebuff();
+	}
+	
+	return;
+
+OnInit:
+	waitingroom "Map วุ่นวาย",0;
+
+	$surprisedMap$ = "force_3-3";
+	$surprisedCooldown = 600;
+
+	.monsterAmount = 100;
+
+	setarray .surprisedTypeName$[0],"อาวุธ","อุปกรณ์สวมใส่","Costume","การ์ด","Enchantment";
+	
+	.tiredChance = 500;
+	.tiredAmount = 1;
+	
+	.dividerMin = 1;
+	.dividerMax = 50;
+	
+	$surprisedRewardChance = 1500;			// Chance to get reward
+	$surprisedRewardPerMap = 5;				// Reward per map
+	
+	callsub L_SpawnMonster,.monsterAmount;
+	
+	initnpctimer;
+	
+	end;
+}

@@ -1,0 +1,10 @@
+-	script	storage	-1,{
+	TheBoxStorage();
+	end;
+
+OnInit:
+	waitingroom "คลังเก็บของ",0;
+	end;
+}
+
+prontera,147,174,8	duplicate(storage)	คลังเก็บของ	10250

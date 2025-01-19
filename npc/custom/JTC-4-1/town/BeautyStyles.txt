@@ -1,0 +1,166 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : แม่มดน้อย จอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : rAthena & Hercules
+// Contacts
+// Facebook https://www.facebook.com/appleroplus2
+// Gmail appleroplus@gmail.com
+// Skype appleroplus@hotmail.com
+//==============================================
+//==============================================
+//==============================================
+oasis,150,134,4	script	ร้านเสริมสวย#super_stylist	759,{
+soundeffect "hairdresser.wav",0;
+
+	.@eac = eaclass(); .@gm_level = getgmlevel();
+	mes "^FF0000[  ร้านเสริมสวย ]^000000";
+	mes "ฉันคือช่างเสริมสวยที่เก่งที่สุด แห่ง Rune Midgard.";
+	mes "ฉันสามารถเปลี่ยนรูปลักษณ์ของคุณภายนอกให้ออกมาดูดีได้ คุณอยากลองดูใหมล่ะ ? ";
+	switch(select("^FF0000•^000000 ตกลง:^FF0000•^000000 ยกเลิก"))
+	{
+		case 1:
+			next;
+			opendressroom(0);
+			Lmain:
+				mes "^FF0000[  ร้านเสริมสวย ]^000000";
+				mes "โอเค, กรุณาเลือกรูปแบบที่คุณต้องการในช่องหน้าต่างด้านข้าง";
+//				switch (select("^FF0000•^000000 เปลี่ยน ทรงผม","^FF0000•^000000 เปลี่ยน สีผม","^FF0000•^000000 เปลี่ยน สีผ้าคลุม"))
+				switch (select("^FF0000•^000000 เปลี่ยน ทรงผม","^FF0000•^000000 เปลี่ยน สีผม","^FF0000•^000000 เปลี่ยน สีผ้าคลุม","^FF0000•^000000 เปลี่ยน ชุดประจำอาชีพ คลาส 3"))
+				{
+					case 1:
+						set .@hairstylemin,getBattleFlag("min_hair_style");
+						if (.@eac != EAJL_SUMMONER) 
+						{
+							set .@hairstylemaxf,getBattleFlag("max_hair_style");
+							set .@hairstylemaxm,getBattleFlag("max_hair_style");
+						} 
+						else
+						{
+							set .@hairstylemaxf,getBattleFlag("max_hair_style");
+							set .@hairstylemaxm,getBattleFlag("max_hair_style");
+						}
+						next;
+						mes "^FF0000[  ร้านเสริมสวย ]^000000";
+						mes "กรุณากรอกหมายเลข ทรงผม ลงในช่องว่าง";
+						if (Sex) 
+						{
+							mes "หมายเลขทรงผม : " +.@hairstylemin+ " ถึง " +.@hairstylemaxm;
+						} else 
+						{
+							mes "หมายเลขทรงผม : " +.@hairstylemin+ " ถึง " +.@hairstylemaxf;
+						}
+						input .@hairstyle;
+						if (Sex) 
+						{
+							if (.@hairstyle < .@hairstylemin || .@hairstyle > .@hairstylemaxm) 
+							{ 
+								set .@hairstyle,0; 
+							}
+						}
+						else 
+						{
+							if (.@hairstyle < .@hairstylemin || .@hairstyle > .@hairstylemaxf)
+							{ 
+								set .@hairstyle,0; 
+							}
+						}
+						setlook LOOK_HAIR,.@hairstyle;
+						next;
+						break;
+						
+					case 2:
+						next;
+						set .@hairdyemin,getBattleFlag("min_hair_color");
+						set .@hairdyemax,getBattleFlag("max_hair_color");
+						mes "^FF0000[  ร้านเสริมสวย ]^000000";
+						mes "กรุณากรอกหมายเลข สีผม ลงในช่องว่าง";
+						mes "หมายเลขสีผม : " +.@hairdyemin+ " ถึง " +.@hairdyemax;
+						input .@hairdye;
+						if (.@hairdye < .@hairdyemin || .@hairdye > .@hairdyemax)
+						{ 
+							set .@hairdye,0; 
+						}
+						setlook LOOK_HAIR_COLOR,.@hairdye;
+						next;
+						break;
+						
+					case 3:
+						next;
+						set .@clothcolormin,getBattleFlag("min_cloth_color");
+						set .@clothcolormax,getBattleFlag("max_cloth_color");
+						mes "^FF0000[  ร้านเสริมสวย ]^000000";
+						mes "กรุณากรอกหมายเลข สีผ้าคลุม ลงในช่องว่าง";
+						mes "หมายเลขสีผ้าคลุม : " +.@clothcolormin+ " ถึง " +.@clothcolormax;
+						input .@clothcolor;
+						if (.@clothcolor < .@clothcolormin || .@clothcolor > .@clothcolormax) 
+						{ 
+							set .@clothcolor,0; 
+						}
+						setlook LOOK_CLOTHES_COLOR,.@clothcolor;
+						next;
+						break;
+case 4:
+next;
+if (Class == 4060) goto Class3C;
+if (Class == 4061) goto Class3C;
+if (Class == 4062) goto Class3C;
+if (Class == 4063) goto Class3C;
+if (Class == 4064) goto Class3C;
+if (Class == 4065) goto Class3C;
+if (Class == 4073) goto Class3C;
+if (Class == 4074) goto Class3C;
+if (Class == 4075) goto Class3C;
+if (Class == 4076) goto Class3C;
+if (Class == 4077) goto Class3C;
+if (Class == 4078) goto Class3C;
+if (Class == 4079) goto Class3C;
+
+if (Class == 4096) goto Class3C;
+if (Class == 4097) goto Class3C;
+if (Class == 4098) goto Class3C;
+if (Class == 4099) goto Class3C;
+if (Class == 4100) goto Class3C;
+if (Class == 4101) goto Class3C;
+if (Class == 4102) goto Class3C;
+if (Class == 4103) goto Class3C;
+if (Class == 4104) goto Class3C;
+if (Class == 4105) goto Class3C;
+if (Class == 4106) goto Class3C;
+if (Class == 4107) goto Class3C;
+if (Class == 4108) goto Class3C;
+
+mes "^FF0000[  ร้านเสริมสวย ]^000000";
+mes "คุณไม่ใช่คลาสที่สามารถใช้งานฟังชั่นนี้ได้";
+next;
+break;
+}
+goto Lmain;
+
+case 2:
+break;
+}
+close2;
+end;
+
+Class3C:
+mes "^FF0000[  ร้านเสริมสวย ]^000000";
+mes "กรุณากรอกหมายเลข ลงในช่องว่าง";
+mes "หมายเลขชุดประจำอาชีพ";
+mes "0 ชุดขั้นพื้นฐาน";
+mes "1 ชุดแต่งกายขั้นสอง";
+input .@bodystyle;
+if (.@bodystyle < 0 || .@bodystyle > 1)
+{
+set .@bodystyle,0;
+}
+setlook LOOK_BODY2,.@bodystyle;
+next;
+goto Lmain;
+end;
+	
+OnInit:
+	waitingroom "ร้านเสริมสวย",0;
+	end;
+}

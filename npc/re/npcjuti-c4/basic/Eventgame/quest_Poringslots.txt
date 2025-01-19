@@ -1,0 +1,27 @@
+// Bosscoin
+//============================================================
+-	script	#Tradeitem20	4_M_OPERATION,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" เหรียนZeny",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop20",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านค้าเหรียนZeny",0;
+	end;
+}
+oasis,181,57,4	duplicate(#Tradeitem20)	ร้านค้าเหรียนZeny	4_M_OPERATION

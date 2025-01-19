@@ -1,0 +1,291 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : แม่มดน้อย จอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : rAthena & Hercules
+// Contacts
+// Facebook https://www.facebook.com/appleroplus2
+// Gmail appleroplus@gmail.com
+// Skype appleroplus@hotmail.com
+//==============================================
+//==============================================
+//==============================================
+grademk,18,184,4	script	เพิ่มออฟชั่นคอสตูมหัว	869,{
+
+	// ไอเทมที่ใช้ในการออฟ ขอเป็นประเภท ETC ขยะ
+	setarray .@en_itemus[0],20000023;	// ไอเทมที่ใช้
+	setarray .@en_itemam[0],1;	// จำนวนที่ใช้ (ให้ตรงกับไอเทมที่ใช้)
+	set .@en_zeny,1000000;		// เงินที่ใช้
+//	set .@en_itemfreeus,7227;		// ไอเทมใบกันแตก จะไม่เสียไอเทมด้านบนในการออฟ
+//	set .@en_itemfreeam,1;		// จำนวนไอเทมใบกันแตกที่ใช้
+//	set .@en_nodelete,0;		// ไม่ลบไอเทม ไม่มีหลอดโหลด (เหมาะสำหรับ Beta Test)
+//=============================================================
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes "[ ^0000FFเพิ่มออฟชั่นคอสตูมขั้นเทพ^000000 ]";
+		mes "คุณมีไอเทมมากเกินไป เอาไปเก็บก่อน!";
+		close;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes "[ ^0000FFเพิ่มออฟชั่นคอสตูมขั้นเทพ^000000 ]";
+		mes "คุณมีน้ำหนักมากเกินไป!";
+		close;
+	}
+//=============================================================
+	// เปอร์เซนในการออฟ 10 = 1% (ควรระวังเพราะ ช่อง 1 - 4 แยกกันทำงาน)
+	// *ขอยกตัวอย่างระบบ ช่องสามารถออฟได้เฉพาะ นิดหน่อย
+	// ถ้าช่อง 1 เปิดไว้ คือ ช่อง 1 ต้องไม่มีรูถึงจะสามารถยัดลูกแก้วได้
+	// ถ้าช่อง 2 เปิดไว้ คือ ช่อง 2 ต้องไม่มีรูถึงจะสามารถยัดลูกแก้วได้
+	// ถ้าช่อง 3 เปิดไว้ คือ ช่อง 3 ต้องไม่มีรูถึงจะสามารถยัดลูกแก้วได้
+	// ถ้าช่อง 4 เปิดไว้ คือ ช่อง 4 ต้องไม่มีรูถึงจะสามารถยัดลูกแก้วได้
+	// ถ้าปิดระบบคือ จะมีรู หรือ ไม่มีรูก็ ยัดลูกแก้วได้
+	set .@en_slotone,400;	// ช่อง 1 เปอร์เซน 40%
+	set .@en_slotoneo,1;	// ช่อง 1 สามารถออฟได้เฉพาะ ( 1 = เฉพาะไอเทมไม่มีรู เฉพาะช่อง 1 , 0 = ได้ทุกชิ้น)
+	set .@en_slottwo,500;	// ช่อง 2 เปอร์เซน 50%
+	set .@en_slottwoo,1;	// ช่อง 2 สามารถออฟได้เฉพาะ ( 1 = เฉพาะไอเทมไม่มีรู เฉพาะช่อง 2 , 0 = ได้ทุกชิ้น)
+	set .@en_slotthree,800;	// ช่อง 3 เปอร์เซน 80%
+	set .@en_slotthreeo,1;	// ช่อง 3 สามารถออฟได้เฉพาะ ( 1 = เฉพาะไอเทมไม่มีรู เฉพาะช่อง 3 , 0 = ได้ทุกชิ้น)
+	set .@en_slotfour,1000;	// ช่อง 4 เปอร์เซน 100%
+	set .@en_slotfouro,1;	// ช่อง 4 สามารถออฟได้เฉพาะ ( 1 = เฉพาะไอเทมไม่มีรู เฉพาะช่อง 4 , 0 = ได้ทุกชิ้น)
+	set .@en_slotfail,1000;	// โอกาศเสียหาย 0%
+	set .@en_permax,1000;	// เปอร์เซนสูงสุด อย่าปรับเลยแนะนำ 100%
+	set .@en_cardone,1;	// ถ้ามีการ์ดช่อง 1 จะไม่ออฟทับ จะข้ามไปช่องไม่มีการ์ดทันที ( 1 = เปิด , 0 = ปิด )
+	set .@en_cardtwo,1;	// ถ้ามีการ์ดช่อง 2 จะไม่ออฟทับ จะข้ามไปช่องไม่มีการ์ดทันที ( 1 = เปิด , 0 = ปิด )
+	set .@en_cardthree,1;	// ถ้ามีการ์ดช่อง 3 จะไม่ออฟทับ จะข้ามไปช่องไม่มีการ์ดทันที ( 1 = เปิด , 0 = ปิด )
+	set .@en_cardfour,1;	// ถ้ามีการ์ดช่อง 4 จะไม่ออฟทับ จะข้ามไปช่องไม่มีการ์ดทันที ( 1 = เปิด , 0 = ปิด )
+	set .@en_refine,1;		// เก็บค่าตีบวกไว้ ( 1 = เก็บ , 0 = ไม่เก็บ)
+//=============================================================
+	// ลูกแก้วในการออฟ เลเวลแต่ละเลเวลสามารถใส่ลูกแก้วได้เพียง 127 ลูกเท่านั้น !!
+	// สำคัญมากครับ ลูกแก้วต้อง db ประเภทการ์ด และ รหัสไอเทมต้องไม่ต่ำกว่า 4700 เน้อ
+	// Upple Costume Headgear
+	setarray .@en_enslot1_1[0],312719,312720,312721,312729,312730,312731,312759,312760,312761,312769,312770,312771,312779,312780,312781,312782,312783,312789,312790,312791,312792,312793,29061,29062,29063,29081,29082,29083,29091,29092,29093,29101,29102,29103,29104,29105,29111,29112,29113,29114,29115,4700,4701,4702,4710,4711,4712,4720,4721,4722,4730,4731,4732,4740,4741,4742,4750,4751,4752,311449,311450,311451,311454,311455,311456;
+	setarray .@en_enslot1_2[0],312306,312307,312308,312309,312310,310689,310690,310691,310677,310678,310679,311797,311798,311799,311800,311801,311777,311778,311779,311780,311781,311817,311818,311819,311832,311833,311834,311847,311848,311849,311092,311093,311094,311095,311096,311097;
+	setarray .@en_enslot1_3[0],310258,29460,310881,29517,310187,310887,29468,310181,310884,29617,311011,29428,310000,311359,310266,311005,29485,29481,310004,311430,29464,310262,311008,29521,310191,311433,29477,29621,311362,29513,310008,311356,311427,29613,29423,311466,29651,311460,29655,29659,311912,311915,29664,311463,312403,29668,311918,29432;
+	setarray .@en_enslot1_4[0],311076,311077,311078,311079,311080,311081,311082,311083,311084,311085,311086,311087,29014,29015,29016,29017,29018,29019,29020,29021,29022,29024,29025;
+	
+//=============================================================
+	// ===== End Setup =====
+	disable_items;
+	mes "[ ^0000FFเพิ่มออฟชั่นคอสตูมขั้นเทพ^000000 ]";
+	mes "^FF0000====คำเตือน====^000000";
+	mes "^FF0000หากคุณทำการ^000000";
+	mes "^FF0000และ เพิ่มออฟชั่นคอสตูมขั้นเทพใหม่^000000";
+	mes "^FF0000มาแล้วกลับมา เพิ่มออฟชั่น ที่นี้อีก^000000";
+	mes "^FF0000ออฟชั่นขั้นเทพแบบใหม่ของคุณ^000000";
+	mes "^FF0000จะหายไป...^000000";
+	mes "^FF0000การ เพิ่มออฟชั่น โปรดถอด Item ที่คุณส่วมใส่อยู่ทั้งหมด ออกก่อน ใส่เพียงชิ้นที่คุณต้องการจะ เพิ่มออฟชั่น เท่านั้น^000000";
+	mes "^FF0000การ เพิ่มออฟชั่น  จำเป็นต้องใช้  money power 1 ea. และ เงิน 1,000,000 เซนี่ !^000000";
+	mes "^FF0000คุณต้องการใช้บริการของเราไหม ?^000000";
+	next;
+	switch(select("^FF0000•^000000 ตกลง","^FF0000•^000000 ยกเลิก")) {
+		case 1:
+			mes "[ ^0000FFเพิ่มออฟชั่นคอสตูมขั้นเทพ^000000 ]";
+			mes "^9400D3ยินดีต้อนรับเข้าสู่บริการ^000000";
+			mes "^9400D3ออฟชั่นไอเทม^000000";
+			mes "^9400D3คุณสามารถเพิ่ม^000000";
+			mes "^9400D3พลังพิเศษให้แก่ไอเทม^000000";
+			mes "^9400D3ของคุณได้โดยการใช้บริการ^000000";
+			mes "^9400D3ออฟชั่นของเรา^000000";
+			mes "^9400D3เมื่อใช้งานระบบ^000000";
+			mes "^9400D3เราจะทำการสุ่มออฟชั่น^000000";
+			mes "^9400D3ลูกแก้วแห่งพลังตั้งแต่^000000";
+			mes "^9400D31 ถึง 4 ลูกแก้วแห่งพลัง^000000";
+			mes "^9400D3ให้แก่ไอเทมของคุณ^000000";
+			mes "^9400D3แต่จะไม่ทับช่องใส่การ์ด^000000";
+			mes "^9400D3โดยโอกาศสำเร็จมีดังนี้^000000";
+			mes "^9400D3ลูกแก้วที่ 1 โอกาศ 100 %^000000";
+			mes "^9400D3ลูกแก้วที่ 2 โอกาศ 80 %^000000";
+			mes "^9400D3ลูกแก้วที่ 3 โอกาศ 50 %^000000";
+			mes "^9400D3ลูกแก้วที่ 4 โอกาศ 40 %^000000";
+			mes "^9400D3เชิญเลือกเมนูที่คุณต้องการได้เลย^000000";
+			if (.@en_nodelete)
+			mes "โหมดทดสอบทำงานออฟชั่นฟรีทุกฟังชั่น";
+			next;
+			set .@en_custom,select("^FF0000•^000000 ตกลง ใช้ money power และ เงิน 1,000,000 เซนี่ ","^FF0000•^000000 ยกเลิก")-1;
+			if (.@en_custom == 1) close;
+			mes "[ ^0000FFเพิ่มออฟชั่นคอสตูมขั้นเทพ^000000 ]";
+			mes "^9400D3กรุณาเลือกไอเทมที่^000000";
+			mes "^9400D3ต้องการออฟชั้น^000000";
+			mes "^9400D3เมนูจะแสดงไอเทมที่^000000 ";
+			mes "^9400D3สวมใส่อยู่เท่านั้น^000000 ";
+			next;
+			setarray .@EE_ACCESSORY[1], EQI_COSTUME_HEAD_TOP;
+			for( set .@i,1; .@i < getarraysize(.@EE_ACCESSORY); set .@i,.@i+1 ){
+				if( getequipisequiped(.@EE_ACCESSORY[.@i]))
+				{
+					set .@EE_SELECT$,.@EE_SELECT$ + F_getpositionname(.@EE_ACCESSORY[.@i]) + " - [ " + getequipname(.@EE_ACCESSORY[.@i]) + " ]";
+					set .@NONEEQ,1;
+				}
+				set .@EE_SELECT$, .@EE_SELECT$ + ":";
+			}
+			if (.@NONEEQ == 0) {
+				mes "[ ^0000FFเพิ่มออฟชั่นคอสตูมขั้นเทพ^000000 ]";
+				mes "^9400D3ฉันคิดว่าฉันไม่สามารถที่จะปรับแต่งอุปกรณ์ใดๆที่คุณไม่ได้สวมใส่มันเลย...^000000";
+				close;
+			}
+			set .@EE_EQUIP,.@EE_ACCESSORY[ select(.@EE_SELECT$) ];
+			mes "[ ^0000FFเพิ่มออฟชั่นคอสตูมขั้นเทพ^000000 ]";
+			if (countitem(getequipid(.@EE_EQUIP)) > 1 && !.@en_nodelete){
+				mes "^9400D3ห้ามมีไอเทมชิ้นนี้มากกว่า 1 ชิ้นนะ^000000";
+				close;
+			}
+			if (.@en_custom && !.@en_nodelete) {
+				if (countitem(.@en_itemfreeus) < .@en_itemfreeam) {
+					mes "^9400D3คุณมี ^000000"+getitemname(.@en_itemfreeus)+" ^9400D3ไม่ถึง^000000 "+.@en_itemfreeam+" ^9400D3ชิ้น^000000";
+					close;
+				} else if (.@en_itemfreeus && countitem(.@en_itemfreeus) >= .@en_itemfreeam)
+					delitem .@en_itemfreeus,.@en_itemfreeam;
+			} else if (!.@en_custom && !.@en_nodelete) {
+				for(set .@i,0; .@i < getarraysize(.@en_itemus); set .@i,.@i+1)
+					if (getitemname(.@en_itemus[.@i]) != "null")
+						if (countitem(.@en_itemus[.@i]) < .@en_itemam[.@i] || .@en_zeny > Zeny) {
+							mes "^9400D3คุณมี^000000 "+getitemname(.@en_itemus[.@i])+" ^9400D3ไม่ถึง^000000 "+.@en_itemam[.@i]+" ^9400D3ชิ้น หรือ มีเงิน ไม่ถึง^000000 "+.@en_zeny+" ^9400D3เซนี่^000000";
+							close;
+						}
+				if (Zeny > .@en_zeny)
+					set Zeny,Zeny-.@en_zeny;
+				for(set .@i,0; .@i < getarraysize(.@en_itemus); set .@i,.@i+1)
+					if (getitemname(.@en_itemus[.@i]) != "null")
+						if (countitem(.@en_itemus[.@i]) >= .@en_itemam[.@i])
+							delitem .@en_itemus[.@i],.@en_itemam[.@i];
+			}
+			mes "^9400D3กำลังดำเนินการ เพิ่มออฟชั่น^000000";
+			// calc
+			set .@EE_EQUIPE,getequipid(.@EE_EQUIP);
+			if (.@en_cardone)
+				set .@en_randorb_1,getequipcardid(.@EE_EQUIP,0);
+			if (.@en_cardtwo)
+				set .@en_randorb_2,getequipcardid(.@EE_EQUIP,1);
+			if (.@en_cardthree)
+				set .@en_randorb_3,getequipcardid(.@EE_EQUIP,2);
+			if (.@en_cardfour)
+				set .@en_randorb_4,getequipcardid(.@EE_EQUIP,3);
+			if (.@en_refine)
+				set .@EE_EQUIPRF,getequiprefinerycnt(.@EE_EQUIP);
+			if (!.@en_nodelete) {
+				specialeffect2 91; //Effect
+				progressbar "ffff00",0; //เวลาหลอดโหลด
+			}
+			set .@en_randper,rand(.@en_permax);
+			// check slot 1
+			if (.@en_cardone && (getequipcardid(.@EE_EQUIP,0) < 4000 || getequipcardid(.@EE_EQUIP,0) >= 4700) || !.@en_cardone) {
+				if ((.@en_slotoneo && getitemslots(getequipid(.@EE_EQUIP)) < 1) || !.@en_slotoneo) {
+					set .@en_randper,rand(.@en_permax);
+					if (.@en_slotone >= .@en_randper) {
+						set .@en_randall,getarraysize(getd(".@en_enslot1_"+.@EE_EQUIP+""));
+						set .@en_randorb_1,getd(".@en_enslot1_"+.@EE_EQUIP+"["+rand(.@en_randall)+"]");
+						if (getequipid(3) == getequipid(4)) {
+							set .@en_randall,getarraysize(.@en_enslot1_1);
+							set .@en_randorb_1,.@en_enslot1_1[rand(.@en_randall)];
+						}
+						mes "^9400D3เพิ่มออฟชั่นช่องที่ 1 สำเร็จ !!^000000";
+						mes "Orb : "+getitemname(.@en_randorb_1)+"";
+					} else if (.@en_slotone < .@en_randper) {
+						mes "^FF0000เพิ่มออฟชั่นช่องที่ 1 ล้มเหลว !!^000000";
+						mes "^FF0000สงสัยคุณจะดวงไม่ดี^000000";
+						set .@en_randorb_1,0;
+					}
+				} else if (.@en_slotoneo) {
+					mes "^FF0000เพิ่มออฟชั่นช่องที่ 1 ล้มเหลว !!^000000";
+					mes "^FF0000ไอเทมคุณมี 1 ช่อง^000000";
+					set .@en_randorb_1,0;
+				}
+			} else if (.@en_cardone && (getequipcardid(.@EE_EQUIP,0) >= 4000 || getequipcardid(.@EE_EQUIP,0) < 4700)) {
+				mes "^FF0000เพิ่มออฟชั่นช่องที่ 1 ล้มเหลว !!^000000";
+				mes "^FF0000มีการ์ด ช่อง 1 ไม่สามารถทับได้ โปรดอ่านที่ เมนูอธิบายอีกครั้ง^000000";
+			}
+			// check slot 2
+			if (.@en_cardtwo && (getequipcardid(.@EE_EQUIP,1) < 4000 || getequipcardid(.@EE_EQUIP,1) >= 4700) || !.@en_cardtwo) {
+				if ((.@en_slottwoo && getitemslots(getequipid(.@EE_EQUIP)) < 2) || !.@en_slottwoo) {
+					set .@en_randper,rand(.@en_permax);
+					if (.@en_slottwo >= .@en_randper) {
+						set .@en_randall,getarraysize(getd(".@en_enslot2_"+.@EE_EQUIP+""));
+						set .@en_randorb_2,getd(".@en_enslot2_"+.@EE_EQUIP+"["+rand(.@en_randall)+"]");
+						if (getequipid(3) == getequipid(4)) {
+							set .@en_randall,getarraysize(.@en_enslot1_2);
+							set .@en_randorb_2,.@en_enslot1_2[rand(.@en_randall)];
+						}
+						mes "^9400D3เพิ่มออฟชั่นช่องที่ 2 สำเร็จ !!^000000";
+						mes "Orb : "+getitemname(.@en_randorb_2)+"";
+					} else if (.@en_slottwo < .@en_randper) {
+						mes "^FF0000เพิ่มออฟชั่นช่องที่ 2 ล้มเหลว !!^000000";
+						mes "^FF0000สงสัยคุณจะดวงไม่ดี";
+						set .@en_randorb_2,0;
+					}
+				} else if (.@en_slottwoo) {
+					mes "^FF0000เพิ่มออฟชั่นช่องที่ 2 ล้มเหลว !!^000000";
+					mes "^FF0000ไอเทมคุณมี 2 ช่อง ไม่สามารถใช้งานได้^000000";
+					set .@en_randorb_2,0;
+				}
+			} else if (.@en_cardtwo && (getequipcardid(.@EE_EQUIP,1) >= 4000 || getequipcardid(.@EE_EQUIP,1) < 4700)) {
+				mes "^FF0000เพิ่มออฟชั่นช่องที่ 2 ล้มเหลว !!^000000";
+				mes "^FF0000มีการ์ด ช่อง 2 ไม่สามารถทับได้ โปรดอ่านที่ เมนูอธิบายอีกครั้ง^000000";
+			}
+			// check slot 3
+			if (.@en_cardthree && (getequipcardid(.@EE_EQUIP,2) < 4000 || getequipcardid(.@EE_EQUIP,2) >= 4700) || !.@en_cardthree) {
+				if ((.@en_slotthreeo && getitemslots(getequipid(.@EE_EQUIP)) < 3) || !.@en_slotthreeo) {
+					set .@en_randper,rand(.@en_permax);
+					if (.@en_slotthree >= .@en_randper) {
+						set .@en_randall,getarraysize(getd(".@en_enslot3_"+.@EE_EQUIP+""));
+						set .@en_randorb_3,getd(".@en_enslot3_"+.@EE_EQUIP+"["+rand(.@en_randall)+"]");
+						if (getequipid(3) == getequipid(4)) {
+							set .@en_randall,getarraysize(.@en_enslot1_3);
+							set .@en_randorb_3,.@en_enslot1_3[rand(.@en_randall)];
+						}
+						mes "^9400D3เพิ่มออฟชั่นช่องที่ 3 สำเร็จ !!^000000";
+						mes "Orb : "+getitemname(.@en_randorb_3)+"";
+					} else if (.@en_slotthree < .@en_randper) {
+						mes "^FF0000เพิ่มออฟชั่นช่องที่ 3 ล้มเหลว !!^000000";
+						mes "^FF0000สงสัยคุณจะดวงไม่ดี^000000";
+						set .@en_randorb_3,0;
+					}
+				} else if (.@en_slotthreeo) {
+					mes "^FF0000เพิ่มออฟชั่นช่องที่ 3 ล้มเหลว !!^000000";
+					mes "^FF0000ไอเทมคุณมี 3 ช่อง ไม่สามารถใช้งานได้^000000";
+					set .@en_randorb_3,0;
+				}
+			} else if (.@en_cardthree && (getequipcardid(.@EE_EQUIP,2) >= 4000 || getequipcardid(.@EE_EQUIP,2) < 4700)) {
+				mes "^FF0000เพิ่มออฟชั่นช่องที่ 3 ล้มเหลว !!^000000";
+				mes "^FF0000มีการ์ด ช่อง 3 ไม่สามารถทับได้ โปรดอ่านที่ เมนูอธิบายอีกครั้ง^000000";
+			}
+			// check slot 4
+			if (.@en_cardfour && (getequipcardid(.@EE_EQUIP,3) < 4000 || getequipcardid(.@EE_EQUIP,3) >= 4700) || !.@en_cardfour) {
+				if ((.@en_slotfouro && getitemslots(getequipid(.@EE_EQUIP)) < 4) || !.@en_slotfouro) {
+					set .@en_randper,rand(.@en_permax);
+					if (.@en_slotfour >= .@en_randper) {
+						set .@en_randall,getarraysize(getd(".@en_enslot4_"+.@EE_EQUIP+""));
+						set .@en_randorb_4,getd(".@en_enslot4_"+.@EE_EQUIP+"["+rand(.@en_randall)+"]");
+						if (getequipid(3) == getequipid(4)) {
+							set .@en_randall,getarraysize(.@en_enslot1_4);
+							set .@en_randorb_4,.@en_enslot1_4[rand(.@en_randall)];
+						}
+						mes "^9400D3เพิ่มออฟชั่นช่องที่ 4 สำเร็จ !!^000000";
+						mes "Orb : "+getitemname(.@en_randorb_4)+"";
+					} else if (.@en_slotfour < .@en_randper) {
+						mes "^FF0000เพิ่มออฟชั่นช่องที่ 4 ล้มเหลว !!^000000";
+						mes "^FF0000สงสัยคุณจะดวงไม่ดี^000000";
+						set .@en_randorb_4,0;
+					}
+				} else if (.@en_slotfouro) {
+					mes "^FF0000เพิ่มออฟชั่นช่องที่ 4 ล้มเหลว !!^000000";
+					mes "^FF0000ไอเทมคุณมี 4 ช่อง ไม่สามารถใช้งานได้^000000";
+					set .@en_randorb_4,0;
+				}
+			} else if (.@en_cardfour && (getequipcardid(.@EE_EQUIP,3) >= 4000 || getequipcardid(.@EE_EQUIP,3) < 4700)) {
+				mes "^FF0000เพิ่มออฟชั่นช่องที่ 4 ล้มเหลว !!^000000";
+				mes "^FF0000มีการ์ด ช่อง 4 ไม่สามารถทับได้ โปรดอ่านที่ เมนูอธิบายอีกครั้ง^000000";
+			}
+			// option item success 
+				delitem2 getequipid(.@EE_EQUIP),1,1,getequiprefinerycnt(.@EE_EQUIP),0,getequipcardid(.@EE_EQUIP,0),getequipcardid(.@EE_EQUIP,1),getequipcardid(.@EE_EQUIP,2),getequipcardid(.@EE_EQUIP,3);
+			getitem2 .@EE_EQUIPE,1,1,.@EE_EQUIPRF,0,.@en_randorb_1,.@en_randorb_2,.@en_randorb_3,.@en_randorb_4;
+			break;
+		case 2:
+			close;
+	}
+	close;
+	end;
+	OnInit:
+	waitingroom "เพิ่มออฟชั่นคอสตูม Top",0;
+	end;
+}

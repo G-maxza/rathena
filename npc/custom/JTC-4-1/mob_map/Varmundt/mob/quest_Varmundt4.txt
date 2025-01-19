@@ -1,0 +1,291 @@
+//===== quest_Varmundt4 monster=================================
+oasis,195,194,4	script	quest_Varmundt4_Controller#1	2103,{
+	set .@gm_level, 99; // ระดับ GM ต้องใช้เพื่อเริ่ม / หยุดกิจกรรม
+
+	mes "[quest Varmundt Ice]";
+	mes "ยินดีต้อนรับสู่ quest Varmundt Ice!";
+	next;
+	switch(select("^FF0000•^000000 เข้าสู่quest Varmundt Ice.:" + ((getgmlevel() >= .@gm_level) ? "^FF0000•^000000 GM Menu." : "") + ":^FF0000•^000000 ยกเลิก.")) {
+	case 1:
+		if (.start != 1) { // ระยะเวลาการลงทะเบียน
+			mes "[quest Varmundt Ice]";
+			mes "quest Varmundt Ice ถูกปิดแล้ว.";
+			mes "มันจะเปิดในเวลาเหล่านี้:";
+			mes "ทุกต้นชั้วโมง"; // แสดงเวลาของคุณที่นี่
+			mes "เริ่ม01:00 - 19:30 น. "; // แสดงเวลาของคุณที่นี่
+			close;
+		}
+		if (BaseLevel < 290 || Zeny < 1000000 || countitem(7227) < 10) {
+			mes "คุณไม่สามารถเข้าสู่ quest Varmundt Ice ได้เพราะไม่ตรงตามเงื่อนไข";
+			mes "ข้อกำหนด:";
+			mes " - Base Level ต้อง 290 ขึ้นไป";
+			mes " - ใช้ Zeny 1,000,000";
+			mes " - ใช้ไอเท็ม ID 7227 จำนวน 10 ชิ้น";
+		}
+		Zeny -= 1000000;
+		delitem 7227, 10;
+		announce strcharinfo(0) + " ได้เข้าสู่ quest Varmundt Ice.", bc_npc;
+		warp "bl_ice", 41, 82;
+		close;
+	case 2:
+		mes "[quest Varmundt Ice]";
+		switch (.start) { // event states
+			case 0: mes "quest Varmundt Ice ยังไม่ได้เริ่ม."; break;
+			case 1: mes "quest Varmundt Ice กำลังรับผู้เข้าร่วม."; break;
+		}
+		next;
+		switch(select("^FF0000•^000000 เริ่มกิจกรรม.:^FF0000•^000000 หยุดกิจกรรม.:^FF0000•^000000 ยกเลิก.")) {
+		case 1:
+			mes "[quest Varmundt Ice]";
+			if (.start)
+				mes "quest Varmundt Ice เริ่มแล้ว.";
+			else {
+				mes "ที่เริ่มต้น quest Varmundt Ice...";
+				donpcevent strnpcinfo(0)+"::OnStartEvent";
+			}
+			close;
+		case 2:
+			mes "[quest Varmundt Ice]";
+			if (!.start)
+				mes "quest Varmundt Ice ยังไม่ได้เริ่ม.";
+			else {
+				mes "การหยุด quest Varmundt Ice...";
+				donpcevent strnpcinfo(0)+"::OnStopEvent";
+			}
+			close;
+		case 3:
+			break;
+		}
+		break;
+	case 3:
+		break;
+	}
+	mes "[quest Varmundt Ice]";
+	mes "ลาก่อน.";
+	close;
+	
+OnClock0100: // เปิดกิจกรรมครั้งแรกตอน 01:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0130: // ปิดกิจกรรมครั้งแรกตอน 01:30
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+
+OnClock0200: // เปิดกิจกรรมครั้งที่สองตอน 02:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0230: // ปิดกิจกรรมครั้งที่สองตอน 02:30
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0300: // เปิดกิจกรรมครั้งที่สองตอน 03:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0330: // ปิดกิจกรรมครั้งที่สองตอน 03:30
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0400: // เปิดกิจกรรมครั้งที่สองตอน 04:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0430: // ปิดกิจกรรมครั้งที่สองตอน 04:30
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0500: // เปิดกิจกรรมครั้งที่สองตอน 05:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0530: // ปิดกิจกรรมครั้งที่สองตอน 05:30
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0600: // เปิดกิจกรรมครั้งที่สองตอน 06:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0630: // ปิดกิจกรรมครั้งที่สองตอน 06:30
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0700: // เปิดกิจกรรมครั้งที่สองตอน 07:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0730: // ปิดกิจกรรมครั้งที่สองตอน 07:30
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0800:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0830:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0900:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0930:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1000:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1030:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1100:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1130:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1200:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1230:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1300:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1330:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1400:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1430:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1500:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1530:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1600:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1630:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1700:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1730:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1800:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1830:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1900:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1930:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnSpawnMonsters:
+	.start = 2;
+	.round = 1;
+	set .mob, 1; // ตั้งค่าจำนวนมอนสเตอร์ที่ต้องการ
+	// สร้างมอนสเตอร์ ID 21571 จำนวน 1 ตัว
+	set .@monster_count1, 1;
+	for (set .@i, 0; .@i < .@monster_count1; set .@i, .@i + 1) {
+		monster "bl_ice", 0 + rand(0), 0 + rand(0), "Boss Monster",21571,1,strnpcinfo(0)+"::OnMonsterKilled";
+	}
+	end;
+	
+OnMonsterKilled:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "Boss Monster"+ .mob +"Bossที่เหลืออยู่ในแผนที่.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "Boss Monster ถูกำจัดหมดเเล้ว", bc_map;
+		goto OnSpawnMonsters;
+	}
+	end;
+	
+OnStartEvent:
+	.start = 1;
+	enablenpc "quest_Varmundt4_Controller#1";
+	disablenpc "เควสquest Varmundt Ice#2"; // ปิด NPC ที่ใช้ในการออกจากกิจกรรม
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "bl_ice", .@map$, .@x, .@y;
+	announce "quest Varmundt Ice จะเริ่มใน 5 นาที.", bc_all;
+	sleep 60000*5;
+	announce "quest Varmundt Ice ได้เริ่มขึ้นแล้ว!", bc_all;
+	disablenpc "quest_Varmundt4_Controller#1"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	donpcevent strnpcinfo(0) + "::OnSpawnMonsters"; // เรียกใช้งานฟังก์ชันเกิดมอนสเตอร์
+	end;
+	
+OnStopEvent:
+	announce "quest Varmundt Iceถูกปิดแล้ว.", bc_all;
+	killmonsterall "bl_ice"; // ลบมอนสเตอร์ทั้งหมดในแผนที่
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "bl_ice", .@map$, .@x, .@y;
+	disablenpc "quest_Varmundt4_Controller#1"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	enablenpc "เควสquest Varmundt Ice#2";
+	.start = .round = .mob = 0; // รีเซ็ตสถานะของกิจกรรมทั้งหมด
+	end;
+	
+OnInit:
+	waitingroom "quest Varmundt Ice",0;
+	end;
+}
+bl_ice,41,82,4	script	เควสquest Varmundt Ice#2	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+}
+
+bl_ice	mapflag	nowarp
+bl_ice	mapflag	nowarpto
+bl_ice	mapflag	nosave	SavePoint
+bl_ice	mapflag	nomemo
+bl_ice	mapflag	nobranch
+bl_ice	mapflag	nopenalty
+bl_ice	mapflag	noicewall
+
+//===== quest_Varmundt4 monster=================================
+
+bl_ice,0,0	monster	Glacial Ice Titan	21564,35,5000
+bl_ice,0,0	monster	Glacial Siroma	21565,35,5000
+bl_ice,0,0	monster	Glacial Snowier	21566,35,5000
+bl_ice,0,0	monster	Glacial Centipede	21567,35,5000
+bl_ice,0,0	monster	Glacial Aqua Elemental	21568,45,5000
+bl_ice,0,0	monster	Bone Glacial Angelgolt	21569,25,5000
+bl_ice,0,0	monster	Glacial Rhyncho	21570,15,5000

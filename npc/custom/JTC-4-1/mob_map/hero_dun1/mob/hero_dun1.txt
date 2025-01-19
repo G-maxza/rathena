@@ -1,0 +1,164 @@
+//===== hero dun1 monster=================================
+oasis,143,198,4	script	hero_dun1_Controller#1	4_4JOB_LETICIA,{
+	set .@gm_level, 99; // ระดับ GM ต้องใช้เพื่อเริ่ม / หยุดกิจกรรม
+
+	mes "[hero dun1]";
+	mes "ยินดีต้อนรับสู่ hero dun1!";
+	next;
+	switch(select("^FF0000•^000000 เข้าสู่่hero dun1.:" + ((getgmlevel() >= .@gm_level) ? "^FF0000•^000000 GM Menu." : "") + ":^FF0000•^000000 ยกเลิก.")) {
+	case 1:
+		if (.start != 1) { // ระยะเวลาการลงทะเบียน
+			mes "[hero dun1]";
+			mes "hero dun1 ถูกปิดแล้ว.";
+			mes "มันจะเปิดในเวลาเหล่านี้:";
+			mes "03:00 และ 16.00"; // แสดงเวลาของคุณที่นี่
+			close;
+		}
+		if (BaseLevel < 260 || Zeny < 1000000 || countitem(7227) < 10) {
+			mes "คุณไม่สามารถเข้าสู่ hero dun1 ได้เพราะไม่ตรงตามเงื่อนไข";
+			mes "ข้อกำหนด:";
+			mes " - Base Level ต้อง 260 ขึ้นไป";
+			mes " - ใช้ Zeny 1,000,000";
+			mes " - ใช้ไอเท็ม ID 7227 จำนวน 10 ชิ้น";
+		}
+		Zeny -= 1000000;
+		delitem 7227, 10;
+		announce strcharinfo(0) + " ได้เข้าสู่่ hero dun1.", bc_npc;
+		warp "hero_dun1", 108, 108;
+		close;
+	case 2:
+		mes "[hero dun1]";
+		switch (.start) { // event states
+			case 0: mes "hero dun1 ยังไม่ได้เริ่ม."; break;
+			case 1: mes "hero dun1 กำลังรับผู้เข้าร่วม."; break;
+		}
+		next;
+		switch(select("^FF0000•^000000 เริ่มกิจกรรม.:^FF0000•^000000 หยุดกิจกรรม.:^FF0000•^000000 ยกเลิก.")) {
+		case 1:
+			mes "[hero dun1]";
+			if (.start)
+				mes "hero dun1 เริ่มแล้ว.";
+			else {
+				mes "ที่เริ่มต้น hero dun1...";
+				donpcevent strnpcinfo(0)+"::OnStartEvent";
+			}
+			close;
+		case 2:
+			mes "[hero dun1]";
+			if (!.start)
+				mes "hero dun1 ยังไม่ได้เริ่ม.";
+			else {
+				mes "การหยุด hero dun1...";
+				donpcevent strnpcinfo(0)+"::OnStopEvent";
+			}
+			close;
+		case 3:
+			break;
+		}
+		break;
+	case 3:
+		break;
+	}
+	mes "[hero dun1]";
+	mes "ลาก่อน.";
+	close;
+	
+OnClock0300:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0500:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+
+OnClock1600:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1800:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnSpawnMonsters:
+	.start = 2;
+	.round = 1;
+	set .mob, 1; // ตั้งค่าจำนวนมอนสเตอร์ที่ต้องการ
+	// สร้างมอนสเตอร์ ID 21904 จำนวน 1 ตัว
+	set .@monster_count1, 1;
+	for (set .@i, 0; .@i < .@monster_count1; set .@i, .@i + 1) {
+		monster "hero_dun1", 0 + rand(0), 0 + rand(0), "Boss Monster",21904,1,strnpcinfo(0)+"::OnMonsterKilled";
+	}
+	end;
+	
+OnMonsterKilled:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "Boss Monster"+ .mob +"Bossที่เหลืออยู่ในแผนที่.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "Boss Monster ถูกำจัดหมดเเล้ว", bc_map;
+		goto OnSpawnMonsters;
+	}
+	end;
+	
+OnStartEvent:
+	.start = 1;
+	enablenpc "hero_dun1_Controller#1";
+	disablenpc "เควสhero dun1#2"; // ปิด NPC ที่ใช้ในการออกจากกิจกรรม
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "hero_dun1", .@map$, .@x, .@y;
+	announce "hero dun1 จะเริ่มใน 5 นาที.", bc_all;
+	sleep 60000*5;
+	announce "hero dun1 ได้เริ่มขึ้นแล้ว!", bc_all;
+	disablenpc "hero_dun1_Controller#1"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	donpcevent strnpcinfo(0) + "::OnSpawnMonsters"; // เรียกใช้งานฟังก์ชันเกิดมอนสเตอร์
+	end;
+	
+OnStopEvent:
+	announce "hero dun1ถูกปิดแล้ว.", bc_all;
+	killmonsterall "hero_dun1"; // ลบมอนสเตอร์ทั้งหมดในแผนที่
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "hero_dun1", .@map$, .@x, .@y;
+	disablenpc "hero_dun1_Controller#1"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	enablenpc "เควสhero dun1#2";
+	.start = .round = .mob = 0; // รีเซ็ตสถานะของกิจกรรมทั้งหมด
+	end;
+	
+OnInit:
+	waitingroom "hero dun1 เปิด 03:00 และ 16:00 น.",0;
+	end;
+}
+hero_dun1,108,108,4	script	เควสhero dun1#2	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+}
+
+hero_dun1	mapflag	nowarp
+hero_dun1	mapflag	nowarpto
+hero_dun1	mapflag	nosave	SavePoint
+hero_dun1	mapflag	nomemo
+hero_dun1	mapflag	nobranch
+hero_dun1	mapflag	nopenalty
+hero_dun1	mapflag	noicewall
+
+//===== hero dun1 monster=================================
+
+hero_dun1,0,0	monster	--ja--	21895,15,3000,3000
+hero_dun1,0,0	monster	--ja--	21896,15,3000,3000
+hero_dun1,0,0	monster	--ja--	21897,15,3000,3000
+hero_dun1,0,0	monster	--ja--	21898,15,3000,3000
+hero_dun1,0,0	monster	--ja--	21890,35,3000,3000
+hero_dun1,0,0	monster	--ja--	21889,35,3000,3000
+hero_dun1,0,0	monster	--ja--	21891,35,3000,3000
+hero_dun1,0,0	monster	--ja--	21891,25,3000,3000
+hero_dun1,0,0	monster	--ja--	21892,25,3000,3000
+hero_dun1,0,0	monster	--ja--	21893,25,3000,3000
+hero_dun1,0,0	monster	--ja--	21894,25,3000,3000
+hero_dun1,0,0	monster	--ja--	21902,30,3000,3000
+hero_dun1,0,0	monster	--ja--	21903,30,3000,3000
+hero_dun1,0,0	monster	--ja--	21899,40,3000,3000
+hero_dun1,0,0	monster	--ja--	21900,40,3000,3000
+hero_dun1,0,0	monster	--ja--	21901,40,3000,3000
+

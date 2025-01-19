@@ -1,0 +1,156 @@
+prontera	mapflag	noexp
+prontera	mapflag	noloot
+prontera	mapflag	nopenalty
+
+force_1-1	mapflag	monster_noteleport
+force_1-1	mapflag	noteleport
+force_1-1	mapflag	nomemo
+force_1-1	mapflag	nosave
+force_1-1	mapflag	noexp
+force_1-1	mapflag	noloot
+force_1-1	mapflag	nopenalty
+
+force_1-2	mapflag	monster_noteleport
+force_1-2	mapflag	noteleport
+force_1-2	mapflag	nomemo
+force_1-2	mapflag	nosave
+force_1-2	mapflag	noexp
+force_1-2	mapflag	noloot
+force_1-2	mapflag	nopenalty
+
+force_1-3	mapflag	monster_noteleport
+force_1-3	mapflag	noteleport
+force_1-3	mapflag	nomemo
+force_1-3	mapflag	nosave
+force_1-3	mapflag	noexp
+force_1-3	mapflag	noloot
+force_1-3	mapflag	nopenalty
+
+force_2-2	mapflag	monster_noteleport
+force_2-2	mapflag	noteleport
+force_2-2	mapflag	nomemo
+force_2-2	mapflag	nosave
+force_2-2	mapflag	noexp
+force_2-2	mapflag	noloot
+force_2-2	mapflag	nopenalty
+
+force_2-3	mapflag	monster_noteleport
+force_2-3	mapflag	noteleport
+force_2-3	mapflag	nomemo
+force_2-3	mapflag	nosave
+force_2-3	mapflag	noexp
+force_2-3	mapflag	noloot
+force_2-3	mapflag	nopenalty
+
+prontera,152,193,5	script	Town Warper	10081,{
+	if(atoi(strnpcinfo(2)) > 0)
+	menu
+	"กลับกลางเมือง",L_BackToCenter
+	,"ฟาร์มของ (^9D42C0ห้องบอส, ห้องพิเศษต่าง ๆ^000000)",L_SpecialRoom
+	,"ไปพัฒนาตัวละคร (^DB2D5Fเปลี่ยนอาชีพ, ทำของ^000000)",L_Character
+	,"ซื้อของใช้จำเป็น (^402DDBของใช้ Skill, ของเริ่มต้น^000000)",L_Mall
+	,"ทดสอบ Damage",L_TrainingGround
+	,"ฟักไข่ Pet และ Homunculus",L_PetHomunculus
+	;
+	else
+	menu
+	"ฟาร์มของ (^9D42C0ห้องบอส, ห้องพิเศษต่าง ๆ^000000)",L_SpecialRoom
+	,"ไปพัฒนาตัวละคร (^DB2D5Fเปลี่ยนอาชีพ, ทำของ^000000)",L_Character
+	,"ซื้อของใช้จำเป็น (^402DDBของใช้ Skill, ของเริ่มต้น^000000)",L_Mall
+	,"ทดสอบ Damage",L_TrainingGround
+	,"ฟักไข่ Pet และ Homunculus",L_PetHomunculus
+	;
+	
+	L_BackToCenter:
+	warp "prontera",156,191;
+	end;
+	
+	L_Hotel:
+	warp "prontera",270,352;
+	end;
+	
+	L_SpecialRoom:
+	warp "prontera",155,275;
+	end;
+	
+	L_Character:
+	warp "prontera",44,164;
+	end;
+	
+	L_Mall:
+	warp "prontera",197,241;
+	end;
+	
+	L_TrainingGround:
+	warp "prontera",237,66;
+	end;
+	
+	L_PetHomunculus:
+	warp "prontera",81,102;
+	end;
+	
+OnInit:
+	waitingroom "ไปที่ต่าง ๆ ในเมือง",0;
+	end;
+}
+
+prontera,50,170,5	duplicate(Town Warper)	Town Warper#1	10081
+prontera,207,255,5	duplicate(Town Warper)	Town Warper#2	10081
+prontera,84,100,5	duplicate(Town Warper)	Town Warper#3	10081
+prontera,237,62,5	duplicate(Town Warper)	Town Warper#6	10081
+force_1-1,100,98,5	duplicate(Town Warper)	Town Warper#8	10081
+force_1-2,173,156,5	duplicate(Town Warper)	Town Warper#9	10081
+force_1-3,100,167,5	duplicate(Town Warper)	Town Warper#10	10081
+force_2-3,100,167,5	duplicate(Town Warper)	Town Warper#11	10081
+prontera,155,272,5	duplicate(Town Warper)	Town Warper#12	10081
+force_2-2,175,145,5	duplicate(Town Warper)	Town Warper#13	10081
+
+prontera,234,69,5	script	Warper#D25	10081,{
+	RefreshDebuff(25);
+	warp "force_1-1",100,100;
+	end;
+	
+OnInit:
+	waitingroom "Zone ทดสอบ Debuff 25%",0;
+	end;
+}
+
+prontera,240,69,5	script	Warper#D50	10081,{
+	RefreshDebuff(50);
+	warp "force_1-2",173,158;
+	end;
+	
+OnInit:
+	waitingroom "Zone ทดสอบ Debuff 50%",0;
+	end;
+}
+
+prontera,234,75,5	script	Warper#D75	10081,{
+	RefreshDebuff(75);
+	warp "force_1-3",100,185;
+	end;
+	
+OnInit:
+	waitingroom "Zone ทดสอบ Debuff 75%",0;
+	end;
+}
+
+prontera,240,75,5	script	Warper#D90	10081,{
+	RefreshDebuff(90);
+	warp "force_2-3",100,185;
+	end;
+	
+OnInit:
+	waitingroom "Zone ทดสอบ Debuff 90%",0;
+	end;
+}
+
+prontera,237,81,5	script	Warper#BD7	10081,{
+	atcommand "@bd 7";
+	warp "force_2-2",175,155;
+	end;
+	
+OnInit:
+	waitingroom "Zone ทดสอบ Bonus หาร 7",0;
+	end;
+}

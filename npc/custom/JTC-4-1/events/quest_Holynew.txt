@@ -1,0 +1,528 @@
+//===== quest_fire=================================
+oasis,140,36,4	script	QuestHolynew	sp_monster_549,{
+	set .@gm_level, 99; // ระดับ GM ต้องใช้เพื่อเริ่ม / หยุดกิจกรรม
+
+	mes "[Quest Holy]";
+	mes "นี่คือทางเข้า ^FF0000Quest Holy^000000.";
+	next;
+	switch(select("^FF0000•^000000 เลือกระดับการเล่น.:^FF0000•^000000 ข้อมูล.:^FF0000•^000000 ยกเลิก.")) {
+	case 1:
+		if (.start != 1) {
+			mes "[Quest Holy]";
+			mes "Quest Holyปิดอยู่ในขณะนี้. เวลาทำการคือ:";
+			mes "05:00 น. ถึง 05:30 น.";
+			mes "09:00 น. ถึง 09:30 น.";
+			mes "13:00 น. ถึง 13:30 น.";
+			mes "17:00 น. ถึง 17:30 น.";
+			close;
+		}
+
+		if (.difficulty > 0) {
+			mes "[Quest Holy]";
+			mes "ผู้เล่นคนแรกได้เลือกระดับแล้ว: "+(.difficulty == 1 ? "ทั่วไป" : .difficulty == 2 ? "ยาก" : "ยากมาก")+".";
+			mes "คุณสามารถเข้าร่วมได้เฉพาะระดับนี้เท่านั้น.";
+			if (.difficulty == 1) {
+				set .zeny_cost, 50000000;
+				set .item_cost, 200;
+			} else if (.difficulty == 2) {
+				set .zeny_cost, 20000000;
+				set .item_cost, 150;
+			} else if (.difficulty == 3) {
+				set .zeny_cost, 10000000;
+				set .item_cost, 100;
+			}
+		} else {
+			mes "[Quest Holy]";
+			mes "เลือกระดับการเล่นที่คุณต้องการ:";
+			switch(select("^FF0000•^000000 ทั่วไป:^FF0000•^000000 ยาก:^FF0000•^000000 ยากมาก:")) {
+			case 1:
+				set .difficulty, 1;
+				set .zeny_cost, 50000000;
+				set .item_cost, 200;
+				break;
+			case 2:
+				set .difficulty, 2;
+				set .zeny_cost, 20000000;
+				set .item_cost, 150;
+				break;
+			case 3:
+				set .difficulty, 3;
+				set .zeny_cost, 10000000;
+				set .item_cost, 100;
+				break;
+			}
+		}
+
+		if (Zeny < .zeny_cost || countitem(7227) < .item_cost) {
+			mes "[Quest Holy]";
+			mes "คุณไม่มี Zeny หรือ Item 7227 เพียงพอสำหรับระดับนี้.";
+			mes "";
+			mes "ต้องการ:";
+			mes " - Zeny: "+.zeny_cost+"";
+			mes " - Item 7227: "+.item_cost+" ชิ้น";
+			close;
+		}
+
+		Zeny -= .zeny_cost;
+		delitem 7227, .item_cost;
+		announce strcharinfo(0)+" ได้เข้าสู่ Quest Holy (ระดับ "+(.difficulty == 1 ? "ทั่วไป" : .difficulty == 2 ? "ยาก" : "ยากมาก")+").", bc_npc;
+		percentheal 100,100;
+		warp "hero_tra", 69, 12;
+		close;
+
+	case 2:
+		mes "[Quest Holy]";
+		mes "ภายในคุณจะพบกับสัตว์ประหลาดหลายคลื่นที่แข็งแกร่งขึ้นในแต่ละระดับ.";
+		mes "";
+		mes "ระดับการเล่น:";
+		mes "แบ่งเป็น: 3 คลื่น";
+		mes " - ทั่วไป: monster 9 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes " - ทั่วไป: 3 กล่องสมบัติ";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยาก: monster 18 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยาก: 6 กล่องสมบัติ";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยากมาก: monster 30 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยากมาก: 10 กล่องสมบัติ";
+		mes "ระดับการเล่น:";
+		mes "ทุกระดับการเล่น:";
+		mes "Boss 1 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes "";
+		mes "รางวัลในแต่ละระดับจะขึ้นอยู่กับระดับความยากที่เลือก.";
+		close;
+	case 3:
+		mes "[Quest Holy]";
+		mes "ลาก่อน.";
+		close;
+	}
+OnStartEvent:
+OnClock0500:
+OnClock0900:
+OnClock1300:
+OnClock1700:
+	.start = 1;
+	enablenpc "QuestHolynew";
+	disablenpc "quest_Holynew#2";
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "hero_tra", .@map$, .@x, .@y;
+	killmonsterall "hero_tra";
+	announce "Quest Holy เปิด. เหตุการณ์จะเริ่มใน 5 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Holy จะเริ่มใน 4 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Holy จะเริ่มใน 3 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Holy จะเริ่มใน 2 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Holy จะเริ่มใน 1 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Holy ได้เริ่มขึ้นแล้ว!", bc_all;
+	disablenpc "QuestHolynew"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	if ( !getmapusers("hero_tra") )
+		goto OnStopEvent;
+
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "hero_tra",30,59,57,12,"monster",30830,1,strnpcinfo(0)+"::OnquestHolyDead";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestHolyDead:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "hero_tra","Quest Holy : "+ .mob +" monsterที่เหลืออยู่ในรอบที่ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "hero_tra","Quest Holy กำลังเข้าสู่รอบ 2...", bc_map;
+		sleep 5000;
+		goto OnquestHoly2;
+	}
+	end;
+	
+OnquestHoly2:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "hero_tra",82,61,109,14,"monster",30835,1,strnpcinfo(0)+"::OnquestHolyDead2";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestHolyDead2:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "hero_tra","Quest Holy : "+ .mob +" monsterที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "hero_tra","Quest Holy กำลังเข้าสู่รอบ 3...", bc_map;
+		sleep 5000;
+		goto OnquestHoly3;
+	}
+	end;
+
+OnquestHoly3:
+	if (.difficulty == 1) {
+		set .mob, 1;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 1;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 1;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "hero_tra",58,61,81,12,"Boss",30773,1,strnpcinfo(0)+"::OnquestHolyDead3";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+	
+OnquestHolyDead3:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "hero_tra","Quest Holy : "+ .mob +" Bossที่เหลืออยู่ในรอบ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "hero_tra","Quest Holy กำลังเข้าสู่รอบ 4...", bc_map;
+		sleep 5000;
+		goto OnquestHoly4;
+	}
+	end;
+	
+OnquestHoly4:
+	if (.difficulty == 1) {
+		set .mob, 3;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 6;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 10;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "hero_tra",58,61,81,12,"Box",1324,1,strnpcinfo(0)+"::OnquestHolyDead4";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestHolyDead4:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "hero_tra","Quest Holy : "+ .mob +" Boxที่เหลืออยู่ในรอบ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "hero_tra","Quest Holy กำลังเข้าสู่รอบ 5...", bc_map;
+		sleep 5000;
+		goto OnquestHoly5;
+	}
+	end;
+	
+OnquestHoly5:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "hero_tra",30,59,109,14,"monster",31204,1,strnpcinfo(0)+"::OnquestHolyDead5";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestHolyDead5:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "hero_tra","Quest Holy : "+ .mob +" monsterที่เหลืออยู่ในรอบ 3.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "hero_tra","Quest Holy กำลังเข้าสู่รอบ 6...", bc_map;
+		sleep 5000;
+		goto OnquestHoly6;
+	}
+	end;
+
+OnquestHoly6:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "hero_tra",30,59,109,14,"monster",31202,1,strnpcinfo(0)+"::OnquestHolyDead6";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestHolyDead6:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "hero_tra","Quest Holy : "+ .mob +" monsterที่เหลืออยู่ในรอบ 4.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "hero_tra","Quest Holy กำลังเข้าสู่รอบ 7...", bc_map;
+		sleep 5000;
+		goto OnquestHoly7;
+	}
+	end;
+
+OnquestHoly7:
+	if (.difficulty == 1) {
+		set .mob, 1;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 1;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 1;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "hero_tra",52,95,89,78,"Boss",31375,1,strnpcinfo(0)+"::OnquestHolyDead7";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestHolyDead7:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "hero_tra","Quest Holy : "+ .mob +" Bossที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "hero_tra","Quest Holy กำลังเข้าสู่รอบ 8...", bc_map;
+		sleep 5000;
+		goto OnquestHoly8;
+	}
+	end;
+
+OnquestHoly8:
+	if (.difficulty == 1) {
+		set .mob, 3;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 6;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 10;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "hero_tra",52,95,89,78,"Box",1324,1,strnpcinfo(0)+"::OnquestHolyDead8";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestHolyDead8:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "hero_tra","Quest Holy : "+ .mob +" Boxที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "hero_tra","Quest Holy กำลังเข้าสู่รอบ 9...", bc_map;
+		sleep 5000;
+		goto OnquestHoly9;
+	}
+	end;
+OnquestHoly9:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "hero_tra",30,59,109,14,"monster",31127,1,strnpcinfo(0)+"::OnquestHolyDead9";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestHolyDead9:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "hero_tra","Quest Holy : "+ .mob +" monsterที่เหลืออยู่ในรอบ 5.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "hero_tra","Quest Holy กำลังเข้าสู่รอบ 10...", bc_map;
+		sleep 5000;
+		goto OnquestHoly10;
+	}
+	end;
+
+OnquestHoly10:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "hero_tra",52,95,89,78,"monster",31353,1,strnpcinfo(0)+"::OnquestHolyDead10";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestHolyDead10:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "hero_tra","Quest Holy : "+ .mob +" monsterที่เหลืออยู่ในรอบ6.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "hero_tra","Quest Holy กำลังเข้าสู่รอบ 11...", bc_map;
+		sleep 5000;
+		goto OnquestHoly11;
+	}
+	end;
+
+OnquestHoly11:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "hero_tra",42,149,97,110,"monster",31354,1,strnpcinfo(0)+"::OnquestHolyDead11";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestHolyDead11:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "hero_tra","Quest Holy : "+ .mob +" monsterที่เหลืออยู่ในรอบ7.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "hero_tra","Quest Holy กำลังเข้าสู่รอบ 12...", bc_map;
+		sleep 5000;
+		goto OnquestHoly12;
+	}
+	end;
+OnquestHoly12:
+	if (.difficulty == 1) {
+		set .mob, 1;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 1;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 1;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "hero_tra",42,149,97,110,"Boss",31376,1,strnpcinfo(0)+"::OnquestHolyDead12";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestHolyDead12:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "hero_tra","Quest Holy : "+ .mob +" Bossที่เหลืออยู่ในรอบสุดท้าย.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "hero_tra","Quest Holy : ขอแสดงความยินดี หีบสมบัติเหล่านี้เป็นของคุณ.", bc_map;
+		sleep 5000;
+		goto OnquestHoly13;
+	}
+	end;
+
+OnquestHoly13:
+	if (.difficulty == 1) {
+		set .mob, 3;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 6;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 20;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "hero_tra",42,149,97,110,"Box",1324,1,strnpcinfo(0)+"::OnHolyBoxDead";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+	
+OnHolyBoxDead:
+	.mob--;
+	mapannounce "hero_tra","Quest Holy : "+ strcharinfo(0) +" ได้เปิดหีบสมบัติที่ Quest Holy.", bc_all;
+	if ( .mob <= 0 )
+		goto OnStopEvent;
+	end;
+	
+OnStopEvent:
+	killmonsterall "hero_tra";
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "hero_tra", .@map$, .@x, .@y;
+	.start = .round = .difficulty = .mob = 0;
+	announce "[ระบบ] : Quest Holy  จบลงแล้ว!", bc_all;
+	enablenpc "quest_Holynew#2";
+	disablenpc "QuestHolynew"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	end;
+	
+OnClock0530:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0930:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1330:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1730:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+}
+hero_tra,69,151,6	script	quest_Holynew#2	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+}
+
+hero_tra	mapflag	nowarp
+hero_tra	mapflag	nowarpto
+hero_tra	mapflag	noteleport
+hero_tra	mapflag	monster_noteleport
+hero_tra	mapflag	nosave	SavePoint
+hero_tra	mapflag	nomemo
+hero_tra	mapflag	nobranch
+hero_tra	mapflag	nopenalty
+hero_tra	mapflag	noicewall

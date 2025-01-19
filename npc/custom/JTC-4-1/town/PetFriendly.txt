@@ -1,0 +1,24 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : แม่มดน้อย จอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : rAthena & Hercules
+// Contacts
+// Facebook https://www.facebook.com/appleroplus2
+// Gmail appleroplus@gmail.com
+// Skype appleroplus@hotmail.com
+//==============================================
+//==============================================
+//==============================================
+hu_in01,110,382,5	script	homfriendlyy	473,{
+
+dispbottom "ได้เพิ่มการ สนิทสนม ของสัตว์เลี้ยงคุณเรียบร้อยแล้ว";
+atcommand "@petfriendly 1000";
+end;
+OnInit:
+waitingroom "เพิ่มความสนิทสนมสัตว์เลี้ยง",0;
+end;
+}
+
+//hu_in01,110,382,5	duplicate(homfriendlyy)	เพิ่มความสนิทสนมสัตว์เลี้ยง#01	473

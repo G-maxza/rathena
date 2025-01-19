@@ -1,0 +1,2667 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : Mashle
+//==============================================
+//==============================================
+//==============================================
+-	shop	C_Shadow_Server4	-1,4600400:1000000000,4600401:1000000000,4600402:1000000000,4600403:1000000000,4600404:1000000000,4600405:1000000000,4600406:1000000000,4600407:1000000000,4600408:1000000000,4600409:1000000000
+-	shop	C_Weapon_Server4	-1,4600500:1000000000,4600501:1000000000,4600502:1000000000,4600503:1000000000,4600504:1000000000,4600505:1000000000,4600506:1000000000,4600507:1000000000,4600508:1000000000,4600509:1000000000,4600510:1000000000,4600511:1000000000,4600512:1000000000,4600513:1000000000,4600514:1000000000,4600515:1000000000,4600516:1000000000,4600517:1000000000
+//=========================================================================================================================================================
+function	script	C_Shadow_Server4S	{
+// =============================================== Shadow_Server2 ===============================================
+		if(@bought_nameid == 4600400) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow Armor damage 3 x 1 : 1 ea.<INFO>4600200</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600200, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600401) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow Shoes damage 3 x 1 : 1 ea.<INFO>4600201</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600201, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600402) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow Shield damage 3 x 1 : 1 ea.<INFO>4600202</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600202, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600403) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow Earring damage 3 x 1 : 1 ea.<INFO>4600203</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600203, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600404) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow Pendant damage 3 x 1 : 1 ea.<INFO>4600204</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600204, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600405) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow Armor Def 3 x 1 : 1 ea.<INFO>4600205</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600205, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600406) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow Shoes Def 3 x 1 : 1 ea.<INFO>4600206</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600206, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600407) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow Shield Def 3 x 1 : 1 ea.<INFO>4600207</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600207, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600408) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow Earring Def 3 x 1 : 1 ea.<INFO>4600208</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600208, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600409) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow Pendant Def 3 x 1 : 1 ea.<INFO>4600209</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600209, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+// =============================================== Shadow_Server4-Weapon ===============================================
+		if(@bought_nameid == 4600500) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow ArchMage Weapon 3 x 1 : 1 ea.<INFO>4600300</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600300, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600501) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow ElementalMaster Weapon 3 x 1 : 1 ea.<INFO>4600301</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600301, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600502) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow SoulAscetic Weapon 3 x 1 : 1 ea.<INFO>4600302</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600302, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600503) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow SkyEmperor2 Weapon 3 x 1 : 1 ea.<INFO>4600303</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600303, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600504) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow NightWatch Weapon 3 x 1 : 1 ea.<INFO>4600304</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600304, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600505) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow HyperNovice Weapon 3 x 1 : 1 ea.<INFO>4600305</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600305, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600506) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow SpiritHandler Weapon 3 x 1 : 1 ea.<INFO>4600306</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600306, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600507) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow ShinkiroShiranui Weapon 3 x 1 : 1 ea.<INFO>4600307</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600307, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600508) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow Windhawk Weapon 3 x 1 : 1 ea.<INFO>4600308</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600308, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600509) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow TroubadourTrouvere Weapon 3 x 1 : 1 ea.<INFO>4600309</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600309, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600510) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow AbyssChaser Weapon 3 x 1 : 1 ea.<INFO>4600310</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600310, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600511) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow ShadowCross Weapon 3 x 1 : 1 ea.<INFO>4600311</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600311, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600512) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow DragonKnight Weapon 3 x 1 : 1 ea.<INFO>4600312</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600312, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600513) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow ImperialGuard Weapon 3 x 1 : 1 ea.<INFO>4600313</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600313, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600514) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow Meister Weapon 3 x 1 : 1 ea.<INFO>4600314</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600314, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600515) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow Biolo Weapon 3 x 1 : 1 ea.<INFO>4600315</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600315, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600516) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow Inquisitor Weapon 3 x 1 : 1 ea.<INFO>4600316</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600316, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+		if(@bought_nameid == 4600517) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ใช้แบบ 30 %:ใช้แบบ 40 %:ใช้แบบ 50 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 45% ]";
+				mes "[ใช้ <ITEM>TCG Card x 10000 : 1 ea.<INFO>7227</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>10000 Cash Bag x 10 : 1 ea.<INFO>5000037</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Max EN StoneEN x 20 : 1 ea.<INFO>5003019</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Shadow Cardinal Weapon 3 x 1 : 1 ea.<INFO>4600317</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF1000000000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 65% ]";
+				mes "[ใช้ <ITEM>Craft ItemSS x 1 : 1 ea.<INFO>5002002</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 75% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSR x 1 : 1 ea.<INFO>5002003</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 85% ]";
+				mes "[ใช้ <ITEM>Craft ItemSSSR x 1 : 1 ea.<INFO>5002004</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 95% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 45% เหมือนเดิม]";
+				close;
+				break;
+				
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 65;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 3:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002002) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 30%
+					set @broken, 75;
+					delitem 5002002, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 30% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+				
+			case 4:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002003) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 40%
+					set @broken, 85;
+					delitem 5002003, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 40% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 5:
+			// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+			if (countitem(5002004) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 50%
+					set @broken, 95;
+					delitem 5002004, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 50% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+			
+			case 6:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 45; // ไม่มีการลดเปอร์เซ็นต์แตก 65 %
+				break;
+			
+			case 7:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 7227, 5000037, 5003019, 4600317, 0;
+			setarray @itemusemany[0], 10000, 10, 20, 1, 0;
+			set @zenyuse, 1000000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+
+    return;
+}
+
+// =============== Slot Item ====================
+oasis,181,100,4	script	Craft-Shadow-Serve4	21293,{
+set $@tr$,"^000080[ NPC Craft ItemS ]^000000";
+mes $@tr$;
+mes "สวัสดี :^FF0000 "+strcharinfo(0)+" ^000000 ";
+mes "ท่านต้องการ Craft ItemS ประเภทใด ?";
+next;
+set $@tr$,"[^FF0000คำเตือน^000000]";
+mes $@tr$;
+mes "[การ Craft Item มีโอกาศสำเร็จ น้อยมาก]";
+mes "[แนะนำใช้ Item ^FF0000Craft ItemS-SSSR^000000 เพื่อโอกาศสำเร็จขึ้น ]";
+mes "[การ Craft Item เป็นการสร้างไอเท่มใหม่ขึ้นมา]";
+mes "[โปรดระวัง**ไอเท่มตีบวก-เกรด-กาด-ออฟชั้นหาย]";
+mes "[เเนะนำให้ถอดกาด-ออฟชั้นก่อน]";
+mes "[ที่จะมา Craft Item]";
+mes "[โปรดเตียมไอเท่มมาให้พร้อมก่อน ]";
+mes "[ที่จะมา Craft Item]";
+next;
+switch(select("^FF0000•^000000 Shadow Server4:^FF0000•^000000 Shadow Weapon Server4")) {
+case 1:	callfunc "Shop_C_Shadow_Server4","C_Shadow_Server4",1;
+case 2:	callfunc "Shop_C_Shadow_Server4","C_Weapon_Server4",1;
+}
+OnBuyItem:
+callfunc "Q_C_Shadow_Server4";
+end;
+OnInit:
+waitingroom "NPC Craft Shadow Server4",0;
+end;
+}
+
+// ============================================ Function Run Shop ===========================================
+
+function	script	Shop_C_Shadow_Server4	{	npcshopattach getarg(0),1;	close2;	callshop getarg(0),getarg(1);	end;	}
+
+// ============================================ Function Check Item ==========================================
+function	script	Q_C_Shadow_Server4	{
+for (set .@g,0; .@g < getarraysize(@bought_nameid); set .@g,.@g+1) {
+	sleep2 1;
+	set @bought_nameid,@bought_nameid[.@g];
+	deletearray @itemuse[0],getarraysize(@itemuse);
+	deletearray @itemusemany[0],getarraysize(@itemusemany);
+	set @broken,0;	set @zenyuse, 0;
+	callfunc "C_Shadow_Server4S";
+		if(@itemuse[0] <= 0)	goto check;	
+			set .@r,0;	set .@up,0;	set @itemgetmany,0;
+			for( set .@r,0; .@r < getarraysize(@itemuse); set .@r,.@r+1 ) {
+				if(.@up >= getarraysize(@itemuse)) break;
+				set .@itemup[.@up], countitem(@itemuse[.@up])/@itemusemany[.@up];
+				if(.@up == 0) set @itemgetmany,.@itemup[.@up];
+				if(@itemgetmany > .@itemup[.@up]) set @itemgetmany,.@itemup[.@up];
+				set .@up,.@up+1;
+				continue;
+			}
+check:
+		if(@itemuse[0] <= 0){
+			if (0 == getitemslots( @bought_nameid[.@g])){	mes "ในขณะนี้ "+getitemname(@bought_nameid[.@g])+" ไม่มี Quest ให้แลก";	}
+			if (1 <= getitemslots( @bought_nameid[.@g])){	mes "ในขณะนี้ "+getitemname(@bought_nameid[.@g])+" ["+getitemslots( @bought_nameid[.@g])+"] ไม่มี Quest ให้แลก";	}
+		}
+		else if (@itemgetmany == 0){
+			if (0 == getitemslots( @bought_nameid[.@g])){	mes "Item ที่ต้องการแลกกับ "+getitemname(@bought_nameid[.@g])+" จำนวน ^0055FF"+@bought_quantity+"^000000 ea.";	}
+			if (1 <= getitemslots( @bought_nameid[.@g])){	mes "Item ที่ต้องการแลกกับ "+getitemname(@bought_nameid[.@g])+" ["+getitemslots( @bought_nameid[.@g])+"] จำนวน ^0055FF"+@bought_quantity+"^000000 ea.";	}
+			set .@d,0;
+			for( set .@i,0; .@i < getarraysize(@itemuse); set .@i,.@i+1 ) {
+				if(.@d >= getarraysize(@itemuse)) break;
+				if (0 == getitemslots( @itemuse[.@d])){	mes " "+(.@d+1)+"> "+getitemname(@itemuse[.@d])+" จำนวน ^0055FF"+(@itemusemany[.@d]*@bought_quantity[.@g])+"^000000 ea";	}
+				if (1 <= getitemslots( @itemuse[.@d])){	mes " "+(.@d+1)+"> "+getitemname(@itemuse[.@d])+" ["+getitemslots( @itemuse[.@d])+"] จำนวน ^0055FF"+@itemusemany[.@d]+"^000000 ea.";	}
+				set .@d,.@d+1;
+				continue;
+			}
+			if(@broken != 0) {	set .@failmake,100-@broken;	mes "^FF0000 3> [มีโอกาสเสียหาย]  "+.@failmake+" % ^000000";	}
+			if(@zenyuse != 0) {	mes	" 4> ใช้เงินจำนวน  ^0055FF"+(@zenyuse*@bought_quantity[.@g])+"^000000 Zeny";	}
+			mes " -> ใช้  Craft ItemS จำนวน ^0055FF"+@bought_quantity+"^000000 ชิ้น...";
+		}
+		else if (@bought_quantity[.@g] > @itemgetmany){
+			mes "จาก Item ที่ท่านมี ท่านสามารถแลก "+getitemname(@bought_nameid[.@g])+" ได้ไม่เกิน  ^0055FF"+@itemgetmany+"^000000 ea. ";
+		}
+		else if (Zeny < (@zenyuse*@bought_quantity[.@g])){	
+			if (@bought_quantity[.@g] == 1)	mes "เงินที่ท่านเตรียมมามีไม่พอ ต้องใช้เงินจำนวน  "+@zenyuse+" Zeny ในการแลก "+getitemname(@bought_nameid[.@g])+"";
+			else if (@bought_quantity[.@g] >= 2)	mes "เงินที่ท่านเตรียมมามีไม่พอ ต้องใช้เงินจำนวน  "+(@zenyuse*@bought_quantity[.@g])+" Zeny ในการแลก "+getitemname(@bought_nameid[.@g])+" จำนวน ^0055FF"+@bought_quantity[.@g]+"^000000 ea.";
+		}
+		else if ((@bought_quantity[.@g] <= @itemgetmany) && (Zeny >= (@zenyuse*@bought_quantity[.@g]))){
+			set .@r,0;	set .@up,0;
+			for( set .@r,0; .@r < getarraysize(@itemuse); set .@r,.@r+1 ) {
+				if(.@up >= getarraysize(@itemuse)) break;
+				delitem @itemuse[.@up],@itemusemany[.@up]*@bought_quantity[.@g];
+				mes "-> "+getitemname(@itemuse[.@up])+" ได้ถูกนำไปใช้จำนวน ^0055FF"+(@itemusemany[.@up]*@bought_quantity[.@g])+"^000000 ea.";
+				set .@up,.@up+1;
+				continue;
+			}
+			if(@broken != 0) {	set .@failmake,100-@broken;	mes "^FF0000 -> [มีโอกาสเสียหาย]  "+.@failmake+" % ^000000";	}
+			if(@zenyuse != 0) {	
+				set Zeny,(Zeny-@zenyuse*@bought_quantity[.@g]);
+				mes "-> จำนวนเงินที่ต้องการ ^0055FF"+(@zenyuse*@bought_quantity[.@g])+"^000000 zeny";
+				mes "-> ต้องการใช้  Craft ItemS จำนวน ^0055FF"+@bought_quantity+"^000000 ชิ้น...";
+				mes "กำลังทำ "+getitemname(@bought_nameid[.@g])+" จำนวน ^0055FF"+@bought_quantity+"^000000 ชิ้น...";
+			}
+			next;
+			if(@broken != 0) {	
+				set .@RTget,rand(1,100);
+				if(@broken < .@RTget) {
+					emotion 23;
+					specialeffect2 155;
+					mes "ก๊อง ก๊อง ก๊อง ... !!";
+					mes "การทำItem ล้มเหลว เสียใจด้วย ... !!";
+					set @bought_quantity[.@g],0;
+				}
+				if(@broken >= .@RTget) {
+					emotion 21;
+					specialeffect2 154;
+					mes "ก๊อง ก๊อง ก๊อง ... !!";
+					mes "การทำItem เสร็จสมบูรณ์ ... !!";
+				}
+			} 
+			if(@broken == 0) {
+				emotion 33;
+				specialeffect2 488;
+			}
+			getitem @bought_nameid[.@g],@bought_quantity[.@g];
+		}	
+}
+dispbottom "=============================================";
+deletearray @bought_nameid[0],getarraysize(@bought_nameid);
+deletearray @bought_quantity[0],getarraysize(@bought_quantity);
+deletearray @itemuse[0],getarraysize(@itemuse);
+deletearray @itemusemany[0],getarraysize(@itemusemany);
+set @broken,0;	set @zenyuse, 0;
+end;
+}
+
+//oasis,181,100,4	duplicate(Craft-Shadow-Serve4)	NPC Craft Shadow Server4#01	21293

@@ -1,0 +1,63 @@
+/*
+=================== TERMS OF SERVICES. ===================
+1. ALL RIGHT RESERVED RE-SELLER OR SHARE SCRIPT TO PUBLISH.
+2. BUT YOU RE-SELLER OR SHARE SCRIPT WITH OUT UNAUTHORIZRD
+   I WILL ALL CANCEL MY SUPPORT FOR YOU.
+3. MAINTENANCE SCRIPTS WILL BE FREE SERVICES.
+4. I WILL NOT KEEP ANY INFORMATIONS FROMS YOU SERVER THAT
+   YOU SEND FOR ME.
+5. I HOPE YOU WILL ALL ACCEPT TERMS OF SERVICES.
+==========================================================
+Script. Bonus Shop																	 
+Create By. Athena Studio
+Bug Report. Kittisak Sarounram [ FB ]																					 
+Contact Us. Kittisak Sarounram [ FB ]																					 
+TEL. 0909183008 [ TRUE MOVE H ]																					 
+==========================================================
+*/
+
+oasis,140,108,4	script	Bonus Shop#1	10465,{
+	
+OnRetrun:
+	mes "[ ^0000ffBonus Shop^000000 ]";
+	mes "ยินดีต้อนรับสู่ร้านค้าโบนัส";
+	mes "คุณมีแต้มโบนัสจากการบริจาค";
+	mes "ให้กับเซิร์ฟเวอรเพื่อแลกของรางวัล";
+	mes "ได้หลากหลายอย่าง สนใจมั่ย...";
+	mes " ";
+	mes "^FF0000กรุณาเลือกรายการที่คุณต้องการ^000000";
+	next;
+	switch(select("~ แลกของรางวัล:~ ตรวจสอบแต้มโบนัส:~ ยกเลิกการสนทนา")) {
+	
+		case 1:
+		mes "[ ^0000ffBonus Shop^000000 ]";
+		mes "^FF0000สำคัญ ควรอ่านก่อน !^000000";
+		mes "ผู้เล่นสามารถแลกของรางวัลได้";
+		mes "จะต้องมีเงิน(Zeny) ในตัวละคร";
+		mes "ถึงแลกไอเท็มนั้นได้ งงมัยเอ๋ย!";
+		message strcharinfo(0),"[ Bonus : ร้านค้านี้ไม่มีผลการใช้ Skill DC ลดราคาสำหรับการซื้อไอเท็มร้านดังกล่าว ! ]";
+			callfunc "func_true_shop",1;
+		close;
+		
+		case 2:
+			mes "[ ตรวจสอบแต้มโบนัส ]";
+			mes "โปรดรอสักครู่..กำลังตรวจสอบ";
+			sleep2 1000;
+			next;
+			mes "[ ตรวจสอบแต้มโบนัส ]";
+			mes "คุณมีแต้มโบนัสทั้งหมด : ";
+			mes "=====================";
+			mes "^FF0000"+ callfunc("F_InsertComma",#CASHBONUS) +"^000000 Points";
+			mes "=====================";
+		close;
+		default:
+		mes "[ ^0000ffBonus Shop^000000 ]";
+		mes "Bye. แล้วพบกันใหม่ !"; 
+		close;
+	}
+OnInit:
+	waitingroom "[#]แลกของโบนัส ที่นี่",0;
+	setunittitle getnpcid(0),"ตู้แลกของโบนัส";
+end;
+
+}

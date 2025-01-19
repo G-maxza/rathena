@@ -1,0 +1,528 @@
+//===== quest_fire=================================
+oasis,126,80,4	script	QuestIcenew	HAZ_CHRONOS_BLUE,{
+	set .@gm_level, 99; // ระดับ GM ต้องใช้เพื่อเริ่ม / หยุดกิจกรรม
+
+	mes "[Quest Ice]";
+	mes "นี่คือทางเข้า ^FF0000Quest Ice^000000.";
+	next;
+	switch(select("^FF0000•^000000 เลือกระดับการเล่น.:^FF0000•^000000 ข้อมูล.:^FF0000•^000000 ยกเลิก.")) {
+	case 1:
+		if (.start != 1) {
+			mes "[Quest Ice]";
+			mes "Quest Iceปิดอยู่ในขณะนี้. เวลาทำการคือ:";
+			mes "04:00 น. ถึง 04:30 น.";
+			mes "08:00 น. ถึง 08:30 น.";
+			mes "12:00 น. ถึง 12:30 น.";
+			mes "16:00 น. ถึง 16:30 น.";
+			close;
+		}
+
+		if (.difficulty > 0) {
+			mes "[Quest Ice]";
+			mes "ผู้เล่นคนแรกได้เลือกระดับแล้ว: "+(.difficulty == 1 ? "ทั่วไป" : .difficulty == 2 ? "ยาก" : "ยากมาก")+".";
+			mes "คุณสามารถเข้าร่วมได้เฉพาะระดับนี้เท่านั้น.";
+			if (.difficulty == 1) {
+				set .zeny_cost, 50000000;
+				set .item_cost, 200;
+			} else if (.difficulty == 2) {
+				set .zeny_cost, 20000000;
+				set .item_cost, 150;
+			} else if (.difficulty == 3) {
+				set .zeny_cost, 10000000;
+				set .item_cost, 100;
+			}
+		} else {
+			mes "[Quest Ice]";
+			mes "เลือกระดับการเล่นที่คุณต้องการ:";
+			switch(select("^FF0000•^000000 ทั่วไป:^FF0000•^000000 ยาก:^FF0000•^000000 ยากมาก:")) {
+			case 1:
+				set .difficulty, 1;
+				set .zeny_cost, 50000000;
+				set .item_cost, 200;
+				break;
+			case 2:
+				set .difficulty, 2;
+				set .zeny_cost, 20000000;
+				set .item_cost, 150;
+				break;
+			case 3:
+				set .difficulty, 3;
+				set .zeny_cost, 10000000;
+				set .item_cost, 100;
+				break;
+			}
+		}
+
+		if (Zeny < .zeny_cost || countitem(7227) < .item_cost) {
+			mes "[Quest Ice]";
+			mes "คุณไม่มี Zeny หรือ Item 7227 เพียงพอสำหรับระดับนี้.";
+			mes "";
+			mes "ต้องการ:";
+			mes " - Zeny: "+.zeny_cost+"";
+			mes " - Item 7227: "+.item_cost+" ชิ้น";
+			close;
+		}
+
+		Zeny -= .zeny_cost;
+		delitem 7227, .item_cost;
+		announce strcharinfo(0)+" ได้เข้าสู่ Quest Ice (ระดับ "+(.difficulty == 1 ? "ทั่วไป" : .difficulty == 2 ? "ยาก" : "ยากมาก")+").", bc_npc;
+		percentheal 100,100;
+		warp "sp_ice", 103, 60;
+		close;
+
+	case 2:
+		mes "[Quest Ice]";
+		mes "ภายในคุณจะพบกับสัตว์ประหลาดหลายคลื่นที่แข็งแกร่งขึ้นในแต่ละระดับ.";
+		mes "";
+		mes "ระดับการเล่น:";
+		mes "แบ่งเป็น: 3 คลื่น";
+		mes " - ทั่วไป: monster 9 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes " - ทั่วไป: 3 กล่องสมบัติ";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยาก: monster 18 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยาก: 6 กล่องสมบัติ";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยากมาก: monster 30 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยากมาก: 10 กล่องสมบัติ";
+		mes "ระดับการเล่น:";
+		mes "ทุกระดับการเล่น:";
+		mes "Boss 1 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes "";
+		mes "รางวัลในแต่ละระดับจะขึ้นอยู่กับระดับความยากที่เลือก.";
+		close;
+	case 3:
+		mes "[Quest Ice]";
+		mes "ลาก่อน.";
+		close;
+	}
+OnStartEvent:
+OnClock0400:
+OnClock0800:
+OnClock1200:
+OnClock1600:
+	.start = 1;
+	enablenpc "QuestIcenew";
+	disablenpc "quest_Icenew#2";
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "sp_ice", .@map$, .@x, .@y;
+	killmonsterall "sp_ice";
+	announce "Quest Ice เปิด. เหตุการณ์จะเริ่มใน 5 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Ice จะเริ่มใน 4 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Ice จะเริ่มใน 3 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Ice จะเริ่มใน 2 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Ice จะเริ่มใน 1 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Ice ได้เริ่มขึ้นแล้ว!", bc_all;
+	disablenpc "QuestIcenew"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	if ( !getmapusers("sp_ice") )
+		goto OnStopEvent;
+
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_ice",73,152,98,118,"monster",30082,1,strnpcinfo(0)+"::OnquestIceDead";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestIceDead:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "sp_ice","Quest Ice : "+ .mob +" monsterที่เหลืออยู่ในรอบที่ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_ice","Quest Ice กำลังเข้าสู่รอบ 2...", bc_map;
+		sleep 5000;
+		goto OnquestIce2;
+	}
+	end;
+	
+OnquestIce2:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_ice",50,323,146,311,"monster",30789,1,strnpcinfo(0)+"::OnquestIceDead2";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestIceDead2:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "sp_ice","Quest Ice : "+ .mob +" monsterที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_ice","Quest Ice กำลังเข้าสู่รอบ 3...", bc_map;
+		sleep 5000;
+		goto OnquestIce3;
+	}
+	end;
+
+OnquestIce3:
+	if (.difficulty == 1) {
+		set .mob, 1;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 1;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 1;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_ice",74,273,117,212,"Boss",30986,1,strnpcinfo(0)+"::OnquestIceDead3";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+	
+OnquestIceDead3:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "sp_ice","Quest Ice : "+ .mob +" Bossที่เหลืออยู่ในรอบ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_ice","Quest Ice กำลังเข้าสู่รอบ 4...", bc_map;
+		sleep 5000;
+		goto OnquestIce4;
+	}
+	end;
+	
+OnquestIce4:
+	if (.difficulty == 1) {
+		set .mob, 3;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 6;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 10;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_ice",188,256,206,241,"Box",1324,1,strnpcinfo(0)+"::OnquestIceDead4";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestIceDead4:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "sp_ice","Quest Ice : "+ .mob +" Boxที่เหลืออยู่ในรอบ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_ice","Quest Ice กำลังเข้าสู่รอบ 5...", bc_map;
+		sleep 5000;
+		goto OnquestIce5;
+	}
+	end;
+	
+OnquestIce5:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_ice",174,197,203,166,"monster",30110,1,strnpcinfo(0)+"::OnquestIceDead5";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestIceDead5:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "sp_ice","Quest Ice : "+ .mob +" monsterที่เหลืออยู่ในรอบ 3.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_ice","Quest Ice กำลังเข้าสู่รอบ 6...", bc_map;
+		sleep 5000;
+		goto OnquestIce6;
+	}
+	end;
+
+OnquestIce6:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_ice",266,123,318,68,"monster",30132,1,strnpcinfo(0)+"::OnquestIceDead6";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestIceDead6:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "sp_ice","Quest Ice : "+ .mob +" monsterที่เหลืออยู่ในรอบ 4.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_ice","Quest Ice กำลังเข้าสู่รอบ 7...", bc_map;
+		sleep 5000;
+		goto OnquestIce7;
+	}
+	end;
+
+OnquestIce7:
+	if (.difficulty == 1) {
+		set .mob, 1;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 1;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 1;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_ice",266,123,318,68,"Boss",30985,1,strnpcinfo(0)+"::OnquestIceDead7";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestIceDead7:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "sp_ice","Quest Ice : "+ .mob +" Bossที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_ice","Quest Ice กำลังเข้าสู่รอบ 8...", bc_map;
+		sleep 5000;
+		goto OnquestIce8;
+	}
+	end;
+
+OnquestIce8:
+	if (.difficulty == 1) {
+		set .mob, 3;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 6;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 10;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_ice",266,123,318,68,"Box",1324,1,strnpcinfo(0)+"::OnquestIceDead8";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestIceDead8:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "sp_ice","Quest Ice : "+ .mob +" Boxที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_ice","Quest Ice กำลังเข้าสู่รอบ 9...", bc_map;
+		sleep 5000;
+		goto OnquestIce9;
+	}
+	end;
+OnquestIce9:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_ice",279,189,305,156,"monster",30036,1,strnpcinfo(0)+"::OnquestIceDead9";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestIceDead9:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "sp_ice","Quest Ice : "+ .mob +" monsterที่เหลืออยู่ในรอบ 5.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_ice","Quest Ice กำลังเข้าสู่รอบ 10...", bc_map;
+		sleep 5000;
+		goto OnquestIce10;
+	}
+	end;
+
+OnquestIce10:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_ice",268,329,335,264,"monster",30071,1,strnpcinfo(0)+"::OnquestIceDead10";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestIceDead10:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "sp_ice","Quest Ice : "+ .mob +" monsterที่เหลืออยู่ในรอบ6.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_ice","Quest Ice กำลังเข้าสู่รอบ 11...", bc_map;
+		sleep 5000;
+		goto OnquestIce11;
+	}
+	end;
+
+OnquestIce11:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_ice",268,329,335,264,"monster",30776,1,strnpcinfo(0)+"::OnquestIceDead11";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestIceDead11:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "sp_ice","Quest Ice : "+ .mob +" monsterที่เหลืออยู่ในรอบ7.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_ice","Quest Ice กำลังเข้าสู่รอบ 12...", bc_map;
+		sleep 5000;
+		goto OnquestIce12;
+	}
+	end;
+OnquestIce12:
+	if (.difficulty == 1) {
+		set .mob, 1;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 1;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 1;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_ice",268,329,335,264,"Boss",30752,1,strnpcinfo(0)+"::OnquestIceDead12";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestIceDead12:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "sp_ice","Quest Ice : "+ .mob +" Bossที่เหลืออยู่ในรอบสุดท้าย.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "sp_ice","Quest Ice : ขอแสดงความยินดี หีบสมบัติเหล่านี้เป็นของคุณ.", bc_map;
+		sleep 5000;
+		goto OnquestIce13;
+	}
+	end;
+
+OnquestIce13:
+	if (.difficulty == 1) {
+		set .mob, 3;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 6;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 20;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "sp_ice",268,329,335,264,"Box",1324,1,strnpcinfo(0)+"::OnIceBoxDead";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+	
+OnIceBoxDead:
+	.mob--;
+	mapannounce "sp_ice","Quest Ice : "+ strcharinfo(0) +" ได้เปิดหีบสมบัติที่ Quest Ice.", bc_all;
+	if ( .mob <= 0 )
+		goto OnStopEvent;
+	end;
+	
+OnStopEvent:
+	killmonsterall "sp_ice";
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "sp_ice", .@map$, .@x, .@y;
+	.start = .round = .difficulty = .mob = 0;
+	announce "[ระบบ] : Quest Ice  จบลงแล้ว!", bc_all;
+	enablenpc "quest_Icenew#2";
+	disablenpc "QuestIcenew"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	end;
+	
+OnClock0430:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock0830:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1230:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1630:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+}
+sp_ice,324,324,6	script	quest_Icenew#2	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+}
+
+sp_ice	mapflag	nowarp
+sp_ice	mapflag	nowarpto
+sp_ice	mapflag	noteleport
+sp_ice	mapflag	monster_noteleport
+sp_ice	mapflag	nosave	SavePoint
+sp_ice	mapflag	nomemo
+sp_ice	mapflag	nobranch
+sp_ice	mapflag	nopenalty
+sp_ice	mapflag	noicewall

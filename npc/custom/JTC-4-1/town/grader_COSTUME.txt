@@ -1,0 +1,108 @@
+morocc_in,129,55,1	script	Grade SHADOW	10078,{
+	// กำหนดไอเท็มที่ใช้ในการเกรด
+	set .itemGrade1, 7227;  // ไอเท็ม 7227
+	set .itemGrade2, 5001002;   // ไอเท็ม 5001002
+	set .itemGrade3, 5002004;   // ไอเท็ม 5002004
+	set .itemAmount1, 1000;   // จำนวนที่ใช้ 1000 ชิ้น
+	set .itemAmount2, 200;   // จำนวนที่ใช้ 200 ชิ้น
+	set .itemAmount3, 1;   // จำนวนที่ใช้ 1 ชิ้น
+	
+	// กำหนดอุปกรณ์ที่จะเกรด
+	setarray .@indices[1],EQI_SHADOW_ARMOR,EQI_SHADOW_WEAPON,EQI_SHADOW_SHIELD,EQI_SHADOW_SHOES,EQI_SHADOW_ACC_L,EQI_SHADOW_ACC_R;
+	setarray .@equipLocations[1],65536,131072,262144,524288,2097152,1048576;  // กำหนดตำแหน่งอุปกรณ์ (ต้องใช้ตำแหน่งที่ถูกต้องในเซิร์ฟเวอร์)
+	for(.@i = 1; .@i < getarraysize(.@indices); ++.@i){
+		if(getequipisequiped(.@indices[.@i])
+				&& (getenchantgrade(.@indices[.@i]) < 4)){
+			.@menu$ = .@menu$ + F_getpositionname(.@indices[.@i]);
+			.@isEquipped = 1;
+		}
+		.@menu$ = .@menu$ + ":";
+	}
+	
+	// Equipment checking
+	if (!.@isEquipped){
+		mes "ไม่พบอุปกรณ์สวมใส่";
+		close;
+	}
+	
+	mes "โปรดเลือกอุปกรณ์สวมใส่";
+	next;
+	
+	// Equipment selection
+	.@menuSelected = select(.@menu$);
+	.@gradePart = .@indices[.@menuSelected];
+	.@gradeItemId = getequipid(.@gradePart);
+	.@gradeLocation = .@equipLocations[.@menuSelected];
+	
+	// Equipment checking
+	if(!getequipisequiped(.@gradePart)){
+		mes "เกิดข้อผิดพลาด #1";
+		close;
+	}
+	
+	// Equipment checking
+	if (callfunc("F_IsEquipIDHack",.@gradePart,.@gradeItemId)){
+		mes "เกิดข้อผิดพลาด #2";
+		close;
+	}
+	
+	// ตรวจสอบค่า refine ของอุปกรณ์
+	if (getequiprefinerycnt(.@gradePart) < 15){
+		mes "Itemของอุปกรณ์ต้องตีบวก 15 ก่อน เพื่อที่จะ Grade ได้";
+		close;
+	}
+
+	// การตรวจสอบไอเท็มที่ต้องการใช้ในการเกรด
+	// คำนวณจำนวนไอเท็มที่ต้องการใช้ตามระดับการเกรด
+	// จำนวนไอเท็มจะเพิ่มขึ้นตามระดับของเกรด
+	.@requiredAmount1 = .itemAmount1 * (getenchantgrade(.@gradePart) + 1); // ไอเท็ม 7227 คูณตามระดับการเกรด
+	.@requiredAmount2 = .itemAmount2 * (getenchantgrade(.@gradePart) + 1); // ไอเท็ม 5001002 คูณตามระดับการเกรด
+	.@requiredAmount3 = .itemAmount3 * (getenchantgrade(.@gradePart) + 1); // ไอเท็ม 5002004 คูณตามระดับการเกรด
+	
+	// การตรวจสอบไอเท็มที่ต้องการใช้ในการเกรด
+	if (countitem(.itemGrade1) < .@requiredAmount1 || countitem(.itemGrade2) < .@requiredAmount2 || countitem(.itemGrade3) < .@requiredAmount3){
+		mes "จำนวนไอเท็มไม่เพียงพอ";
+		close;
+	}
+	mes "^FF0000สิ่งที่ต้องรู้^000000";
+	mes "^0000CC-1. Itemของอุปกรณ์ต้องตีบวก 15 ก่อน เพื่อที่จะ Grade ได้^000000 ";
+	mes "^0000CC-เมื่อทำการ Grade 1 ระดับ (ระดับการตีบวกจะถูกรีเส็ทเป็น 0 )^000000 ";
+	mes "^0000CC-2. สวมใส่อุปกรณ์ ก่อน ที่จะ Grade^000000 ";
+	mes "^0000CC-3. โปรดนำไอเท็มที่ใช้ในการ Grade มาให้เพียงพอ ก่อน ที่จะ Grade^000000 ";
+	next;
+	mes "^FF0000ไอเท็มที่ใช้ในการ Grade^000000";
+	mes "Grade^0000CC D^000000 ใช้" + Red(100000) + "z" + mesitemlink( 7227 ) + "จำนวนที่ใช้" + Red(1000) + "." + mesitemlink( 5001002 ) + "จำนวนที่ใช้" + Red(200) + "." + mesitemlink( 5002004 ) + "จำนวนที่ใช้" + Red(1) + ".";
+	mes "Grade^0000CC B^000000 ใช้" + Red(1000000) + "z" + mesitemlink( 7227 ) + "จำนวนที่ใช้" + Red(2000) + "." + mesitemlink( 5001002 ) + "จำนวนที่ใช้" + Red(400) + "." + mesitemlink( 5002004 ) + "จำนวนที่ใช้" + Red(2) + ".";
+	mes "Grade^0000CC C^000000 ใช้" + Red(10000000) + "z" + mesitemlink( 7227 ) + "จำนวนที่ใช้" + Red(3000) + "." + mesitemlink( 5001002 ) + "จำนวนที่ใช้" + Red(600) + "." + mesitemlink( 5002004 ) + "จำนวนที่ใช้" + Red(3) + ".";
+	mes "Grade^0000CC A^000000 ใช้" + Red(100000000) + "z" + mesitemlink( 7227 ) + "จำนวนที่ใช้" + Red(4000) + "." + mesitemlink( 5001002 ) + "จำนวนที่ใช้" + Red(800) + "." + mesitemlink( 5002004 ) + "จำนวนที่ใช้" + Red(4) + ".";
+	next;
+	.@upgradeMode = select("เพิ่ม 1 ระดับ:ยกเลิก");
+	if(.@upgradeMode >= 3)
+	close;
+	// Get current grade
+	.@currentGrade = getenchantgrade(.@gradePart);
+	.@loopAmount = (.@upgradeMode == 1) ? 1 : (4 - .@currentGrade);
+	for(.@i = 0; .@i < .@loopAmount; .@i++){
+		.@price = .prices[.@currentGrade];
+		if(Zeny < .@price){
+			mes "Zeny ไม่เพียงพอ";
+			close;
+		}
+		ZenyPay(.@price);
+		// ใช้ไอเท็ม 7227 และ 501
+		delitem(.itemGrade1, .@requiredAmount1);
+		delitem(.itemGrade2, .@requiredAmount2);
+		delitem(.itemGrade3, .@requiredAmount3);
+		atcommand "@grade " + .@gradeLocation + " +1";
+		atcommand "@refine " + .@gradeLocation + " -20";
+		.@currentGrade++;
+		specialeffect2 454;
+	}
+	mes getitemname(getequipid(.@gradePart)) + " Grade " + Blue(GetGradeName(.@currentGrade));
+	close;
+	
+OnInit:
+	waitingroom strnpcinfo(0),0;
+	setarray .prices,100000,1000000,10000000,100000000;
+	end;
+}

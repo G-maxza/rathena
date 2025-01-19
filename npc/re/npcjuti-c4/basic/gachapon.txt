@@ -1,0 +1,352 @@
+/*
+=================== TERMS OF SERVICES. ===================
+1. ALL RIGHT RESERVED RE-SELLER OR SHARE SCRIPT TO PUBLISH.
+2. BUT YOU RE-SELLER OR SHARE SCRIPT WITH OUT UNAUTHORIZRD
+   I WILL ALL CANCEL MY SUPPORT FOR YOU.
+3. MAINTENANCE SCRIPTS WILL BE FREE SERVICES.
+4. I WILL NOT KEEP ANY INFORMATIONS FROMS YOU SERVER THAT
+   YOU SEND FOR ME.
+5. I HOPE YOU WILL ALL ACCEPT TERMS OF SERVICES.
+==========================================================
+Script. Gachapon																		 
+Create By. Athena Studio
+Bug Report. Kittisak Sarounram [ FB ]																					 
+Contact Us. Kittisak Sarounram [ FB ]																					 
+TEL. 0909183008 [ TRUE MOVE H ]																					 
+==========================================================
+*/
+
+-	shop	ex.gachapon	FAKE_NPC,410139:100000,410129:100000,410088:100000,410124:100000,410119:100000,410066:100000,410064:100000,410007:100000,410000:100000,400113:100000,19391:100000,420223:100000,420180:100000,6232:100000,6228:100000,6238:100000,6239:100000,18508:100000,26100035:100000,26100036:100000,26100037:100000,26100001:100000,26100002:100000,26100003:100000,26100004:100000,26100005:100000,26100006:100000,26100007:100000,26100008:100000,26100020:100000,26100021:100000,26100022:100000,26100023:100000,26100025:100000,26100026:100000,26100027:100000,26100030:100000,26100031:100000,26100032:100000,26100040:100000,26100041:100000,26100042:100000,26100043:100000,6635:100000,13549:100000,13548:100000,12411:100000,12412:100000,20000023:100000
+
+oasis,145,108,4	script	Gachapon Donate	10375,{
+	if (checkweight(1301,1) == 0) {
+		mes "- โปรดหยุดก่อน!! -";
+		mes "- เจ้าแบกของมามากเกิน, -";
+		mes "- มันเป็นไปไม่ได้ที่เจ้าจะรับของได้อีก, -";
+		mes "- กรุณาไปลดน้ำหนักลงก่อน, -";
+		mes "- แล้วค่อยกลับมาใหม่! -";
+		close;
+	}
+	mes "[ Gachapon Donate ]";
+	mes "ถ้าหากต้องการที่จะสุ่มรางวัลเสียงโชคจากกาชาปอง จำเป็นที่จะต้องมีใช้ Donate Ticket 1 Ea เพื่อที่จะได้รับของรางวัลสุดพิเศษ";
+	next;
+	switch(select("~ เริ่มทำการสุ่มกาชาปอง:~ รายการของรางวัล"))
+	{
+		case 1:
+			//if (Zeny < .zenyuse) {
+		//mes "ขอโทษด้วย, เจ้ามีเงินไม่พอ.";
+		//close;
+		//	}
+			if (countitem(20000024) <= 0) {
+				mes "ขอโทษด้วย, เจ้าไม่มี "+getitemname(20000024)+".";
+				close;
+			}
+			delitem 20000024,1;
+		//	set Zeny, Zeny - .zenyuse;
+			doevent "rnd_gachapon::OnMenu";
+			end;
+			
+		case 2:
+			callshop "ex.gachapon",1;
+			npcshopattach "ex.gachapon";
+			end;
+	}
+	end;
+	
+OnBuyItem:
+	for ( set .@i, 0; .@i < getarraysize(@bought_nameid); set .@i, .@i+1 )
+	{
+		mes "[ Gachapon Slot ]";
+		mes "ไอเท็มมีไว้ดูอย่างเดียวนะ";
+		close;
+	}
+	deletearray(@bought_nameid, getarraysize(@bought_nameid));
+	end;
+	
+OnInit:
+		.npc$  = "[^0000FF "+strnpcinfo(1)+" ^000000]";
+		.sb$ = "~";
+		.msg$ = "ตู้กาชาปอง";
+		setunittitle getnpcid(0),.msg$;
+	    waitingroom "ตู้กาชาทิกเก็ต",0;
+}
+
+-	script	rnd_gachapon	FAKE_NPC,{
+OnMenu:
+	setarray .@slot_img_1$[0],"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ,"CARD_OF_REAPER_R.bmp"
+							 ;
+							 
+	// Reward
+	setarray .@slot_img_1_i[0],26100035
+								,26100036
+								,26100037
+								,26100001
+								,26100002
+								,26100003
+								,26100004
+								,26100005
+								,26100006
+								,26100007
+								,26100008
+								,26100020
+								,26100021
+								,26100022
+								,26100023
+								,26100025
+								,26100026
+								,26100027
+								,26100030
+								,26100031
+								,26100032
+								,26100033
+								,26100040
+								,26100041
+								,26100042
+								,26100043
+								,6635
+								,13549
+								,13548
+								,12412
+								,12411
+								,20000023
+								,6238
+								,6239
+								,18508
+								,6232
+								,6228
+								,410139
+								,410129
+								,410088
+								,410124
+								,410119
+								,410066
+								,410064
+								,410007
+								,410000
+								,400113
+								,19391
+								,420223
+								,420180
+							  ;
+							
+	// Reward Amount
+	setarray .@slot_img_1_am[0],1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+							   ;
+							   
+	// Percentage
+	setarray .@slot_img_1_[0],2
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+								,1
+							 ;
+
+	while(1)
+	{
+		set .@pos,rand((getarraysize(.@slot_img_1$)-1));
+
+		if (.@slot_img_1_[.@pos] >= rand(100))
+		{
+			break;
+		}
+
+	}
+	set .@count,getarraysize(.@slot_img_1$);
+	while(1)
+	{
+		if ( .@count_ >= .@count )
+			set .@count_,0;
+		if ( .@slot <= 100 )
+			set .@spd,.@spd+1;
+		else if ( .@slot <= 140 )
+			set .@spd,.@spd+10;
+		else if ( .@slot <= 150 )
+			set .@spd,.@spd+50;
+		else if ( .@slot <= 155 )
+			set .@spd,.@spd+5;
+		cutin(.@slot_img_1$[.@count_],4);
+		if ( .@slot >= 40 && .@count_ == .@pos )
+			break;
+		set .@slot,.@slot+1;
+		set .@count_,.@count_+1;
+		//sleep2 .@spd;
+	}
+	if(.@pos >= 12){
+	announce "ผู้เล่น "+strcharinfo(0)+" ได้รับไอเท็ม "+getitemname(.@slot_img_1_i[.@pos])+" จากการสุ่มกาชาปองตู้ 1 ขอแสดงความยินดีด้วย !!",0,0xfc68a0;
+	}
+	getitem .@slot_img_1_i[.@pos],.@slot_img_1_am[.@pos];
+	//mes "คุณได้รับไอเทม "+getitemname(.@slot_img_1_i[.@pos])+"";
+	//sleep2 1000;
+	cutin "",255;
+	//close;
+}

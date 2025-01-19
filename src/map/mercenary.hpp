@@ -4,7 +4,7 @@
 #ifndef MERCENARY_HPP
 #define MERCENARY_HPP
 
-#include <common/cbasetypes.hpp>
+#include "../common/cbasetypes.hpp"
 
 #include "status.hpp" // struct status_data, struct status_change
 #include "unit.hpp" // struct unit_data
@@ -48,11 +48,11 @@ struct s_mercenary_data {
 
 	std::shared_ptr<s_mercenary_db> db;
 	s_mercenary mercenary;
-	std::unordered_map<uint16, int32> scd;
+	std::vector<uint16> blockskill;
 
-	int32 masterteleport_timer;
+	int masterteleport_timer;
 	map_session_data *master;
-	int32 contract_timer;
+	int contract_timer;
 
 	unsigned devotion_flag : 1;
 };
@@ -71,22 +71,22 @@ public:
 
 extern MercenaryDatabase mercenary_db;
 
-bool mercenary_create(map_session_data *sd, uint16 class_, uint32 lifetime);
+bool mercenary_create(map_session_data *sd, uint16 class_, unsigned int lifetime);
 bool mercenary_recv_data(s_mercenary *merc, bool flag);
 void mercenary_save(s_mercenary_data *md);
 
-void mercenary_heal(s_mercenary_data *md, int32 hp, int32 sp);
+void mercenary_heal(s_mercenary_data *md, int hp, int sp);
 bool mercenary_dead(s_mercenary_data *md);
 
-int32 mercenary_delete(s_mercenary_data *md, int32 reply);
+int mercenary_delete(s_mercenary_data *md, int reply);
 void mercenary_contract_stop(s_mercenary_data *md);
 
 t_tick mercenary_get_lifetime(s_mercenary_data *md);
 e_MercGuildType mercenary_get_guild(s_mercenary_data *md);
-int32 mercenary_get_faith(s_mercenary_data *md);
-void mercenary_set_faith(s_mercenary_data *md, int32 value);
-int32 mercenary_get_calls(s_mercenary_data *md);
-void mercenary_set_calls(s_mercenary_data *md, int32 value);
+int mercenary_get_faith(s_mercenary_data *md);
+void mercenary_set_faith(s_mercenary_data *md, int value);
+int mercenary_get_calls(s_mercenary_data *md);
+void mercenary_set_calls(s_mercenary_data *md, int value);
 void mercenary_kills(s_mercenary_data *md);
 
 uint16 mercenary_checkskill(s_mercenary_data *md, uint16 skill_id);

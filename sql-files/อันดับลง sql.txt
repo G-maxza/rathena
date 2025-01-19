@@ -1,0 +1,9 @@
+อันดับลง sql
+1.main.sql
+2.logs.sql
+3.payment.sql
+4.tbl_member.sql
+5.roulette_default_data.sql
+6.extended_vending.sql
+7.Emote.sql
+8.storage_collection.sql

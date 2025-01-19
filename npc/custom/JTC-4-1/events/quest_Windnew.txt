@@ -1,0 +1,546 @@
+//===== quest_fire=================================
+oasis,114,80,4	script	QuestWindnew	qq0009qq,{
+	set .@gm_level, 99; // ระดับ GM ต้องใช้เพื่อเริ่ม / หยุดกิจกรรม
+
+	mes "[Quest Wind]";
+	mes "นี่คือทางเข้า ^FF0000Quest Wind^000000.";
+	next;
+	switch(select("^FF0000•^000000 เลือกระดับการเล่น.:^FF0000•^000000 ข้อมูล.:^FF0000•^000000 ยกเลิก.")) {
+	case 1:
+		if (.start != 1) {
+			mes "[Quest Wind]";
+			mes "Quest Windปิดอยู่ในขณะนี้. เวลาทำการคือ:";
+			mes "06:00 น. ถึง 06:30 น.";
+			mes "10:00 น. ถึง 10:30 น.";
+			mes "14:00 น. ถึง 14:30 น.";
+			mes "18:00 น. ถึง 18:30 น.";
+			close;
+		}
+
+		if (.difficulty > 0) {
+			mes "[Quest Wind]";
+			mes "ผู้เล่นคนแรกได้เลือกระดับแล้ว: "+(.difficulty == 1 ? "ทั่วไป" : .difficulty == 2 ? "ยาก" : "ยากมาก")+".";
+			mes "คุณสามารถเข้าร่วมได้เฉพาะระดับนี้เท่านั้น.";
+			if (.difficulty == 1) {
+				set .zeny_cost, 50000000;
+				set .item_cost, 200;
+			} else if (.difficulty == 2) {
+				set .zeny_cost, 20000000;
+				set .item_cost, 150;
+			} else if (.difficulty == 3) {
+				set .zeny_cost, 10000000;
+				set .item_cost, 100;
+			}
+		} else {
+			mes "[Quest Wind]";
+			mes "เลือกระดับการเล่นที่คุณต้องการ:";
+			switch(select("^FF0000•^000000 ทั่วไป:^FF0000•^000000 ยาก:^FF0000•^000000 ยากมาก:")) {
+			case 1:
+				set .difficulty, 1;
+				set .zeny_cost, 50000000;
+				set .item_cost, 200;
+				break;
+			case 2:
+				set .difficulty, 2;
+				set .zeny_cost, 20000000;
+				set .item_cost, 150;
+				break;
+			case 3:
+				set .difficulty, 3;
+				set .zeny_cost, 10000000;
+				set .item_cost, 100;
+				break;
+			}
+		}
+
+		if (Zeny < .zeny_cost || countitem(7227) < .item_cost) {
+			mes "[Quest Wind]";
+			mes "คุณไม่มี Zeny หรือ Item 7227 เพียงพอสำหรับระดับนี้.";
+			mes "";
+			mes "ต้องการ:";
+			mes " - Zeny: "+.zeny_cost+"";
+			mes " - Item 7227: "+.item_cost+" ชิ้น";
+			close;
+		}
+
+		Zeny -= .zeny_cost;
+		delitem 7227, .item_cost;
+		announce strcharinfo(0)+" ได้เข้าสู่ Quest Wind (ระดับ "+(.difficulty == 1 ? "ทั่วไป" : .difficulty == 2 ? "ยาก" : "ยากมาก")+").", bc_npc;
+		percentheal 100,100;
+		warp "que_qaru01", 73, 272;
+		close;
+
+	case 2:
+		mes "[Quest Wind]";
+		mes "ภายในคุณจะพบกับสัตว์ประหลาดหลายคลื่นที่แข็งแกร่งขึ้นในแต่ละระดับ.";
+		mes "";
+		mes "ระดับการเล่น:";
+		mes "แบ่งเป็น: 3 คลื่น";
+		mes " - ทั่วไป: monster 9 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes " - ทั่วไป: 3 กล่องสมบัติ";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยาก: monster 18 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยาก: 6 กล่องสมบัติ";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยากมาก: monster 30 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยากมาก: 10 กล่องสมบัติ";
+		mes "ระดับการเล่น:";
+		mes "ทุกระดับการเล่น:";
+		mes "Boss 1 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes "";
+		mes "รางวัลในแต่ละระดับจะขึ้นอยู่กับระดับความยากที่เลือก.";
+		close;
+	case 3:
+		mes "[Quest Wind]";
+		mes "ลาก่อน.";
+		close;
+	}
+OnStartEvent:
+OnClock0600:
+OnClock1000:
+OnClock1400:
+OnClock1800:
+	.start = 1;
+	enablenpc "QuestWindnew";
+	disablenpc "quest_Windnew#2";
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "que_qaru01", .@map$, .@x, .@y;
+	killmonsterall "que_qaru01";
+	announce "Quest Wind เปิด. เหตุการณ์จะเริ่มใน 5 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Wind จะเริ่มใน 4 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Wind จะเริ่มใน 3 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Wind จะเริ่มใน 2 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Wind จะเริ่มใน 1 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Wind ได้เริ่มขึ้นแล้ว!", bc_all;
+	disablenpc "QuestWindnew"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	enablenpc "quest_Windnew#3";
+	enablenpc "quest_Windnew#4";
+	if ( !getmapusers("que_qaru01") )
+		goto OnStopEvent;
+
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "que_qaru01",56,326,122,241,"monster",30024,1,strnpcinfo(0)+"::OnquestWindDead";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestWindDead:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "que_qaru01","Quest Wind : "+ .mob +" monsterที่เหลืออยู่ในรอบที่ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "que_qaru01","Quest Wind กำลังเข้าสู่รอบ 2...", bc_map;
+		sleep 5000;
+		goto OnquestWind2;
+	}
+	end;
+	
+OnquestWind2:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "que_qaru01",65,173,79,91,"monster",30104,1,strnpcinfo(0)+"::OnquestWindDead2";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestWindDead2:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "que_qaru01","Quest Wind : "+ .mob +" monsterที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "que_qaru01","Quest Wind กำลังเข้าสู่รอบ 3...", bc_map;
+		sleep 5000;
+		goto OnquestWind3;
+	}
+	end;
+
+OnquestWind3:
+	if (.difficulty == 1) {
+		set .mob, 1;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 1;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 1;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "que_qaru01",87,85,151,71,"Boss",30107,1,strnpcinfo(0)+"::OnquestWindDead3";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+	
+OnquestWindDead3:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "que_qaru01","Quest Wind : "+ .mob +" Bossที่เหลืออยู่ในรอบ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "que_qaru01","Quest Wind กำลังเข้าสู่รอบ 4...", bc_map;
+		sleep 5000;
+		goto OnquestWind4;
+	}
+	end;
+	
+OnquestWind4:
+	if (.difficulty == 1) {
+		set .mob, 3;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 6;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 10;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "que_qaru01",173,153,195,107,"Box",1324,1,strnpcinfo(0)+"::OnquestWindDead4";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestWindDead4:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "que_qaru01","Quest Wind : "+ .mob +" Boxที่เหลืออยู่ในรอบ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "que_qaru01","Quest Wind กำลังเข้าสู่รอบ 5...", bc_map;
+		sleep 5000;
+		goto OnquestWind5;
+	}
+	end;
+	
+OnquestWind5:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "que_qaru01",108,152,157,114,"monster",30831,1,strnpcinfo(0)+"::OnquestWindDead5";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestWindDead5:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "que_qaru01","Quest Wind : "+ .mob +" monsterที่เหลืออยู่ในรอบ 3.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "que_qaru01","Quest Wind กำลังเข้าสู่รอบ 6...", bc_map;
+		sleep 5000;
+		goto OnquestWind6;
+	}
+	end;
+
+OnquestWind6:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "que_qaru01",112,196,175,179,"monster",30084,1,strnpcinfo(0)+"::OnquestWindDead6";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestWindDead6:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "que_qaru01","Quest Wind : "+ .mob +" monsterที่เหลืออยู่ในรอบ 4.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "que_qaru01","Quest Wind กำลังเข้าสู่รอบ 7...", bc_map;
+		sleep 5000;
+		goto OnquestWind7;
+	}
+	end;
+
+OnquestWind7:
+	if (.difficulty == 1) {
+		set .mob, 1;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 1;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 1;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "que_qaru01",239,220,255,201,"Boss",31187,1,strnpcinfo(0)+"::OnquestWindDead7";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestWindDead7:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "que_qaru01","Quest Wind : "+ .mob +" Bossที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "que_qaru01","Quest Wind กำลังเข้าสู่รอบ 8...", bc_map;
+		sleep 5000;
+		goto OnquestWind8;
+	}
+	end;
+
+OnquestWind8:
+	if (.difficulty == 1) {
+		set .mob, 3;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 6;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 10;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "que_qaru01",239,220,255,201,"Box",1324,1,strnpcinfo(0)+"::OnquestWindDead8";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestWindDead8:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "que_qaru01","Quest Wind : "+ .mob +" Boxที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "que_qaru01","Quest Wind กำลังเข้าสู่รอบ 9...", bc_map;
+		sleep 5000;
+		goto OnquestWind9;
+	}
+	end;
+OnquestWind9:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "que_qaru01",214,315,285,278,"monster",30062,1,strnpcinfo(0)+"::OnquestWindDead9";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestWindDead9:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "que_qaru01","Quest Wind : "+ .mob +" monsterที่เหลืออยู่ในรอบ 5.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "que_qaru01","Quest Wind กำลังเข้าสู่รอบ 10...", bc_map;
+		sleep 5000;
+		goto OnquestWind10;
+	}
+	end;
+
+OnquestWind10:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "que_qaru01",214,315,285,278,"monster",30065,1,strnpcinfo(0)+"::OnquestWindDead10";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestWindDead10:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "que_qaru01","Quest Wind : "+ .mob +" monsterที่เหลืออยู่ในรอบ6.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "que_qaru01","Quest Wind กำลังเข้าสู่รอบ 11...", bc_map;
+		sleep 5000;
+		goto OnquestWind11;
+	}
+	end;
+
+OnquestWind11:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "que_qaru01",236,351,267,330,"monster",30755,1,strnpcinfo(0)+"::OnquestWindDead11";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestWindDead11:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "que_qaru01","Quest Wind : "+ .mob +" monsterที่เหลืออยู่ในรอบ7.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "que_qaru01","Quest Wind กำลังเข้าสู่รอบ 12...", bc_map;
+		sleep 5000;
+		goto OnquestWind12;
+	}
+	end;
+OnquestWind12:
+	if (.difficulty == 1) {
+		set .mob, 1;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 1;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 1;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "que_qaru01",242,373,261,352,"Boss",30874,1,strnpcinfo(0)+"::OnquestWindDead12";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestWindDead12:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "que_qaru01","Quest Wind : "+ .mob +" Bossที่เหลืออยู่ในรอบสุดท้าย.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "que_qaru01","Quest Wind : ขอแสดงความยินดี หีบสมบัติเหล่านี้เป็นของคุณ.", bc_map;
+		sleep 5000;
+		goto OnquestWind13;
+	}
+	end;
+
+OnquestWind13:
+	if (.difficulty == 1) {
+		set .mob, 3;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 6;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 20;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "que_qaru01",242,373,261,352,"Box",1324,1,strnpcinfo(0)+"::OnWindBoxDead";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+	
+OnIWindBoxDead:
+	.mob--;
+	mapannounce "que_qaru01","Quest Wind : "+ strcharinfo(0) +" ได้เปิดหีบสมบัติที่ Quest Wind.", bc_all;
+	if ( .mob <= 0 )
+		goto OnStopEvent;
+	end;
+	
+OnStopEvent:
+	killmonsterall "que_qaru01";
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "que_qaru01", .@map$, .@x, .@y;
+	.start = .round = .difficulty = .mob = 0;
+	announce "[ระบบ] : Quest Wind  จบลงแล้ว!", bc_all;
+	enablenpc "quest_Windnew#2";
+	disablenpc "QuestWindnew"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	disablenpc "quest_Windnew#3";
+	disablenpc "quest_Windnew#4";
+	end;
+	
+OnClock0630:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1030:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1430:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1830:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+}
+que_qaru01,251,365,6	script	quest_Windnew#2	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+}
+que_qaru01,132,171,4	script	quest_Windnew#3	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "que_qaru01",131,135;
+	end;
+}
+que_qaru01,114,164,4	script	quest_Windnew#4	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "que_qaru01",129,103;
+	end;
+}
+
+que_qaru01	mapflag	nowarp
+que_qaru01	mapflag	nowarpto
+que_qaru01	mapflag	noteleport
+que_qaru01	mapflag	monster_noteleport
+que_qaru01	mapflag	nosave	SavePoint
+que_qaru01	mapflag	nomemo
+que_qaru01	mapflag	nobranch
+que_qaru01	mapflag	nopenalty
+que_qaru01	mapflag	noicewall

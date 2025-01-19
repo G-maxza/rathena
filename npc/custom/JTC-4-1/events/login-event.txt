@@ -1,0 +1,38 @@
+-	script	LoginEvent	-1,{
+	end;
+	
+OnPCLoginEvent:
+	// Unexpected error
+	setpcblock PCBLOCK_ALL,false;
+	
+	// Important loots
+	atcommand "@alootid +10000000";
+	
+	if(!isInit){
+		isInit = 1;		
+		percentheal 100,100;
+	}
+	
+	query_sql("SELECT `char_id` FROM `char` WHERE `online` = '1'",.@charId);
+	freeloop(1);
+	.@sameIp = 0;
+	for(.@i = 0; .@i < getarraysize(.@charId); .@i++){
+		if(getcharip(.@charId[.@i]) == getcharip()){
+			.@sameIp++;
+			
+			if(.@sameIp > 3){
+				mes "ไม่สามารถเล่นพร้อมกันได้มากกว่า 3 จอ";
+				addtimer 1000,strnpcinfo(0) + "::OnKick";
+				break;
+			}
+			
+		}
+	}
+	freeloop(0);
+	
+	end;
+	
+OnKick:
+	atcommand "@kick " + strcharinfo(0);
+	end;
+}

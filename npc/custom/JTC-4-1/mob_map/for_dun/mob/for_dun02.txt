@@ -1,0 +1,171 @@
+//===== for dun02 monster=================================
+oasis,134,194,4	script	for_dun02_Controller#1	GATE_SKYBLUE,{
+	set .@gm_level, 99; // ระดับ GM ต้องใช้เพื่อเริ่ม / หยุดกิจกรรม
+
+	mes "[for dun02]";
+	mes "ยินดีต้อนรับสู่ for dun02!";
+	next;
+	switch(select("^FF0000•^000000 เข้าสู่่for dun02.:" + ((getgmlevel() >= .@gm_level) ? "^FF0000•^000000 GM Menu." : "") + ":^FF0000•^000000 ยกเลิก.")) {
+	case 1:
+		if (.start != 1) { // ระยะเวลาการลงทะเบียน
+			mes "[for dun02]";
+			mes "for dun02 ถูกปิดแล้ว.";
+			mes "มันจะเปิดในเวลาเหล่านี้:";
+			mes "03:00 และ 16.00"; // แสดงเวลาของคุณที่นี่
+			close;
+		}
+		if (BaseLevel < 260 || Zeny < 1000000 || countitem(7227) < 10) {
+			mes "คุณไม่สามารถเข้าสู่ for dun02 ได้เพราะไม่ตรงตามเงื่อนไข";
+			mes "ข้อกำหนด:";
+			mes " - Base Level ต้อง 260 ขึ้นไป";
+			mes " - ใช้ Zeny 1,000,000";
+			mes " - ใช้ไอเท็ม ID 7227 จำนวน 10 ชิ้น";
+		}
+		Zeny -= 1000000;
+		delitem 7227, 10;
+		announce strcharinfo(0) + " ได้เข้าสู่่ for dun02.", bc_npc;
+		warp "for_dun02", 278, 16;
+		close;
+	case 2:
+		mes "[for dun02]";
+		switch (.start) { // event states
+			case 0: mes "for dun02 ยังไม่ได้เริ่ม."; break;
+			case 1: mes "for dun02 กำลังรับผู้เข้าร่วม."; break;
+		}
+		next;
+		switch(select("^FF0000•^000000 เริ่มกิจกรรม.:^FF0000•^000000 หยุดกิจกรรม.:^FF0000•^000000 ยกเลิก.")) {
+		case 1:
+			mes "[for dun02]";
+			if (.start)
+				mes "for dun02 เริ่มแล้ว.";
+			else {
+				mes "ที่เริ่มต้น for dun02...";
+				donpcevent strnpcinfo(0)+"::OnStartEvent";
+			}
+			close;
+		case 2:
+			mes "[for dun02]";
+			if (!.start)
+				mes "for dun02 ยังไม่ได้เริ่ม.";
+			else {
+				mes "การหยุด for dun02...";
+				donpcevent strnpcinfo(0)+"::OnStopEvent";
+			}
+			close;
+		case 3:
+			break;
+		}
+		break;
+	case 3:
+		break;
+	}
+	mes "[for dun02]";
+	mes "ลาก่อน.";
+	close;
+	
+OnClock0300:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0500:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+
+OnClock1600:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1800:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnSpawnMonsters:
+	.start = 2;
+	.round = 1;
+	set .mob, 1; // ตั้งค่าจำนวนมอนสเตอร์ที่ต้องการ
+	// สร้างมอนสเตอร์ ID 22239 จำนวน 1 ตัว
+	set .@monster_count1, 1;
+	for (set .@i, 0; .@i < .@monster_count1; set .@i, .@i + 1) {
+		monster "for_dun02", 0 + rand(0), 0 + rand(0), "Boss Monster",22239,1,strnpcinfo(0)+"::OnMonsterKilled";
+	}
+	end;
+	
+OnMonsterKilled:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "Boss Monster"+ .mob +"Bossที่เหลืออยู่ในแผนที่.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "Boss Monster ถูกำจัดหมดเเล้ว", bc_map;
+		goto OnSpawnMonsters;
+	}
+	end;
+	
+OnStartEvent:
+	.start = 1;
+	enablenpc "for_dun02_Controller#1";
+	disablenpc "เควสfor dun02#2"; // ปิด NPC ที่ใช้ในการออกจากกิจกรรม
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "for_dun02", .@map$, .@x, .@y;
+	announce "for dun02 จะเริ่มใน 5 นาที.", bc_all;
+	sleep 60000*5;
+	announce "for dun02 ได้เริ่มขึ้นแล้ว!", bc_all;
+	disablenpc "for_dun02_Controller#1"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	donpcevent strnpcinfo(0) + "::OnSpawnMonsters"; // เรียกใช้งานฟังก์ชันเกิดมอนสเตอร์
+	end;
+	
+OnStopEvent:
+	announce "for dun01ถูกปิดแล้ว.", bc_all;
+	killmonsterall "for_dun02"; // ลบมอนสเตอร์ทั้งหมดในแผนที่
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "for_dun02", .@map$, .@x, .@y;
+	disablenpc "for_dun02_Controller#1"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	enablenpc "เควสfor dun02#2";
+	.start = .round = .mob = 0; // รีเซ็ตสถานะของกิจกรรมทั้งหมด
+	end;
+	
+OnInit:
+	waitingroom "for dun02 เปิด 03:00 และ 16:00 น.",0;
+	end;
+}
+for_dun02,278,16,4	script	เควสfor dun02#2	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+}
+
+for_dun02	mapflag	nowarp
+for_dun02	mapflag	nowarpto
+for_dun02	mapflag	nosave	SavePoint
+for_dun02	mapflag	nomemo
+for_dun02	mapflag	nobranch
+for_dun02	mapflag	nopenalty
+for_dun02	mapflag	noicewall
+
+//===== for dun02 monster=================================
+
+for_dun02,0,0	monster	--ja--	22216,24,3000,3000	// SPIRIT_H_WATER_S
+for_dun02,0,0	monster	--ja--	22217,28,3000,3000	// SPIRIT_H_WATER_M
+for_dun02,0,0	monster	--ja--	22218,32,3000,3000	// SPIRIT_H_WATER_L
+for_dun02,0,0	monster	--ja--	22220,24,3000,3000	// SPIRIT_D_WIND_S
+for_dun02,0,0	monster	--ja--	22221,28,3000,3000	// SPIRIT_D_WIND_M
+for_dun02,0,0	monster	--ja--	22222,32,3000,3000	// SPIRIT_D_WIND_L
+for_dun02,0,0	monster	--ja--	22224,24,3000,3000	// SPIRIT_R_FLAME_S
+for_dun02,0,0	monster	--ja--	22225,28,3000,3000	// SPIRIT_R_FLAME_M
+for_dun02,0,0	monster	--ja--	22226,32,3000,3000	// SPIRIT_R_FLAME_L
+for_dun02,0,0	monster	--ja--	22228,24,3000,3000	// SPIRIT_F_LAND_S
+for_dun02,0,0	monster	--ja--	22229,28,3000,3000	// SPIRIT_F_LAND_M
+for_dun02,0,0	monster	--ja--	22230,32,3000,3000	// SPIRIT_F_LAND_L
+for_dun02,0,0	monster	--ja--	22219,7,3000,3000	// SPIRIT_H_WATER_SL
+for_dun02,0,0	monster	--ja--	22223,7,3000,3000	// SPIRIT_D_WIND_SL
+for_dun02,0,0	monster	--ja--	22227,7,3000,3000	// SPIRIT_R_FLAME_SL
+for_dun02,0,0	monster	--ja--	22231,7,3000,3000	// SPIRIT_F_LAND_SL
+for_dun02,0,0	monster	--ja--	22232,12,3000,3000
+for_dun02,0,0	monster	--ja--	22233,12,3000,3000
+for_dun02,0,0	monster	--ja--	22234,12,3000,3000
+for_dun02,0,0	monster	--ja--	22235,12,3000,3000
+for_dun02,0,0	monster	--ja--	22236,12,3000,3000
+for_dun02,0,0	monster	--ja--	22237,12,3000,3000
+for_dun02,0,0	monster	--ja--	22238,12,3000,3000
+for_dun02,0,0	monster	--ja--	22239,12,3000,3000

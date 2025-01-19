@@ -1,0 +1,579 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : Mashle
+//==============================================
+oasis,125,182,4	script	เควสHall_of_Life#1	MD_PRI_RIGEL,{
+	set .@gm_level, 99; // ระดับ GM ต้องใช้เพื่อเริ่ม / หยุดกิจกรรม
+
+	mes "[Hall of Life]";
+	mes "นี่คือทางเข้า ^FF0000Hall of Life^000000.";
+	mes "หากคุณล้มเหลวหรือตายไปประตูจะปิดและคุณต้องรอจนกว่าเหตุการณ์จะเริ่มอีกครั้งเพื่อกลับเข้ามาอีกครั้ง";
+	next;
+	switch(select("^FF0000•^000000 เข้าสู่Hall of Life.:^FF0000•^000000 ข้อมูล.:" + ((getgmlevel() >= .@gm_level) ? "^FF0000•^000000 GM Menu." : "") + ":^FF0000•^000000 ยกเลิก.")) {
+	case 1:
+		if (.start != 1) { // ระยะเวลาการลงทะเบียน
+			mes "[Hall of Life]";
+			mes "Hall of Life ถูกปิดแล้ว.";
+			mes "มันจะเปิดในเวลาเหล่านี้:";
+			mes "วันศุกร์"; // แสดงเวลาของคุณที่นี่
+			mes "เวลา 19:00"; // แสดงเวลาของคุณที่นี่
+			close;
+		}
+		if (BaseLevel < 300 || Zeny < 20000000 || countitem(7227) < 10) {
+			mes "[Hall of Life]";
+			mes "คุณไม่เป็นไปตามข้อกำหนดที่จะเข้าร่วม Hall of Life.";
+			mes " ";
+			mes "ความต้องการ:";
+			mes " - Base Level 300";
+			mes " - ค่าลงทะเบียน 20,000,000z";
+			mes " - ใช้ไอเท็ม ID 7227 จำนวน 10 ชิ้น";
+			close;
+		}
+		Zeny -= 20000000;
+		delitem 7227, 10;
+		announce strcharinfo(0)+" ได้เข้าสู่ Hall of Life.", bc_npc;
+		percentheal 100,100;
+		warp "1@ba_go",350,50;
+		close;
+	case 2:
+		mes "[Hall of Life]";
+		mes "ข้างในคุณจะพบกับคลื่นBoss 20 คลื่น Bossจะเติบโตแข็งแกร่งขึ้นในแต่ละคลื่น.";
+		next;
+		mes "[Hall of Life]";
+		mes "หากคุณเอาชนะBossทั้งหมดคุณจะได้รับโอกาสในการเปิดหีบสมบัติ 1 ชิ้น";
+		close;
+	case 3:
+		mes "[Hall of Life]";
+		switch (.start) { // event states
+			case 0: mes "Hall of Life ยังไม่ได้เริ่ม."; break;
+			case 1: mes "Hall of Life กำลังรับผู้เข้าร่วม."; break;
+			case 2: mes "Hall of Life กิจกรรมกำลังทำงานในรอบ "+ .round +" กับ "+ .mob +" Bossที่เหลือ."; break;
+		}
+		next;
+		switch(select("^FF0000•^000000 เริ่มกิจกรรม.:^FF0000•^000000 หยุดกิจกรรม.:^FF0000•^000000 ยกเลิก.")) {
+		case 1:
+			mes "[Hall of Life]";
+			if (.start)
+				mes "Hall of Life เริ่มแล้ว.";
+			else {
+				mes "ที่เริ่มต้น Hall of Life...";
+				donpcevent strnpcinfo(0)+"::OnStartEvent";
+			}
+			close;
+		case 2:
+			mes "[Hall of Life]";
+			if (!.start)
+				mes "Hall of Life ยังไม่ได้เริ่ม.";
+			else {
+				mes "การหยุด Hall of Life...";
+				donpcevent strnpcinfo(0)+"::OnStopEvent";
+			}
+			close;
+		case 3:
+			break;
+		}
+		break;
+	case 4:
+		break;
+	}
+	mes "[Hall of Life]";
+	mes "ลาก่อน.";
+	close;
+OnClock1900:
+	if(gettime(DT_DAYOFWEEK)==5 && (gettime(DT_HOUR)>=19 && gettime(DT_HOUR)<20)) {
+		donpcevent strnpcinfo(0) + "::OnStartEvent";
+		}else if(gettime(DT_DAYOFWEEK)==4 &&  (gettime(DT_HOUR)==20)) {
+			}
+		end;
+OnClock2000:
+	if(gettime(DT_DAYOFWEEK)==5 && (gettime(DT_HOUR)==20)) {
+		donpcevent strnpcinfo(0) + "::OnStopEvent";
+		}else if(gettime(DT_DAYOFWEEK)==5 &&  (gettime(DT_HOUR)==20)) {
+			}
+		end;
+OnStartEvent:
+    .start = 1;
+    disablenpc "เควสHall_of_Life#2";
+    mapannounce "1@ba_go","Hall of Life ถูกปิดแล้ว.", bc_map;
+    getmapxy .@map$, .@x, .@y, BL_NPC;
+    mapwarp "1@ba_go", .@map$, .@x, .@y;
+    killmonsterall "1@ba_go";
+	announce "Hall of Life เปิด. เหตุการณ์จะเริ่มใน 5 นาที.", bc_all;
+	sleep 60000;
+	announce "Hall of Life จะเริ่มใน 4 นาที.", bc_all;
+	sleep 60000;
+	announce "Hall of Life จะเริ่มใน 3 นาที.", bc_all;
+	sleep 60000;
+	announce "Hall of Life จะเริ่มใน 2 นาที.", bc_all;
+	sleep 60000;
+	announce "Hall of Life จะเริ่มใน 1 นาที.", bc_all;
+	sleep 60000;
+	announce "Hall of Life ได้เริ่มขึ้นแล้ว!", bc_all;
+	if ( !getmapusers("1@ba_go") )
+        goto OnStopEvent;
+    .start = 2;
+    .round = 1;
+    .mob = 1;
+    // เริ่มกิจกรรม
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,1 * max(10);            // บอสจะได้รับดาเมจจากผู้เล่น 1*10 %
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,1 * max(10);         // บอสจะได้รับดาเมจจากผู้เล่น 1*10 %
+	end;
+
+OnDevilDead:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบที่ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 2...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil2;
+	}
+	end;
+
+OnDevil2:
+	.round = 2;
+	.mob = 1;              
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead2";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,2 * max(10);            // บอสจะได้รับดาเมจจากผู้เล่น 1*10 %
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,2 * max(10);         // บอสจะได้รับดาเมจจากผู้เล่น 1*10 %
+	end;
+
+OnDevilDead2:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 3...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil3;
+	}
+	end;
+
+OnDevil3:
+	.round = 3;
+	.mob = 1;              
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead3";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,3 * max(10);            // บอสจะได้รับดาเมจจากผู้เล่น 3*10 %
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,3 * max(10);         // บอสจะได้รับดาเมจจากผู้เล่น 3*10 %
+	end;
+
+OnDevilDead3:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 3.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 4...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil4;
+	}
+	end;
+
+OnDevil4:
+	.round = 4;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead4";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,4 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,4 * max(10);
+	end;
+	
+OnDevilDead4:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 4.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 5...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil5;
+	}
+	end;
+
+OnDevil5:
+	.round = 5;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead5";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,5 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,5 * max(10);
+	end;
+	
+OnDevilDead5:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 5.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 6...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil6;
+	}
+	end;
+
+OnDevil6:
+	.round = 6;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead6";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,6 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,6 * max(10);
+	end;
+	
+OnDevilDead6:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 6.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 7...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil7;
+	}
+	end;
+
+OnDevil7:
+	.round = 7;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead7";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,7 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,7 * max(10);
+	end;
+	
+OnDevilDead7:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 7.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 8...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil8;
+	}
+	end;
+
+OnDevil8:
+	.round = 8;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead8";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,8 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,8 * max(10);
+	end;
+	
+OnDevilDead8:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 8.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 9...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil9;
+	}
+	end;
+
+OnDevil9:
+	.round = 9;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead9";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,9 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,9 * max(10);
+	end;
+	
+OnDevilDead9:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 9.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 10...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil10;
+	}
+	end;
+
+OnDevil10:
+	.round = 10;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead10";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,10 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,10 * max(10);
+	end;
+	
+OnDevilDead10:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 10.", bc_map;
+	else if ( .mob <= 0 ) {
+		goto OnDevil11;
+	}
+	end;
+
+OnDevil11:
+	.round = 11;
+	.mob = 5;
+	monster "1@ba_go",0,0,"Box Hall of Life",1324,5,strnpcinfo(0)+"::OnDevilDead11";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,10 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,10 * max(10);
+	end;
+	
+OnDevilDead11:
+	.mob--;
+	mapannounce "1@ba_go","Hall of Life: "+ strcharinfo(0) +" ได้เปิดหีบสมบัติที่ Hall of Life.", bc_map;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" หีบสมบัติที่เหลืออยู่ในรอบ นี้.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 11...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil12;
+	}
+	end;
+
+OnDevil12:
+	.round = 12;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead12";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,11 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,11 * max(10);
+	end;
+	
+OnDevilDead12:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 11.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 12...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil13;
+	}
+	end;
+
+OnDevil13:
+	.round = 13;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead13";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,12 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,12 * max(10);
+	end;
+	
+OnDevilDead13:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 12.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 13...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil14;
+	}
+	end;
+
+OnDevil14:
+	.round = 14;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead14";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,13 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,13 * max(10);
+	end;
+	
+OnDevilDead14:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 13.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 14...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil15;
+	}
+	end;
+
+OnDevil15:
+	.round = 15;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead15";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,14 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,14 * max(10);
+	end;
+	
+OnDevilDead15:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 14.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 15...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil16;
+	}
+	end;
+
+OnDevil16:
+	.round = 16;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead16";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,15 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,15 * max(10);
+	end;
+	
+OnDevilDead16:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 15.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 16...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil17;
+	}
+	end;
+
+OnDevil17:
+	.round = 17;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead17";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,16 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,16 * max(10);
+	end;
+	
+OnDevilDead17:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 16.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 17...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil18;
+	}
+	end;
+
+OnDevil18:
+	.round = 18;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead18";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,17 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,17 * max(10);
+	end;
+	
+OnDevilDead18:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 17.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 18...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil19;
+	}
+	end;
+
+OnDevil19:
+	.round = 19;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead19";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,18 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,18 * max(10);
+	end;
+	
+OnDevilDead19:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 18.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 19...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil20;
+	}
+	end;
+
+OnDevil20:
+	.round = 20;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead20";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,19 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,19 * max(10);
+	end;
+	
+OnDevilDead20:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 19.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "1@ba_go","Hall of Life กำลังเข้าสู่รอบ 20...", bc_map;
+		mapannounce "1@ba_go","Hall of Life จะเริ่มใน 30 วืนาที.", bc_map;
+		sleep 30000;
+		goto OnDevil21;
+	}
+	end;
+	
+OnDevil21:
+	.round = 21;
+	.mob = 1;
+	monster "1@ba_go",0,0,"Criminal Rigel",22174,1,strnpcinfo(0)+"::OnDevilDead21";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,20 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,20 * max(10);
+	end;
+	
+OnDevilDead21:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" Bossที่เหลืออยู่ในรอบ 20.", bc_map;
+	else if ( .mob <= 0 ) {
+		goto OnDevil22;
+	}
+	end;
+
+OnDevil22:
+	.round = 22;
+	.mob = 10;
+	monster "1@ba_go",0,0,"Box Hall of Life",1324,10,strnpcinfo(0)+"::OnDevilDead22";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,20 * max(10);
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,20 * max(10);
+	end;
+	
+OnDevilDead22:				
+	.mob--;
+	mapannounce "1@ba_go","Hall of Life: "+ strcharinfo(0) +" ได้เปิดหีบสมบัติที่ Hall of Life.", bc_map;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "1@ba_go","Hall of Life : "+ .mob +" หีบสมบัติที่เหลืออยู่ในรอบ นี้.", bc_map;
+	else if ( .mob <= 0 ) {
+		goto OnStopEvent;
+	}
+	end;
+
+OnStopEvent:
+    killmonsterall "1@ba_go";
+    getmapxy .@map$, .@x, .@y, BL_NPC;
+    mapwarp "1@ba_go", .@map$, .@x, .@y;
+    enablenpc "เควสHall_of_Life#2";
+    .start = .round = .mob = 0;
+	announce "[ระบบ] : กิจกรรม Hall of Life จบลงแล้ว!", bc_all;
+	end;
+	
+OnInit:
+	waitingroom "Hall of Life 19:00 น.",0;
+	end;
+}
+
+1@ba_go,351,67,4	script	เควสHall_of_Life#2	GATE_SKYBLUE,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+}
+
+1@ba_go	mapflag	nowarp
+1@ba_go	mapflag	nowarpto
+1@ba_go	mapflag	noteleport
+1@ba_go	mapflag	monster_noteleport
+1@ba_go	mapflag	nosave	SavePoint
+1@ba_go	mapflag	nomemo
+1@ba_go	mapflag	nobranch
+1@ba_go	mapflag	nopenalty
+1@ba_go	mapflag	noicewall

@@ -1,0 +1,314 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : แม่มดน้อย จอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : rAthena & Hercules
+// Contacts
+// Facebook https://www.facebook.com/appleroplus2
+// Gmail appleroplus@gmail.com
+// Skype appleroplus@hotmail.com
+//==============================================
+//==============================================
+//==============================================
+//= 3.0
+-	script	Auto_AntiBot	-1,{
+ 
+OnPCLoginEvent:
+set @Fail,0;
+set @killmonster,1;
+set @killcekmin,rand(300,600);
+ 
+OnNPCKillEvent:
+if( strcharinfo(3) == "1@tower") end;
+else if( strcharinfo(3) == "2@tower") end;
+else if( strcharinfo(3) == "3@tower") end;
+else if( strcharinfo(3) == "4@tower") end;
+else if( strcharinfo(3) == "5@tower") end;
+else{
+set @killmonster,@killmonster+1;
+if (@killmonster>=@killcekmin) {
+    set @killmonster,1;
+    set @killcekmin,rand(300,600);
+cutin "kafra_do01",2;
+if (getgmlevel()>90) goto gm_admin;
+setoption 0x40;
+setoption 0x2000;
+sc_start	SC_FREEZE,9999999,10;
+pcblockmove getcharid(3),1;
+//atcommand "@noask";
+mes "^FF0000สวัสดีฉันคือผู้ตรวจสอบ^000000";
+mes "^FF0000ผู้ใช้โปรแกรมช่วยเล่น^000000";
+mes "^FF0000โปรดพิมหมายเลขให้ถูกต้องตามสีของ^000000";
+mes "^FF0000####^000000โปรดอย่าพิมผิด เกิน 5 ครั้ง^000000";
+mes "^FF0000และ อย่าตอบช้าเกิน 30 วินาที^000000";
+mes "^FF0000ไม่เช่นนั้นจะถูกเตะออกจากเกมทันที^000000";
+attachnpctimer;
+initnpctimer;
+next;
+goto Code;
+ 
+Code:
+set number1, rand (1000000,9999999);
+set number2, rand (1000000,9999999);
+set number3, rand (1000000,9999999);
+set number4, rand (1000000,9999999);
+set number5, rand (1000000,9999999);
+set number6, rand (1000000,9999999);
+set number00, rand (1000000,9999999);
+set number01, rand (1000000,9999999);
+set number02, rand (1000000,9999999);
+set number03, rand (1000000,9999999);
+set number04, rand (1000000,9999999);
+set number05, rand (1000000,9999999);
+set number06, rand (1000000,9999999);
+set number07, rand (1000000,9999999);
+set number08, rand (1000000,9999999);
+set number09, rand (1000000,9999999);
+set number10, rand (1000000,9999999);
+set number66, rand (1000,9999);
+set number99, rand (100,999);
+ 
+set @Col, rand (0,6);
+if(@Col == 0) goto colred;
+if(@Col == 1) goto colorg;
+if(@Col == 2) goto colblu;
+if(@Col == 3) goto colvio;
+if(@Col == 4) goto colgre;
+mes "^FF0000โปรดระบุเลขตามสีของ^000000^F7F7FF#^F5F9FD#^FFF9FA#^A52A2A####^FFF9EE##^F8F8FF#";
+mes "^F5F9FD"+ number99 +"^000000^FFF9EE"+ number66 +"^000000^FF8C00"+ number2 +"^000000^F5F9FD"+ number05 +"^000000";
+mes "^F8F8FF"+ number66 +"^000000^F7F7FF"+ number99 +"^000000^A52A2A"+ number6 +"^000000^F5F9FD"+ number05 +"^000000";
+mes "^F5F9FD"+ number99 +"^000000^FFF9EE"+ number66 +"^000000^9400D3"+ number4 +"^000000^F8F8FF"+ number06 +"^000000";
+mes "^F5F9FD"+ number66 +"^000000^F7F7FF"+ number99 +"^000000^FF0000"+ number1 +"^000000^F5F9FD"+ number02 +"^000000";
+mes "^F8F8FF"+ number99 +"^000000^FFF9EE"+ number66 +"^000000^0000FF"+ number3 +"^000000^F8F8FF"+ number01 +"^000000";
+mes "^F5F9FD"+ number99 +"^000000^F7F7FF"+ number66 +"^000000^008000"+ number5 +"^000000^F5F9FD"+ number03 +"^000000";
+next;
+input number;
+next;
+goto brochk;
+end;
+ 
+colgre:
+mes "^FF0000โปรดระบุเลขตามสีของ^000000^F7F7FF#^FFF9FA#^F5F9FD#^008000####^F5F9FD#^F8F8FF#^FFF9EE##";
+mes "^FFF9EE"+ number66 +"^000000^FFF9EE"+ number99 +"^000000^008000"+ number5 +"^000000^F5F9FD"+ number04 +"^000000";
+mes "^FFF9FA"+ number99 +"^000000^F7F7FF"+ number66 +"^000000^FFA500"+ number2 +"^000000^F5F9FD"+ number03 +"^000000";
+mes "^F5F9FD"+ number66 +"^000000^FFF9EE"+ number99 +"^000000^FF0000"+ number1 +"^000000^F5F9FD"+ number00 +"^000000";
+mes "^FFF9EE"+ number99 +"^000000^FFF9EE"+ number66 +"^000000^9400D3"+ number4 +"^000000^F5F9FD"+ number01 +"^000000";
+mes "^F7F7FF"+ number66 +"^000000^FFF9FA"+ number99 +"^000000^0000FF"+ number3 +"^000000^F5F9FD"+ number06 +"^000000";
+mes "^FFF9EE"+ number99 +"^000000^F5F9FD"+ number66 +"^000000^A52A2A"+ number6 +"^000000^F5F9FD"+ number05 +"^000000";
+next;
+input number;
+next;
+goto grechk;
+end;
+ 
+colvio:
+mes "^FF0000โปรดระบุเลขตามสีของ^000000^F5F9FD#^FFF9EE#^FFF9FA#^9400D3####^F8F8FF#^F5F9FD##^F7F7FF##";
+mes "^F7F7FF"+ number66 +"^000000^FFF9EE"+ number99 +"^000000^9400D3"+ number4 +"^000000^F5F9FD"+ number09 +"^000000";
+mes "^F7F7FF"+ number66 +"^000000^FFF9EE"+ number99 +"^000000^FFA500"+ number2 +"^000000^F5F9FD"+ number04 +"^000000";
+mes "^F7F7FF"+ number66 +"^000000^FFF9EE"+ number99 +"^000000^A52A2A"+ number6 +"^000000^F5F9FD"+ number05 +"^000000";
+mes "^FFF9EE"+ number99 +"^000000^F7F7FF"+ number66 +"^000000^FF0000"+ number1 +"^000000^F5F9FD"+ number06 +"^000000";
+mes "^FFF9EE"+ number99 +"^000000^F7F7FF"+ number66 +"^000000^0000FF"+ number3 +"^000000^F5F9FD"+ number08 +"^000000";
+mes "^FFF9EE"+ number99 +"^000000^F7F7FF"+ number66 +"^000000^008000"+ number5 +"^000000^F5F9FD"+ number01 +"^000000";
+next;
+input number;
+next;
+goto viochk;
+end;
+ 
+colblu:
+mes "^FF0000โปรดระบุเลขตามสีของ^000000^FFF9EE###^0000FF####^F8F8FF####^F5F9FD#^FFF9FA#^F7F7FF##";
+mes "^F8F8FF"+ number01 +"^000000^FFA500"+ number2 +"^000000^F7F7FF"+ number66 +"^000000^F5F9FD"+ number99 +"^000000";
+mes "^FFF9EE"+ number09 +"^000000^A52A2A"+ number6 +"^000000^F5F9FD"+ number66 +"^000000^FFF9EE"+ number99 +"^000000";
+mes "^F5F9FD"+ number08 +"^000000^FF0000"+ number1 +"^000000^F7F7FF"+ number66 +"^000000^FFF9EE"+ number99 +"^000000";
+mes "^F8F8FF"+ number07 +"^000000^0000FF"+ number3 +"^000000^F5F9FD"+ number66 +"^000000^F5F9FD"+ number99 +"^000000";
+mes "^FFF9EE"+ number06 +"^000000^008000"+ number5 +"^000000^F5F9FD"+ number66 +"^000000^FFF9EE"+ number99 +"^000000";
+mes "^F5F9FD"+ number05 +"^000000^9400D3"+ number4 +"^000000^F7F7FF"+ number66 +"^000000^F5F9FD"+ number99 +"^000000";
+next;
+input number;
+next;
+goto bluchk;
+end;
+ 
+colorg:
+mes "^FF0000โปรดระบุเลขตามสีของ^000000^F5F9FD#^FFF9EE####^FFA500####^F5F9FD#^F5F9FD####^F7F7FF##^FFF9FA##";
+mes "^FFF9EE"+ number4 +"^000000^A52A2A"+ number6 +"^000000^F5F9FD"+ number07 +"^000000";
+mes "^F8F8FF"+ number3 +"^000000^9400D3"+ number4 +"^000000^F5F9FD"+ number00 +"^000000";
+mes "^F5F9FD"+ number1 +"^000000^FF0000"+ number1 +"^000000^F5F9FD"+ number06 +"^000000";
+mes "^F8F8FF"+ number2 +"^000000^0000FF"+ number3 +"^000000^F5F9FD"+ number04 +"^000000";
+mes "^F5F9FD"+ number5 +"^000000^FF8C00"+ number2 +"^000000^F5F9FD"+ number08 +"^000000";
+mes "^F5F9FD"+ number6 +"^000000^008000"+ number5 +"^000000^F8F8FF"+ number10 +"^000000";
+next;
+input number;
+next;
+goto orgchk;
+end;
+ 
+colred:
+mes "^FF0000โปรดระบุเลขตามสีของ^000000^F5F9FD##^FF0000####^F8F8FF####^FFF9FA#^FFF9EE#^F7F7FF#";
+mes "^F5F9FD"+ number6 +"^000000^A52A2A"+ number6 +"^000000^F8F8FF"+ number10 +"^000000";
+mes "^F8F8FF"+ number5 +"^000000^008000"+ number5 +"^000000^F5F9FD"+ number09 +"^000000";
+mes "^F5F9FD"+ number3 +"^000000^9400D3"+ number4 +"^000000^F8F8FF"+ number08 +"^000000";
+mes "^F8F8FF"+ number1 +"^000000^0000FF"+ number3 +"^000000^F5F9FD"+ number07 +"^000000";
+mes "^F5F9FD"+ number2 +"^000000^FFA500"+ number2 +"^000000^F5F9FD"+ number05 +"^000000";
+mes "^F8F8FF"+ number5 +"^000000^FF0000"+ number1 +"^000000^F5F9FD"+ number02 +"^000000";
+next;
+input number;
+next;
+goto redchk;
+end;
+ 
+redchk:
+if(number < number1 || number > number1) goto LOG_FAIL;
+  goto OK; end;
+orgchk:
+if(number < number2 || number > number2) goto LOG_FAIL;
+    goto OK; end;
+bluchk:
+if(number < number3 || number > number3) goto LOG_FAIL;
+  goto OK; end;
+viochk:
+if(number < number4 || number > number4) goto LOG_FAIL;
+      goto OK; end;
+grechk:
+if(number < number5 || number > number5) goto LOG_FAIL;
+  goto OK; end;
+brochk:
+if(number < number6 || number > number6) goto LOG_FAIL;
+  goto OK; end;
+ 
+LOG_FAIL:
+if (@Fail <5) {
+mes "^FF0000คุณใส่หมายเลขผิด^000000";
+mes "^FF0000โปรดลองอีกครั้ง^000000";
+mes "^FF0000ห้ามผิดเกิน 5 ครั้ง^000000";
+mes "^FF0000ไม่เช่นนั้นจะถูกเตะออกจากเกมทันที^000000";
+set @Fail, @Fail+1;
+next;
+goto Code;
+}
+mes "^FF0000คุณใส่หมายเลขผิด^000000";
+mes "^FF0000เกิน 5 ครั้ง^000000";
+mes "^FF0000เสียใจด้วย คุณจะถูกเตะออกจากเกม ทันที^000000";
+next;
+dispbottom "คุณตอบคำถามของเราไม่ถูกมากถึง 5 ครั้ง จึงมีเหตุผลอันควรที่เชื่อได้ว่าคุณ ใช้โปรแกรมช่วยเล่น.";
+sleep2 1500;
+dispbottom "คุณจะถูกเตะออกจากเกมภายใน 5 วินาที";
+sleep2 1000;
+dispbottom "คุณจะถูกเตะออกจากเกมภายใน 4 วินาที";
+sleep2 1000;
+dispbottom "คุณจะถูกเตะออกจากเกมภายใน 3 วินาที";
+sleep2 1000;
+dispbottom "คุณจะถูกเตะออกจากเกมภายใน 2 วินาที";
+sleep2 1000;
+dispbottom "คุณจะถูกเตะออกจากเกมภายใน 1 วินาที";
+sleep2 1000;
+setoption 0x40,0;
+setoption 0x2000,0;
+pcblockmove getcharid(3),0;
+sc_end sc_stone;
+sc_end sc_freeze;
+sc_end sc_sleep;
+sc_end sc_curse;
+sc_end sc_silence;
+sc_end sc_confusion;
+sc_end sc_blind;
+sc_end sc_bleeding;
+sc_end sc_decreaseagi;
+sc_end sc_poison;
+sc_end sc_hallucination;
+sc_end sc_stripweapon;
+sc_end sc_striparmor;
+sc_end sc_striphelm;
+sc_end sc_stripshield;
+stopnpctimer;
+atcommand "@kick " + strcharinfo(0);
+end;
+ 
+OK:
+mes "^FF0000ขอบคุณที่ให้ความร่วมมือ ในการตรวจสอบ^000000";
+mes "^FF0000ในการตรวจสอบ^000000";
+mes "^FF0000ผู้ใช้ที่ใช้โปรแกรมช่วยเล่น^000000";
+setoption 0x40,0;
+setoption 0x2000,0;
+pcblockmove getcharid(3),0;
+sc_end sc_stone;
+sc_end sc_freeze;
+sc_end sc_sleep;
+sc_end sc_curse;
+sc_end sc_silence;
+sc_end sc_confusion;
+sc_end sc_blind;
+sc_end sc_bleeding;
+sc_end sc_decreaseagi;
+sc_end sc_poison;
+sc_end sc_hallucination;
+sc_end sc_stripweapon;
+sc_end sc_striparmor;
+sc_end sc_striphelm;
+sc_end sc_stripshield;
+//atcommand "@noask";
+cutin "kafra_do01",255;
+getitem 985,2; 
+dispbottom "ยินดีด้วยคุณได้รับ Elunium 2 ea. จากการตรวจสอบ ผู้ใช้ที่ใช้โปรแกรมช่วยเล่น ขอบคุณที่ สละเวลา";
+end;
+ 
+gm_admin:
+//mes "^FF0000คุณ คือ GM ไม่จำเป็นต้องตรวจสอบ^000000";
+//mes "^FF0000ผู้ใช้ที่ใช้โปรแกรมช่วยเล่น^000000";
+sc_end sc_stone;
+sc_end sc_freeze;
+sc_end sc_sleep;
+sc_end sc_curse;
+sc_end sc_silence;
+sc_end sc_confusion;
+sc_end sc_blind;
+sc_end sc_bleeding;
+sc_end sc_decreaseagi;
+sc_end sc_poison;
+sc_end sc_hallucination;
+sc_end sc_stripweapon;
+sc_end sc_striparmor;
+sc_end sc_striphelm;
+sc_end sc_stripshield;
+cutin "kafra_do01",255;
+end;
+ 
+OnTimer30000:
+dispbottom "คุณไม่สามารถตอบคำถามได้ภายใน 30 วินาที จึงมีเหตุผลอันควรที่เชื่อได้ว่าคุณ ใช้โปรแกรมช่วยเล่น.";
+sleep2 1500;
+dispbottom "คุณจะถูกเตะออกจากเกมภายใน 5 วินาที";
+sleep2 1000;
+dispbottom "คุณจะถูกเตะออกจากเกมภายใน 4 วินาที";
+sleep2 1000;
+dispbottom "คุณจะถูกเตะออกจากเกมภายใน 3 วินาที";
+sleep2 1000;
+dispbottom "คุณจะถูกเตะออกจากเกมภายใน 2 วินาที";
+sleep2 1000;
+dispbottom "คุณจะถูกเตะออกจากเกมภายใน 1 วินาที";
+sleep2 1000;
+setoption 0x40,0;
+setoption 0x2000,0;
+pcblockmove getcharid(3),0;
+sc_end sc_stone;
+sc_end sc_freeze;
+sc_end sc_sleep;
+sc_end sc_curse;
+sc_end sc_silence;
+sc_end sc_confusion;
+sc_end sc_blind;
+sc_end sc_bleeding;
+sc_end sc_decreaseagi;
+sc_end sc_poison;
+sc_end sc_hallucination;
+sc_end sc_stripweapon;
+sc_end sc_striparmor;
+sc_end sc_striphelm;
+sc_end sc_stripshield;
+cutin "kafra_do01",255;
+stopnpctimer;
+atcommand "@kick " + strcharinfo(0);
+end;
+}
+}
+}

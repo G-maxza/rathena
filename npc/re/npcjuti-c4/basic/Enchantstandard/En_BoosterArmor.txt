@@ -1,0 +1,1631 @@
+//===== Script =======================================
+//= EDDA Somatology Laboratory enchant
+//= By JumBo
+//= Location & NPC Sprite Unknown
+//====================================================
+oasis,127,78,4	script	Booste_enchant_ARMOR 	4_EP18_BAGOT,{
+	disable_items;
+	if ((MaxWeight - Weight) < 1000) {
+		mes "เจ้าแบกของมาหนักเกินไป. ลองลดน้ำหนักลงแล้วมาใหม่.";
+		close;
+	}
+	if (checkweight(501,1) == 0) {
+		mes "เจ้าพกของมามากเกินไป. ลองลดของลงแล้วมาใหม่.";
+		close;
+	}
+	setarray .@card[0], getequipcardid(EQI_ARMOR,0), getequipcardid(EQI_ARMOR,1), getequipcardid(EQI_ARMOR,2), getequipcardid(EQI_ARMOR,3);
+	.@refine = getequiprefinerycnt(EQI_ARMOR);
+	set @ennormal, callfunc("F_Rand",4832,4833,4834,4808,4820,4821,4818,4817,4816,4815,4814,4813,4863,4864,4865);
+	set @enclass, callfunc("F_Rand",29594,29595,29596,29598,29599,29600,29601,29602,29603,29604,29605,29606,29607);
+	set @enhighest, callfunc("F_Rand",29594,29595,29596,29598,29599,29600,29601,29602,29603,29604,29605,29606,29607);
+	
+	mes "[Booste_enchant]";
+	mes "ข้าสามารถอัพเกรดความสามารถของชุด Booster ได้.";
+	mes "จำเป็นต้องมี Oridecon และ.";
+	mes "Elunium สำหรับใช้ในการออฟ.";
+	next;
+	mes "^FF0000คำเตือน :ชุด Booster ลบออฟไม่ได้.^000000";
+	next;
+	switch( select( "ออฟชุด Booster", "รายละเอียด", "ออก" ) ) {
+	case 1:
+		.@equip_id = getequipid(EQI_ARMOR);
+		switch(.@equip_id) {
+			case 450001:// Attacker Booster Plate
+			case 450002:// Elemental Booster Robe
+			case 450003:// Defender Booster Robe
+			case 450004:// Ranger Booster Suits
+				break;
+			default:
+				mes "[Booste_enchant]";
+				mes "^FF0000เจ้าไม่ได้ใส่ชุด Booster มาด้วย.^000000";
+				close;
+		}
+		mes "[Booste_enchant]";
+		if (.@card[3] == 0) {
+			mes "ออฟช่องที่ 4 ออฟ.";
+			mes "^0000cdWolf Orb (Str) Lv2^000000";
+			mes "^0000cdWolf Orb (Dex) Lv2^000000";
+			mes "^0000cdWolf Orb (Agi) Lv2^000000";
+			mes "^0000cdWolf Orb (Int) Lv2^000000";
+			mes "^0000cdWolf Orb (Vit) Lv2^000000";
+			mes "^0000cdWolf Orb (Luk) Lv2^000000";
+			mes "^0000cdWolf Orb (Physical Defense) Lv2^000000";
+			mes "^0000cdWolf Orb (Magical Defense) Lv2^000000";
+			mes "^0000cdWolf Orb (Shooter) Lv2^000000";
+			mes "^0000cdWolf Orb (Warrior) Lv2^000000";
+			mes "^0000cdWolf Orb (Mage) Lv2^000000";
+			menu "Advanced enchant",L_Advanced,"ยกเลิก",L_Exit;
+		}
+		else if (.@card[2] == 0) {
+			mes "ออฟช่องที่ 3 ออฟ.";
+			mes "^0000cdWolf Orb (Str) Lv3^000000";
+			mes "^0000cdWolf Orb (Dex) Lv3^000000";
+			mes "^0000cdWolf Orb (Agi) Lv3^000000";
+			mes "^0000cdWolf Orb (Int) Lv3^000000";
+			mes "^0000cdWolf Orb (Vit) Lv3^000000";
+			mes "^0000cdWolf Orb (Luk) Lv3^000000";
+			mes "^0000cdWolf Orb (Physical Defense) Lv3^000000";
+			mes "^0000cdWolf Orb (Magical Defense) Lv3^000000";
+			mes "^0000cdWolf Orb (Shooter) Lv3^000000";
+			mes "^0000cdWolf Orb (Warrior) Lv3^000000";
+			mes "^0000cdWolf Orb (Mage) Lv3^000000";
+			mes "^0000cdWolf Orb (Delay After Skill)^000000";
+			menu "Determined enchantB",2_Determined,"ยกเลิก",L_Exit;
+		}
+		else if (.@card[1] == 0) {
+			mes "ออฟช่องที่ 2 ออฟ.";
+			mes "^0000cdWolf Orb (Dragonic Breath)^000000";
+			mes "^0000cdWolf Orb (Cutter Break)^000000";
+			mes "^0000cdWolf Orb (Hundred Wave)^000000";
+			mes "^0000cdWolf Orb (Brand Drive)^000000";
+			mes "^0000cdWolf Orb (Vanishing Cannon)^000000";
+			mes "^0000cdWolf Orb (Genesis Pressure)^000000";
+			mes "^0000cdWolf Orb (Boost Cannon)^000000";
+			mes "^0000cdWolf Orb (Vulcan Boomerang)^000000";
+			mes "^0000cdWolf Orb (Tornado Swing)^000000";
+			mes "^0000cdWolf Orb (Hell Tornado)^000000";
+			mes "^0000cdWolf Orb (Crazy Cannon)^000000";
+			mes "^0000cdWolf Orb (Acid Explosion)^000000";
+			mes "^0000cdWolf Orb (Sonic Impact)^000000";
+			mes "^0000cdWolf Orb (Cutter Slasher)^000000";
+			mes "^0000cdWolf Orb (Berserk Slash)^000000";
+			mes "^0000cdWolf Orb (Fatal Attack)^000000";
+			mes "^0000cdWolf Orb (Shadow Spell)^000000";
+			mes "^0000cdWolf Orb (Angle Shot)^000000";
+			mes "^0000cdWolf Orb (Crimson Strain)^000000";
+			mes "^0000cdWolf Orb (Jack Lightning)^000000";
+			mes "^0000cdWolf Orb (Comet Vortex)^000000";
+			mes "^0000cdWolf Orb (Cloud Buster)^000000";
+			mes "^0000cdWolf Orb (Varetyr Wave)^000000";
+			mes "^0000cdWolf Orb (Diamond Grave)^000000";
+			mes "^0000cdWolf Orb (Magnusmus)^000000";
+			mes "^0000cdWolf Orb (Holy Judex)^000000";
+			mes "^0000cdWolf Orb (Melee Duple)^000000";
+			mes "^0000cdWolf Orb (Tiger Empire)^000000";
+			mes "^0000cdWolf Orb (Rampage Lightning)^000000";
+			mes "^0000cdWolf Orb (Hell Arrow)^000000";
+			mes "^0000cdWolf Orb (Cluster)^000000";
+			mes "^0000cdWolf Orb (Breeze Shooting)^000000";
+			mes "^0000cdWolf Orb (Aimed Storm)^000000";
+			mes "^0000cdWolf Orb (Sound Metal)^000000";
+			mes "^0000cdWolf Orb (Reverb)^000000";
+			mes "^0000cdWolf Orb (Vulcan Severe))^000000";
+			mes "^0000cdWolf Orb (Prominence Burst)^000000";
+			mes "^0000cdWolf Orb (Moon Kick)^000000";
+			mes "^0000cdWolf Orb (Flash Falling)^000000";
+			mes "^0000cdWolf Orb (Eswhoo)^000000";
+			mes "^0000cdWolf Orb (Espa)^000000";
+			mes "^0000cdWolf Orb (Curse Explosion)^000000";
+			mes "^0000cdWolf Orb (Des Hammer Dance)^000000";
+			mes "^0000cdWolf Orb (Fire Howling Tail)^000000";
+			mes "^0000cdWolf Orb (Storm Buster Trip)^000000";
+			mes "^0000cdWolf Orb (Flame Ice Wind)^000000";
+			mes "^0000cdWolf Orb (Cross Petal)^000000";
+			mes "^0000cdWolf Orb (Exploding Flake Wind)^000000";
+			mes "^0000cdWolf Orb (Power of Sea)^000000";
+			mes "^0000cdWolf Orb (Power of Land)^000000";
+			mes "^0000cdWolf Orb (Power of Life)^000000";
+			mes "^0000cdWolf Orb (Reflection Reject) Lv3^000000";
+			mes "^0000cdWolf Orb (Power Force)^000000";
+			menu "Determined enchantC",3_Determined,"ยกเลิก",L_Exit;
+		}
+		else
+			mes "^FF0000ออฟสูงสุดแล้วไม่สามารถออฟได้อีก.^000000";
+			close;
+	case 2:
+		mes "ข้าจะมีตัวเลือกในการออฟให้เจ้า 3 ข้อ.";
+		mes "1. ^0000cdAdvanced enchant^000000 : ต้องการวัตถุดิบน้อย สามารถเลือกออฟช่องที่ 4เองได้.";
+		mes "2. ^0000cdDetermined enchantB^000000 : ต้องการวัตถุดิบพอประมาณ สามารถเลือกออฟช่องที่ 3เองได้.";
+		mes "3. ^0000cdDetermined enchantC^000000 : ต้องการวัตถุดิบจำนวนมาก สามารถเลือกออฟช่องที่ 2เองได้."; 
+		mes "^FF0000คำเตือน :ชุด Booster ลบออฟไม่ได้.^000000";
+		close;
+	case 3:
+		mes "[Booste_enchant]";
+		mes "ข้ารอเจ้าเสมอ.";
+		close;
+	}
+	
+	L_Exit:
+		next;
+		mes "[Booste_enchant]";
+		mes "ข้ารอเจ้าเสมอ.";
+		close;
+
+	L_Advanced:	
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", EQI_ARMOR, .@equip_id) || callfunc("F_IsEquipCardHack", EQI_ARMOR, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", EQI_ARMOR, .@refine))
+		close;
+		if ((countitem(984) < 10) || (countitem(985) < 10)) {
+			mes "^FF0000กาสออฟเจ้าต้องมี Oridecon 10 อัน.^000000";
+			mes "^FF0000กาสออฟเจ้าต้องมี Elunium 10 อัน.^000000";
+			mes "^FF0000เจ้ามี Oridecon หรือ Elunium ไม่ถึง 10 อัน.^000000";
+			close;
+		}
+		next;
+		mes "[Booste_enchant]";
+		mes "^0000cdโอกาสออฟสำเร็จ 100%.^000000";
+		mes "เจ้าสามารถเลือกออฟที่ต้องการใส่ชุด Boosterได้เลย.";
+		next;
+		switch( select( "Wolf_Orb_Str_2", "Wolf_Orb_Dex_2", "Wolf_Orb_Agi_2", "Wolf_Orb_Int_2", "Wolf_Orb_Vit_2", "Wolf_Orb_luk_2", "Wolf_Orb_Def_2", "Wolf_Orb_Mdef_2", "Wolf_Orb_Ran_2", "Wolf_Orb_War_2", "Wolf_Orb_Mag_2") ) {
+	case 1:
+		mes "^0000cdWolf_Orb_Str_2^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310484;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 2:
+		mes "^0000cdWolf_Orb_Dex_2^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310485;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 3:
+		mes "^0000cdWolf_Orb_Agi_2^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310486;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 4:
+		mes "^0000cdWolf_Orb_Int_2^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310487;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 5:
+		mes "^0000cdWolf_Orb_Vit_2^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310488;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;		
+	case 6:
+		mes "^0000Wolf_Orb_luk_2^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310489;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 7:
+		mes "^0000cdWolf_Orb_Def_2^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310498;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 8:
+		mes "^0000cdWolf_Orb_Mdef_2^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310499;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 9:
+		mes "^0000cdWolf_Orb_Ran_2^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310505;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 10:
+		mes "^0000cdWolf_Orb_War_2^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310506;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 11:
+		mes "^0000cdWolf_Orb_Mag_2^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 10;// Oridecon
+		delitem 985, 10;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],310507;
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	}	
+		
+	2_Determined:	
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", EQI_ARMOR, .@equip_id) || callfunc("F_IsEquipCardHack", EQI_ARMOR, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", EQI_ARMOR, .@refine))
+		close;
+		if ((countitem(984) < 30) || (countitem(985) < 30)) {
+			mes "^FF0000กาสออฟเจ้าต้องมี Oridecon 30 อัน.^000000";
+			mes "^FF0000กาสออฟเจ้าต้องมี Elunium 30 อัน.^000000";
+			mes "^FF0000เจ้ามี Oridecon หรือ Elunium ไม่ถึง 30 อัน.^000000";
+			close;
+		}
+		next;
+		mes "[Booste_enchant]";
+		mes "^0000cdโอกาสออฟสำเร็จ 100%.^000000";
+		mes "เจ้าสามารถเลือกออฟที่ต้องการใส่ชุด Boosterได้เลย.";
+		next;
+		switch( select( "Wolf_Orb_Str_3", "Wolf_Orb_Dex_3", "Wolf_Orb_Agi_3", "Wolf_Orb_Int_3", "Wolf_Orb_Vit_3", "Wolf_Orb_luk_3", "Wolf_Orb_Def_3", "Wolf_Orb_Mdef_3", "Wolf_Orb_Ran_3", "Wolf_Orb_War_3", "Wolf_Orb_Mag_3", "Wolf_Orb_S_Delay") ) {
+	case 1:
+		mes "^0000cdWolf_Orb_Str_2^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310490,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 2:
+		mes "^0000cdWolf_Orb_Dex_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310491,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 3:
+		mes "^0000cdWolf_Orb_Agi_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310492,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 4:
+		mes "^0000cdWolf_Orb_Int_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310493,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 5:
+		mes "^0000cdWolf_Orb_Vit_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310494,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 6:
+		mes "^0000cdWolf_Orb_luk_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310495,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 7:
+		mes "^0000cdWolf_Orb_Def_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310500,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 8:
+		mes "^0000cdWolf_Orb_Mdef_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310501,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 9:
+		mes "^0000cdWolf_Orb_Ran_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310508,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 10:
+		mes "^0000cdWolf_Orb_War_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310509,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 11:
+		mes "^0000cdWolf_Orb_Mag_3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310510,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 12:
+		mes "^0000cdWolf_Orb_S_Delay^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 30;// Oridecon
+		delitem 985, 30;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],310515,.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;		
+	}
+	3_Determined:	
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", EQI_ARMOR, .@equip_id) || callfunc("F_IsEquipCardHack", EQI_ARMOR, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", EQI_ARMOR, .@refine))
+		close;
+		if ((countitem(984) < 50) || (countitem(985) < 50)) {
+			mes "^FF0000กาสออฟเจ้าต้องมี Oridecon 50 อัน.^000000";
+			mes "^FF0000กาสออฟเจ้าต้องมี Elunium 50 อัน.^000000";
+			mes "^FF0000เจ้ามี Oridecon หรือ Elunium ไม่ถึง 50 อัน.^000000";
+			close;
+		}
+		next;
+		mes "[Booste_enchant]";
+		mes "^0000cdโอกาสออฟสำเร็จ 100%.^000000";
+		mes "เจ้าสามารถเลือกออฟที่ต้องการใส่ชุด Boosterได้เลย.";
+		next;
+		switch( select( "Wolf Orb (Dragonic Breath)", "Wolf Orb (Cutter Break)", "Wolf Orb (Hundred Wave)", "Wolf Orb (Brand Drive)", "Wolf Orb (Vanishing Cannon)", "Wolf Orb (Genesis Pressure)", "Wolf Orb (Boost Cannon)", "Wolf Orb (Vulcan Boomerang)", "Wolf Orb (Tornado Swing)", "Wolf Orb (Hell Tornado)", "Wolf Orb (Crazy Cannon)", "Wolf Orb (Acid Explosion)", "Wolf Orb (Sonic Impact)", "Wolf Orb (Cutter Slasher)", "Wolf Orb (Berserk Slash)", "Wolf Orb (Fatal Attack)", "Wolf Orb (Shadow Spell)", "Wolf Orb (Angle Shot)", "Wolf Orb (Crimson Strain)", "Wolf Orb (Jack Lightning)", "Wolf Orb (Comet Vortex)", "Wolf Orb (Cloud Buster)", "Wolf Orb (Varetyr Wave)", "Wolf Orb (Diamond Grave)", "Wolf Orb (Magnusmus)", "Wolf Orb (Holy Judex)", "Wolf Orb (Melee Duple)", "Wolf Orb (Tiger Empire)", "Wolf Orb (Rampage Lightning)", "Wolf Orb (Hell Arrow)", "Wolf Orb (Cluster)", "Wolf Orb (Breeze Shooting)", "Wolf Orb (Aimed Storm)", "Wolf Orb (Sound Metal)", "Wolf Orb (Reverb)", "Wolf Orb (Vulcan Severe)", "Wolf Orb (Prominence Burst)", "Wolf Orb (Moon Kick)", "Wolf Orb (Flash Falling)", "Wolf Orb (Eswhoo)", "Wolf Orb (Espa)", "Wolf Orb (Curse Explosion)", "Wolf Orb (Des Hammer Dance)", "Wolf Orb (Fire Howling Tail)", "Wolf Orb (Storm Buster Trip)", "Wolf Orb (Flame Ice Wind)", "Wolf Orb (Cross Petal)", "Wolf Orb (Exploding Flake Wind)", "Wolf Orb (Power of Sea)", "Wolf Orb (Power of Land)", "Wolf Orb (Power of Life)", "Wolf Orb (Reflection Reject) Level 3", "Wolf Orb (Power Force)") ) {
+	case 1:
+		mes "^0000cdWolf Orb (Dragonic Breath)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310516,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 2:
+		mes "^0000cdWolf Orb (Cutter Break)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310517,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;		
+	case 3:
+		mes "^0000cdWolf Orb (Hundred Wave)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310518,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 4:
+		mes "^0000cdWolf Orb (Brand Drive)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310519,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 5:
+		mes "^0000cdWolf Orb (Vanishing Cannon)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310520,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 6:
+		mes "^0000cdWolf Orb (Genesis Pressure)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310521,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 7:
+		mes "^0000cdWolf Orb (Boost Cannon)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310522,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 8:
+		mes "^0000cdWolf Orb (Vulcan Boomerang)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310523,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 9:
+		mes "^0000cdWolf Orb (Tornado Swing)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310524,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 10:
+		mes "^0000cdWolf Orb (Hell Tornado))^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310525,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 11:
+		mes "^0000cdWolf Orb (Crazy Cannon)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310526,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;		
+	case 12:
+		mes "^0000cdWolf Orb (Acid Explosion)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310527,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 13:
+		mes "^0000cdWolf Orb (Sonic Impact)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310528,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 14:
+		mes "^0000cdWolf Orb (Cutter Slasher)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310529,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 15:
+		mes "^0000cdWolf Orb (Berserk Slash)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310530,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 16:
+		mes "^0000cdWolf Orb (Fatal Attack)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310531,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 17:
+		mes "^0000cdWolf Orb (Shadow Spell)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310532,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 18:
+		mes "^0000cdWolf Orb (Angle Shot)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310533,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 19:
+		mes "^0000cdWolf Orb (Crimson Strain)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310534,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;		
+	case 20:
+		mes "^0000cdWolf Orb (Jack Lightning)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310535,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 21:
+		mes "^0000cdWolf Orb (Comet Vortex)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310536,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 22:
+		mes "^0000cdWolf Orb (Cloud Buster)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310537,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 23:
+		mes "^0000cdWolf Orb (Varetyr Wave)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310538,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 24:
+		mes "^0000cdWolf Orb (Diamond Grave)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310539,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 25:
+		mes "^0000cdWolf Orb (Magnusmus)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310540,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 26:
+		mes "^0000cdWolf Orb (Holy Judex)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310541,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 27:
+		mes "^0000cdWolf Orb (Melee Duple)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310542,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 28:
+		mes "^0000cdWolf Orb (Tiger Empire)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310543,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 29:
+		mes "^0000cdWolf Orb (Rampage Lightning)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310544,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 30:
+		mes "^0000cdWolf Orb (Hell Arrow)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310545,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 31:
+		mes "^0000cdWolf Orb (Cluster)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310546,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 32:
+		mes "^0000cdWolf Orb (Breeze Shooting)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310547,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 33:
+		mes "^0000cdWolf Orb (Aimed Storm)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310548,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 34:
+		mes "^0000cdWolf Orb (Sound Metal)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310549,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 35:
+		mes "^0000cdWolf Orb (Reverb)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310550,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 36:
+		mes "^0000cdWolf Orb (Vulcan Severe)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310551,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 37:
+		mes "^0000cdWolf Orb (Prominence Burst)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310552,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 38:
+		mes "^0000cdWolf Orb (Moon Kick)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310553,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 39:
+		mes "^0000cdWolf Orb (Flash Falling)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310554,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 40:
+		mes "^0000cdWolf Orb (Eswhoo)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310555,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 41:
+		mes "^0000cdWolf Orb (Espa)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310556,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 42:
+		mes "^0000cdWolf Orb (Curse Explosion)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310557,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;		
+	case 43:
+		mes "^0000cdWolf Orb (Des Hammer Dance)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310558,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 44:
+		mes "^0000cdWolf Orb (Fire Howling Tail)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310559,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 45:
+		mes "^0000cdWolf Orb (Storm Buster Trip)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310560,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 46:
+		mes "^0000cdWolf Orb (Flame Ice Wind)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310561,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 47:
+		mes "^0000cdWolf Orb (Cross Petal)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310562,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 48:
+		mes "^0000cdWolf Orb (Exploding Flake Wind)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310563,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 49:
+		mes "^0000cdWolf Orb (Power of Sea)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310564,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 50:
+		mes "^0000cdWolf Orb (Power of Land)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310565,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;
+	case 51:
+		mes "^0000cdWolf Orb (Power of Life)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310566,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 52:
+		mes "^0000cdWolf Orb (Reflection Reject) Level 3^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310513,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;	
+	case 53:
+		mes "^0000cdWolf Orb (Power Force)^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 984, 50;// Oridecon
+		delitem 985, 50;// Elunium
+		delequip EQI_ARMOR;
+		specialeffect2 154;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],310514,.@card[2],.@card[3];
+		mes "[Booste_enchant]";
+		mes "^0000cdออฟสำเร็จ.^000000";
+		close;			
+	}	
+	
+	L_General:	
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", EQI_ARMOR, .@equip_id) || callfunc("F_IsEquipCardHack", EQI_ARMOR, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", EQI_ARMOR, .@refine))
+		close;
+		if ((countitem(984) < 50) || (countitem(985) < 50)) {
+			mes "^FF0000เจ้ามี Somatology Experimental Fragment หรือ Somatology Research Document ไม่ถึง 50 อัน.^000000";
+			close;
+		}
+		next;
+		mes "[Booste_enchant]";
+		mes "^FF0000มีโอกาสอาวุธเสียหาย 5%.^000000";
+		mes "อาวุธยังอยู่แต่ออฟไม่ติด 35%.";
+		mes "^0000cdโอกาสออฟสำเร็จ 65%.^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		set .rate,rand(100);
+		progressbar "000000",1;
+		delitem 984, 50;// Somatology Experimental Fragment
+		delitem 985, 50;// Somatology Research Document
+		delequip EQI_ARMOR;
+			if (.rate < 5) {
+			specialeffect2 EF_SUI_EXPLOSION;
+			mes "[Booste_enchant]";
+			mes "^FF0000อาวุธกลายเป็นฝุ่นไปแล้ว^000000.";
+			close;
+			}
+			else if (.rate < 40) {
+			specialeffect2 155;
+			getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+			mes "[Booste_enchant]";
+			mes "โชคดีที่อาวุธยังอยู่.";
+			close;
+			}
+			else {
+			specialeffect2 154;
+			getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],@ennormal;
+			mes "[Booste_enchant]";
+			mes "^0000cdออฟสำเร็จ.^000000";
+			close;
+			}
+			
+	L_General2:	
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", EQI_ARMOR, .@equip_id) || callfunc("F_IsEquipCardHack", EQI_ARMOR, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", EQI_ARMOR, .@refine))
+		close;
+		if ((countitem(984) < 50) || (countitem(985) < 50)) {
+			mes "^FF0000เจ้ามี Somatology Experimental Fragment หรือ Somatology Research Document ไม่ถึง 50 อัน.^000000";
+			close;
+		}
+		next;
+		mes "[Booste_enchant]";
+		mes "^FF0000มีโอกาสอาวุธเสียหาย 20%.^000000";
+		mes "อาวุธยังอยู่แต่ออฟไม่ติด 50%.";
+		mes "^0000cdโอกาสออฟสำเร็จ 30%.^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		set .rate,rand(100);
+		progressbar "000000",1;
+		delitem 984, 50;// Somatology Experimental Fragment
+		delitem 985, 50;// Somatology Research Document
+		delequip EQI_ARMOR;
+			if (.rate < 20) {
+			specialeffect2 EF_SUI_EXPLOSION;
+			mes "[Booste_enchant]";
+			mes "^FF0000อาวุธกลายเป็นฝุ่นไปแล้ว^000000.";
+			close;
+			}
+			else if (.rate < 70) {
+			specialeffect2 155;
+			getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+			mes "[Booste_enchant]";
+			mes "โชคดีที่อาวุธยังอยู่.";
+			close;
+			}
+			else {
+			specialeffect2 154;
+			getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],@enclass,.@card[3];
+			mes "[Booste_enchant]";
+			mes "^0000cdออฟสำเร็จ.^000000";
+			close;
+			}	
+		
+	L_Advanced2:	
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", EQI_ARMOR, .@equip_id) || callfunc("F_IsEquipCardHack", EQI_ARMOR, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", EQI_ARMOR, .@refine))
+		close;
+		if ((countitem(984) < 500) || (countitem(985) < 500)) {
+			mes "^FF0000เจ้ามี Somatology Experimental Fragment หรือ Somatology Research Document ไม่ถึง 500 อัน.^000000";
+			close;
+		}
+		next;
+		mes "[Booste_enchant]";
+		mes "^FF0000ไม่มีโอกาสอาวุธเสียหาย.^000000";
+		mes "อาวุธยังอยู่แต่ออฟไม่ติด 30%.";
+		mes "^0000cdโอกาสออฟสำเร็จ 70%.^000000";
+		next;
+		if (select( "พร้อมสำหรับการออฟแล้ว.", "ข้ายังไม่พร้อม." ) == 2) {
+			mes "[Booste_enchant]";
+			mes "ข้ารอเจ้าเสมอ.";
+			close;
+		}
+		set .rate,rand(100);
+		progressbar "000000",1;
+		delitem 984, 500;// Somatology Experimental Fragment
+		delitem 985, 500;// Somatology Research Document
+		delequip EQI_ARMOR;
+			if (.rate < 30) {
+			specialeffect2 155;
+			getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+			mes "[Booste_enchant]";
+			mes "โชคดีที่อาวุธยังอยู่.";
+			close;
+			}
+			else {
+			specialeffect2 154;
+			getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],@enclass,.@card[3];
+			mes "[Booste_enchant]";
+			mes "^0000cdออฟสำเร็จ.^000000";
+			close;
+			}	
+	OnInit:
+		waitingroom "เพิ่มออฟชั่นส่วน Armor",0;
+		end;
+	}	
+	

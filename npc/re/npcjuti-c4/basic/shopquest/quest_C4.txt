@@ -1,0 +1,27 @@
+// Bosscoin
+//============================================================
+-	script	#Tradeitem	4_M_OPERATION,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" หินอาชีพ-C4",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	OnInit:
+		waitingroom "Job Master C4",0;
+		end;
+	
+}
+oasis,171,107,4	duplicate(#Tradeitem)	ร้านค้าหินอาชีพ-C4	4_M_OPERATION

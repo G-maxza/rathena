@@ -1,0 +1,19 @@
+prontera,153,200,5	script	อันดับ Soul Rank	973,{
+	query_sql("SELECT `char_id`,`value` FROM `char_reg_num` WHERE `key` = 'soulRank' ORDER BY `value` DESC LIMIT 10",.@charId,.@killCount);
+	if(getarraysize(.@charId) <= 0)
+	mes "ไม่พบอันดับ Soul Rank";
+	else{
+		mes "อันดับ Soul Rank";
+		for(.@i = 0; .@i < getarraysize(.@charId); .@i++){
+			query_sql("SELECT `name` FROM `char` WHERE `char_id` = '" + .@charId[.@i] + "'",.@rankName$);	
+			mes (.@i + 1) + ".) " + .@rankName$ + " --- ^EA6AC3" + .@killCount[.@i] + " แต้ม^000000";
+		}
+	}
+	mes "---";
+	mes "เมื่อ Level >= 250 ให้ถือ 30000 Soul Orb แล้วกดใช้ จะเพิ่ม 1 Soul Rank";
+	close;
+	
+OnInit:
+	waitingroom "อันดับ Soul Rank",0;
+	end;
+}

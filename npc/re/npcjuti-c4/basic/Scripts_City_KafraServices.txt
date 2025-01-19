@@ -1,0 +1,177 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : แม่มดน้อย จอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : rAthena & Hercules
+// Contacts
+// Facebook https://www.facebook.com/appleroplus2
+// Gmail appleroplus@gmail.com
+// Skype appleroplus@hotmail.com
+//==============================================
+//==============================================
+//==============================================
+-	script	KafraServices::KFSV	-1,{
+soundeffect "kafra.wav",0;
+mes "[ Kafra ]";
+mes "ยินดีต้อนรับ คุณ : ^FF0000 "+strcharinfo(0)+" ^000000"; 
+mes "คุณต้องการให้ฉันช่วยอะไร ?";
+//next;
+menu 
+"^FF0000•^000000 เซฟจุดเกิด",saves,
+"^FF0000•^000000 เก็บของ",Storages,
+"^FF0000•^000000 คลังกิลด์",GStorages,
+"^FF0000•^000000 เรียกลูกกิล / ปาร์ตี้",recallgp,
+"^FF0000•^000000 ยกเลิก",Lcancel;
+
+//==============================================
+GStorages:
+set .@npcname$,"[Guild Storage]";
+set @GID,getcharid(2);
+
+mes .@npcname$;
+mes "สวัสดีครับ ยินดีให้บริการครับ";
+mes "เลือกเมนูที่คุณต้องการครับ";
+next;
+menu "^009933•^000000 เปิดคลังกิลด์",-,"^FF0000•^000000 เปลี่ยนรหัสคลังกิลด์",change,"^FF0000•^000000 ยกเลิก",ende;
+
+mes .@npcname$;
+mes "กรุณาใส่รหัสคลังกิลด์ครับ";
+input .@GuildPW;
+if ( getd("$GuildPW_"+getcharid(2)) == .@GuildPW) goto open;
+if ( getd("$GuildPW_"+getcharid(2)) != .@GuildPW) goto wrong;
+close;
+
+open:
+if(guildopenstorage0 == 1) goto wait;
+guildopenstorage();
+close;
+
+wait:
+mes .@npcname$;
+mes "สมาชิกท่านอื่นใช้คลังกิลด์อยู่ครับ";
+close;
+
+wrong:
+mes "";
+mes "ท่านใส่รหัสคลังกิลด์ผิด";
+close;
+
+passwort:
+if(@GID == 0) goto L_NoGuild;
+if(strcharinfo(0) == getguildmaster(@GID)) goto change;
+mes .@npcname$;
+mes "หัวกิลด์เท่านั้นที่เปลี่ยนรหัสได้ครับ";
+close;
+
+change:
+mes .@npcname$;
+mes "โปรดใส่รหัสที่คุณต้องการครับ :";
+input .@GuildPW;
+setd "$GuildPW_"+getcharid(2),.@GuildPW;
+mes "รหัสใหม่คือ ^0000FF"+.@GuildPW+"^000000 ครับ";
+close;
+
+L_NoGuild:
+mes .@npcname$;
+mes "คุณไม่ใช่สมาชิกกิลด์นี้ครับ";
+close;
+
+ende:
+mes .@npcname$;
+mes "ยินดีให้บริการครับ";
+close;
+
+//////////////////////////////////////////////
+saves:
+atcommand "@save";
+close;
+
+recallgp:
+callfunc "recallguildparty";
+close;
+
+
+Storages:
+mes "[ ^FF0000Storage^000000 ]";
+mes "เปิดโกดังสำเร็จแล้ว...";
+close2;
+openstorage;
+end;
+
+Lcancel:
+mes "ยินดีให้บริการคะ";
+close;
+
+end;
+}
+//*********************************
+function	script	recallguildparty	{
+if(getcharid(0) == getguildmasterid(getcharid(2))) {
+set @CS1$,"คุณเป็นหัวหน้าของกิลด์";
+} else if(getcharid(2) == 0) {
+set @CS1$,"คุณยังไม่ได้เข้าร่วมกิลด์";
+} else {
+set @CS1$,"คุณเป็นสมาชิกของกิลด์";
+}
+if(getcharid(2) == 0) {
+set @CS2$," ";
+} else {
+set @CS2$,""+getguildname(getcharid(2))+"";
+}
+
+if(getcharid(0) == getpartyleader(getcharid(1),2)) {
+set @CS3$,"คุณเป็นหัวหน้าของปาร์ตี้";
+} else if(getcharid(1) == 0) {
+set @CS3$,"คุณยังไม่ได้เข้าร่วมปาร์ตี้";
+} else {
+set @CS3$,"คุณเป็นสมาชิกของปาร์ตี้";
+}
+if(getcharid(1) == 0) {
+set @CS4$," ";
+} else {
+set @CS4$,""+getpartyname(getcharid(1))+"";
+}
+
+mes "[ RECALL SYSTEM ]";
+mes "สวัสดีคุณ ^FF0000"+strcharinfo(0)+"^000000";
+mes "สถานะของคุณขณะนี้คือ";
+mes "^008080"+@CS1$+"^000000";
+mes "^FF8040"+@CS2$+"^000000";
+mes "^0000FF"+@CS3$+"^000000";
+mes "^006611"+@CS4$+"^000000";
+
+if(getcharid(0) == getguildmasterid(getcharid(2)) && getcharid(0) == getpartyleader(getcharid(1),2)) {
+switch(select("- เรียกสมาชิกกิลด์","- เรียกสมาชิกปาร์ตี้","- ยกเลิก")) {
+case 1:
+atcommand "@guildrecall "+getcharid(2);
+break;
+case 2:
+atcommand "@partyrecall "+getcharid(1);
+break;
+case 3:
+break;
+}
+} else if(getcharid(1) == 0 && getcharid(0) == getguildmasterid(getcharid(2))) {
+switch(select("- เรียกสมาชิกกิลด์","- ยกเลิก")) {
+case 1:
+atcommand "@guildrecall "+getcharid(2);
+break;
+case 2:
+break;
+}
+} else if(getcharid(2) == 0 && getcharid(0) == getpartyleader(getcharid(1),2)) {
+switch(select("- เรียกสมาชิกปาร์ตี้","- ยกเลิก")) {
+case 1:
+atcommand "@partyrecall "+getcharid(1);
+break;
+case 2:
+break;
+}
+}
+close;
+end;
+}
+/////////////////////////
+//morocc,155,101,4	duplicate(KFSV)	คาฟ่าเซอร์วิส#01	894
+oasis,154,99,4	duplicate(KFSV)	คาฟ่าเซอร์วิส#02	894

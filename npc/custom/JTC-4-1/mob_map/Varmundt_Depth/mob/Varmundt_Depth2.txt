@@ -1,0 +1,158 @@
+//===== Varmundt Depth monster=================================
+oasis,154,206,4	script	Varmundt_Depth2_Controller#1	GATE_SKYBLUE,{
+	set .@gm_level, 99; // ระดับ GM ต้องใช้เพื่อเริ่ม / หยุดกิจกรรม
+
+	mes "[Varmundt Depth2]";
+	mes "ยินดีต้อนรับสู่ Varmundt Depth2!";
+	next;
+	switch(select("^FF0000•^000000 เข้าสู่Varmundt Depth2.:" + ((getgmlevel() >= .@gm_level) ? "^FF0000•^000000 GM Menu." : "") + ":^FF0000•^000000 ยกเลิก.")) {
+	case 1:
+		if (.start != 1) { // ระยะเวลาการลงทะเบียน
+			mes "[Varmundt Depth2]";
+			mes "Varmundt Depth2 ถูกปิดแล้ว.";
+			mes "มันจะเปิดในเวลาเหล่านี้:";
+			mes "03:00 และ 16.00"; // แสดงเวลาของคุณที่นี่
+			close;
+		}
+		if (BaseLevel < 260 || Zeny < 1000000 || countitem(7227) < 10) {
+			mes "คุณไม่สามารถเข้าสู่ Varmundt Depth2 ได้เพราะไม่ตรงตามเงื่อนไข";
+			mes "ข้อกำหนด:";
+			mes " - Base Level ต้อง 260 ขึ้นไป";
+			mes " - ใช้ Zeny 1,000,000";
+			mes " - ใช้ไอเท็ม ID 7227 จำนวน 10 ชิ้น";
+		}
+		Zeny -= 1000000;
+		delitem 7227, 10;
+		announce strcharinfo(0) + " ได้เข้าสู่ Varmundt Depth2.", bc_npc;
+		warp "bl_depth2", 141, 137;
+		close;
+	case 2:
+		mes "[Varmundt Depth2]";
+		switch (.start) { // event states
+			case 0: mes "Varmundt Depth2 ยังไม่ได้เริ่ม."; break;
+			case 1: mes "Varmundt Depth2 กำลังรับผู้เข้าร่วม."; break;
+		}
+		next;
+		switch(select("^FF0000•^000000 เริ่มกิจกรรม.:^FF0000•^000000 หยุดกิจกรรม.:^FF0000•^000000 ยกเลิก.")) {
+		case 1:
+			mes "[Varmundt Depth2]";
+			if (.start)
+				mes "Varmundt Depth2 เริ่มแล้ว.";
+			else {
+				mes "ที่เริ่มต้น Varmundt Depth2...";
+				donpcevent strnpcinfo(0)+"::OnStartEvent";
+			}
+			close;
+		case 2:
+			mes "[Varmundt Depth2]";
+			if (!.start)
+				mes "Varmundt Depth2 ยังไม่ได้เริ่ม.";
+			else {
+				mes "การหยุด Varmundt Depth2...";
+				donpcevent strnpcinfo(0)+"::OnStopEvent";
+			}
+			close;
+		case 3:
+			break;
+		}
+		break;
+	case 3:
+		break;
+	}
+	mes "[Varmundt Depth2]";
+	mes "ลาก่อน.";
+	close;
+	
+OnClock0300:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0500:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+
+OnClock1600:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1800:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnSpawnMonsters:
+	.start = 2;
+	.round = 1;
+	set .mob, 1; // ตั้งค่าจำนวนมอนสเตอร์ที่ต้องการ
+	// สร้างมอนสเตอร์ ID 22261 จำนวน 30 ตัว
+	set .@monster_count1, 1;
+	for (set .@i, 0; .@i < .@monster_count1; set .@i, .@i + 1) {
+		monster "bl_depth2", 0 + rand(0), 0 + rand(0), "Boss Monster",22261,1,strnpcinfo(0)+"::OnMonsterKilled";
+	}
+	end;
+	
+OnMonsterKilled:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "Boss Monster"+ .mob +"Bossที่เหลืออยู่ในแผนที่.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "Boss Monster ถูกำจัดหมดเเล้ว", bc_map;
+		goto OnSpawnMonsters;
+	}
+	end;
+	
+OnStartEvent:
+	.start = 1;
+	enablenpc "Varmundt_Depth2_Controller#1";
+	disablenpc "เควสVarmundt Depth2#2"; // ปิด NPC ที่ใช้ในการออกจากกิจกรรม
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "bl_depth2", .@map$, .@x, .@y;
+	announce "Varmundt Depth2 จะเริ่มใน 5 นาที.", bc_all;
+	sleep 60000*5;
+	announce "Varmundt Depth2 ได้เริ่มขึ้นแล้ว!", bc_all;
+	disablenpc "Varmundt_Depth2_Controller#1"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	donpcevent strnpcinfo(0) + "::OnSpawnMonsters"; // เรียกใช้งานฟังก์ชันเกิดมอนสเตอร์
+	end;
+	
+OnStopEvent:
+	announce "Varmundt Depth2ถูกปิดแล้ว.", bc_all;
+	killmonsterall "bl_depth2"; // ลบมอนสเตอร์ทั้งหมดในแผนที่
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "bl_depth2", .@map$, .@x, .@y;
+	disablenpc "Varmundt_Depth2_Controller#1"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	enablenpc "เควสVarmundt Depth2#2";
+	.start = .round = .mob = 0; // รีเซ็ตสถานะของกิจกรรมทั้งหมด
+	end;
+	
+OnInit:
+	waitingroom "Varmundt Depth2 เปิด 03:00 และ 16:00 น.",0;
+	end;
+}
+bl_depth2,141,137,4	script	เควสVarmundt Depth2#2	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+}
+
+bl_depth2	mapflag	nowarp
+bl_depth2	mapflag	nowarpto
+bl_depth2	mapflag	nosave	SavePoint
+bl_depth2	mapflag	nomemo
+bl_depth2	mapflag	nobranch
+bl_depth2	mapflag	nopenalty
+bl_depth2	mapflag	noicewall
+
+//===== Varmundt Depth monster=================================
+
+bl_depth2,0,0	monster	Depth Duneyrr	22252,30,3000,3000
+bl_depth2,0,0	monster	Depth Naga	22253,30,3000,3000
+bl_depth2,0,0	monster	Bio Ancient Tree	22254,30,3000,3000
+bl_depth2,0,0	monster	Depth Dollocaris	22255,30,3000,3000
+bl_depth2,0,0	monster	Depth Frozen Gargoyle	22256,30,3000,3000
+bl_depth2,0,0	monster	Depth Flame Ghost	22257,30,3000,3000
+bl_depth2,0,0	monster	Depth Acidus	22258,30,3000,3000
+bl_depth2,0,0	monster	Depth Morroc Incarnation	22259,30,3000,3000
+bl_depth2,0,0	monster	Depth Salamander	22260,30,3000,3000
+bl_depth2,0,0	monster	Depth Moskillro	22261,30,3000,3000
+

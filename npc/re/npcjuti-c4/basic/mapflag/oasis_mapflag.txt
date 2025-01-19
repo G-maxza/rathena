@@ -1,0 +1,6 @@
+oasis	mapflag	nobranch
+oasis	mapflag	nomemo
+oasis	mapflag	noteleport
+oasis	mapflag	nowarp
+oasis	mapflag	nodrop
+oasis	mapflag	noreturn

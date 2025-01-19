@@ -1,0 +1,189 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : Mashle
+//==============================================
+//==============================================
+//==============================================
+-	shop	C_Barmeal_Ticket	-1,1000103:100000
+//=========================================================================================================================================================
+function	script	C_Barmeal_TicketS	{
+// =============================================== Shadow VIP2 ===============================================
+		if(@bought_nameid == 1000103) {
+			mes "[^FF0000Itemที่ต้องการ + โอกาสเสียหาย^000000]";
+		switch (select("^FF0000อ่านรายระเอียด^000000:ใช้แบบ 20 %:ไม่ใช้:ยกเลิก")) {
+			case 1: // อ่านรายละเอียด
+				mes "[การ Craft Item มีโอกาศสำเร็จ 30% ]";
+				mes "[ใช้ <ITEM>Mysterious Component x 200 : 1 ea.<INFO>25669</INFO></ITEM>]";
+				mes "[ใช้ <ITEM>Cor Core x 100 : 1 ea.<INFO>25723</INFO></ITEM>]";
+				mes "[ใช้  ^FF0000Zeny^000000 จำนวน ^0055FF100000^000000 : ^0055FF1^000000 ea.]";
+				mes "[ใช้ <ITEM>Craft ItemS x 1 : 1 ea.<INFO>5002001</INFO></ITEM> เพิ่มโอกาศสำเร็จเป็น 50% ]";
+				mes "[ไม่ใช้Item ^FF0000Craft ItemS-SSSR^000000 จะไม่เสียItem]";
+				mes "[การ Craft Item จะกลับมาโอกาศสำเร็จ 30% เหมือนเดิม]";
+				close;
+				break;
+	
+			case 2:
+				// ตรวจสอบว่าผู้เล่นมี Item Craft ItemS หรือไม่
+				if (countitem(5002001) >= @bought_quantity) {
+					// ใช้ Item Craft ItemS ลดเปอร์เซ็นต์การแตกลง 20%
+					set @broken, 50;
+					delitem 5002001, @bought_quantity; // ลบไอเท็มเท่ากับจำนวนที่ผู้เล่นสร้าง
+					mes "ต้องการใช้  Craft ItemS เพื่อลดเปอร์เซ็นต์การแตกลง 20% หรือไม่?";
+				} else {
+					mes "คุณไม่มี Item Craft ItemS การทำ Item ถูกยกเลิก";
+					close;
+				}
+				break;
+
+			case 3:
+				// ผู้เล่นไม่ใช้ Item Craft ItemS
+				set @broken, 30; // ไม่มีการลดเปอร์เซ็นต์แตก 70 %
+				break;
+			
+			case 4:
+				// ผู้เล่นเลือกยกเลิก
+				mes "การ Craft ถูกยกเลิก";
+				close;
+				break;
+		}
+		
+			// การทำไอเท็ม 5002100
+			setarray @itemuse[0], 25669, 25723, 0;
+			setarray @itemusemany[0], 200, 100, 0;
+			set @zenyuse, 10000000;
+			// เพิ่มโค้ดการทำ Item ตามที่คุณต้องการ
+			// ...
+	}
+	
+    return;
+}
+
+// =============== Slot Item ====================
+oasis,169,134,4	script	Craft-Barmeal_Ticket	4_EP17_CLEANER_W,{
+set $@tr$,"^000080[ NPC Barmeal Ticket ]^000000";
+mes $@tr$;
+mes "สวัสดี :^FF0000 "+strcharinfo(0)+" ^000000 ";
+mes "ท่านต้องการ Craft ItemS ประเภทใด ?";
+next;
+set $@tr$,"[^FF0000คำเตือน^000000]";
+mes $@tr$;
+mes "[การ Craft Item มีโอกาศสำเร็จ น้อยมาก]";
+mes "[การ Craft Item เป็นการสร้างไอเท่มใหม่ขึ้นมา]";
+mes "[โปรดระวัง**ไอเท่มตีบวก-เกรด-กาด-ออฟชั้นหาย]";
+mes "[เเนะนำให้ถอดกาด-ออฟชั้นก่อน]";
+mes "[ที่จะมา Craft Item]";
+mes "[โปรดเตียมไอเท่มมาให้พร้อมก่อน ]";
+mes "[ที่จะมา Craft Item]";
+next;
+switch(select("^FF0000•^000000 Barmeal Ticket")) {
+case 1:	callfunc "Shop_C_Barmeal_Ticket","C_Barmeal_Ticket",1;
+}
+OnBuyItem:
+callfunc "Q_C_Barmeal_Ticket";
+end;
+OnInit:
+waitingroom "NPC Barmeal Ticket",0;
+end;
+}
+
+// ============================================ Function Run Shop ===========================================
+
+function	script	Shop_C_Barmeal_Ticket	{	npcshopattach getarg(0),1;	close2;	callshop getarg(0),getarg(1);	end;	}
+
+// ============================================ Function Check Item ==========================================
+function	script	Q_C_Barmeal_Ticket	{
+for (set .@g,0; .@g < getarraysize(@bought_nameid); set .@g,.@g+1) {
+	sleep2 1;
+	set @bought_nameid,@bought_nameid[.@g];
+	deletearray @itemuse[0],getarraysize(@itemuse);
+	deletearray @itemusemany[0],getarraysize(@itemusemany);
+	set @broken,0;	set @zenyuse, 0;
+	callfunc "C_Barmeal_TicketS";
+		if(@itemuse[0] <= 0)	goto check;	
+			set .@r,0;	set .@up,0;	set @itemgetmany,0;
+			for( set .@r,0; .@r < getarraysize(@itemuse); set .@r,.@r+1 ) {
+				if(.@up >= getarraysize(@itemuse)) break;
+				set .@itemup[.@up], countitem(@itemuse[.@up])/@itemusemany[.@up];
+				if(.@up == 0) set @itemgetmany,.@itemup[.@up];
+				if(@itemgetmany > .@itemup[.@up]) set @itemgetmany,.@itemup[.@up];
+				set .@up,.@up+1;
+				continue;
+			}
+check:
+		if(@itemuse[0] <= 0){
+			if (0 == getitemslots( @bought_nameid[.@g])){	mes "ในขณะนี้ "+getitemname(@bought_nameid[.@g])+" ไม่มี Quest ให้แลก";	}
+			if (1 <= getitemslots( @bought_nameid[.@g])){	mes "ในขณะนี้ "+getitemname(@bought_nameid[.@g])+" ["+getitemslots( @bought_nameid[.@g])+"] ไม่มี Quest ให้แลก";	}
+		}
+		else if (@itemgetmany == 0){
+			if (0 == getitemslots( @bought_nameid[.@g])){	mes "Item ที่ต้องการแลกกับ "+getitemname(@bought_nameid[.@g])+" จำนวน ^0055FF"+@bought_quantity+"^000000 ea.";	}
+			if (1 <= getitemslots( @bought_nameid[.@g])){	mes "Item ที่ต้องการแลกกับ "+getitemname(@bought_nameid[.@g])+" ["+getitemslots( @bought_nameid[.@g])+"] จำนวน ^0055FF"+@bought_quantity+"^000000 ea.";	}
+			set .@d,0;
+			for( set .@i,0; .@i < getarraysize(@itemuse); set .@i,.@i+1 ) {
+				if(.@d >= getarraysize(@itemuse)) break;
+				if (0 == getitemslots( @itemuse[.@d])){	mes " "+(.@d+1)+"> "+getitemname(@itemuse[.@d])+" จำนวน ^0055FF"+(@itemusemany[.@d]*@bought_quantity[.@g])+"^000000 ea";	}
+				if (1 <= getitemslots( @itemuse[.@d])){	mes " "+(.@d+1)+"> "+getitemname(@itemuse[.@d])+" ["+getitemslots( @itemuse[.@d])+"] จำนวน ^0055FF"+@itemusemany[.@d]+"^000000 ea.";	}
+				set .@d,.@d+1;
+				continue;
+			}
+			if(@broken != 0) {	set .@failmake,100-@broken;	mes "^FF0000 3> [มีโอกาสเสียหาย]  "+.@failmake+" % ^000000";	}
+			if(@zenyuse != 0) {	mes	" 4> ใช้เงินจำนวน  ^0055FF"+(@zenyuse*@bought_quantity[.@g])+"^000000 Zeny";	}
+			mes " -> ใช้  Craft ItemS จำนวน ^0055FF"+@bought_quantity+"^000000 ชิ้น...";
+		}
+		else if (@bought_quantity[.@g] > @itemgetmany){
+			mes "จาก Item ที่ท่านมี ท่านสามารถแลก "+getitemname(@bought_nameid[.@g])+" ได้ไม่เกิน  ^0055FF"+@itemgetmany+"^000000 ea. ";
+		}
+		else if (Zeny < (@zenyuse*@bought_quantity[.@g])){	
+			if (@bought_quantity[.@g] == 1)	mes "เงินที่ท่านเตรียมมามีไม่พอ ต้องใช้เงินจำนวน  "+@zenyuse+" Zeny ในการแลก "+getitemname(@bought_nameid[.@g])+"";
+			else if (@bought_quantity[.@g] >= 2)	mes "เงินที่ท่านเตรียมมามีไม่พอ ต้องใช้เงินจำนวน  "+(@zenyuse*@bought_quantity[.@g])+" Zeny ในการแลก "+getitemname(@bought_nameid[.@g])+" จำนวน ^0055FF"+@bought_quantity[.@g]+"^000000 ea.";
+		}
+		else if ((@bought_quantity[.@g] <= @itemgetmany) && (Zeny >= (@zenyuse*@bought_quantity[.@g]))){
+			set .@r,0;	set .@up,0;
+			for( set .@r,0; .@r < getarraysize(@itemuse); set .@r,.@r+1 ) {
+				if(.@up >= getarraysize(@itemuse)) break;
+				delitem @itemuse[.@up],@itemusemany[.@up]*@bought_quantity[.@g];
+				mes "-> "+getitemname(@itemuse[.@up])+" ได้ถูกนำไปใช้จำนวน ^0055FF"+(@itemusemany[.@up]*@bought_quantity[.@g])+"^000000 ea.";
+				set .@up,.@up+1;
+				continue;
+			}
+			if(@broken != 0) {	set .@failmake,100-@broken;	mes "^FF0000 -> [มีโอกาสเสียหาย]  "+.@failmake+" % ^000000";	}
+			if(@zenyuse != 0) {	
+				set Zeny,(Zeny-@zenyuse*@bought_quantity[.@g]);
+				mes "-> จำนวนเงินที่ต้องการ ^0055FF"+(@zenyuse*@bought_quantity[.@g])+"^000000 zeny";
+				mes "-> ต้องการใช้  Craft ItemS จำนวน ^0055FF"+@bought_quantity+"^000000 ชิ้น...";
+				mes "กำลังทำ "+getitemname(@bought_nameid[.@g])+" จำนวน ^0055FF"+@bought_quantity+"^000000 ชิ้น...";
+			}
+			next;
+			if(@broken != 0) {	
+				set .@RTget,rand(1,100);
+				if(@broken < .@RTget) {
+					emotion 23;
+					specialeffect2 155;
+					mes "ก๊อง ก๊อง ก๊อง ... !!";
+					mes "การทำItem ล้มเหลว เสียใจด้วย ... !!";
+					set @bought_quantity[.@g],0;
+				}
+				if(@broken >= .@RTget) {
+					emotion 21;
+					specialeffect2 154;
+					mes "ก๊อง ก๊อง ก๊อง ... !!";
+					mes "การทำItem เสร็จสมบูรณ์ ... !!";
+				}
+			} 
+			if(@broken == 0) {
+				emotion 33;
+				specialeffect2 488;
+			}
+			getitem @bought_nameid[.@g],@bought_quantity[.@g];
+		}	
+}
+dispbottom "=============================================";
+deletearray @bought_nameid[0],getarraysize(@bought_nameid);
+deletearray @bought_quantity[0],getarraysize(@bought_quantity);
+deletearray @itemuse[0],getarraysize(@itemuse);
+deletearray @itemusemany[0],getarraysize(@itemusemany);
+set @broken,0;	set @zenyuse, 0;
+end;
+}
+
+//oasis,169,134,4	duplicate(Craft-Barmeal_Ticket)	NPC Barmeal Ticket#01	4_EP17_CLEANER_W

@@ -8,10 +8,10 @@
 #include <string>
 #include <vector>
 
-#include <common/database.hpp>
-#include <common/db.hpp>
-#include <common/malloc.hpp>
-#include <common/mmo.hpp> // ITEM_NAME_LENGTH
+#include "../common/database.hpp"
+#include "../common/db.hpp"
+#include "../common/malloc.hpp"
+#include "../common/mmo.hpp" // ITEM_NAME_LENGTH
 
 #include "script.hpp"
 #include "status.hpp"
@@ -41,6 +41,7 @@ const t_itemid CARD0_PET = 0x0100;
 enum item_itemid : t_itemid
 {
 	ITEMID_DUMMY						= 499,
+	ITEMID_AFK_HAT						= 471,
 	ITEMID_RED_POTION					= 501,
 	ITEMID_YELLOW_POTION				= 503,
 	ITEMID_WHITE_POTION					= 504,
@@ -48,10 +49,11 @@ enum item_itemid : t_itemid
 	ITEMID_APPLE						= 512,
 	ITEMID_HOLY_WATER					= 523,
 	ITEMID_PUMPKIN						= 535,
-	ITEMID_PET_FOOD						= 537,
 	ITEMID_RED_SLIM_POTION				= 545,
 	ITEMID_YELLOW_SLIM_POTION			= 546,
 	ITEMID_WHITE_SLIM_POTION			= 547,
+	ITEMID_WING_OF_FLY					= 601,
+	ITEMID_WING_OF_BUTTERFLY			= 602,
 	ITEMID_ANODYNE						= 605,
 	ITEMID_ALOEBERA						= 606,
 	ITEMID_MAGNIFIER					= 611,
@@ -100,17 +102,28 @@ enum item_itemid : t_itemid
 	ITEMID_COOKIE_BAT					= 11605,
 	ITEMID_MERCENARY_RED_POTION			= 12184,
 	ITEMID_MERCENARY_BLUE_POTION		= 12185,
+	ITEMID_GIANT_FLY_WING				= 12212,
 	ITEMID_NEURALIZER					= 12213,
 	ITEMID_M_CENTER_POTION				= 12241,
 	ITEMID_M_AWAKENING_POTION			= 12242,
 	ITEMID_M_BERSERK_POTION				= 12243,
+	ITEMID_N_FLY_WING					= 12323,
+	ITEMID_N_BUTTERFLY_WING				= 12324,
 	ITEMID_NOVICE_MAGNIFIER				= 12325,
 	ITEMID_ANCILLA						= 12333,
+	ITEMID_DUN_TELE_SCROLL3				= 12352,
 	ITEMID_REINS_OF_MOUNT				= 12622,
 	ITEMID_NOBLE_NAMEPLATE				= 12705,
 	ITEMID_SILVER_BULLET				= 13201,
 	ITEMID_PURIFICATION_BULLET			= 13220,
 	ITEMID_SILVER_BULLET_				= 13221,
+	ITEMID_DUN_TELE_SCROLL1				= 14527,
+	ITEMID_DUN_TELE_SCROLL2				= 14581,
+	ITEMID_WOB_RUNE						= 14582,
+	ITEMID_WOB_SCHWALTZ					= 14583,
+	ITEMID_WOB_RACHEL					= 14584,
+	ITEMID_WOB_LOCAL					= 14585,
+	ITEMID_SIEGE_TELEPORT_SCROLL		= 14591,
 	ITEMID_INVENTORY_EX_EVT				= 25791,
 	ITEMID_INVENTORY_EX_DIS				= 25792,
 	ITEMID_INVENTORY_EX					= 25793,
@@ -240,6 +253,7 @@ enum e_random_item_group {
 	IG_CARDALBUM,
 	IG_GIFTBOX,
 	IG_SCROLLBOX,
+	IG_FINDINGORE,
 	IG_COOKIEBAG,
 	IG_FIRSTAID,
 	IG_HERB,
@@ -696,7 +710,7 @@ enum e_random_item_group {
 	IG_LASTANGEL_LUCKYSCROLL,
 	IG_VALKYRIE_LUCKY_SCROLL,
 	IG_SPLASH_RAINBOW_LUCKY_SCROLL,
-	IG_COSTAMA_EGG22,
+	IG_SHAPESHIFTER_COSTUME,
 	IG_JULY_LUCKY_SCROLL,
 	IG_COSTAMA_EGG23,
 	IG_COSTAMA_EGG28,
@@ -2957,21 +2971,107 @@ enum e_random_item_group {
 	IG_LI_NYANGVINE_BOX1_37,
 	IG_LI_NYANGVINE_BOX2_37,
 	IG_LI_NYANGVINE_BOX3_37,
-	IG_JANUARYGIFTBOX,
-	IG_FEBRUARYGIFTBOX,
-	IG_MARCHGIFTBOX,
-	IG_MAYGIFTBOX,
-	IG_JUNEGIFTBOX,
-	IG_JULYGIFTBOX,
-	IG_AUGUSTGIFTBOX,
-	IG_OCTOBERGIFTBOX,
-	IG_DECEMBERGIFTBOX,
-	IG_2024GOLDPCBOX,
-	IG_E_CARD_PACK,
-	IG_TRUE_HUNTING_SET,
-	IG_REGIA_HUNTING_SET,
-	IG_MYSTERIOUS_FRUIT_BOX,
-	IG_ZONDA_SUPPORT_PACKAGE,
+	IG_EGG_EGG_ITEM0,
+	IG_EGG_EGG_ITEM1,
+	IG_EGG_EGG_ITEM2,
+	IG_EGG_EGG_ITEM3,
+	IG_EGG_EGG_ITEM4,
+	IG_EGG_EGG_ITEM5,
+	IG_EGG_EGG_ITEM6,
+	IG_EGG_EGG_ITEM7,
+	IG_EGG_EGG_ITEM8,
+	IG_EGG_EGG_ITEM9,
+	IG_EGG_EGG_ITEM10,
+	IG_EGG_EGG_ITEM11,
+	IG_EGG_EGG_ITEM12,
+	IG_EGG_EGG_ITEM13,
+	IG_EGG_EGG_ITEM14,
+	IG_EGG_EGG_ITEM15,
+	IG_EGG_EGG_ITEM16,
+	IG_EGG_EGG_ITEM17,
+	IG_EGG_EGG_ITEM18,
+	IG_EGG_EGG_ITEM19,
+	IG_EGG_EGG_ITEM20,
+	IG_EGG_EGG_ITEM21,
+	IG_EGG_EGG_ITEM22,
+	IG_EGG_EGG_ITEM23,
+	IG_EGG_EGG_ITEM24,
+	IG_EGG_EGG_ITEM25,
+	IG_EGG_EGG_ITEM26,
+	IG_EGG_EGG_ITEM27,
+	IG_EGG_EGG_ITEM28,
+	IG_EGG_EGG_ITEM29,
+	IG_EGG_EGG_ITEM30,
+	IG_EGG_EGG_ITEM31,
+	IG_EGG_EGG_ITEM32,
+	IG_EGG_EGG_ITEM33,
+	IG_EGG_EGG_ITEM34,
+	IG_EGG_EGG_ITEM35,
+	IG_EGG_EGG_ITEM36,
+	IG_EGG_EGG_ITEM37,
+	IG_EGG_EGG_ITEM38,
+	IG_EGG_EGG_ITEM39,
+	IG_EGG_EGG_ITEM40,
+	IG_EGG_EGG_ITEM41,
+	IG_EGG_EGG_ITEM42,
+	IG_EGG_EGG_ITEM43,
+	IG_EGG_EGG_ITEM44,
+	IG_EGG_EGG_ITEM45,
+	IG_EGG_EGG_ITEM46,
+	IG_EGG_EGG_ITEM47,
+	IG_EGG_EGG_ITEM48,
+	IG_EGG_EGG_ITEM49,
+	IG_EGG_EGG_ITEM50,
+	IG_EGG_EGG_ITEM51,
+	IG_EGG_EGG_ITEM52,
+	IG_EGG_EGG_ITEM53,
+	IG_EGG_EGG_ITEM54,
+	IG_EGG_EGG_ITEM55,
+	IG_EGG_EGG_ITEM56,
+	IG_EGG_EGG_ITEM57,
+	IG_EGG_EGG_ITEM58,
+	IG_EGG_EGG_ITEM59,
+	IG_EGG_EGG_ITEM60,
+	IG_EGG_EGG_ITEM61,
+	IG_EGG_EGG_ITEM62,
+	IG_EGG_EGG_ITEM63,
+	IG_EGG_EGG_ITEM64,
+	IG_EGG_EGG_ITEM65,
+	IG_EGG_EGG_ITEM66,
+	IG_EGG_EGG_ITEM67,
+	IG_EGG_EGG_ITEM68,
+	IG_EGG_EGG_ITEM69,
+	IG_EGG_EGG_ITEM70,
+	IG_EGG_EGG_ITEM71,
+	IG_EGG_EGG_ITEM72,
+	IG_EGG_EGG_ITEM73,
+	IG_EGG_EGG_ITEM74,
+	IG_EGG_EGG_ITEM75,
+	IG_EGG_EGG_ITEM76,
+	IG_EGG_EGG_ITEM77,
+	IG_EGG_EGG_ITEM78,
+	IG_EGG_EGG_ITEM79,
+	IG_EGG_EGG_ITEM80,
+	IG_EGG_EGG_ITEM81,
+	IG_EGG_EGG_ITEM82,
+	IG_EGG_EGG_ITEM83,
+	IG_EGG_EGG_ITEM84,
+	IG_EGG_EGG_ITEM85,
+	IG_EGG_EGG_ITEM86,
+	IG_EGG_EGG_ITEM87,
+	IG_EGG_EGG_ITEM88,
+	IG_EGG_EGG_ITEM89,
+	IG_EGG_EGG_ITEM90,
+	IG_EGG_EGG_ITEM91,
+	IG_EGG_EGG_ITEM92,
+	IG_EGG_EGG_ITEM93,
+	IG_EGG_EGG_ITEM94,
+	IG_EGG_EGG_ITEM95,
+	IG_EGG_EGG_ITEM96,
+	IG_EGG_EGG_ITEM97,
+	IG_EGG_EGG_ITEM98,
+	IG_EGG_EGG_ITEM99,
+	IG_EGG_EGG_ITEM100,
 
 	IG_MAX,
 };
@@ -3021,15 +3121,6 @@ enum e_delay_consume : uint8 {
 	DELAYCONSUME_NONE = 0x0,
 	DELAYCONSUME_TEMP = 0x1, // Items that are not consumed immediately upon double-click
 	DELAYCONSUME_NOCONSUME = 0x2, // Items that are not removed upon double-click
-};
-
-/// Enum for different ways to search an item group
-enum e_group_algorithm_type : uint8 {
-	GROUP_ALGORITHM_USEDB, // Use algorithm defined in the database for the sub group (All, Random or SharedPool).
-	GROUP_ALGORITHM_DROP, // Pick one item from the group and use rate as drop rate, on fail, do not return any item.
-	GROUP_ALGORITHM_ALL, // All items have an equal chance to be returned. Using getgroupitem will return all items in the group.
-	GROUP_ALGORITHM_RANDOM, // Always return an item from the group, rate determines which item is more likely to be returned.
-	GROUP_ALGORITHM_SHAREDPOOL, // Rate is the amount of items in the group, return a random item and remove it from the group.
 };
 
 /// Item combo struct
@@ -3141,8 +3232,6 @@ struct s_item_group_entry
 {
 	t_itemid nameid; /// Item ID
 	uint16 rate;
-	uint16 adj_rate; /// Rate adjusted by the battle_config.item_group_rate
-	uint16 given; /// Amount of times this item has already been given out
 	uint16 duration, /// Duration if item as rental item (in minutes)
 		amount; /// Amount of item will be obtained
 	bool isAnnounced, /// Broadcast if player get this item
@@ -3159,9 +3248,9 @@ struct s_item_group_entry
 struct s_item_group_random
 {
 	uint32 total_rate;
-	uint32 total_given; /// Amount of times an item from this group has been given out
-	e_group_algorithm_type algorithm;
-	std::unordered_map<uint32, std::shared_ptr<s_item_group_entry>> data; /// index, s_item_group_entry
+	std::unordered_map<t_itemid, std::shared_ptr<s_item_group_entry>> data; /// item ID, s_item_group_entry
+
+	std::shared_ptr<s_item_group_entry> get_random_itemsubgroup();
 };
 
 /// Struct of item group that will be used for db
@@ -3175,8 +3264,8 @@ struct s_item_group_db
 struct s_roulette_db {
 	t_itemid *nameid[MAX_ROULETTE_LEVEL]; /// Item ID
 	unsigned short *qty[MAX_ROULETTE_LEVEL]; /// Amount of Item ID
-	int32 *flag[MAX_ROULETTE_LEVEL]; /// Whether the item is for loss or win
-	int32 items[MAX_ROULETTE_LEVEL]; /// Number of items in the list for each
+	int *flag[MAX_ROULETTE_LEVEL]; /// Whether the item is for loss or win
+	int items[MAX_ROULETTE_LEVEL]; /// Number of items in the list for each
 };
 extern struct s_roulette_db rd;
 
@@ -3190,7 +3279,7 @@ struct item_data
 	uint32 value_sell;
 	item_types type;
 	uint8 subtype;
-	int32 maxchance; //For logs, for external game info, for scripts: Max drop chance of this item (e.g. 0.01% , etc.. if it = 0, then monsters don't drop it, -1 denotes items sold in shops only) [Lupus]
+	int maxchance; //For logs, for external game info, for scripts: Max drop chance of this item (e.g. 0.01% , etc.. if it = 0, then monsters don't drop it, -1 denotes items sold in shops only) [Lupus]
 	uint8 sex;
 	uint32 equip;
 	uint32 weight;
@@ -3213,12 +3302,13 @@ struct item_data
 	uint64 class_base[3];	//Specifies if the base can wear this item (split in 3 indexes per type: 1-1, 2-1, 2-2)
 	uint16 class_upper; //Specifies if the class-type can equip it (See e_item_job)
 	struct {
-		int32 chance;
-		int32 id;
+		int chance;
+		int id;
 	} mob[MAX_SEARCH]; //Holds the mobs that have the highest drop rate for this item. [Skotlex]
 	struct script_code *script;	//Default script for everything.
 	struct script_code *equip_script;	//Script executed once when equipping.
 	struct script_code *unequip_script;//Script executed once when unequipping.
+	struct script_code *collection_script;	//Default script for collection.
 	struct {
 		unsigned available : 1;
 		uint32 no_equip;
@@ -3236,6 +3326,7 @@ struct item_data
 		bool bindOnEquip; ///< Set item as bound when equipped
 		e_item_drop_effect dropEffect; ///< Drop Effect Mode
 		unsigned gradable : 1;
+		bool collection;
 	} flag;
 	struct {// item stacking limitation
 		uint16 amount;
@@ -3268,11 +3359,16 @@ struct item_data
 			this->unequip_script = nullptr;
 		}
 
+		if (this->collection_script){
+			script_free_code(this->collection_script);
+			this->collection_script = nullptr;
+		}
+
 		this->combos.clear();
 	}
 
 	bool isStackable();
-	int32 inventorySlotNeeded(int32 quantity);
+	int inventorySlotNeeded(int quantity);
 };
 
 class ItemDatabase : public TypesafeCachedYamlDatabase<t_itemid, item_data> {
@@ -3281,15 +3377,6 @@ private:
 	std::unordered_map<std::string, std::shared_ptr<item_data>> aegisNameToItemDataMap;
 
 	e_sex defaultGender( const ryml::NodeRef& node, std::shared_ptr<item_data> id );
-
-	std::string create_item_link(struct item& item, std::shared_ptr<item_data>& data);
-
-	struct s_pricevalue {
-		bool has_buy;
-		bool has_sell;
-	};
-
-	std::unordered_map<t_itemid, s_pricevalue> hasPriceValue;
 
 public:
 	ItemDatabase() : TypesafeCachedYamlDatabase("ITEM_DB", 3, 1) {
@@ -3311,14 +3398,18 @@ public:
 	std::shared_ptr<item_data> search_aegisname( const char *name );
 	std::string create_item_link(struct item& item);
 	std::string create_item_link( std::shared_ptr<item_data>& data );
-	std::string create_item_link_for_mes( std::shared_ptr<item_data>& data, bool use_brackets, const char* name );
+	std::string create_item_link_for_mes( std::shared_ptr<item_data>& data );
+
+private:
+	std::string create_item_link(struct item& item, std::shared_ptr<item_data>& data);
 };
+
 
 extern ItemDatabase item_db;
 
 class ItemGroupDatabase : public TypesafeCachedYamlDatabase<uint16, s_item_group_db> {
 public:
-	ItemGroupDatabase() : TypesafeCachedYamlDatabase("ITEM_GROUP_DB", 4, 1) {
+	ItemGroupDatabase() : TypesafeCachedYamlDatabase("ITEM_GROUP_DB", 2, 1) {
 
 	}
 
@@ -3329,12 +3420,9 @@ public:
 	// Additional
 	bool item_exists(uint16 group_id, t_itemid nameid);
 	int16 item_exists_pc(map_session_data *sd, uint16 group_id);
-	std::shared_ptr<s_item_group_entry> get_random_entry(uint16 group_id, uint8 sub_group, e_group_algorithm_type algorithm = GROUP_ALGORITHM_USEDB);
-	uint8 pc_get_itemgroup( uint16 group_id, bool identify, map_session_data& sd );
-
-private:
-	std::shared_ptr<s_item_group_entry> get_random_itemsubgroup(std::shared_ptr<s_item_group_random> random, e_group_algorithm_type algorithm = GROUP_ALGORITHM_USEDB);
-	void pc_get_itemgroup_sub( map_session_data& sd, bool identify, std::shared_ptr<s_item_group_entry> data );
+	t_itemid get_random_item_id(uint16 group_id, uint8 sub_group);
+	std::shared_ptr<s_item_group_entry> get_random_entry(uint16 group_id, uint8 sub_group);
+	uint8 pc_get_itemgroup(uint16 group_id, bool identify, map_session_data *sd);
 };
 
 extern ItemGroupDatabase itemdb_group;
@@ -3522,6 +3610,26 @@ public:
 extern ItemPackageDatabase item_package_db;
 
 uint16 itemdb_searchname_array(std::map<t_itemid, std::shared_ptr<item_data>> &data, uint16 size, const char *str);
+/**
+* Extended Vending system [Lilith] update version by ex0ample
+**/
+struct s_item_vend_db {
+	t_itemid nameid;
+};
+
+class ItemVendingDatabase : public TypesafeCachedYamlDatabase<t_itemid, s_item_vend_db> {
+public:
+	ItemVendingDatabase() : TypesafeCachedYamlDatabase("ITEM_VENDING_DB", 1) {
+
+	}
+
+	const std::string getDefaultLocation();
+	uint64 parseBodyNode(const ryml::NodeRef& node);
+};
+
+extern ItemVendingDatabase itemdb_vending;
+
+int itemdb_searchname_array(struct item_data** data, int size, const char *str);
 struct item_data* itemdb_search(t_itemid nameid);
 
 [[deprecated("Please upgrade your code to item_db.exists() or item_db.find()! This function will be dropped soon!")]]
@@ -3552,16 +3660,16 @@ const char *itemdb_typename_ammo (e_ammo_type ammo);
 #define itemdb_value_buy(n) itemdb_search(n)->value_buy
 #define itemdb_value_sell(n) itemdb_search(n)->value_sell
 //Item trade restrictions [Skotlex]
-bool itemdb_isdropable_sub(struct item_data *itd, int32 gmlv, int32 unused);
-bool itemdb_cantrade_sub(struct item_data *itd, int32 gmlv, int32 gmlv2);
-bool itemdb_canpartnertrade_sub(struct item_data *itd, int32 gmlv, int32 gmlv2);
-bool itemdb_cansell_sub(struct item_data *itd, int32 gmlv, int32 unused);
-bool itemdb_cancartstore_sub(struct item_data *itd, int32 gmlv, int32 unused);
-bool itemdb_canstore_sub(struct item_data *itd, int32 gmlv, int32 unused);
-bool itemdb_canguildstore_sub(struct item_data *itd, int32 gmlv, int32 unused);
-bool itemdb_canmail_sub(struct item_data *itd, int32 gmlv, int32 unused);
-bool itemdb_canauction_sub(struct item_data *itd, int32 gmlv, int32 unused);
-bool itemdb_isrestricted(struct item* item, int32 gmlv, int32 gmlv2, bool (*func)(struct item_data*, int32, int32));
+bool itemdb_isdropable_sub(struct item_data *itd, int gmlv, int unused);
+bool itemdb_cantrade_sub(struct item_data *itd, int gmlv, int gmlv2);
+bool itemdb_canpartnertrade_sub(struct item_data *itd, int gmlv, int gmlv2);
+bool itemdb_cansell_sub(struct item_data *itd, int gmlv, int unused);
+bool itemdb_cancartstore_sub(struct item_data *itd, int gmlv, int unused);
+bool itemdb_canstore_sub(struct item_data *itd, int gmlv, int unused);
+bool itemdb_canguildstore_sub(struct item_data *itd, int gmlv, int unused);
+bool itemdb_canmail_sub(struct item_data *itd, int gmlv, int unused);
+bool itemdb_canauction_sub(struct item_data *itd, int gmlv, int unused);
+bool itemdb_isrestricted(struct item* item, int gmlv, int gmlv2, bool (*func)(struct item_data*, int, int));
 bool itemdb_ishatched_egg(struct item* item);
 #define itemdb_isdropable(item, gmlv) itemdb_isrestricted(item, gmlv, 0, itemdb_isdropable_sub)
 #define itemdb_cantrade(item, gmlv, gmlv2) itemdb_isrestricted(item, gmlv, gmlv2, itemdb_cantrade_sub)
@@ -3582,11 +3690,15 @@ bool itemdb_isNoEquip(struct item_data *id, uint16 m);
 
 bool itemdb_parse_roulette_db(void);
 
-void itemdb_gen_itemmoveinfo();
-
 void itemdb_reload(void);
+
+std::string createItemLink(struct item& data);
 
 void do_final_itemdb(void);
 void do_init_itemdb(void);
+
+/// Extended Vending
+#define ITEMID_ZENY battle_config.item_zeny
+#define ITEMID_CASH battle_config.item_cash
 
 #endif /* ITEMDB_HPP */

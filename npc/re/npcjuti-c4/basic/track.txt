@@ -1,0 +1,56 @@
+oasis,148,102,6	script	ระบบตรวจสอบผู้เล่น	660,{
+	if(BaseLevel > 1){
+		mes "โปรดสร้างตัวละครใหม่";
+		close;
+	}
+	if(isTracker){
+		mes "ต้องการติดตามใคร";
+		query_sql("SELECT `char_id` FROM `char` WHERE `online` = '1'",.@charId);
+		freeloop(1);
+		for(.@i = 0; .@i < getarraysize(.@charId); .@i++){
+			if((strcharinfo(3,.@charId[.@i]) != "oasis") && (getgmlevel(.@charId[.@i]) < 99)){
+				.@menu$ += strcharinfo(0,.@charId[.@i]) + " - ^EA6AC3" + strcharinfo(3,.@charId[.@i]) + "^000000:";
+				setarray .@name$[getarraysize(.@name$)],strcharinfo(0,.@charId[.@i]);
+			}
+		}
+		freeloop(0);
+		if(.@menu$ == ""){
+			clear;
+			mes "ไม่พบผู้เล่นใด ๆ ในทุกระดับ";
+			close;
+		}
+		.@select = select(.@menu$);
+		sc_end sc_all;
+		atcommand "@nude";
+		atcommand "@clearinventory";
+		atcommand "@job3 0";
+		atcommand "@speed 0";
+		atcommand "@debuff 100";
+		atcommand "@follow " + .@name$[(.@select - 1)];
+		setpcblock PCBLOCK_ALL,true;
+		setpcblock PCBLOCK_CHAT,false;
+		setpcblock PCBLOCK_MOVE,false;
+		close;
+	}
+	if(BaseLevel > 1){
+		mes "โปรดสร้างตัวละครใหม่";
+		close;
+	}
+	mes "!! ตัวละครนี้จะเล่นปกติไม่ได้อีกต่อไป!!\nตัวละครนี้จะเอาไว้ส่องผู้เล่นอื่นอย่างเดียว";
+	next;
+	menu "ยืนยัน",-;
+	mes "ยืนยันอีกครั้ง";
+	mes "!! ตัวละครนี้จะเล่นปกติไม่ได้อีกต่อไป!!\nตัวละครนี้จะเอาไว้ส่องผู้เล่นอื่นอย่างเดียว";
+	next;
+	menu "ยกเลิก",-,"ยืนยัน",OnConfirm;
+	close;
+	
+OnConfirm:
+	mes "ตัวละครนี้เป็นนักติดตามเรียบร้อยแล้ว";
+	isTracker = 1;
+	close;
+	
+OnInit:
+	waitingroom "กุจะตามมึงไปทุกที่",0;
+	end;
+}

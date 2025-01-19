@@ -7,12 +7,11 @@
 #include <ryml_std.hpp>
 #include <ryml.hpp>
 
-#include <common/database.hpp>
-#include <common/cbasetypes.hpp>
-#include <common/db.hpp>
-#include <common/malloc.hpp>
-#include <common/mmo.hpp>
-#include <common/timer.hpp>
+#include "../common/database.hpp"
+#include "../common/cbasetypes.hpp"
+#include "../common/db.hpp"
+#include "../common/mmo.hpp"
+#include "../common/timer.hpp"
 
 #define NUM_WHISPER_VAR 10
 
@@ -38,7 +37,7 @@
 #define script_hasdata(st,i) ( (st)->end > (st)->start + (i) )
 /// Returns the index of the last data in the stack
 #define script_lastdata(st) ( (st)->end - (st)->start - 1 )
-/// Pushes an int32 into the stack
+/// Pushes an int into the stack
 #define script_pushint(st,val) push_val((st)->stack, C_INT, (val))
 /// Pushes an int64 into the stack
 #define script_pushint64( st, val ) push_val2( (st)->stack, C_INT, val, nullptr )
@@ -103,7 +102,7 @@
 #define reference_getindex(data) ( (uint32)(int64)((reference_getuid(data) >> 32) & 0xffffffff) )
 /// Returns the name of the reference
 #define reference_getname(data) ( str_buf + str_data[reference_getid(data)].str )
-/// Returns the linked list of uid-value pairs of the reference (can be nullptr)
+/// Returns the linked list of uid-value pairs of the reference (can be NULL)
 #define reference_getref(data) ( (data)->ref )
 /// Returns the value of the constant
 #define reference_getconstant(data) ( str_data[reference_getid(data)].val )
@@ -116,8 +115,8 @@
 /// Checks whether two references point to the same variable (or array)
 #define is_same_reference(data1, data2) \
 	(  reference_getid(data1) == reference_getid(data2) \
-	&& ( (data1->ref == data2->ref && data1->ref == nullptr) \
-	  || (data1->ref != nullptr && data2->ref != nullptr && data1->ref->vars == data2->ref->vars \
+	&& ( (data1->ref == data2->ref && data1->ref == NULL) \
+	  || (data1->ref != NULL && data2->ref != NULL && data1->ref->vars == data2->ref->vars \
 	     ) ) )
 
 #define script_getvarid(var) ( (int32)(int64)(var & 0xFFFFFFFF) )
@@ -141,22 +140,22 @@ enum script_cmd_result {
 #define SCRIPT_BLOCK_SIZE 512
 enum e_labelType { LABEL_NEXTLINE = 1, LABEL_START };
 
-class map_session_data;
+struct map_session_data;
 struct eri;
 
-extern int32 potion_flag; //For use on Alchemist improved potions/Potion Pitcher. [Skotlex]
-extern int32 potion_hp, potion_per_hp, potion_sp, potion_per_sp;
-extern int32 potion_target;
-extern uint32 *generic_ui_array;
-extern uint32 generic_ui_array_size;
+extern int potion_flag; //For use on Alchemist improved potions/Potion Pitcher. [Skotlex]
+extern int potion_hp, potion_per_hp, potion_sp, potion_per_sp;
+extern int potion_target;
+extern unsigned int *generic_ui_array;
+extern unsigned int generic_ui_array_size;
 
 struct Script_Config {
 	unsigned warn_func_mismatch_argtypes : 1;
 	unsigned warn_func_mismatch_paramnum : 1;
-	int32 check_cmdcount;
-	int32 check_gotocount;
-	int32 input_min_value;
-	int32 input_max_value;
+	int check_cmdcount;
+	int check_gotocount;
+	int input_min_value;
+	int input_max_value;
 
 	// PC related
 	const char *die_event_name;
@@ -274,9 +273,9 @@ struct reg_db {
 struct script_retinfo {
 	struct reg_db scope;        ///< scope variables
 	struct script_code* script; ///< script code
-	int32 pos;                    ///< script location
-	int32 nargs;                  ///< argument count
-	int32 defsp;                  ///< default stack pointer
+	int pos;                    ///< script location
+	int nargs;                  ///< argument count
+	int defsp;                  ///< default stack pointer
 };
 
 struct script_data {
@@ -292,16 +291,16 @@ struct script_data {
 // Moved defsp from script_state to script_stack since
 // it must be saved when script state is RERUNLINE. [Eoe / jA 1094]
 struct script_code {
-	int32 script_size;
+	int script_size;
 	unsigned char* script_buf;
 	struct reg_db local;
 	unsigned short instances;
 };
 
 struct script_stack {
-	int32 sp;                         ///< number of entries in the stack
-	int32 sp_max;                     ///< capacity of the stack
-	int32 defsp;
+	int sp;                         ///< number of entries in the stack
+	int sp_max;                     ///< capacity of the stack
+	int defsp;
 	struct script_data *stack_data; ///< stack
 	struct reg_db scope;            ///< scope variables
 };
@@ -314,29 +313,28 @@ enum e_script_state { RUN,STOP,END,RERUNLINE,GOTO,RETFUNC,CLOSE };
 
 struct script_state {
 	struct script_stack* stack;
-	int32 start,end;
-	int32 pos;
+	int start,end;
+	int pos;
 	enum e_script_state state;
-	int32 rid,oid;
+	int rid,oid;
 	struct script_code *script;
 	struct sleep_data {
-		int32 tick,timer,charid;
+		int tick,timer,charid;
 	} sleep;
 	//For backing up purposes
 	struct script_state *bk_st;
-	int32 bk_npcid;
+	int bk_npcid;
 	unsigned freeloop : 1;// used by buildin_freeloop
 	unsigned op2ref : 1;// used by op_2
 	unsigned npc_item_flag : 1;
 	unsigned mes_active : 1;  // Store if invoking character has a NPC dialog box open.
-	unsigned clear_cutin : 1;
 	char* funcname; // Stores the current running function name
-	uint32 id;
+	unsigned int id;
 };
 
 struct script_reg {
 	int64 index;
-	int32 data;
+	int data;
 };
 
 struct script_regstr {
@@ -345,15 +343,15 @@ struct script_regstr {
 };
 
 struct script_array {
-	uint32 id;       ///< the first 32b of the 64b uid, aka the id
-	uint32 size;     ///< how many members
-	uint32 *members; ///< member list
+	unsigned int id;       ///< the first 32b of the 64b uid, aka the id
+	unsigned int size;     ///< how many members
+	unsigned int *members; ///< member list
 };
 
 enum script_parse_options {
 	SCRIPT_USE_LABEL_DB = 0x1,// records labels in scriptlabel_db
 	SCRIPT_IGNORE_EXTERNAL_BRACKETS = 0x2,// ignores the check for {} brackets around the script
-	SCRIPT_RETURN_EMPTY_SCRIPT = 0x4// returns the script object instead of nullptr for empty scripts
+	SCRIPT_RETURN_EMPTY_SCRIPT = 0x4// returns the script object instead of NULL for empty scripts
 };
 
 enum monsterinfo_types {
@@ -497,6 +495,9 @@ enum unitdata_mobtypes {
 	UMOB_RES,
 	UMOB_MRES,
 	UMOB_DAMAGETAKEN,
+	UMOB_DYNAMIC, // [Start]
+	UMOB_DYNAMIC_DAMAGE, // [Start]
+	UMOB_DEFLECT, // [Start]
 };
 
 enum unitdata_homuntypes {
@@ -1959,8 +1960,8 @@ enum e_hat_effects : int16{
 	HAT_EF_QSCARABA,
 	HAT_EF_FSTONE,
 	HAT_EF_MAGICCIRCLE,
-	HAT_EF_BRYSINGGAMEN,
-	HAT_EF_MAGINGIORDE,
+	HAT_EF_GODCLASS,
+	HAT_EF_GODCLASS2,
 	HAT_EF_LEVEL99_RED,
 	HAT_EF_LEVEL99_ULTRAMARINE,
 	HAT_EF_LEVEL99_CYAN,
@@ -2128,11 +2129,6 @@ enum e_hat_effects : int16{
 	HAT_EF_C_BABY_GLOOM,
 	HAT_EF_WINTERNIGHTBELLS,
 	HAT_EF_NIGHTSKYOFRUTIE,
-	FOOTPRINT_EF_BASE,
-	FOOTPRINT_EF_STR_BASE,
-	FOOTPRINT_EF_PURPLESTAR,
-	FOOTPRINT_EF_YELLOWSTAR,
-	FOOTPRINT_EF_REDSTAR,
 	HAT_EF_RAINBOW_POISON_MASTER,
 	HAT_EF_C_ANCIENT_RUNE,
 	HAT_EF_C_DRAGON_GREEN_AURA,
@@ -2145,18 +2141,560 @@ enum e_hat_effects : int16{
 	FOOTPRINT_EF_DOGFOOT,
 	HAT_EF_C_AUSPICLOUD,
 	HAT_EF_AURA_OF_GHOST_S,
-	HAT_EF_MAX
+	/* Custom Hateffects */
+	HAT_EF_enchanting_shadow_B,
+	HAT_EF_abyss_strike_A,
+	HAT_EF_abyss_strike_B,
+	HAT_EF_mystery_illusion_A,
+	HAT_EF_mystery_illusion_B,
+	HAT_EF_deadly_projection_A,
+	HAT_EF_deadly_projection_B,
+	HAT_EF_astralstrike_A,
+	HAT_EF_astralstrike_B,
+	HAT_EF_froral_flareroad_A,
+	HAT_EF_froral_flareroad_B,
+	HAT_EF_crimsonarrow_A,
+	HAT_EF_crimsonarrow_B,
+	HAT_EF_rain_of_crystal_A,
+	HAT_EF_rain_of_crystal_B,
+	HAT_EF_crystal_impact_A,
+	HAT_EF_crystal_impact_B,
+	HAT_EF_crystal_impact_C,
+	HAT_EF_tornadostorm_A,
+	HAT_EF_tornadostorm_B,
+	HAT_EF_strantumtremor_A,
+	HAT_EF_strantumtremor_B,
+	HAT_EF_rockdown_A,
+	HAT_EF_rockdown_B,
+	HAT_EF_violentquake_A,
+	HAT_EF_violentquake_B,
+	HAT_EF_terradrive_A,
+	HAT_EF_terradrive_B,
+	HAT_EF_lightning_land_A,
+	HAT_EF_lightning_land_B,
+	HAT_EF_venom_swamp_A,
+	HAT_EF_venom_swamp_B,
+	HAT_EF_activity_burn_A,
+	HAT_EF_activity_burn_B,
+	HAT_EF_increasing_activity_A,
+	HAT_EF_increasing_activity_B,
+	HAT_EF_diluvio_A,
+	HAT_EF_diluvio_B,
+	HAT_EF_ardor_A,
+	HAT_EF_ardor_B,
+	HAT_EF_procella_A,
+	HAT_EF_procella_B,
+	HAT_EF_terremotus_A,
+	HAT_EF_terremotus_B,
+	HAT_EF_serpens_A,
+	HAT_EF_serpens_B,
+	HAT_EF_new_dilectioheal_A,
+	HAT_EF_new_dilectioheal_B,
+	HAT_EF_new_dilectioheal_C,
+	HAT_EF_new_dilectioheal_D,
+	HAT_EF_competentia_A,
+	HAT_EF_competentia_B,
+	HAT_EF_benedictum_A,
+	HAT_EF_benedictum_B,
+	HAT_EF_arbitrium_A,
+	HAT_EF_arbitrium_B,
+	HAT_EF_pneumaticusprocella,
+	HAT_EF_sincerefaith,
+	HAT_EF_new_a_machine_A,
+	HAT_EF_new_a_machine_B,
+	HAT_EF_new_d_machine_A,
+	HAT_EF_new_d_machine_B,
+	HAT_EF_new_d_machine_C,
+	HAT_EF_adv_protection_A,
+	HAT_EF_adv_protection_B,
+	HAT_EF_adv_protection_C,
+	HAT_EF_acidified_zone_fire_A,
+	HAT_EF_acidified_zone_fire_B,
+	HAT_EF_acidified_zone_ground_A,
+	HAT_EF_acidified_zone_ground_B,
+	HAT_EF_acidified_zone_water_A,
+	HAT_EF_acidified_zone_water_B,
+	HAT_EF_acidified_zone_wind_A,
+	HAT_EF_acidified_zone_wind_B,
+	HAT_EF_wooden_fairy_A,
+	HAT_EF_wooden_fairy_B,
+	HAT_EF_wooden_warrior_A,
+	HAT_EF_wooden_warrior_B,
+	HAT_EF_hawkvumerang_A,
+	HAT_EF_hawkvumerang_B,
+	HAT_EF_hawkvumerang_C,
+	HAT_EF_solidtrap_A,
+	HAT_EF_solidtrap_B,
+	HAT_EF_flametrap_A,
+	HAT_EF_flametrap_B,
+	HAT_EF_deepblindtrap_A,
+	HAT_EF_deepblindtrap_B,
+	HAT_EF_swifttrap_A,
+	HAT_EF_swifttrap_B,
+	HAT_EF_rhythmshooting_A,
+	HAT_EF_rhythmshooting_B,
+	HAT_EF_soundblend_A,
+	HAT_EF_soundblend_B,
+	HAT_EF_mysticsymphony,
+	HAT_EF_jawaii_serenade_A,
+	HAT_EF_jawaii_serenade_B,
+	HAT_EF_pronmarch_A,
+	HAT_EF_pronmarch_B,
+	HAT_EF_roki_capriccio_A,
+	HAT_EF_roki_capriccio_B,
+	HAT_EF_kvasirsonata_A,
+	HAT_EF_kvasirsonata_B,
+	HAT_EF_hidden_card,
+	HAT_EF_auto_firing_launcher,
+	HAT_EF_mega_sonic_blow,
+	HAT_EF_breakinglimit,
+	HAT_EF_new_comet_A,
+	HAT_EF_new_comet_B,
+	HAT_EF_new_strantumtremor_A,
+	HAT_EF_new_strantumtremor_B,
+	HAT_EF_new_varetyrspear_A,
+	HAT_EF_new_varetyrspear_B,
+	HAT_EF_new_wallofthorn_A,
+	HAT_EF_new_wallofthorn_B,
+	HAT_EF_new_judex_A,
+	HAT_EF_new_judex_B,
+	HAT_EF_new_judex_C,
+	HAT_EF_new_judex_D,
+	HAT_EF_new_judex_E,
+	HAT_EF_new_diamonddust,
+	HAT_EF_new_cart_cannon_A,
+	HAT_EF_new_cart_cannon_B,
+	HAT_EF_judgement_cross_A,
+	HAT_EF_judgement_cross_B,
+	HAT_EF_judgement_cross_C,
+	HAT_EF_judgement_cross_D,
+	HAT_EF_grand_judgement_A,
+	HAT_EF_grand_judgement_B,
+	HAT_EF_attack_stance_A,
+	HAT_EF_attack_stance_B,
+	HAT_EF_guard_stance_A,
+	HAT_EF_guard_stance_B,
+	HAT_EF_arcane_aura_A,
+	HAT_EF_arcane_aura_B,
+	HAT_EF_gluttony_aura_A,
+	HAT_EF_gluttony_aura_B,
+	HAT_EF_abstract_flower_aura_A,
+	HAT_EF_abstract_flower_aura_B,
+	HAT_EF_aiyu_aura_A,
+	HAT_EF_aiyu_aura_B,
+	HAT_EF_amulet_aura_A,
+	HAT_EF_amulet_aura_B,
+	HAT_EF_angelic_aura_A,
+	HAT_EF_angelic_aura_B,
+	HAT_EF_aniexiles_aura_A,
+	HAT_EF_aniexiles_aura_B,
+	HAT_EF_crest_moon_aura_A,
+	HAT_EF_crest_moon_aura_B,
+	HAT_EF_solestic_aura_A,
+	HAT_EF_solestic_aura_B,
+	HAT_EF_arcane_red_aura_A,
+	HAT_EF_arcane_red_aura_B,
+	HAT_EF_arcane_blue_aura_A,
+	HAT_EF_arcane_blue_aura_B,
+	HAT_EF_arcane_pink_aura_A,
+	HAT_EF_arcane_pink_aura_B,
+	HAT_EF_arcane_green_aura_A,
+	HAT_EF_arcane_green_aura_B,
+	HAT_EF_artic_galaxy_aura_A,
+	HAT_EF_artic_galaxy_aura_B,
+	HAT_EF_king_of_aura_A,
+	HAT_EF_king_of_aura_B,
+	HAT_EF_flame_aura_A,
+	HAT_EF_flame_aura_B,
+	HAT_EF_autum_leaf_aura_A,
+	HAT_EF_autum_leaf_aura_B,
+	HAT_EF_dolphin_aura_A,
+	HAT_EF_dolphin_aura_B,
+	HAT_EF_voodoo_aura_A,
+	HAT_EF_voodoo_aura_B,
+	HAT_EF_blood_aura_A,
+	HAT_EF_blood_aura_B,
+	HAT_EF_bloody_sun_aura_A,
+	HAT_EF_bloody_sun_aura_B,
+	HAT_EF_blubble_aura_A,
+	HAT_EF_blubble_aura_B,
+	HAT_EF_blue_fume_aura_A,
+	HAT_EF_blue_fume_aura_B,
+	HAT_EF_blue_heaven_aura_A,
+	HAT_EF_blue_heaven_aura_B,
+	HAT_EF_blue_moon_aura_A,
+	HAT_EF_blue_moon_aura_B,
+	HAT_EF_blush_aura_A,
+	HAT_EF_blush_aura_B,
+	HAT_EF_bubble_2_aura_A,
+	HAT_EF_bubble_2_aura_B,
+	HAT_EF_butterfly_aura_A,
+	HAT_EF_butterfly_aura_B,
+	HAT_EF_effect_aura,
+	HAT_EF_effect_purple_aura,
+	HAT_EF_effect_orange_aura,
+	HAT_EF_effect_blue_aura,
+	HAT_EF_effect_cyan_aura,
+	HAT_EF_effect_pink_aura,
+	HAT_EF_effect_red_aura,
+	HAT_EF_effect_yellow_aura,
+	HAT_EF_effect_green_aura,
+	HAT_EF_effect_purple_s_aura,
+	HAT_EF_effect_orange_s_aura,
+	HAT_EF_effect_blue_s_aura,
+	HAT_EF_effect_cyan_s_aura,
+	HAT_EF_effect_pink_s_aura,
+	HAT_EF_effect_red_s_aura,
+	HAT_EF_effect_yellow_s_aura,
+	HAT_EF_effect_green_s_aura,
+	HAT_EF_bautterfly_2_aura_A,
+	HAT_EF_bautterfly_2_aura_B,
+	HAT_EF_celestia_tattoo_aura_A,
+	HAT_EF_celestia_tattoo_aura_B,
+	HAT_EF_celtic_aura_A,
+	HAT_EF_celtic_aura_B,
+	HAT_EF_celtic_flower_aura_A,
+	HAT_EF_celtic_flower_aura_B,
+	HAT_EF_celtic_green_aura_A,
+	HAT_EF_celtic_green_aura_B,
+	HAT_EF_celtic_heart_aura_A,
+	HAT_EF_celtic_heart_aura_B,
+	HAT_EF_celtic_protection_aura_A,
+	HAT_EF_celtic_protection_aura_B,
+	HAT_EF_chococat_aura_A,
+	HAT_EF_chococat_aura_B,
+	HAT_EF_circle_of_power_aura_A,
+	HAT_EF_circle_of_power_aura_B,
+	HAT_EF_color_swirls_aura_A,
+	HAT_EF_color_swirls_aura_B,
+	HAT_EF_crest_aura_A,
+	HAT_EF_crest_aura_B,
+	HAT_EF_cross_aura_A,
+	HAT_EF_cross_aura_B,
+	HAT_EF_daisy_aura_A,
+	HAT_EF_daisy_aura_B,
+	HAT_EF_dark_summoning_aura_A,
+	HAT_EF_dark_summoning_aura_B,
+	HAT_EF_demon_symbol_aura_A,
+	HAT_EF_demon_symbol_aura_B,
+	HAT_EF_anime_aura_A,
+	HAT_EF_anime_aura_B,
+	HAT_EF_devotion_aura_A,
+	HAT_EF_devotion_aura_B,
+	HAT_EF_dolphin_2_aura_A,
+	HAT_EF_dolphin_2_aura_B,
+	HAT_EF_dragon_aura_A,
+	HAT_EF_dragon_aura_B,
+	HAT_EF_dragon_head_aura_A,
+	HAT_EF_dragon_head_aura_B,
+	HAT_EF_dragonflies_aura_A,
+	HAT_EF_dragonflies_aura_B,
+	HAT_EF_envy_aura_A,
+	HAT_EF_envy_aura_B,
+	HAT_EF_fairy_aura_A,
+	HAT_EF_fairy_aura_B,
+	HAT_EF_fire_sun_aura_A,
+	HAT_EF_fire_sun_aura_B,
+	HAT_EF_flamy_sun_2_aura_A,
+	HAT_EF_flamy_sun_2_aura_B,
+	HAT_EF_flamy_sun_aura_A,
+	HAT_EF_flamy_sun_aura_B,
+	HAT_EF_flashy_2_aura_A,
+	HAT_EF_flashy_2_aura_B,
+	HAT_EF_flashy_3_aura_A,
+	HAT_EF_flashy_3_aura_B,
+	HAT_EF_flashy_aura_A,
+	HAT_EF_flashy_aura_B,
+	HAT_EF_flower_aura_A,
+	HAT_EF_flower_aura_B,
+	HAT_EF_force_aura_A,
+	HAT_EF_force_aura_B,
+	HAT_EF_full_metal_alchemist_aura_A,
+	HAT_EF_full_metal_alchemist_aura_B,
+	HAT_EF_funky_colors_aura_A,
+	HAT_EF_funky_colors_aura_B,
+	HAT_EF_ghost_1_aura_A,
+	HAT_EF_ghost_1_aura_B,
+	HAT_EF_ghost_2_aura_A,
+	HAT_EF_ghost_2_aura_B,
+	HAT_EF_ghost_3_aura_A,
+	HAT_EF_ghost_3_aura_B,
+	HAT_EF_ghost_4_aura_A,
+	HAT_EF_ghost_4_aura_B,
+	HAT_EF_grape_aura_A,
+	HAT_EF_grape_aura_B,
+	HAT_EF_greed_aura_A,
+	HAT_EF_greed_aura_B,
+	HAT_EF_green_plant_aura_A,
+	HAT_EF_green_plant_aura_B,
+	HAT_EF_green_swirls_aura_A,
+	HAT_EF_green_swirls_aura_B,
+	HAT_EF_green_wing_aura_A,
+	HAT_EF_green_wing_aura_B,
+	HAT_EF_grunge_green_aura_A,
+	HAT_EF_grunge_green_aura_B,
+	HAT_EF_guiding_star_aura_A,
+	HAT_EF_guiding_star_aura_B,
+	HAT_EF_tornado_aura_A,
+	HAT_EF_tornado_aura_B,
+	HAT_EF_heart_aura_A,
+	HAT_EF_heart_aura_B,
+	HAT_EF_hello_kitty_aura_A,
+	HAT_EF_hello_kitty_aura_B,
+	HAT_EF_hellsing_aura_A,
+	HAT_EF_hellsing_aura_B,
+	HAT_EF_holy_1_aura_A,
+	HAT_EF_holy_1_aura_B,
+	HAT_EF_holy_aura_A,
+	HAT_EF_holy_aura_B,
+	HAT_EF_human_emblem_aura_A,
+	HAT_EF_human_emblem_aura_B,
+	HAT_EF_lady_bug_aura_A,
+	HAT_EF_lady_bug_aura_B,
+	HAT_EF_lauriers_aura_A,
+	HAT_EF_lauriers_aura_B,
+	HAT_EF_lead_circlet_aura_A,
+	HAT_EF_lead_circlet_aura_B,
+	HAT_EF_leal_life_aura_A,
+	HAT_EF_leal_life_aura_B,
+	HAT_EF_lifesource_aura_A,
+	HAT_EF_lifesource_aura_B,
+	HAT_EF_limitless_flowers_aura_A,
+	HAT_EF_limitless_flowers_aura_B,
+	HAT_EF_lionheart_aura_A,
+	HAT_EF_lionheart_aura_B,
+	HAT_EF_little_rounds_aura_A,
+	HAT_EF_little_rounds_aura_B,
+	HAT_EF_lord_of_the_rings_aura_A,
+	HAT_EF_lord_of_the_rings_aura_B,
+	HAT_EF_lotus_aura_A,
+	HAT_EF_lotus_aura_B,
+	HAT_EF_love_aura_A,
+	HAT_EF_love_aura_B,
+	HAT_EF_lust_aura_A,
+	HAT_EF_lust_aura_B,
+	HAT_EF_magic_circle_aura_A,
+	HAT_EF_magic_circle_aura_B,
+	HAT_EF_manic_aura_A,
+	HAT_EF_manic_aura_B,
+	HAT_EF_medieval_heart_aura_A,
+	HAT_EF_medieval_heart_aura_B,
+	HAT_EF_merlin_aura_A,
+	HAT_EF_merlin_aura_B,
+	HAT_EF_metallic_butterfly_aura_A,
+	HAT_EF_metallic_butterfly_aura_B,
+	HAT_EF_midnight_fenrir_aura_A,
+	HAT_EF_midnight_fenrir_aura_B,
+	HAT_EF_mist_of_azure_aura_A,
+	HAT_EF_mist_of_azure_aura_B,
+	HAT_EF_musical_aura_A,
+	HAT_EF_musical_aura_B,
+	HAT_EF_nature_aura_A,
+	HAT_EF_nature_aura_B,
+	HAT_EF_necromancy_aura_A,
+	HAT_EF_necromancy_aura_B,
+	HAT_EF_phoenix_aura_A,
+	HAT_EF_phoenix_aura_B,
+	HAT_EF_pretty_lotus_aura_A,
+	HAT_EF_pretty_lotus_aura_B,
+	HAT_EF_pride_aura_A,
+	HAT_EF_pride_aura_B,
+	HAT_EF_pumpkin_aura_A,
+	HAT_EF_pumpkin_aura_B,
+	HAT_EF_purple_flower_aura_A,
+	HAT_EF_purple_flower_aura_B,
+	HAT_EF_chain_lock_aura_A,
+	HAT_EF_chain_lock_aura_B,
+	HAT_EF_cross_holy_aura_A,
+	HAT_EF_cross_holy_aura_B,
+	HAT_EF_purple_moon_aura_A,
+	HAT_EF_purple_moon_aura_B,
+	HAT_EF_purple_pace_aura_A,
+	HAT_EF_purple_pace_aura_B,
+	HAT_EF_red_cross_aura_A,
+	HAT_EF_red_cross_aura_B,
+	HAT_EF_red_shield_aura_A,
+	HAT_EF_red_shield_aura_B,
+	HAT_EF_red_smoke_aura_A,
+	HAT_EF_red_smoke_aura_B,
+	HAT_EF_red_splash_aura_A,
+	HAT_EF_red_splash_aura_B,
+	HAT_EF_red_stars_aura_A,
+	HAT_EF_red_stars_aura_B,
+	HAT_EF_red_wave_aura_A,
+	HAT_EF_red_wave_aura_B,
+	HAT_EF_rose_2_aura_A,
+	HAT_EF_rose_2_aura_B,
+	HAT_EF_rose_aura_A,
+	HAT_EF_rose_aura_B,
+	HAT_EF_rose_necklace_aura_A,
+	HAT_EF_rose_necklace_aura_B,
+	HAT_EF_scribble_aura_A,
+	HAT_EF_scribble_aura_B,
+	HAT_EF_server_current_aura_A,
+	HAT_EF_server_current_aura_B,
+	HAT_EF_shadow_aura_A,
+	HAT_EF_shadow_aura_B,
+	HAT_EF_skull_aura_A,
+	HAT_EF_skull_aura_B,
+	HAT_EF_sloth_aura_A,
+	HAT_EF_sloth_aura_B,
+	HAT_EF_snow_aura_A,
+	HAT_EF_snow_aura_B,
+	HAT_EF_solar_2_aura_A,
+	HAT_EF_solar_2_aura_B,
+	HAT_EF_solar_3_aura_A,
+	HAT_EF_solar_3_aura_B,
+	HAT_EF_solar_aura_A,
+	HAT_EF_solar_aura_B,
+	HAT_EF_something_aura_A,
+	HAT_EF_something_aura_B,
+	HAT_EF_spike_aura_A,
+	HAT_EF_spike_aura_B,
+	HAT_EF_splash_circle_aura_A,
+	HAT_EF_splash_circle_aura_B,
+	HAT_EF_square_aura_A,
+	HAT_EF_square_aura_B,
+	HAT_EF_star_aura_A,
+	HAT_EF_star_aura_B,
+	HAT_EF_strawberry_aura_A,
+	HAT_EF_strawberry_aura_B,
+	HAT_EF_sun_and_moon_aura_A,
+	HAT_EF_sun_and_moon_aura_B,
+	HAT_EF_triangle_aura_A,
+	HAT_EF_triangle_aura_B,
+	HAT_EF_tribal_aura_A,
+	HAT_EF_tribal_aura_B,
+	HAT_EF_tricky_sun_aura_A,
+	HAT_EF_tricky_sun_aura_B,
+	HAT_EF_trigger_symbol_aura_A,
+	HAT_EF_trigger_symbol_aura_B,
+	HAT_EF_batman_aura_A,
+	HAT_EF_batman_aura_B,
+	HAT_EF_turquoise_aura_A,
+	HAT_EF_turquoise_aura_B,
+	HAT_EF_undead_green_sigil_aura_A,
+	HAT_EF_undead_green_sigil_aura_B,
+	HAT_EF_undead_red_sigil_aura_A,
+	HAT_EF_undead_red_sigil_aura_B,
+	HAT_EF_undead_sigil_aura_A,
+	HAT_EF_undead_sigil_aura_B,
+	HAT_EF_unholy_aura_A,
+	HAT_EF_unholy_aura_B,
+	HAT_EF_unicorn_aura_A,
+	HAT_EF_unicorn_aura_B,
+	HAT_EF_unknown_aura_A,
+	HAT_EF_unknown_aura_B,
+	HAT_EF_unwanted_happening_aura_A,
+	HAT_EF_unwanted_happening_aura_B,
+	HAT_EF_wavy_circle_aura_A,
+	HAT_EF_wavy_circle_aura_B,
+	HAT_EF_wedding_aura_A,
+	HAT_EF_wedding_aura_B,
+	HAT_EF_white_swirl_aura_A,
+	HAT_EF_white_swirl_aura_B,
+	HAT_EF_wrath_aura_A,
+	HAT_EF_wrath_aura_B,
+	HAT_EF_yellow_smoke_aura_A,
+	HAT_EF_yellow_smoke_aura_B,
+	HAT_EF_zeet_blue_aura_A,
+	HAT_EF_zeet_blue_aura_B,
+	HAT_EF_zeet_pink_aura_A,
+	HAT_EF_zeet_pink_aura_B,
+	HAT_EF_zeet_red_aura_A,
+	HAT_EF_zeet_red_aura_B,
+	HAT_EF_absolute_zephyr,
+	HAT_EF_allbloom_A,
+	HAT_EF_allbloom_B,
+	HAT_EF_chain_reaction_shot_A,
+	HAT_EF_chain_reaction_shot_B,
+	HAT_EF_crossrain_A,
+	HAT_EF_crossrain_B,
+	HAT_EF_dancing_knife_A,
+	HAT_EF_dancing_knife_B,
+	HAT_EF_destructive_hurricane_A,
+	HAT_EF_destructive_hurricane_B,
+	HAT_EF_firmfaith,
+	HAT_EF_frozen_slash_A,
+	HAT_EF_frozen_slash_B,
+	HAT_EF_gef_nocturn_A,
+	HAT_EF_gef_nocturn_B,
+	HAT_EF_new_aimedbolt,
+	HAT_EF_new_aromaoil_A,
+	HAT_EF_new_aromaoil_B,
+	HAT_EF_new_axeboomerang_A,
+	HAT_EF_new_axeboomerang_B,
+	HAT_EF_new_chainlightning,
+	HAT_EF_new_fatal_menace_A,
+	HAT_EF_new_fatal_menace_B,
+	HAT_EF_new_hellInferno,
+	HAT_EF_new_howlingoflion_A,
+	HAT_EF_new_howlingoflion_B,
+	HAT_EF_new_overbrand_A,
+	HAT_EF_new_overbrand_B,
+	HAT_EF_new_pramen,
+	HAT_EF_new_soulexpansion_A,
+	HAT_EF_new_soulexpansion_B,
+	HAT_EF_new_soulexpansion_C,
+	HAT_EF_new_soundofdestruction_A,
+	HAT_EF_new_soundofdestruction_B,
+	HAT_EF_new_spellfist_A,
+	HAT_EF_new_spellfist_B,
+	HAT_EF_new_spellfist_C,
+	HAT_EF_new_tornadostorm_A,
+	HAT_EF_new_tornadostorm_B,
+	HAT_EF_powerfulfaith,
+	HAT_EF_rebound_shield_A,
+	HAT_EF_rebound_shield_B,
+	HAT_EF_roseblossom_A,
+	HAT_EF_roseblossom_B,
+	HAT_EF_roseblossom_C,
+	HAT_EF_soul_vc_strike_A,
+	HAT_EF_soul_vc_strike_B,
+	HAT_EF_new_chainlightning_cast,
+	HAT_EF_firstfaithpower_A,
+	HAT_EF_firstfaithpower_B,
+	HAT_EF_firstfaithpower_C,
+	HAT_EF_helltree_A,
+	HAT_EF_helltree_B,
+	HAT_EF_abyss_slayer_A,
+	HAT_EF_abyss_slayer_B,
+	HAT_EF_abyss_slayer_C,
+	HAT_EF_judge_A,
+	HAT_EF_judge_B,
+	HAT_EF_judge_C,
+	HAT_EF_judge_D,
+	HAT_EF_thirdexorflame_A,
+	HAT_EF_thirdexorflame_B,
+	HAT_EF_thirdexorflame_C,
+	HAT_EF_thirdexorflame_D,
+	HAT_EF_ske_rising_sun_A,
+	HAT_EF_ske_rising_sun_B,
+	HAT_EF_ske_rising_sun_C,
+	HAT_EF_ske_rising_moon_A,
+	HAT_EF_ske_rising_moon_B,
+	HAT_EF_ske_rising_moon_C,
+	HAT_EF_ske_enchanting_sky,
+	HAT_EF_circle_directions_elements,
+	HAT_EF_talisman_of_magician,
+	HAT_EF_soul_of_heaven_and_earth,
+	HAT_EF_servant_sign_A,
+	HAT_EF_servant_sign_B,
+	HAT_EF_vigor,
+	HAT_EF_dragonic_aura_A,
+	HAT_EF_dragonic_aura_B,
+	HAT_EF_diamond_storm_A,
+	HAT_EF_diamond_storm_B,
+	HAT_EF_conflagration_A,
+	HAT_EF_conflagration_B,
+	HAT_EF_enchanting_shadow_A,
+	HAT_EF_MAX = 9999
 };
 
 enum e_convertpcinfo_type : uint8 {
 	CPC_NAME      = 0,
 	CPC_CHAR      = 1,
 	CPC_ACCOUNT   = 2
-};
-
-enum e_instance_warpall_flag{
-	IWA_NONE    = 0x00,
-	IWA_NOTDEAD = 0x01,
 };
 
 /**
@@ -2172,10 +2710,9 @@ enum e_pcblock_action_flag : uint16 {
 	PCBLOCK_SITSTAND = 0x040,
 	PCBLOCK_COMMANDS = 0x080,
 	PCBLOCK_NPCCLICK = 0x100,
+	PCBLOCK_NPC      = 0x18D,
 	PCBLOCK_EMOTION  = 0x200,
-	PCBLOCK_EQUIP    = 0x400,
-	PCBLOCK_NPC      = 0x58D,
-	PCBLOCK_ALL      = 0x7FF,
+	PCBLOCK_ALL      = 0x3FF,
 };
 
 /* getiteminfo/setiteminfo script commands */
@@ -2203,13 +2740,6 @@ enum e_iteminfo : uint8 {
 	ITEMINFO_SUBTYPE,
 };
 
-/* geteleminfo script command */
-enum e_eleminfo : uint8 {
-	ELEMINFO_ID = 0,
-	ELEMINFO_GAMEID,
-	ELEMINFO_CLASS,
-};
-
 class ConstantDatabase : public YamlDatabase {
 public:
 	ConstantDatabase() : YamlDatabase("CONSTANT_DB", 1) {
@@ -2226,30 +2756,29 @@ public:
  **/
 extern struct eri *array_ers;
 extern DBMap *st_db;
-extern uint32 active_scripts;
-extern uint32 next_id;
+extern unsigned int active_scripts;
+extern unsigned int next_id;
 extern struct eri *st_ers;
 extern struct eri *stack_ers;
 
 const char* skip_space(const char* p);
-void script_error(const char* src, const char* file, int32 start_line, const char* error_msg, const char* error_pos);
-void script_warning(const char* src, const char* file, int32 start_line, const char* error_msg, const char* error_pos);
+void script_error(const char* src, const char* file, int start_line, const char* error_msg, const char* error_pos);
+void script_warning(const char* src, const char* file, int start_line, const char* error_msg, const char* error_pos);
 
 bool is_number(const char *p);
-struct script_code* parse_script_( const char *src, const char *file, int32 line, int32 options, const char* src_file, int32 src_line, const char* src_func );
-#define parse_script( src, file, line, options ) parse_script_( ( src ), ( file ), ( line ), ( options ), ALC_MARK )
-void run_script(struct script_code *rootscript,int32 pos,int32 rid,int32 oid);
+struct script_code* parse_script(const char* src,const char* file,int line,int options);
+void run_script(struct script_code *rootscript,int pos,int rid,int oid);
 
-bool set_reg_num(struct script_state* st, map_session_data* sd, int64 num, const char* name, const int64 value, struct reg_db *ref);
-bool set_reg_str(struct script_state* st, map_session_data* sd, int64 num, const char* name, const char* value, struct reg_db* ref);
-bool set_var_str(map_session_data *sd, const char* name, const char* val);
-bool clear_reg( struct script_state* st, map_session_data* sd, int64 num, const char* name, struct reg_db *ref );
+bool set_reg_num(struct script_state* st, struct map_session_data* sd, int64 num, const char* name, const int64 value, struct reg_db *ref);
+bool set_reg_str(struct script_state* st, struct map_session_data* sd, int64 num, const char* name, const char* value, struct reg_db* ref);
+bool set_var_str(struct map_session_data *sd, const char* name, const char* val);
+bool clear_reg( struct script_state* st, struct map_session_data* sd, int64 num, const char* name, struct reg_db *ref );
 int64 conv_num64(struct script_state *st, struct script_data *data);
-int32 conv_num(struct script_state *st, struct script_data *data);
+int conv_num(struct script_state *st, struct script_data *data);
 const char* conv_str(struct script_state *st,struct script_data *data);
-void pop_stack(struct script_state* st, int32 start, int32 end);
+void pop_stack(struct script_state* st, int start, int end);
 TIMER_FUNC(run_script_timer);
-void script_stop_sleeptimers(int32 id);
+void script_stop_sleeptimers(int id);
 struct linkdb_node *script_erase_sleepdb(struct linkdb_node *n);
 void script_attach_state(struct script_state* st);
 void script_detach_rid(struct script_state* st);
@@ -2258,53 +2787,53 @@ void run_script_main(struct script_state *st);
 void script_stop_scriptinstances(struct script_code *code);
 void script_free_code(struct script_code* code);
 void script_free_vars(struct DBMap *storage);
-struct script_state* script_alloc_state(struct script_code* rootscript, int32 pos, int32 rid, int32 oid);
+struct script_state* script_alloc_state(struct script_code* rootscript, int pos, int rid, int oid);
 void script_free_state(struct script_state* st);
 
 struct DBMap* script_get_label_db(void);
 struct DBMap* script_get_userfunc_db(void);
-void script_run_autobonus(const char *autobonus, map_session_data *sd, uint32 pos);
+void script_run_autobonus(const char *autobonus, struct map_session_data *sd, unsigned int pos);
 void script_run_petautobonus(const std::string &autobonus, map_session_data &sd);
 
 const char* script_get_constant_str(const char* prefix, int64 value);
 bool script_get_parameter(const char* name, int64* value);
 bool script_get_constant(const char* name, int64* value);
 void script_set_constant_(const char* name, int64 value, const char* constant_name, bool isparameter, bool deprecated);
-#define script_set_constant(name, value, isparameter, deprecated) script_set_constant_(name, value, nullptr, isparameter, deprecated)
+#define script_set_constant(name, value, isparameter, deprecated) script_set_constant_(name, value, NULL, isparameter, deprecated)
 void script_hardcoded_constants(void);
 
-void script_cleararray_pc(map_session_data* sd, const char* varname);
-void script_setarray_pc(map_session_data* sd, const char* varname, uint32 idx, int64 value, int* refcache);
+void script_cleararray_pc(struct map_session_data* sd, const char* varname);
+void script_setarray_pc(struct map_session_data* sd, const char* varname, uint32 idx, int64 value, int* refcache);
 
-int32 script_config_read(const char *cfgName);
+int script_config_read(const char *cfgName);
 void do_init_script(void);
 void do_final_script(void);
-int32 add_str(const char* p);
-const char* get_str(int32 id);
+int add_str(const char* p);
+const char* get_str(int id);
 void script_reload(void);
 
-void setd_sub_num( struct script_state* st, map_session_data* sd, const char* varname, int32 elem, int64 value, struct reg_db* ref );
-void setd_sub_str( struct script_state* st, map_session_data* sd, const char* varname, int32 elem, const char* value, struct reg_db* ref );
+void setd_sub_num( struct script_state* st, struct map_session_data* sd, const char* varname, int elem, int64 value, struct reg_db* ref );
+void setd_sub_str( struct script_state* st, struct map_session_data* sd, const char* varname, int elem, const char* value, struct reg_db* ref );
 
 /**
  * Array Handling
  **/
-struct reg_db *script_array_src(struct script_state *st, map_session_data *sd, const char *name, struct reg_db *ref);
+struct reg_db *script_array_src(struct script_state *st, struct map_session_data *sd, const char *name, struct reg_db *ref);
 void script_array_update(struct reg_db *src, int64 num, bool empty);
 void script_array_delete(struct reg_db *src, struct script_array *sa);
-void script_array_remove_member(struct reg_db *src, struct script_array *sa, uint32 idx);
-void script_array_add_member(struct script_array *sa, uint32 idx);
-uint32 script_array_size(struct script_state *st, map_session_data *sd, const char *name, struct reg_db *ref);
-uint32 script_array_highest_key(struct script_state *st, map_session_data *sd, const char *name, struct reg_db *ref);
-void script_array_ensure_zero(struct script_state *st, map_session_data *sd, int64 uid, struct reg_db *ref);
-int32 script_free_array_db(DBKey key, DBData *data, va_list ap);
+void script_array_remove_member(struct reg_db *src, struct script_array *sa, unsigned int idx);
+void script_array_add_member(struct script_array *sa, unsigned int idx);
+unsigned int script_array_size(struct script_state *st, struct map_session_data *sd, const char *name, struct reg_db *ref);
+unsigned int script_array_highest_key(struct script_state *st, struct map_session_data *sd, const char *name, struct reg_db *ref);
+void script_array_ensure_zero(struct script_state *st, struct map_session_data *sd, int64 uid, struct reg_db *ref);
+int script_free_array_db(DBKey key, DBData *data, va_list ap);
 /* */
-void script_reg_destroy_single(map_session_data *sd, int64 reg, struct script_reg_state *data);
-int32 script_reg_destroy(DBKey key, DBData *data, va_list ap);
+void script_reg_destroy_single(struct map_session_data *sd, int64 reg, struct script_reg_state *data);
+int script_reg_destroy(DBKey key, DBData *data, va_list ap);
 /* */
-void script_generic_ui_array_expand(uint32 plus);
-uint32 *script_array_cpy_list(struct script_array *sa);
+void script_generic_ui_array_expand(unsigned int plus);
+unsigned int *script_array_cpy_list(struct script_array *sa);
 
-bool script_check_RegistryVariableLength(int32 pType, const char *val, size_t* vlen);
+bool script_check_RegistryVariableLength(int pType, const char *val, size_t* vlen);
 
 #endif /* SCRIPT_HPP */

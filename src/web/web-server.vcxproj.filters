@@ -24,12 +24,6 @@
     <ClCompile Include="emblem_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="merchantstore_controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="partybooking_controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sqllock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -37,6 +31,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="web.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="merchantstore_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="webutils.cpp">
@@ -56,12 +53,6 @@
     <ClInclude Include="http.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="merchantstore_controller.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="partybooking_controller.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="sqllock.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -72,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="webcnslif.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="merchantstore_controller.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="webutils.hpp">

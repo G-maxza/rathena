@@ -16,47 +16,44 @@
 #else
 	#include <termios.h>
 	#include <unistd.h>
-	#include <cstdio>
+	#include <stdio.h>
 #endif
 
 #include <yaml-cpp/yaml.h>
 #include <ryml_std.hpp>
 #include <ryml.hpp>
 
-#include <common/cbasetypes.hpp>
-#include <common/core.hpp>
-#include <common/malloc.hpp>
-#include <common/mmo.hpp>
-#include <common/nullpo.hpp>
-#include <common/showmsg.hpp>
-#include <common/strlib.hpp>
-#include <common/utilities.hpp>
-#include <common/utils.hpp>
+#include "../common/cbasetypes.hpp"
+#include "../common/core.hpp"
+#include "../common/malloc.hpp"
+#include "../common/mmo.hpp"
+#include "../common/nullpo.hpp"
+#include "../common/showmsg.hpp"
+#include "../common/strlib.hpp"
+#include "../common/utilities.hpp"
+#include "../common/utils.hpp"
 #ifdef WIN32
-#include <common/winapi.hpp>
+#include "../common/winapi.hpp"
 #endif
 
 // Only for constants - do not use functions of it or linking will fail
-#define ONLY_CONSTANTS
-#include <map/achievement.hpp>
-#include <map/battle.hpp>
-#include <map/battleground.hpp>
-#include <map/cashshop.hpp>
-#include <map/channel.hpp>
-#include <map/chat.hpp>
-#include <map/date.hpp>
-#include <map/elemental.hpp>
-#include <map/homunculus.hpp>
-#include <map/instance.hpp>
-#include <map/mercenary.hpp>
-#include <map/mob.hpp>
-#include <map/npc.hpp>
-#include <map/pc.hpp>
-#include <map/pet.hpp>
-#include <map/quest.hpp>
-#include <map/script.hpp>
-#include <map/skill.hpp>
-#include <map/storage.hpp>
+#include "../map/achievement.hpp"
+#include "../map/battle.hpp"
+#include "../map/battleground.hpp"
+#include "../map/channel.hpp"
+#include "../map/chat.hpp"
+#include "../map/date.hpp"
+#include "../map/instance.hpp"
+#include "../map/elemental.hpp"
+#include "../map/mercenary.hpp"
+#include "../map/mob.hpp"
+#include "../map/npc.hpp"
+#include "../map/pc.hpp"
+#include "../map/pet.hpp"
+#include "../map/quest.hpp"
+#include "../map/script.hpp"
+#include "../map/skill.hpp"
+#include "../map/storage.hpp"
 
 using namespace rathena;
 
@@ -65,9 +62,9 @@ using namespace rathena;
 //#define CONVERT_ALL
 
 #ifndef WIN32
-int32 getch(void) {
+int getch(void) {
 	struct termios oldattr, newattr;
-	int32 ch;
+	int ch;
 	tcgetattr(STDIN_FILENO, &oldattr);
 	newattr = oldattr;
 	newattr.c_lflag &= ~(ICANON | ECHO);
@@ -277,8 +274,8 @@ void finalizeBody(void) {
  * @param max: Max array size (Default: MAX_SKILL_LEVEL)
  * @return 0:error, x:number of value assign (max value)
  */
-int32 skill_split_atoi(char *str, int32 *val, int32 max = MAX_SKILL_LEVEL) {
-	int32 i;
+int skill_split_atoi(char *str, int *val, int max = MAX_SKILL_LEVEL) {
+	int i;
 
 	for (i = 0; i < max; i++) {
 		if (!str)
@@ -299,7 +296,7 @@ int32 skill_split_atoi(char *str, int32 *val, int32 max = MAX_SKILL_LEVEL) {
 }
 
 /**
- * Split string to int32 by constant value (const.yml) or atoi()
+ * Split string to int by constant value (const.yml) or atoi()
  * @param *str: String input
  * @param *val: Temporary storage
  * @param *delim: Delimiter (for multiple value support)
@@ -307,11 +304,11 @@ int32 skill_split_atoi(char *str, int32 *val, int32 max = MAX_SKILL_LEVEL) {
  * @param max: Maximum number that can be allocated
  * @return count: Number of success
  */
-uint8 skill_split_atoi2(char *str, int64 *val, const char *delim, int32 min_value, uint16 max) {
+uint8 skill_split_atoi2(char *str, int64 *val, const char *delim, int min_value, uint16 max) {
 	uint8 i = 0;
 	char *p = strtok(str, delim);
 
-	while (p != nullptr) {
+	while (p != NULL) {
 		int64 n = min_value;
 
 		trim(p);
@@ -320,7 +317,7 @@ uint8 skill_split_atoi2(char *str, int64 *val, const char *delim, int32 min_valu
 			n = atoi(p);
 		else {
 			n = constant_lookup_int(p);
-			p = strtok(nullptr, delim);
+			p = strtok(NULL, delim);
 		}
 
 		if (n > min_value) {
@@ -329,19 +326,19 @@ uint8 skill_split_atoi2(char *str, int64 *val, const char *delim, int32 min_valu
 			if (i >= max)
 				break;
 		}
-		p = strtok(nullptr, delim);
+		p = strtok(NULL, delim);
 	}
 	return i;
 }
 
 /**
- * Split string to int32
+ * Split string to int
  * @param str: String input
  * @param val1: Temporary storage to first value
  * @param val2: Temporary storage to second value
  */
 static void itemdb_re_split_atoi(char* str, int* val1, int* val2) {
-	int32 i, val[2];
+	int i, val[2];
 
 	for (i = 0; i < 2; i++) {
 		if (!str)
@@ -372,7 +369,7 @@ static void itemdb_re_split_atoi(char* str, int* val1, int* val2) {
  * @param arr: Array to check
  * @return True if level specific or false for same for all levels
  */
-static bool isMultiLevel(int32 arr[]) {
+static bool isMultiLevel(int arr[]) {
 	uint8 count = 0;
 
 	for (uint8 i = 0; i < MAX_SKILL_LEVEL; i++) {
@@ -408,7 +405,7 @@ static bool parse_item_constants_txt(const char *path) {
 	FILE *fp;
 
 	fp = fopen(path, "r");
-	if (fp == nullptr) {
+	if (fp == NULL) {
 		ShowWarning("itemdb_readdb: File not found \"%s\", skipping.\n", path);
 		return false;
 	}
@@ -417,7 +414,7 @@ static bool parse_item_constants_txt(const char *path) {
 	while (fgets(line, sizeof(line), fp))
 	{
 		char *str[32], *p;
-		int32 i;
+		int i;
 		lines++;
 		if (line[0] == '/' && line[1] == '/')
 			continue;
@@ -438,7 +435,7 @@ static bool parse_item_constants_txt(const char *path) {
 		{
 			str[i] = p;
 			p = strchr(p, ',');
-			if (p == nullptr)
+			if (p == NULL)
 				break;// comma not found
 			*p = '\0';
 			++p;
@@ -446,7 +443,7 @@ static bool parse_item_constants_txt(const char *path) {
 
 		t_itemid item_id = strtoul(str[0], nullptr, 10);
 
-		if (p == nullptr)
+		if (p == NULL)
 		{
 			ShowError("itemdb_readdb: Insufficient columns in line %d of \"%s\" (item with id %u), skipping.\n", lines, path, item_id);
 			continue;
@@ -460,7 +457,7 @@ static bool parse_item_constants_txt(const char *path) {
 		}
 		str[19] = p + 1;
 		p = strstr(p + 1, "},");
-		if (p == nullptr)
+		if (p == NULL)
 		{
 			ShowError("itemdb_readdb: Invalid format (Script column) in line %d of \"%s\" (item with id %u), skipping.\n", lines, path, item_id);
 			continue;
@@ -476,7 +473,7 @@ static bool parse_item_constants_txt(const char *path) {
 		}
 		str[20] = p + 1;
 		p = strstr(p + 1, "},");
-		if (p == nullptr)
+		if (p == NULL)
 		{
 			ShowError("itemdb_readdb: Invalid format (OnEquip_Script column) in line %d of \"%s\" (item with id %u), skipping.\n", lines, path, item_id);
 			continue;
@@ -495,7 +492,7 @@ static bool parse_item_constants_txt(const char *path) {
 
 		if (*p != '}') {
 			/* lets count to ensure it's not something silly e.g. a extra space at line ending */
-			int32 lcurly = 0, rcurly = 0;
+			int lcurly = 0, rcurly = 0;
 
 			for (size_t v = 0; v < strlen(str[21]); v++) {
 				if (str[21][v] == '{')
@@ -593,7 +590,7 @@ void ItemDatabase::loadingFinished() {
 
 ItemDatabase item_db;
 
-static bool parse_mob_constants_txt( char *split[], size_t columns, size_t current ){
+static bool parse_mob_constants_txt(char *split[], int columns, int current) {
 	uint16 mob_id = atoi(split[0]);
 	char *name = trim(split[1]);
 
@@ -602,7 +599,7 @@ static bool parse_mob_constants_txt( char *split[], size_t columns, size_t curre
 	return true;
 }
 
-static bool parse_skill_constants_txt( char *split[], size_t columns, size_t current ){
+static bool parse_skill_constants_txt(char *split[], int columns, int current) {
 	uint16 skill_id = atoi(split[0]);
 	char *name = trim(split[16]);
 

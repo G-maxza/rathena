@@ -1,0 +1,210 @@
+//===== rAthena Script ======================================= 
+//= Bossnia Warp NPCs
+//===== By: ================================================== 
+//= Masao
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Bossnia MVP event.
+//===== Additional Comments: ================================= 
+//= 1.0 Converted from the official script.
+//= 1.1 Optimized. [Euphy]
+//= 1.2 Moved spawns and warps (by Masao) to this file. [Euphy]
+//= 1.3 Added VIP features. [Euphy]
+//============================================================ 
+
+// Entrance NPCs
+//============================================================
+prontera,148,200,5	script	ห้อง Boss (เกิดไว)	10007,{
+	mes "๐ ต้องการ ^FF2929" + F_InsertComma(.req_zeny) + "z^000000 \nและ ^FF2929" + F_InsertComma(.req_item_amount) + " " + getitemname(.req_item_id) + "^000000 ในการเข้าห้อง";
+	mes "---";
+	mes "โทษภายในห้อง";
+	mes "๐ ^FF2929เป็นห้อง PvP^000000";
+	mes "๐ ^FF2929Damage จะเหลือ 5%^000000";
+	mes "๐ ^FF2929Flee จะเหลือ 5%^000000";
+	mes "๐ ^FF2929Perfect Dodge จะเหลือ 5%^000000";
+	mes "๐ ^FF2929Monster จะโจมตีแรงขึ้น 5 เท่า^000000";
+	mes "---";
+	mes "๐ ^3629FFบอสทุกตัวใช้เวลา 1 นาที 30 วินาทีในการเกิดใหม่^000000";
+	next;
+	// Check Zeny
+	if (Zeny < .req_zeny) {
+		mes "Zeny ไม่เพียงพอ";
+		close;
+	}
+	// Check Item
+	if (countitem(.req_item_id) < .req_item_amount) {
+		mes getitemname(.req_item_id) + " ไม่เพียงพอ";
+		close;
+	}
+	.@i = select("ห้องที่ 1:ห้องที่ 2:ห้องที่ 3:ห้องที่ 4");
+	Zeny -= .req_zeny;
+	delitem .req_item_id,.req_item_amount;
+	specialeffect2 EF_MAXPOWER;
+	setpcblock PCBLOCK_ALL,true;
+	setpcblock PCBLOCK_MOVE,false;
+	addtimer 2000,strnpcinfo(3) + "::OnWarp";
+	announce strcharinfo(0) + " เข้าห้อง Bossnia (" + .@i + ")",bc_all;
+	warp "bossnia_0" + .@i,0,0;
+	close;
+	
+OnWarp:
+	setpcblock PCBLOCK_ALL,false;
+	end;
+	
+OnInit:
+	waitingroom strnpcinfo(0),0;
+	.req_zeny = 900000;
+	.req_item_id = 501;
+	.req_item_amount = 9;
+	end;
+}
+
+// Warp Portals
+//============================================================
+bossnia_01,204,204,0	warp	bossnia01	1,1,prontera,155,180
+bossnia_02,204,204,0	warp	bossnia02	1,1,prontera,155,180
+bossnia_03,204,204,0	warp	bossnia03	1,1,prontera,155,180
+bossnia_04,204,204,0	warp	bossnia04	1,1,prontera,155,180
+
+// Monster Spawns
+//============================================================
+
+//----------------------------------------------------------------------------
+// bossnia_01 - Bossnia
+//----------------------------------------------------------------------------
+bossnia_01,0,0	monster	Garm	1252,5,90000
+
+//----------------------------------------------------------------------------
+// bossnia_02 - Bossnia
+//----------------------------------------------------------------------------
+bossnia_02,0,0	monster	Garm	1252,5,90000
+bossnia_02,0,0	monster	Gloom Under Night	1768,2,90000
+bossnia_02,0,0	monster	Dark Lord	1272,3,90000
+bossnia_02,0,0	monster	Doppelganger	1046,10,90000
+bossnia_02,0,0	monster	Dracula	1389,5,90000
+bossnia_02,0,0	monster	Drake	1112,10,90000
+bossnia_02,0,0	monster	Detale	1719,2,90000
+bossnia_02,0,0	monster	Maya	1147,10,90000
+bossnia_02,0,0	monster	Mistress	1059,1,90000
+bossnia_02,0,0	monster	Baphomet	1039,10,90000
+bossnia_02,0,0	monster	Egnigem Cenia	1658,10,90000
+bossnia_02,0,0	monster	Amon Ra	1511,1,90000
+bossnia_02,0,0	monster	Atroce	1785,10,90000
+bossnia_02,0,0	monster	Vesper	1685,2,90000
+bossnia_02,0,0	monster	Eddga	1115,1,90000
+bossnia_02,0,0	monster	Osiris	1038,10,90000
+bossnia_02,0,0	monster	Orc Lord	1190,10,90000
+bossnia_02,0,0	monster	Orc Hero	1087,2,90000
+bossnia_02,0,0	monster	Samurai Specter	1492,1,90000
+bossnia_02,0,0	monster	Moonlight Flower	1150,1,90000
+bossnia_02,0,0	monster	Lord of the Dead	1373,1,90000
+bossnia_02,0,0	monster	Ktullanux	1779,2,90000
+bossnia_02,0,0	monster	Kiel D-01	1734,2,90000
+bossnia_02,0,0	monster	Thanatos Phantom	1708,2,90000
+bossnia_02,0,0	monster	Lady Tanee	1688,1,90000
+bossnia_02,0,0	monster	Tao Gunka	1583,1,90000
+bossnia_02,0,0	monster	Turtle General	1312,10,90000
+bossnia_02,0,0	monster	Pharaoh	1157,2,90000
+bossnia_02,0,0	monster	Stormy Knight	1251,2,90000
+bossnia_02,0,0	monster	Falling Bishop	1871,5,90000
+bossnia_02,0,0	monster	Phreeoni	1159,10,90000
+bossnia_02,0,0	monster	Golden Thief Bug	1086,10,90000
+bossnia_02,0,0	monster	Evil Snake Lord	1418,10,90000
+bossnia_02,0,0	monster	RSX-0806	1623,5,90000
+bossnia_02,0,0	monster	Assassin Cross Eremes	1647,1,90000
+bossnia_02,0,0	monster	Whitesmith Howard	1648,1,90000
+bossnia_02,0,0	monster	Beelzebub	1873,1,90000
+bossnia_02,0,0	monster	Beelzebub	1873,1,90000
+bossnia_02,0,0	monster	Valkyrie Randgris	1751,1,90000
+bossnia_02,0,0	monster	Ifrit	1832,1,90000
+
+//----------------------------------------------------------------------------
+// bossnia_03 - Bossnia
+//----------------------------------------------------------------------------
+bossnia_03,0,0	monster	Garm	1252,5,90000
+bossnia_03,0,0	monster	Gloom Under Night	1768,2,90000
+bossnia_03,0,0	monster	Dark Lord	1272,3,90000
+bossnia_03,0,0	monster	Doppelganger	1046,10,90000
+bossnia_03,0,0	monster	Dracula	1389,5,90000
+bossnia_03,0,0	monster	Drake	1112,10,90000
+bossnia_03,0,0	monster	Detale	1719,2,90000
+bossnia_03,0,0	monster	Maya	1147,10,90000
+bossnia_03,0,0	monster	Mistress	1059,1,90000
+bossnia_03,0,0	monster	Baphomet	1039,10,90000
+bossnia_03,0,0	monster	Egnigem Cenia	1658,10,90000
+bossnia_03,0,0	monster	Amon Ra	1511,1,90000
+bossnia_03,0,0	monster	Atroce	1785,10,90000
+bossnia_03,0,0	monster	Vesper	1685,2,90000
+bossnia_03,0,0	monster	Eddga	1115,1,90000
+bossnia_03,0,0	monster	Osiris	1038,10,90000
+bossnia_03,0,0	monster	Orc Lord	1190,10,90000
+bossnia_03,0,0	monster	Orc Hero	1087,2,90000
+bossnia_03,0,0	monster	Samurai Specter	1492,1,90000
+bossnia_03,0,0	monster	Moonlight Flower	1150,1,90000
+bossnia_03,0,0	monster	Lord of the Dead	1373,1,90000
+bossnia_03,0,0	monster	Ktullanux	1779,2,90000
+bossnia_03,0,0	monster	Kiel D-01	1734,2,90000
+bossnia_03,0,0	monster	Thanatos Phantom	1708,2,90000
+bossnia_03,0,0	monster	Lady Tanee	1688,1,90000
+bossnia_03,0,0	monster	Tao Gunka	1583,1,90000
+bossnia_03,0,0	monster	Turtle General	1312,10,90000
+bossnia_03,0,0	monster	Pharaoh	1157,2,90000
+bossnia_03,0,0	monster	Stormy Knight	1251,2,90000
+bossnia_03,0,0	monster	Falling Bishop	1871,5,90000
+bossnia_03,0,0	monster	Phreeoni	1159,10,90000
+bossnia_03,0,0	monster	Golden Thief Bug	1086,10,90000
+bossnia_03,0,0	monster	Evil Snake Lord	1418,10,90000
+bossnia_03,0,0	monster	RSX-0806	1623,5,90000
+bossnia_03,0,0	monster	Assassin Cross Eremes	1647,1,90000
+bossnia_03,0,0	monster	Whitesmith Howard	1648,1,90000
+bossnia_03,0,0	monster	Beelzebub	1873,1,90000
+bossnia_03,0,0	monster	Beelzebub	1873,1,90000
+bossnia_03,0,0	monster	Valkyrie Randgris	1751,1,90000
+bossnia_03,0,0	monster	Ifrit	1832,1,90000
+
+//----------------------------------------------------------------------------
+// bossnia_04 - Bossnia
+//----------------------------------------------------------------------------
+bossnia_04,0,0	monster	Garm	1252,5,90000
+bossnia_04,0,0	monster	Gloom Under Night	1768,2,90000
+bossnia_04,0,0	monster	Dark Lord	1272,3,90000
+bossnia_04,0,0	monster	Doppelganger	1046,10,90000
+bossnia_04,0,0	monster	Dracula	1389,5,90000
+bossnia_04,0,0	monster	Drake	1112,10,90000
+bossnia_04,0,0	monster	Detale	1719,2,90000
+bossnia_04,0,0	monster	Maya	1147,10,90000
+bossnia_04,0,0	monster	Mistress	1059,1,90000
+bossnia_04,0,0	monster	Baphomet	1039,10,90000
+bossnia_04,0,0	monster	Egnigem Cenia	1658,10,90000
+bossnia_04,0,0	monster	Amon Ra	1511,1,90000
+bossnia_04,0,0	monster	Atroce	1785,10,90000
+bossnia_04,0,0	monster	Vesper	1685,2,90000
+bossnia_04,0,0	monster	Eddga	1115,1,90000
+bossnia_04,0,0	monster	Osiris	1038,10,90000
+bossnia_04,0,0	monster	Orc Lord	1190,10,90000
+bossnia_04,0,0	monster	Orc Hero	1087,2,90000
+bossnia_04,0,0	monster	Samurai Specter	1492,1,90000
+bossnia_04,0,0	monster	Moonlight Flower	1150,1,90000
+bossnia_04,0,0	monster	Lord of the Dead	1373,1,90000
+bossnia_04,0,0	monster	Ktullanux	1779,2,90000
+bossnia_04,0,0	monster	Kiel D-01	1734,2,90000
+bossnia_04,0,0	monster	Thanatos Phantom	1708,2,90000
+bossnia_04,0,0	monster	Lady Tanee	1688,1,90000
+bossnia_04,0,0	monster	Tao Gunka	1583,1,90000
+bossnia_04,0,0	monster	Turtle General	1312,10,90000
+bossnia_04,0,0	monster	Pharaoh	1157,2,90000
+bossnia_04,0,0	monster	Stormy Knight	1251,2,90000
+bossnia_04,0,0	monster	Falling Bishop	1871,5,90000
+bossnia_04,0,0	monster	Phreeoni	1159,10,90000
+bossnia_04,0,0	monster	Golden Thief Bug	1086,10,90000
+bossnia_04,0,0	monster	Evil Snake Lord	1418,10,90000
+bossnia_04,0,0	monster	RSX-0806	1623,5,90000
+bossnia_04,0,0	monster	Assassin Cross Eremes	1647,1,90000
+bossnia_04,0,0	monster	Whitesmith Howard	1648,1,90000
+bossnia_04,0,0	monster	Beelzebub	1873,1,90000
+bossnia_04,0,0	monster	Beelzebub	1873,1,90000
+bossnia_04,0,0	monster	Valkyrie Randgris	1751,1,90000
+bossnia_04,0,0	monster	Ifrit	1832,1,90000

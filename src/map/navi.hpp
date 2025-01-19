@@ -1,30 +1,27 @@
-// Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
-// For more information, see LICENCE in the main folder
-
 #ifndef NAVI_H
 #define NAVI_H
 
-#include <config/core.hpp>
+#include "../config/core.hpp"
 
 #ifdef MAP_GENERATOR
 struct navi_pos {
-	int32 m;
-	int32 x;
-	int32 y;
+	int m;
+	int x;
+	int y;
 };
 
 struct npc_data;
 
 struct navi_npc {
 	struct npc_data * npc;
-	int32 id;
+	int id;
 	struct navi_pos pos;
 
 };
 
 struct navi_link {
 	struct npc_data * npc;
-	int32 id;
+	int id;
 	struct navi_pos pos;
 	struct navi_pos warp_dest; // only set for warps
 	bool hidden; // hidden by script

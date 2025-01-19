@@ -1,0 +1,148 @@
+vis_h01	mapflag	novending
+vis_h01	mapflag	nochat
+vis_h01	mapflag	noteleport
+vis_h01	mapflag	nowarp
+vis_h01	mapflag	nowarpto
+vis_h01	mapflag	nosave
+vis_h01	mapflag	nobranch
+vis_h01	mapflag	notomb
+
+vis_h02	mapflag	pvp
+vis_h02	mapflag	novending
+vis_h02	mapflag	nochat
+vis_h02	mapflag	noteleport
+vis_h02	mapflag	nowarp
+vis_h02	mapflag	nowarpto
+vis_h02	mapflag	nosave
+vis_h02	mapflag	nobranch
+vis_h02	mapflag	notomb
+
+vis_h03	mapflag	pvp
+vis_h03	mapflag	novending
+vis_h03	mapflag	nochat
+vis_h03	mapflag	noteleport
+vis_h03	mapflag	nowarp
+vis_h03	mapflag	nowarpto
+vis_h03	mapflag	nosave
+vis_h03	mapflag	nobranch
+vis_h03	mapflag	notomb
+
+vis_h04	mapflag	pvp
+vis_h04	mapflag	novending
+vis_h04	mapflag	nochat
+vis_h04	mapflag	noteleport
+vis_h04	mapflag	nowarp
+vis_h04	mapflag	nowarpto
+vis_h04	mapflag	nosave
+vis_h04	mapflag	nobranch
+vis_h04	mapflag	notomb
+
+prontera,164,190,3	script	ห้อง Boss	10386,{
+	.@tier = select("ห้องที่ 1 (Rank 3):ห้องที่ 2 (Rank 5):ห้องที่ 3 (Rank 7):ห้องที่ 4 (Rank 9)");
+	.@rank = 1 + (.@tier * 2);
+	.@debuff = cap_value(20 * .@tier,20,80);
+	.@mapName$ = "vis_h0" + .@tier;
+	mes Blue("--- [วิธีเล่น] ---");
+	mes "• เป็นเพียงแค่ห้องรวม Boss";
+	mes Red("--- [โทษภายในห้อง] ---");
+	if(.@tier > 1)
+	mes "• เป็นห้อง PvP";
+	mes "• Teleport ไม่ได้";
+	mes "• Debuff " + .@debuff + "%";
+	mes "• Monster โหดระดับ " + .@rank;
+	next;
+	menu "เข้า (" + Red(F_InsertComma(.price)) + "z)",-;
+	
+	if(Zeny < .price){
+		mes "Zeny ไม่เพียงพอ";
+		close;
+	}
+	ZenyPay(.price);
+	
+	RefreshDebuff(.@debuff);
+	
+	setpcblock PCBLOCK_ALL,true;
+	setpcblock PCBLOCK_MOVE,false;
+	
+	addtimer 2000,strnpcinfo(0) + "::OnWarp";
+	
+	announce NameFixer(strcharinfo(0)) + " เข้าห้อง Boss (Rank " + .@rank + ")",bc_all;
+	
+	warp .@mapName$,0,0;
+	
+	end;
+	
+OnWarp:
+	setpcblock PCBLOCK_ALL,false;
+	end;
+	
+OnCleanUp:
+	killmonsterall "vis_h01";
+	killmonsterall "vis_h02";
+	killmonsterall "vis_h03";
+	killmonsterall "vis_h04";
+	callsub OnSpawn,1;
+	callsub OnSpawn,2;
+	callsub OnSpawn,3;
+	callsub OnSpawn,4;
+	end;
+	
+OnBossDead3:
+	if(!playerattached()
+			|| $isSkipRespawn)
+	end;
+	.@rank = 3;
+	goto OnRespawn;
+OnBossDead5:
+	if(!playerattached()
+			|| $isSkipRespawn)
+	end;
+	.@rank = 5;
+	goto OnRespawn;
+OnBossDead7:
+	if(!playerattached()
+			|| $isSkipRespawn)
+	end;
+	.@rank = 7;
+	goto OnRespawn;
+OnBossDead9:
+	if(!playerattached()
+			|| $isSkipRespawn)
+	end;
+	.@rank = 9;
+	goto OnRespawn;
+	
+OnRespawn:
+	if(!playerattached()
+			|| isSkipRespawn)
+	end;
+	
+	monster strcharinfo(3),0,0,"--ja--",$mvpIds[rand(getarraysize($mvpIds))],1,strnpcinfo(0) + "::OnBossDead";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.@rank;
+	end;
+	
+OnSpawn:
+	.@tier = getarg(0,1);
+	.@mapName$ = "vis_h0" + .@tier;
+	.@rank = 1 + (.@tier * 2);
+	
+	for(.@i = 0; .@i < .spawn_amount; .@i++){
+		monster .@mapName$,0,0,"--ja--",$mvpIds[rand(getarraysize($mvpIds))],1,strnpcinfo(0) + "::OnBossDead";
+		setunitdata $@mobid[0],UMOB_DYNAMIC,.@rank;
+	}
+	
+	return;
+	
+OnInit:
+	waitingroom strnpcinfo(0),0;
+	
+	.price = 1000000;
+	.spawn_amount = 50;
+	
+	callsub OnSpawn,1;
+	callsub OnSpawn,2;
+	callsub OnSpawn,3;
+	callsub OnSpawn,4;
+	
+	end;
+}

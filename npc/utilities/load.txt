@@ -1,0 +1,9 @@
+-	script	LoadCommands	-1,{
+OnInit:
+	bindatcmd "load",strnpcinfo(3) + "::OnLoad";
+	end;
+	
+OnLoad:
+	ReturnOrb();
+	end;
+}

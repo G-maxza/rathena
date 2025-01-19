@@ -21,7 +21,7 @@ morocc,197,66,0	warp	moc01	1,1,morocc_in,83,92
 //morocc,22,294,0	warp	moc02	2,5,moc_ruins,156,42
 morocc,27,294,0	warp	moc02	2,5,moc_ruins,156,42
 morocc,24,164,0	warp	moc004	1,2,moc_fild19,164,107
-morocc,253,56,0	warp	moc03	2,1,morocc_in,134,74
+oasis,118,95,0	warp	moc03	2,1,morocc_in,134,74
 //morocc,26,297,0	warp	moc02-1	5,2,moc_ruins,156,42
 morocc,274,269,0	warp	moc04	2,2,morocc_in,138,136
 morocc,283,170,0	warp	moc07	2,2,morocc_in,108,176
@@ -34,7 +34,7 @@ morocc,98,68,0	warp	moc09	1,1,morocc_in,44,175
 morocc_in,105,95,0	warp	moc10-1	1,3,morocc_in,90,95
 morocc_in,106,123,0	warp	moc11-1	1,3,morocc_in,90,123
 morocc_in,108,179,0	warp	moc07-1	2,2,morocc,283,173
-morocc_in,134,77,0	warp	moc03-1	3,1,morocc,251,59
+morocc_in,134,77,0	warp	moc03-1	3,1,oasis,122,93
 morocc_in,136,136,0	warp	moc04-1	1,4,morocc,271,269
 morocc_in,144,109,0	warp	moc12-1	3,1,morocc_in,144,125
 morocc_in,144,122,0	warp	moc12	3,1,morocc_in,144,106

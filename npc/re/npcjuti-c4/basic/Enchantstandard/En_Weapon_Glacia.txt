@@ -1,0 +1,19 @@
+oasis,131,75,4	script	En_Weapon_Glacia	4_EP19_LUNCH,{
+	mes "Weapon_Glacia Enchantment";
+	mes "^FF0000Enchant cannot be reset^000000";
+	next;
+	switch( select( "Weapon_Glacia") ) {
+case 1:
+	mes "^0000cdWeapon_Glacia^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(31);
+	close;
+}
+OnInit:
+	waitingroom "Enchant Weapon_Glacia",0;	
+	end;
+}

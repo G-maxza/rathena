@@ -1,0 +1,181 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : แม่มดน้อย จอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : rAthena & Hercules
+// Contacts
+// Facebook https://www.facebook.com/appleroplus2
+// Gmail appleroplus@gmail.com
+// Skype appleroplus@hotmail.com
+//==============================================
+//==============================================
+//==============================================
+-	script	::BlacksmithDister	-1,{
+soundeffect "refine.wav",0;
+	disable_items;
+	mes "[อัพเกรด Blessed]";
+	mes "ในสังคมที่มีการแข่งขันสูงนี้เราจะต้องแตกต่างกันออกไปเพื่อให้สามารถอยู่รอดได้!";
+	mes "ฉันตีบวกอุปกรณ์อย่างเดียวในระดับ +16 ถึง 20";
+	next;
+	mes "[อัพเกรด Blessed]";
+	mes "ฉันต้องการ ^ff9999Blessed Weapon Ore^000000 เพื่อตีอาวุธ, และ ^ff9999Blessed Armor Ore^000000 เพื่อตีชุด";
+	mes "ถ้าการตีบวกไม่สำเร็จ ^FF0000อุปกรณ์จะไม่สูญหายหรือลดระดับ^000000.";
+	next;
+	mes "[อัพเกรด Blessed]";
+	mes "วิธีการเกี่ยวกับเรื่องนี้? คุณต้องการตีบวกหรือไม่?";
+	next;
+	setarray .@position$[1],"^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ","^FF0000•^000000 ";
+	set .@menu$,"";
+	for(set .@i,1; .@i<=20; set .@i,.@i+1)
+		set .@menu$, .@menu$+((getequipisequiped(.@i))?getequipname(.@i):.@position$[.@i]+"[^CC00FFคุณไม่ได้ใส่ Item ในส่วนนี้^000000]")+":";
+	set .@part, select(.@menu$);
+	if (!getequipisequiped(.@part)) {
+		mes "[อัพเกรด Blessed]";
+		switch(.@part) {
+		case 1:
+			mes "ฉันช่างตีเหล็กไม่ใช่ช่างทำผม";
+			break;
+		case 2:
+			mes "ด้วยค้อนของฉันฉันจะทำให้คุณเป็นดาวแห่งท้องฟ้า";
+			break;
+		case 3:
+		case 4:
+			mes "การทำของเทียมไม่ใช่ความพิเศษของฉัน";
+			break;
+		case 5:
+			mes "นำไอเท็มออกมาเพื่อให้สามารถปรับแต่งได้!";
+			break;
+		case 6:
+			mes "กลิ่นแปลก ๆ นี้มาจากไหน?";
+			break;
+		case 7:
+		case 8:
+			mes "เครื่องประดับอยู่ที่ไหน?";
+			break;
+		case 9:
+			mes "คุณต้องการให้ฉันตีบวกอะไร?";
+			break;
+		case 10:
+			mes "ฮ่ะ? คุณต้องการให้ฉันทำอะไร?";
+			break;
+		}
+		close;
+	}
+	if (!getequipisenableref(.@part)) {
+		mes "[อัพเกรด Blessed]";
+		mes "อุปกรณ์นี้ไม่สามารถปรับแต่งได้";
+		close;
+	}
+	set .@equip_refine, getequiprefinerycnt(.@part);
+	if (.@equip_refine < 16 || .@equip_refine > 20) {
+		mes "[อัพเกรด Blessed]";
+		mes "อุปกรณ์นี้ได้รับการตีบวกแล้ว "+.@equip_refine+". ฉันจีบวกเฉพาะไอเทมที่มี +16 to +20";
+		close;
+	}
+	set .@equip_lv, getequipweaponlv(.@part);
+	switch(.@equip_lv) {
+	default:
+	case 0:
+		set .@price,1000000;
+		set .@material,6439; //Unbreakable_Def
+		set .@type$,"Armor";
+		break;
+	case 1:
+		set .@price,1000000;
+		set .@material,6438; //Unbreakable_Weap
+		set .@type$,"Weapon";
+		break;
+	case 2:
+		set .@price,1000000;
+		set .@material,6438; //Unbreakable_Weap
+		set .@type$,"Weapon";
+		break;
+	case 3:
+		set .@price,1000000;
+		set .@material,6438; //Unbreakable_Weap
+		set .@type$,"Weapon";
+		break;
+	case 4:
+		set .@price,1000000;
+		set .@material,6438; //Unbreakable_Weap
+		set .@type$,"Weapon";
+		break;
+	case 5:
+		set .@price,1000000;
+		set .@material,6438; //Unbreakable_Weap
+		set .@type$,"Weapon";
+		break;
+	case 6:
+		set .@price,1000000;
+		set .@material,6438; //Unbreakable_Weap
+		set .@type$,"Weapon";
+		break;
+	}
+	set .@ore$,"^ff9999Blessed "+.@type$+" Ore^000000";
+	mes "[อัพเกรด Blessed]";
+	mes "นี้ "+.@type$+" ได้รับการตีบวกแล้ว "+.@equip_refine+". เพื่อปรับแต่งมัน, ฉันต้องการ "+.@ore$+" และ "+callfunc("F_InsertComma",.@price)+" Zeny ในการตีบวก";
+	mes "คุณต้องการดำเนินการต่อหรือไม่?";
+	next;
+	if(select("ดำเนินการต่อ:ยกเลิก") == 2) {
+		mes "[อัพเกรด Blessed]";
+		mes "ฉันยุ่งอย่าล้อเล่นกับฉัน!";
+		close;
+	}
+	if (getequippercentrefinery(.@part) < 100) {
+		mes "[อัพเกรด Blessed]";
+		mes "นี้ "+.@type$+" ถูกตีบวกหลายครั้ง แม้ว่าจะไม่หายไปเมื่อความล้มเหลว, มัน "+.@ore$+" จะหายไป!";
+		next;
+		mes "[อัพเกรด Blessed]";
+		mes "แน่นอน, ค่าธรรมเนียมการตีบวกจะไม่คืน! คุณต้องการดำเนินการต่อหรือไม่?";
+		next;
+		if(select("ดำเนินการต่อ:ยกเลิก") == 2) {
+			mes "[อัพเกรด Blessed]";
+			mes "ดีเยี่ยม. ฉันจะเสียใจถ้ามันล้มเหลวเช่นกัน";
+			close;
+		}
+	}
+	if (countitem(.@material) == 0 || Zeny < .@price) {
+		mes "[อัพเกรด Blessed]";
+		mes "ไอเทมไม่เพียงพอ";
+		mes "ปรับแต่ง "+((.@equip_lv)?"ระดับ "+.@equip_lv+" weapon":"armor")+", ฉันต้องการ "+.@ore$+"และ "+callfunc("F_InsertComma",.@price)+" เงินจำนวนหนึ่ง";
+		close;
+	}
+	delitem .@material,1;
+	set Zeny, Zeny-.@price;
+	mes "[อัพเกรด Blessed]";
+	mes "แก๊ง! แก๊ง! แก๊ง!";
+	if (getequippercentrefinery(.@part) > rand(100) || getequippercentrefinery(.@part) > rand(100)) {
+		specialeffect EF_BLESSING;
+		successrefitem .@part;
+if(getequiprefinerycnt(.@part) >= 16 || getequiprefinerycnt(.@part) <= 20  ) {
+            announce "ผู้เล่น [ "+strcharinfo(0)+"]  ได้ทำการอัพเกรด +"+ getequiprefinerycnt(.@part) +" " + getequipname(.@part) + " สำเร็จ",bc_all;
+        }
+		next;
+		mes "[อัพเกรด Blessed]";
+		mes "ฮ่า ฮ่า ฮ่า!!!";
+		next;
+		mes "[อัพเกรด Blessed]";
+		mes "การตีบวกสำเร็จ~ ฮ่า ฮ่า ฮ่า!";
+		close;
+	}
+	specialeffect EF_CURSEATTACK;
+	specialeffect2 EF_SUI_EXPLOSION;
+	next;
+	emotion (!rand(5))?ET_ANGER:ET_HUK;
+	mes "[อัพเกรด Blessed]";
+	mes "คุณพระช่วย!!!!";
+	next;
+	mes "[อัพเกรด Blessed]";
+	mes "โอ้! ฉันต้องการหิน Blessed "+.@ore$+" เพื่อรักษาอุปกรณ์...";
+	next;
+	mes "[อัพเกรด Blessed]";
+	mes "อารมณ์ของฉันแย่ลงเมื่อฉันล้มเหลว!!";
+close;
+end;
+OnInit:
+waitingroom "อัพเกรด Blessed ตั้งแต่16ถึง20",0;
+end;
+}
+
+morocc_in,124,63,6	duplicate(BlacksmithDister)	อัพเกรด Blessed#1	951

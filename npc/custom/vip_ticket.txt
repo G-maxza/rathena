@@ -1,0 +1,89 @@
+//===== rAthena Script ======================================= 
+//= VIP Real Time Function
+//===== By: ================================================== 
+//= Mr.TAURUS
+//===== Current Version: ===================================== 
+//= 1.5
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//============================================================
+
+function	script	1d_vip_ticket	{
+	// VIP 1 day.
+	if (!vip_status(VIP_STATUS_EXPIRE)) {
+		atcommand "@vip +1d "+strcharinfo(0)+"";
+		#VIP_SYSTEM_TIME = gettimetick(2) + 86400;
+		sc_start SC_VIP_SYSTEM,86400 * 1000,1;
+		delitem "VIP_Ticket_1_Day",1;
+		end;
+	}
+	if (#VIP_SYSTEM_TIME > gettimetick(2)) { 
+		message strcharinfo(0),"VIP ของคุณจะหมดอายุใน: "+ gettimestr("%d-%m-%Y %H:%M:%S",21,vip_status(VIP_STATUS_EXPIRE)) +"";
+		dispbottom "จนกว่าจะหมดเวลาจะไม่สามารถใช้อันใหม่ได้!";
+		end;
+	}
+}
+function	script	7d_vip_ticket	{
+	// VIP 7 day.
+	if (!vip_status(VIP_STATUS_EXPIRE)) {
+		atcommand "@vip +7d "+strcharinfo(0)+"";
+		#VIP_SYSTEM_TIME = gettimetick(2) + 604800;
+		sc_start SC_VIP_SYSTEM,604800 * 1000,1;
+		delitem "VIP_Ticket_7_Day",1;
+		end;
+	}
+	if (#VIP_SYSTEM_TIME > gettimetick(2)) { 
+		message strcharinfo(0),"VIP ของคุณจะหมดอายุใน: "+ gettimestr("%d-%m-%Y %H:%M:%S",21,vip_status(VIP_STATUS_EXPIRE)) +"";
+		dispbottom "จนกว่าจะหมดเวลาจะไม่สามารถใช้อันใหม่ได้!";
+		end;
+	}
+}
+function	script	15d_vip_ticket	{
+	// VIP 15 day.
+	if (!vip_status(VIP_STATUS_EXPIRE)) {
+		atcommand "@vip +15d "+strcharinfo(0)+"";
+		#VIP_SYSTEM_TIME = gettimetick(2) + 1296000;
+		sc_start SC_VIP_SYSTEM,1296000 * 1000,1;
+		delitem "VIP_Ticket_15_Day",1;
+		
+		end;
+	}
+	if (#VIP_SYSTEM_TIME > gettimetick(2)) { 
+		message strcharinfo(0),"VIP ของคุณจะหมดอายุใน: "+ gettimestr("%d-%m-%Y %H:%M:%S",21,vip_status(VIP_STATUS_EXPIRE)) +"";
+		dispbottom "จนกว่าจะหมดเวลาจะไม่สามารถใช้อันใหม่ได้!";
+		end;
+	}
+}
+function	script	30d_vip_ticket	{
+	// VIP 30 day.
+	if (!vip_status(VIP_STATUS_EXPIRE)) {
+		atcommand "@vip +30d "+strcharinfo(0)+"";
+		#VIP_SYSTEM_TIME = gettimetick(2) + 2592000;
+		sc_start SC_VIP_SYSTEM,2592000 * 1000,1;
+		delitem "VIP_Ticket_30_Day",1;
+		end;
+	}
+	if (#VIP_SYSTEM_TIME > gettimetick(2)) { 
+		message strcharinfo(0),"VIP ของคุณจะหมดอายุใน: "+ gettimestr("%d-%m-%Y %H:%M:%S",21,vip_status(VIP_STATUS_EXPIRE)) +"";
+		dispbottom "จนกว่าจะหมดเวลาจะไม่สามารถใช้อันใหม่ได้!";
+		end;
+	}
+}
+
+//==============================================
+// Check & Update VIP Real Time.
+//==============================================
+-	script	TAURUS_CHK_VIP	-1,{
+OnPCLoginEvent:
+	// Check & Update VIP.
+	if (#VIP_SYSTEM_TIME > gettimetick(2)) {
+		sc_end SC_VIP_SYSTEM;
+		sc_start SC_VIP_SYSTEM,((#VIP_SYSTEM_TIME - gettimetick(2))*1000),1;
+	}
+	// Check & End VIP.
+	if (#VIP_SYSTEM_TIME <= gettimetick(2)) || (!vip_status(VIP_STATUS_EXPIRE)) {
+		sc_end SC_VIP_SYSTEM;
+		#VIP_SYSTEM_TIME -= #VIP_SYSTEM_TIME;
+	}
+	end;
+}

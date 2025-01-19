@@ -1,0 +1,43 @@
+prontera,155,285,4	script	เช็ค Special Refine Box	111,{
+	message strcharinfo(0),getitemname(10000006) + " จาก Boss จะ x" + .rates + " เท่า เป็นเวลา " + (10 - (gettime(DT_MINUTE) % 10)) + " นาที";
+	end;
+
+OnMinute00:
+OnMinute10:
+OnMinute20:
+OnMinute30:
+OnMinute40:
+OnMinute50:
+	delwaitingroom;
+	
+	L_RandomRate:
+	.rates = rand(.minRate,.maxRate);
+
+	setbattleflag "item_rate_special_refine_box",.rates;
+
+	L_WaitingRoom:
+	waitingroom "SRB. จาก Boss x" + .rates + " เท่า " + (10 - (gettime(DT_MINUTE) % 10)) + " นาที",0;
+	
+	end;
+	
+	// Every 1 minutes, create new waiting room
+OnTimer60000:
+	initnpctimer;
+	
+	delwaitingroom;
+	
+	callsub(L_WaitingRoom);
+	
+	end;
+
+OnInit:
+	// Parameters
+	.minRate = 555;
+	.maxRate = 555;
+	
+	initnpctimer;
+	
+	callsub L_RandomRate;
+	
+	end;
+}

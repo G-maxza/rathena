@@ -1,0 +1,496 @@
+/*
+	==============================================================================
+							Edit-By-Readparam(bStr)
+	==============================================================================
+	
+	Line : 40	=	กำหนดรหัสไอเทมสำหรับรางวัล ระดับที่ 5
+	Line : 42	=	กำหนดรหัสไอเทมสำหรับรางวัล ระดับที่ 4
+	Line : 44	=	กำหนดรหัสไอเทมสำหรับรางวัล ระดับที่ 3
+	Line : 46	=	กำหนดรหัสไอเทมสำหรับรางวัล ระดับที่ 2
+	Line : 48	=	กำหนดรหัสไอเทมสำหรับรางวัล ระดับที่ 1
+	Line : 99	=	กำหนดรหัสไอเทมสำหรับรางวัล จัดอันดับที่ 1
+	Line : 102	=	กำหนดรหัสไอเทมสำหรับรางวัล จัดอันดับที่ 2
+	Line : 105	=	กำหนดรหัสไอเทมสำหรับรางวัล จัดอันดับที่ 3
+	Line : 108	=	กำหนดรหัสไอเทมสำหรับรางวัล จัดอันดับที่ 4
+	Line : 111	=	กำหนดรหัสไอเทมสำหรับรางวัล จัดอันดับที่ 5
+	Line : 116	=	ตั้งค่า Zeny ในการเล่น
+	Line : 117	=	ตั้งค่าจำนวนแต้มที่สะสมจากการหมุน
+	Line : 119	=	ตั้งค่าจำนวน ที่เก็บเข้ารางวัล แจ๊กพอต
+	Line : 120	=	ตั้งค่า % การแตกของรางวัล แจ๊กพอต
+	
+	** วิธีการใช้งาน พิม @setupspinzeny เพื่อใช้งานเมนูอื่น ๆ **
+	
+*/
+
+-	pointshop	shop_spin_zeny	-1,#point_spin_zeny,20000023:1,5000033:1,450199:1,470107:1,480144:1
+
+-	shop	spin_zeny	-1,501:-1
+
+-	script	setup_spin_zeny	-1,{
+OnInit:
+	
+	$ranking_spin_zeny = 0;
+	
+	deletearray $spin_zeny_01;
+	deletearray $spin_zeny_02;
+	deletearray $spin_zeny_03;
+	deletearray $spin_zeny_04;
+	deletearray $spin_zeny_05;
+	
+	setarray $spin_zeny_01[0]	,20000024,20000025,20000026,20000027,20000028,5000034;
+								
+	setarray $spin_zeny_02[0]	,26100035,26100036,26100037,450175,22202,480076,490030,450199,470107,480144,490297;
+								
+	setarray $spin_zeny_03[0]	,26100044,26100045,6439,6438,26100001,26100002,26100003,26100004,26100005,26100006,26100007,26100008,26100020,26100021,26100022,26100023,26100025,26100026,26100027,26100030,26100031,26100032,13549,13548,6635,6230,6234;
+	
+	setarray $spin_zeny_04[0]	,12883,12791,26100040,26100041,26100042,26100043,26100046,100437,1000437;
+	
+	setarray $spin_zeny_05[0]	,12411,12412,14545,20000023;
+	
+	npcshopdelitem "spin_zeny",501;
+	
+	for( set .@i,0; .@i < getarraysize($spin_zeny_01); set .@i,.@i+1 ){
+		
+		npcshopadditem "spin_zeny",$spin_zeny_01[.@i],1;
+		
+	}
+	for( set .@i,0; .@i < getarraysize($spin_zeny_02); set .@i,.@i+1 ){
+		
+		npcshopadditem "spin_zeny",$spin_zeny_02[.@i],1;
+		
+	}
+	for( set .@i,0; .@i < getarraysize($spin_zeny_03); set .@i,.@i+1 ){
+		
+		npcshopadditem "spin_zeny",$spin_zeny_03[.@i],1;
+		
+	}
+	for( set .@i,0; .@i < getarraysize($spin_zeny_04); set .@i,.@i+1 ){
+		
+		npcshopadditem "spin_zeny",$spin_zeny_04[.@i],1;
+		
+	}
+	for( set .@i,0; .@i < getarraysize($spin_zeny_05); set .@i,.@i+1 ){
+		
+		npcshopadditem "spin_zeny",$spin_zeny_05[.@i],1;
+		
+	}
+	
+	end;
+	
+}
+
+oasis,130,108,6	script	Spin Zeny	563,{
+Start:
+	
+	if(check_day_spin_zeny != $check_day_spin_zeny){
+		reward_accecp_zeny = 0;
+		round_spin_zeny = 0;
+		check_day_spin_zeny = $check_day_spin_zeny;
+	}
+	
+	deletearray $ranking_spin_zeny$;
+	
+	deletearray $ranking_spin_zeny_point;
+	
+	setarray $ranking_spin_zeny$[0],	""+$ranking_spin_zeny_01$+"",""+$ranking_spin_zeny_02$+"",""+$ranking_spin_zeny_03$+"",""+$ranking_spin_zeny_04$+"",""+$ranking_spin_zeny_05$+"",""+$ranking_spin_zeny_06$+"";
+	
+	setarray $ranking_spin_zeny_point[0],	$ranking_spin_zeny_point_01,$ranking_spin_zeny_point_02,$ranking_spin_zeny_point_03,$ranking_spin_zeny_point_04,$ranking_spin_zeny_point_05,$ranking_spin_zeny_point_06;
+	
+	setarray .@item_reward_01[0],	20000029,20000024,20000025,20000026,20000027,20000028,5000033,20000023,12412,1000437;					//	ตั้งรหัสไอเทม สำหรับ ลำดับที่ 1
+	setarray .@amout_reward_01[0],	1,5,1,1,1,1,100,30,5,30;							//	จำนวนไอเทม สำหรับ ลำดับที่ 1
+	
+	setarray .@item_reward_02[0],	20000024,20000026,20000027,20000028,5000033,20000023,12412,1000437;					//	ตั้งรหัสไอเทม สำหรับ ลำดับที่ 2
+	setarray .@amout_reward_02[0],	5,1,1,1,50,20,4,20;							//	จำนวนไอเทม สำหรับ ลำดับที่ 2
+	
+	setarray .@item_reward_03[0],	20000026,20000027,20000028,5000033,20000023,12412,1000437;					//	ตั้งรหัสไอเทม สำหรับ ลำดับที่ 3
+	setarray .@amout_reward_03[0],	1,1,1,30,15,3,15;							//	จำนวนไอเทม สำหรับ ลำดับที่ 3
+	
+	setarray .@item_reward_04[0],	20000027,20000028,5000033,20000023,12412,1000437;					//	ตั้งรหัสไอเทม สำหรับ ลำดับที่ 4
+	setarray .@amout_reward_04[0],	1,1,20,10,2,10;							//	จำนวนไอเทม สำหรับ ลำดับที่ 4
+	
+	setarray .@item_reward_05[0],	20000028,5000033,20000023,12412,1000437;					//	ตั้งรหัสไอเทม สำหรับ ลำดับที่ 5
+	setarray .@amout_reward_05[0],	1,15,5,1,5;							//	จำนวนไอเทม สำหรับ ลำดับที่ 5
+	
+	.@namenpc$ = ""+strnpcinfo(0)+"";
+	
+	.@zeny_use = 1000000;											//	ตั้งค่า Zeny ในการเล่น
+	.@collect = 0;													//	ตั้งค่าจำนวนแต้มที่สะสมจากการหมุน
+	
+	.@jackpot = 200000;													//	ตั้งค่าจำนวน ที่เก็บเข้ารางวัล แจ๊กพอต
+	.@jackpots = 10;												//	ตั้งค่า % การแตกของรางวัล แจ๊กพอต
+	
+	mes "^FF3300[ "+.@namenpc$+" ]^000000";
+	
+	mes "คุณหมุนไปแล้ว ^009900[ "+round_spin_zeny+" ]^000000 ครั้ง";
+	
+	mes "^0000FF( ใช้ "+callfunc("F_InsertComma",.@zeny_use)+" Zeny )^000000";
+	
+	mes "^FF9900( เก็บเข้าแจ๊กพอต "+callfunc("F_InsertComma",.@jackpot)+" Zeny )^000000";
+	
+	Switch(Select("- เริ่มหมุนได้:- ตัวอย่างรางวัล:- ^FF3300ตรวจสอบสิทธิ์การรับรางวัลอันดับ^000000")){
+			
+		case 1:
+			
+			if($ranking_spin_zeny == 1){
+				next;
+				mes "^FF3300[ "+.@namenpc$+" ]^000000";
+				mes "ขณะนี้ตู้หมุนยังไม่เปิดให้เล่น";
+				mes "กรุณารอการประกาศจากเซิฟเวอร์อีกครั้ง";
+				end;
+			}
+				
+			if(Zeny < .@zeny_use){
+			
+				next;
+				mes "^FF3300[ "+.@namenpc$+" ]^000000";
+				mes "จำนวน Zeny ของคุณไม่เพียงพอ";
+				mes "ยังขาดอีก "+callfunc("F_InsertComma",(.@zeny_use-Zeny))+" Zeny";
+				end;
+			
+			}
+			
+			Zeny = Zeny -.@zeny_use;
+						
+			round_spin_zeny = round_spin_zeny +1;
+			
+			#point_spin_zeny = #point_spin_zeny +.@collect;
+			
+			$jackpot_spin_zeny = $jackpot_spin_zeny +.@jackpot;
+			
+			if(round_spin_zeny > $ranking_spin_zeny_point[0]){
+				if(strcharinfo(0) == $ranking_spin_zeny_06$){ $ranking_spin_zeny_06$ = ""; }
+				if(strcharinfo(0) == $ranking_spin_zeny_05$){
+					$ranking_spin_zeny_05$ = ""+$ranking_spin_zeny_04$+"";	$ranking_spin_zeny_04$ = ""+$ranking_spin_zeny_03$+"";	$ranking_spin_zeny_03$ = ""+$ranking_spin_zeny_02$+""; $ranking_spin_zeny_02$ = ""+$ranking_spin_zeny_01$+"";
+					$ranking_spin_zeny_point_05 = $ranking_spin_zeny_point_04; $ranking_spin_zeny_point_04 = $ranking_spin_zeny_point_03; $ranking_spin_zeny_point_03 = $ranking_spin_zeny_point_02; $ranking_spin_zeny_point_02 = $ranking_spin_zeny_point_01;
+				}
+				if(strcharinfo(0) == $ranking_spin_zeny_04$){
+					$ranking_spin_zeny_04$ = ""+$ranking_spin_zeny_03$+"";	$ranking_spin_zeny_03$ = ""+$ranking_spin_zeny_02$+""; $ranking_spin_zeny_02$ = ""+$ranking_spin_zeny_01$+"";
+					$ranking_spin_zeny_point_04 = $ranking_spin_zeny_point_03; $ranking_spin_zeny_point_03 = $ranking_spin_zeny_point_02; $ranking_spin_zeny_point_02 = $ranking_spin_zeny_point_01;
+				}
+				if(strcharinfo(0) == $ranking_spin_zeny_03$){
+					$ranking_spin_zeny_03$ = ""+$ranking_spin_zeny_02$+"";	$ranking_spin_zeny_02$ = ""+$ranking_spin_zeny_01$+"";
+					$ranking_spin_zeny_point_03 = $ranking_spin_zeny_point_02; $ranking_spin_zeny_point_02 = $ranking_spin_zeny_point_01;
+				}
+				if(strcharinfo(0) == $ranking_spin_zeny_02$){
+					$ranking_spin_zeny_02$ = ""+$ranking_spin_zeny_01$+"";
+					$ranking_spin_zeny_point_02 = $ranking_spin_zeny_point_01;
+				}
+				$ranking_spin_zeny_01$ = ""+strcharinfo(0)+"";	$ranking_spin_zeny_point_01 = round_spin_zeny;	//$aid_1_true = getcharid(0);
+				goto recheck_last;
+				end;
+			}
+			if(round_spin_zeny > $ranking_spin_zeny_point[1]){
+				if(strcharinfo(0) == $ranking_spin_zeny_06$){ $ranking_spin_zeny_06$ = ""; }
+				if(strcharinfo(0) == $ranking_spin_zeny_05$){
+					$ranking_spin_zeny_05$ = ""+$ranking_spin_zeny_04$+"";	$ranking_spin_zeny_04$ = ""+$ranking_spin_zeny_03$+"";	$ranking_spin_zeny_03$ = ""+$ranking_spin_zeny_02$+""; $ranking_spin_zeny_02$ = ""+$ranking_spin_zeny_01$+"";
+					$ranking_spin_zeny_point_05 = $ranking_spin_zeny_point_04; $ranking_spin_zeny_point_04 = $ranking_spin_zeny_point_03; $ranking_spin_zeny_point_03 = $ranking_spin_zeny_point_02; $ranking_spin_zeny_point_02 = $ranking_spin_zeny_point_01;
+				}
+				if(strcharinfo(0) == $ranking_spin_zeny_04$){
+					$ranking_spin_zeny_04$ = ""+$ranking_spin_zeny_03$+"";	$ranking_spin_zeny_03$ = ""+$ranking_spin_zeny_02$+""; $ranking_spin_zeny_02$ = ""+$ranking_spin_zeny_01$+"";
+					$ranking_spin_zeny_point_04 = $ranking_spin_zeny_point_03; $ranking_spin_zeny_point_03 = $ranking_spin_zeny_point_02; $ranking_spin_zeny_point_02 = $ranking_spin_zeny_point_01;
+				}
+				if(strcharinfo(0) == $ranking_spin_zeny_03$){
+					$ranking_spin_zeny_03$ = ""+$ranking_spin_zeny_02$+"";
+					$ranking_spin_zeny_point_03 = $ranking_spin_zeny_point_02;
+				}
+				$ranking_spin_zeny_02$ = ""+strcharinfo(0)+"";	$ranking_spin_zeny_point_02 = round_spin_zeny;	//$aid_1_true = getcharid(0);
+				goto recheck_last;
+				end;
+			}
+			if(round_spin_zeny > $ranking_spin_zeny_point[2]){
+				if(strcharinfo(0) == $ranking_spin_zeny_06$){ $ranking_spin_zeny_06$ = ""; }
+				if(strcharinfo(0) == $ranking_spin_zeny_05$){
+					$ranking_spin_zeny_05$ = ""+$ranking_spin_zeny_04$+"";	$ranking_spin_zeny_04$ = ""+$ranking_spin_zeny_03$+"";	$ranking_spin_zeny_03$ = ""+$ranking_spin_zeny_02$+""; $ranking_spin_zeny_02$ = ""+$ranking_spin_zeny_01$+"";
+					$ranking_spin_zeny_point_05 = $ranking_spin_zeny_point_04; $ranking_spin_zeny_point_04 = $ranking_spin_zeny_point_03; $ranking_spin_zeny_point_03 = $ranking_spin_zeny_point_02; $ranking_spin_zeny_point_02 = $ranking_spin_zeny_point_01;
+				}
+				if(strcharinfo(0) == $ranking_spin_zeny_04$){
+					$ranking_spin_zeny_04$ = ""+$ranking_spin_zeny_03$+"";
+					$ranking_spin_zeny_point_04 = $ranking_spin_zeny_point_03;
+				}
+				$ranking_spin_zeny_03$ = ""+strcharinfo(0)+"";	$ranking_spin_zeny_point_03 = round_spin_zeny;	//$aid_1_true = getcharid(0);
+				goto recheck_last;
+				end;
+			}
+			if(round_spin_zeny > $ranking_spin_zeny_point[3]){
+				if(strcharinfo(0) == $ranking_spin_zeny_06$){ $ranking_spin_zeny_06$ = ""; }
+				if(strcharinfo(0) == $ranking_spin_zeny_05$){
+					$ranking_spin_zeny_05$ = ""+$ranking_spin_zeny_04$+"";
+					$ranking_spin_zeny_point_05 = $ranking_spin_zeny_point_04;
+				}
+				$ranking_spin_zeny_04$ = ""+strcharinfo(0)+"";	$ranking_spin_zeny_point_04 = round_spin_zeny;	//$aid_1_true = getcharid(0);
+				goto recheck_last;
+				end;
+			}
+			if(round_spin_zeny > $ranking_spin_zeny_point[4]){
+				if(strcharinfo(0) == $ranking_spin_zeny_06$){ $ranking_spin_zeny_06$ = ""; }
+				$ranking_spin_zeny_05$ = ""+strcharinfo(0)+"";	$ranking_spin_zeny_point_05 = round_spin_zeny;	//$aid_1_true = getcharid(0);
+				goto recheck_last;
+				end;
+			}
+			if(round_spin_zeny > $ranking_spin_zeny_point[5]){
+				$ranking_spin_zeny_06$ = "";	$ranking_spin_zeny_point_06 = 0;	//$aid_1_true = getcharid(0);
+				goto recheck_last;
+				end;
+			}
+			
+			recheck_last:
+			
+			.@random_spin = rand(1,100);
+			
+			if(.@random_spin <= 15){ .@random_spin = rand(1,100); }
+			
+			if(.@random_spin >= 1 && .@random_spin <= 5){
+				
+				announce "[ "+strnpcinfo(0)+" ] : ยินดีด้วย คุณ "+strcharinfo(0)+" ได้รับ Jackpot "+.@jackpots+"% จำนวน "+callfunc("F_InsertComma",($jackpot_spin_zeny*.@jackpots/100))+" Zeny",bc_all,0xFFFF00;
+				Zeny = Zeny +($jackpot_spin_zeny*.@jackpots/100);
+				dispbottom "[ระบบ] : คุณได้รับ "+callfunc("F_InsertComma",($jackpot_spin_zeny*.@jackpots/100))+" Zeny";
+				$jackpot_spin_zeny = $jackpot_spin_zeny -($jackpot_spin_zeny*.@jackpots/100);
+				next;
+				goto Start;
+				end;
+				
+			}
+			if(.@random_spin >= 6 && .@random_spin <= 5){
+				.@max_spin = getarraysize($spin_zeny_01);
+				.@id_item = $spin_zeny_01[rand(.@max_spin)];
+				.@announce = 1;
+			}
+			if(.@random_spin >= 11 && .@random_spin <= 15){
+				.@max_spin = getarraysize($spin_zeny_02);
+				.@id_item = $spin_zeny_02[rand(.@max_spin)];
+				.@announce = 1;
+			}
+			if(.@random_spin >= 16 && .@random_spin <= 20){
+				.@max_spin = getarraysize($spin_zeny_03);
+				.@id_item = $spin_zeny_03[rand(.@max_spin)];
+				.@announce = 0;
+			}
+			if(.@random_spin >= 21 && .@random_spin <= 60){
+				.@max_spin = getarraysize($spin_zeny_04);
+				.@id_item = $spin_zeny_04[rand(.@max_spin)];
+				.@announce = 0;
+			}
+			if(.@random_spin >= 61){
+				.@max_spin = getarraysize($spin_zeny_05);
+				.@id_item = $spin_zeny_05[rand(.@max_spin)];
+				.@announce = 0;
+			}
+			
+			if(.@announce == 1){ announce "[ "+strnpcinfo(0)+" ] : คุณ "+strcharinfo(0)+" ที่ได้รับ "+getitemname(.@id_item)+" จากการเสี่ยงโชค",bc_all,0xFFFF00; }
+	
+		recheck_lastest:
+			
+			if(.@announce == 0){ npctalk "[ "+strnpcinfo(0)+" ] : คุณ "+strcharinfo(0)+" ได้รับ "+getitemname(.@id_item)+""; }
+				getitem .@id_item,1;
+				next;
+				goto Start;
+				end;
+				
+		case 2:
+			
+			npcshopattach "spin_zeny";
+			callshop "spin_zeny",1;
+			end;
+		
+		case 3:
+			
+			next;
+			mes "^FF3300[ "+.@namenpc$+" ]^000000";
+			mes "^FF3300( รีเซ็ตทุกวันเสาร์ เวลา 23.00 )^000000";
+	
+			mes "^0000FFสามารถรับรางวัลอันดับได้^000000";
+			mes "^0000FFวัน ศุกร์ 22.00 น. - วัน เสาร์ 22.59 น.^000000";
+			
+			mes "^009900[ อันดับที่ 1 ]^000000";
+			for ( .@a = 0; .@a < getarraysize(.@item_reward_01); .@a ++){
+				mes "<ITEM>"+getitemname(.@item_reward_01[.@a])+" "+.@amout_reward_01[.@a]+" ea<INFO>"+.@item_reward_01[.@a]+"</INFO></ITEM>";
+			}
+			mes "^009900[ อันดับที่ 2 ]^000000";
+			for ( .@b = 0; .@b < getarraysize(.@item_reward_02); .@b ++){
+				mes "<ITEM>"+getitemname(.@item_reward_02[.@b])+" "+.@amout_reward_02[.@b]+" ea<INFO>"+.@item_reward_02[.@b]+"</INFO></ITEM>";
+			}
+			mes "^009900[ อันดับที่ 3 ]^000000";
+			for ( .@c = 0; .@c < getarraysize(.@item_reward_03); .@c ++){
+				mes "<ITEM>"+getitemname(.@item_reward_03[.@c])+" "+.@amout_reward_03[.@c]+" ea<INFO>"+.@item_reward_03[.@c]+"</INFO></ITEM>";
+			}
+			mes "^009900[ อันดับที่ 4 ]^000000";
+			for ( .@c = 0; .@c < getarraysize(.@item_reward_04); .@c ++){
+				mes "<ITEM>"+getitemname(.@item_reward_04[.@c])+" "+.@amout_reward_04[.@c]+" ea<INFO>"+.@item_reward_04[.@c]+"</INFO></ITEM>";
+			}
+			mes "^009900[ อันดับที่ 5 ]^000000";
+			for ( .@c = 0; .@c < getarraysize(.@item_reward_05); .@c ++){
+				mes "<ITEM>"+getitemname(.@item_reward_05[.@c])+" "+.@amout_reward_05[.@c]+" ea<INFO>"+.@item_reward_05[.@c]+"</INFO></ITEM>";
+			}
+			
+			menu "- ตรวจสอบอันดับ",menu_check,"- ^0000FFรับรางวัลผู้ติดอันดับ 1-5^000000",menu_get;
+			end;
+			
+			menu_check:
+			next;
+			mes "^FF3300[ "+.@namenpc$+" ]^000000";
+			if($ranking_spin_zeny_point[0] > 0){ mes "1. ^0000FF"+$ranking_spin_zeny$[0]+"^000000 = ^FF0000"+$ranking_spin_zeny_point[0]+" ครั้ง^000000"; }
+			if($ranking_spin_zeny_point[1] > 0){ mes "2. ^0000FF"+$ranking_spin_zeny$[1]+"^000000 = ^FF0000"+$ranking_spin_zeny_point[1]+" ครั้ง^000000"; }
+			if($ranking_spin_zeny_point[2] > 0){ mes "3. ^0000FF"+$ranking_spin_zeny$[2]+"^000000 = ^FF0000"+$ranking_spin_zeny_point[2]+" ครั้ง^000000"; }
+			if($ranking_spin_zeny_point[3] > 0){ mes "4. ^0000FF"+$ranking_spin_zeny$[3]+"^000000 = ^FF0000"+$ranking_spin_zeny_point[3]+" ครั้ง^000000"; }
+			if($ranking_spin_zeny_point[4] > 0){ mes "5. ^0000FF"+$ranking_spin_zeny$[4]+"^000000 = ^FF0000"+$ranking_spin_zeny_point[4]+" ครั้ง^000000"; }
+			end;
+			
+			menu_get:
+			
+			if($ranking_spin_zeny == 0){
+				next;
+				mes "^FF3300[ "+.@namenpc$+" ]^000000";
+				mes "ขณะนี้ยังไม่ถึงเวลารับรางวัลกิจกรรม";
+				mes "รอข้าประกาศอีกครั้งนะ";
+				end;
+			}
+			if(reward_accecp_zeny == 1){
+				next;
+				mes "^FF3300[ "+.@namenpc$+" ]^000000";
+				mes "คุณ "+strcharinfo(0)+" รับรางวัลไปแล้วนะ";
+				mes "โปรดตรวจสอบใน ช่องเก็บของ และ คลังเก่อนนะ";
+				mes "แล้วกลับมาหาข้าใหม่เพื่อตรวจสอบละกัน";
+				end;
+			}
+			if(strcharinfo(0) == ""+$ranking_spin_zeny_01$+""){
+				next;
+				mes "^FF3300[ "+.@namenpc$+" ]^000000";
+				mes "ข้าได้ตรวจสอบรายชื่อแล้ว";
+				mes "เจ้าคือ ผู้ที่ได้รางวัล ลำดับที่ 1";
+				mes "ยินดีด้วยนะ ข้าจะมอบ";
+				for ( .@s = 0; .@s < getarraysize(.@item_reward_01); .@s ++){
+					mes "<ITEM>"+getitemname(.@item_reward_01[.@s])+" จำนวน "+.@amout_reward_01[.@s]+" ea<INFO>"+.@item_reward_01[.@s]+"</INFO></ITEM>";
+					getitem .@item_reward_01[.@s],.@amout_reward_01[.@s];
+				}
+				reward_accecp_zeny = 1;
+				end;
+			}
+			if(strcharinfo(0) == ""+$ranking_spin_zeny_02$+""){
+				next;
+				mes "^FF3300[ "+.@namenpc$+" ]^000000";
+				mes "ข้าได้ตรวจสอบรายชื่อแล้ว";
+				mes "เจ้าคือ ผู้ที่ได้รางวัล ลำดับที่ 2";
+				mes "ยินดีด้วยนะ ข้าจะมอบ";
+				for ( .@s = 0; .@s < getarraysize(.@item_reward_02); .@s ++){
+					mes "<ITEM>"+getitemname(.@item_reward_02[.@s])+" จำนวน "+.@amout_reward_02[.@s]+" ea<INFO>"+.@item_reward_02[.@s]+"</INFO></ITEM>";
+					getitem .@item_reward_02[.@s],.@amout_reward_02[.@s];
+				}
+				reward_accecp_zeny = 1;
+				end;
+			}
+			if(strcharinfo(0) == ""+$ranking_spin_zeny_03$+""){
+				next;
+				mes "^FF3300[ "+.@namenpc$+" ]^000000";
+				mes "ข้าได้ตรวจสอบรายชื่อแล้ว";
+				mes "เจ้าคือ ผู้ที่ได้รางวัล ลำดับที่ 3";
+				mes "ยินดีด้วยนะ ข้าจะมอบ";
+				for ( .@s = 0; .@s < getarraysize(.@item_reward_03); .@s ++){
+					mes "<ITEM>"+getitemname(.@item_reward_03[.@s])+" จำนวน "+.@amout_reward_03[.@s]+" ea<INFO>"+.@item_reward_03[.@s]+"</INFO></ITEM>";
+					getitem .@item_reward_03[.@s],.@amout_reward_03[.@s];
+				}
+				reward_accecp_zeny = 1;
+				end;
+			}
+			if(strcharinfo(0) == ""+$ranking_spin_zeny_04$+""){
+				next;
+				mes "^FF3300[ "+.@namenpc$+" ]^000000";
+				mes "ข้าได้ตรวจสอบรายชื่อแล้ว";
+				mes "เจ้าคือ ผู้ที่ได้รางวัล ลำดับที่ 4";
+				mes "ยินดีด้วยนะ ข้าจะมอบ";
+				for ( .@s = 0; .@s < getarraysize(.@item_reward_04); .@s ++){
+					mes "<ITEM>"+getitemname(.@item_reward_04[.@s])+" จำนวน "+.@amout_reward_04[.@s]+" ea<INFO>"+.@item_reward_04[.@s]+"</INFO></ITEM>";
+					getitem .@item_reward_04[.@s],.@amout_reward_04[.@s];
+				}
+				reward_accecp_zeny = 1;
+				end;
+			}
+			if(strcharinfo(0) == ""+$ranking_spin_zeny_05$+""){
+				next;
+				mes "^FF3300[ "+.@namenpc$+" ]^000000";
+				mes "ข้าได้ตรวจสอบรายชื่อแล้ว";
+				mes "เจ้าคือ ผู้ที่ได้รางวัล ลำดับที่ 5";
+				mes "ยินดีด้วยนะ ข้าจะมอบ";
+				for ( .@s = 0; .@s < getarraysize(.@item_reward_05); .@s ++){
+					mes "<ITEM>"+getitemname(.@item_reward_05[.@s])+" จำนวน "+.@amout_reward_05[.@s]+" ea<INFO>"+.@item_reward_05[.@s]+"</INFO></ITEM>";
+					getitem .@item_reward_05[.@s],.@amout_reward_05[.@s];
+				}
+				reward_accecp_zeny = 1;
+				end;
+			}
+			
+			next;
+			mes "^FF3300[ "+.@namenpc$+" ]^000000";
+			mes "ข้าได้ตรวจสอบรายชื่อแล้ว";
+			mes "^FF9900เจ้าไม่ใช่ผู้ที่ติดอันดับนะ^000000";
+			mes "เสียใจด้วยนะ ไว้เจอกันใหม่";
+			end;
+		
+		case 4:
+			close2;
+			callshop "shop_spin_zeny",1;
+			end;
+			
+	}
+	
+	OnStop:
+		
+		$ranking_spin_zeny = 1;
+		announce "[Spin Zeny] : ขณะนี้ตู้หมุนได้ปิดตัวลงแล้ว ไว้เจอกันใหม่ครั้งหน้านะ สำหรับผู้ที่ติดรายชื่ออันดับ 1 - 5 โปรดรับรางวัลที่ NPC ด้วยนะ",bc_all,0xFFFF00;
+		goto OnSetup;
+		end;
+		
+		
+	OnStart:
+			
+		$ranking_spin_zeny = 0;
+		announce "[Spin Zeny] : ขณะนี้ตู้หมุนได้ทำการเปิดให้เล่นแล้ว และได้ทำการเก็บผลการเล่นไว้ สามารถตรวจสอบลำดับการเล่นได้ที่ NPC เชิญร่วมสนุกกันได้เลย",bc_all,0xFFFF00;
+		goto OnSetup;
+		end;
+		
+	OnReset:
+			
+		$ranking_spin_zeny_01$ = "";
+		$ranking_spin_zeny_02$ = "";
+		$ranking_spin_zeny_03$ = "";
+		$ranking_spin_zeny_04$ = "";
+		$ranking_spin_zeny_05$ = "";
+		$ranking_spin_zeny_06$ = "";
+				
+		$ranking_spin_zeny_point_01 = 0;
+		$ranking_spin_zeny_point_02 = 0;
+		$ranking_spin_zeny_point_03 = 0;
+		$ranking_spin_zeny_point_04 = 0;
+		$ranking_spin_zeny_point_05 = 0;
+		$ranking_spin_zeny_point_06 = 0;
+				
+		$check_day_spin_zeny = $check_day_spin_zeny +1;
+		goto OnSetup;		
+		end;
+	
+	OnSetup:
+		
+		menu	"- เปิดตู้กิจกรรม",OnStart,
+				"- ปิดตู้กิจกรรม + ตัดยอดแจกรางวัล",OnStop,
+				"- รีเซ็ตการจัดอันดับ",OnReset;
+		end;
+	
+end;
+
+OnBuyItem:
+	
+	dispbottom "[ "+strnpcinfo(0)+" ] : ไอเทมเหล่านี้เป็นเพียงตัวอย่างเท่านั้น";
+	end;
+
+OnInit:
+	
+	bindatcmd "setupspinzeny",""+strnpcinfo(0)+"::OnSetup",99,0;
+	
+	while(1){
+		delwaitingroom;
+		waitingroom "Jackpot "+callfunc("F_InsertComma",$jackpot_spin_zeny)+" Zeny",0;
+		sleep 1000;
+	}
+	
+end;
+}
+

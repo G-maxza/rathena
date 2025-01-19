@@ -1,0 +1,1203 @@
+//============================================================
+// Booster Weapons
+//============================================================
+oasis,171,161,4	script	En_Booster_Weapons	4_EP17_BOY_B,{
+	mes "Booster Weapon Enchantment";
+	mes "^FF0000n100% Success Chance^000000";
+	mes "^FF0000nUnable to Reset^000000";
+	next;
+	switch( select( "En Booster Weapons") ) {
+case 1:
+	mes "^0000cdEn Booster Weapons^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(36);
+	close;
+}
+OnInit:
+	waitingroom "Enchant Booster_Weapons",0;	
+	end;
+}
+//============================================================
+// Enchants: Flush weapon
+//============================================================
+oasis,165,171,4	script	En_Flush_weapon	4_M_YATTWARP,{
+	mes "Flush weapon Enchantment";
+	next;
+	switch( select( "Enchantment Flush weapon") ) {
+case 1:
+	mes "^0000cdEnchantment Flush weapon^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(63);
+	close;
+}
+OnInit:
+	waitingroom "Enchantment Flush weapon",0;	
+	end;
+}
+//============================================================
+// Enchants: Muqaddas Weapons
+//============================================================
+oasis,161,179,4	script	En_Muqaddas_Weapons	4_EXJOB_KI_SUL,{
+	mes "Muqaddas Weapons Enchantment";
+	next;
+	switch( select( "Enchantment Muqaddas Weapons") ) {
+case 1:
+	mes "^0000cdEnchantment Muqaddas Weapons^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(64);
+	close;
+}
+OnInit:
+	waitingroom "Enchantment Muqaddas Weapons",0;	
+	end;
+}
+//============================================================
+// EP17.1
+//============================================================
+oasis,165,124,4	script	En_EP.17_1	4_F_BERRYTEA,{
+	mes "Illusion Armor and Engine and Leg and Accessory and Weapon OSAD Enchantment";
+	mes "^FF0000Enchant cannot be reset^000000";
+	next;
+	switch( select( "Armor", "Engine", "Leg", "Accessory_R", "Accessory_L", "Weapon_OSAD") ) {
+case 1:
+	mes "^0000cdArmor^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(34);
+	close;
+case 2:
+	mes "^0000cdEngine^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(39);
+	close;
+case 3:
+	mes "^0000cdLeg^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(40);
+	close;
+case 4:
+	mes "^0000cdAccessory_R^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(42);
+	close;
+case 5:
+	mes "^0000cdAccessory_L^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(43);
+	close;
+case 6:
+	mes "^0000cdWeapon_OSAD^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(33);
+	close;
+}
+OnInit:
+	waitingroom "Enchant EP17.1",0;	
+	end;
+}
+//============================================================
+// EP17.2
+//============================================================
+oasis,181,134,4	script	En_EP.17_2	4_EP17_MERMAID,{
+	mes "Auto Armor and Engine and Leg and Accessory Enchantment";
+	mes "^FF0000Enchant cannot be reset^000000";
+	next;
+	switch( select( "Armor", "Engine", "Leg", "Accessory_R", "Accessory_L") ) {
+case 1:
+	mes "^0000cdArmor^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(44);
+	close;
+case 2:
+	mes "^0000cdEngine^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(45);
+	close;
+case 3:
+	mes "^0000cdLeg^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(46);
+	close;
+case 4:
+	mes "^0000cdAccessory_R^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(35);
+	close;
+case 5:
+	mes "^0000cdAccessory_L^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(41);
+	close;
+}
+OnInit:
+	waitingroom "Enchant EP17.2",0;	
+	end;
+}
+//============================================================
+// EP18. ARMOR Grey Wolf
+//============================================================
+oasis,189,134,4	script	En_EP18_ARMOR_Grey_Wolf	4_EP18_GW_MIDDLE02,{
+	mes "Grey Wolf Armor and Garment and Shoes and Accessory Enchantment";
+	mes "^FF0000Enchant cannot be reset^000000";
+	next;
+	switch( select( "Armor", "Garment", "Shoes", "Accessory_R", "Accessory_L") ) {
+case 1:
+	mes "^0000cdArmor^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(1);
+	close;
+case 2:
+	mes "^0000cdGarment^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(2);
+	close;
+case 3:
+	mes "^0000cdShoes^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(3);
+	close;
+case 4:
+	mes "^0000cdAccessory_R^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(4);
+	close;
+case 5:
+	mes "^0000cdAccessory_L^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(5);
+	close;
+}
+OnInit:
+	waitingroom "Enchant EP18. ARMOR Grey Wolf",0;	
+	end;
+}
+//============================================================
+// EP18. Nebula ARMOR
+//============================================================
+oasis,199,144,4	script	En_EP18_Nebula_ARMOR	4_EP18_GW_MIDDLE02,{
+	mes "Nebula Armor and Accessory Enchantment";
+	next;
+	switch( select( "Nebula Armor of Power", "Nebula Armor of Stamina", "Nebula Suit of Concentration", "Nebula Suit of Creative", "Nebula Robe of Spell", "Nebula Robe of Wisdom", "Stellar Seal Accessories") ) {
+case 1:
+	mes "^0000cdNebula Armor of Power^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(7);
+	close;
+case 2:
+	mes "^0000cdNebula Armor of Stamina^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(8);
+	close;
+case 3:
+	mes "^0000cdNebula Suit of Concentration^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(9);
+	close;
+case 4:
+	mes "^0000cdNebula Suit of Creative^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(10);
+	close;
+case 5:
+	mes "^0000cdNebula Robe of Spell^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(11);
+	close;
+case 6:
+	mes "^0000cdNebula Robe of Wisdom^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(12);
+	close;
+case 7:
+	mes "^0000cdStellar Seal Accessories^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(13);
+	close;
+}
+OnInit:
+	waitingroom "Enchant EP18. Nebula Armor",0;	
+	end;
+}
+//============================================================
+// Mad Bunny-LT
+//============================================================
+oasis,199,148,4	script	En_Mad_Bunny-LT	PIAMETTE,{
+	mes "Mad Bunny-LT [1] Enchantment";
+	next;
+	switch( select( "En Mad Bunny-LT [1]") ) {
+case 1:
+	mes "^0000cdMad Bunny-LT [1]^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(15);
+	close;
+}
+OnInit:
+	waitingroom "Enchant Mad Bunny-LT",0;	
+	end;
+}
+//============================================================
+// EP18. Varmundt
+//============================================================
+oasis,180,196,4	script	En_EP18_Varmundt	4_EP18_MARK,{
+	mes "Varmundt Armor and Accessory Enchantment";
+	next;
+	switch( select( "Varmundt Glade Rune Equipment", "Varmundt Fire Rune Equipment", "Varmundt Ice Rune Equipment", "Varmundt Death Rune Equipment", "Varmundt Soul Rune Ring", "Varmundt Venom Rune Ring", "Varmundt Temple Rune Ring") ) {
+case 1:
+	mes "^0000cdVarmundt Glade Rune Equipment^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(16);
+	close;
+case 2:
+	mes "^0000cdVarmundt Fire Rune Equipment^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(17);
+	close;
+case 3:
+	mes "^0000cdVarmundt Ice Rune Equipment^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(18);
+	close;
+case 4:
+	mes "^0000cdVarmundt Death Rune Equipment^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(19);
+	close;
+case 5:
+	mes "^0000cdVarmundt Soul Rune Ring^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(57);
+	close;
+case 6:
+	mes "^0000cdVarmundt Venom Rune Ring^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(58);
+	close;
+case 7:
+	mes "^0000cdVarmundt Temple Rune Ring^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(59);
+	close;
+}
+OnInit:
+	waitingroom "Enchant EP18. Varmundt",0;	
+	end;
+}
+//============================================================
+// MHero Boots-LT
+//============================================================
+oasis,199,152,4	script	En_Hero_Boots_LT	4_M_5THPRIN2,{
+	mes "Hero Boots-LT [1] Enchantment";
+	next;
+	switch( select( "En Hero Boots-LT [1]") ) {
+case 1:
+	mes "^0000cdHero Boots-LT [1]^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(21);
+	close;
+}
+OnInit:
+	waitingroom "Enchant Hero Boots-LT",0;	
+	end;
+}
+//============================================================
+// EP18. Enchants: Helm of Faith
+//============================================================
+oasis,199,161,4	script	En_Helm_of_Faith	4_EP18_DEW,{
+	mes "Helm of Faith Enchantment";
+	next;
+	switch( select( "En Helm of Faith") ) {
+case 1:
+	mes "^0000cdEn Helm of Faith^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(25);
+	close;
+}
+OnInit:
+	waitingroom "Enchant Helm of Faith",0;	
+	end;
+}
+//============================================================
+// EP18. Enchants: Thanos Helmet-LT
+//============================================================
+oasis,195,180,4	script	En_Thanos_Helmet_LT	4_4JOB_SERANG,{
+	mes "Thanos Helmet-LT Enchantment";
+	next;
+	switch( select( "Enchantment Thanos Helmet-LT") ) {
+case 1:
+	mes "^0000cdEnchantment Thanos Helmet-LT^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(32);
+	close;
+}
+OnInit:
+	waitingroom "Enchantment Thanos Helmet-LT",0;	
+	end;
+}
+//============================================================
+// EP19. Enchants: Snow Flower Armors & Garments & Footgear &Accessories (Right) & Accessories (Left)
+//============================================================
+oasis,173,175,4	script	En_Snow_Flower_Armors	4_EP19_HEALROCK,{
+	mes "Enchants: Snow Flower Armors and Garment and Shoes and Accessories";
+	next;
+	switch( select( "Armor", "Garment", "Shoes", "Accessory_R", "Accessory_L") ) {
+case 1:
+	mes "^0000cdArmor^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(26);
+	close;
+case 2:
+	mes "^0000cdGarment^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(27);
+	close;
+case 3:
+	mes "^0000cdShoes^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(28);
+	close;
+case 4:
+	mes "^0000cdAccessory_R^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(29);
+	close;
+case 5:
+	mes "^0000cdAccessory_L^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(30);
+	close;
+}
+OnInit:
+	waitingroom "Enchants Snow Flower",0;	
+	end;
+}
+//============================================================
+// EP19. Enchants: Glacier Weapons
+//============================================================
+oasis,173,179,4	script	En_Glacier_Weapons	4_RAGFES_02,{
+	mes "Glacier Weapons Enchantment";
+	next;
+	switch( select( "Enchantment Glacier Weapons") ) {
+case 1:
+	mes "^0000cdEnchantment Glacier Weapons^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(31);
+	close;
+}
+OnInit:
+	waitingroom "Enchantment Glacier Weapons",0;	
+	end;
+}
+//============================================================
+// EP19. Enchants: Dim Glacier Weapons
+//============================================================
+oasis,173,183,4	script	En_Dim_Glacier_Weapons	4_EP19_TAMARIN,{
+	mes "Dim Glacier Weapons Enchantment";
+	next;
+	switch( select( "Enchantment Dim Glacier Weapons") ) {
+case 1:
+	mes "^0000cdEnchantment Dim Glacier Weapons^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(47);
+	close;
+}
+OnInit:
+	waitingroom "Enchantment Dim Glacier Weapons",0;	
+	end;
+}
+//============================================================
+// EP19. Enchants: Glacier Armors & Garments & Footgear &Accessories (Right) & Accessories (Left)
+//============================================================
+oasis,173,187,4	script	En_Glacier_Armors	4_EP19_FRIEDERIKE,{
+	mes "Enchants: Glacier Armors and Garment and Shoes and Shield and Accessories";
+	next;
+	switch( select( "Armor", "Garment", "Shoes", "Shield", "Accessory_R", "Accessory_L") ) {
+case 1:
+	mes "^0000cdArmor^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(89);
+	close;
+case 2:
+	mes "^0000cdGarment^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(90);
+	close;
+case 3:
+	mes "^0000cdShoes^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(91);
+	close;
+case 4:
+	mes "^0000cdShield^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(92);
+	close;
+case 5:
+	mes "^0000cdAccessory_R^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(93);
+	close;
+case 6:
+	mes "^0000cdAccessory_L^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(94);
+	close;
+}
+OnInit:
+	waitingroom "Enchants Glacier",0;	
+	end;
+}
+//============================================================
+// EP19. Enchants: Dim Glacier Armors & Garments & Footgear &Accessories (Right) & Accessories (Left)
+//============================================================
+oasis,173,191,4	script	En_Dim_Glacier_Armors	4_RAGFES_03,{
+	mes "Enchants: Dim Glacier Armors and Garment and Shoes";
+	next;
+	switch( select( "Armor", "Garment", "Shoes") ) {
+case 1:
+	mes "^0000cdArmor^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(95);
+	close;
+case 2:
+	mes "^0000cdGarment^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(96);
+	close;
+
+case 3:
+	mes "^0000cdShoes^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(97);
+	close;
+}
+OnInit:
+	waitingroom "Enchants Dim Glacier",0;	
+	end;
+}
+//============================================================
+// EP19. Enchants: Issgard Crowns
+//============================================================
+oasis,173,195,4	script	En_Issgard_Crowns	4_EP19_RGAN_SR1,{
+	mes "Issgard Crowns Enchantment";
+	next;
+	switch( select( "Enchantment Issgard Crowns") ) {
+case 1:
+	mes "^0000cdEnchantment Issgard Crowns^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(98);
+	close;
+}
+OnInit:
+	waitingroom "Enchantment Issgard Crowns",0;	
+	end;
+}
+//============================================================
+// Enchants: Rune Equipment
+//============================================================
+oasis,181,192,4	script	En_Rune_Equipment	4_EP19_JUNCEA,{
+	mes "Rune Armor and Accessory Enchantment";
+	next;
+	switch( select( "Plain Rune Equipment", "Flame Rune Equipment", "Ice Rune Equipment", "Death Rune Equipment", "Soul Rings", "Venom Rings", "Temple Rings") ) {
+case 1:
+	mes "^0000cdPlain Rune Equipment^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(52);
+	close;
+case 2:
+	mes "^0000cdFlame Rune Equipment^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(53);
+	close;
+case 3:
+	mes "^0000cdIce Rune Equipment^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(54);
+	close;
+case 4:
+	mes "^0000cdDeath Rune Equipment^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(55);
+	close;
+case 5:
+	mes "^0000cdSoul Rings^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(60);
+	close;
+case 6:
+	mes "^0000cdVenom Rings^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(61);
+	close;
+case 7:
+	mes "^0000cdTemple Rings^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(62);
+	close;
+}
+OnInit:
+	waitingroom "Enchant Rune Equipment",0;	
+	end;
+}
+//============================================================
+// Enchants: Rune Upgrade & Engraved Rune Equipment
+//============================================================
+oasis,180,188,4	script	En_Rune_Upgrade_Engraved	4_EP19_LAZY,{
+	mes "Enchants: Rune Upgrade & Engraved Rune Equipment";
+	next;
+	switch( select( "Fiery Earth Rune Armors", "Icy Storm Rune Suits", "Soul Purifying Rune Robes", "Corrupted Poison Rune Cloths") ) {
+case 1:
+	mes "^0000cdFiery Earth Rune Armors^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(99);
+	close;
+case 2:
+	mes "^0000cdIcy Storm Rune Suits^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(100);
+	close;
+case 3:
+	mes "^0000cdSoul Purifying Rune Robes^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(101);
+	close;
+case 4:
+	mes "^0000cdCorrupted Poison Rune Cloths^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(102);
+	close;
+}
+OnInit:
+	waitingroom "Enchants Rune Upgrade-Engraved",0;	
+	end;
+}
+//============================================================
+// Enchants: Brilliant Light Weapons & Sinful Weapons & Good & Evil Headgears
+//============================================================
+oasis,173,203,4	script	En_Light_Sinful_Good_Evil	4_M_PHILOFONTES,{
+	mes "Enchants: Brilliant Light Weapons & Sinful Weapons & Good & Evil Headgears Equipment";
+	next;
+	switch( select( "Brilliant Light Weapons", "Sinful Weapons", "Good & Evil Headgears") ) {
+case 1:
+	mes "^0000cdBrilliant Light Weapons^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(65);
+	close;
+case 2:
+	mes "^0000cdSinful Weapons^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(66);
+	close;
+case 3:
+	mes "^0000cdGood & Evil Headgears^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(67);
+	close;
+}
+OnInit:
+	waitingroom "Enchants Brilliant Light Weapons & Sinful Weapons & Good & Evil Headgears",0;	
+	end;
+}
+//============================================================
+// Enchants: Officer's Hat-LT & Drooping Agony of Thanatos-LT & Red & Blue Pendants-LT
+//============================================================
+oasis,169,207,4	script	En_Officer_Drooping_Red_Blue_LT	4_EP17_KAYA,{
+	mes "Enchants: Officer's Hat-LT & Drooping Agony of Thanatos-LT & Red & Blue Pendants-LT Equipment";
+	next;
+	switch( select( "Officer's Hat-LT", "Drooping Agony of Thanatos-LT", "Red & Blue Pendants-LT") ) {
+case 1:
+	mes "^0000cdOfficer's Hat-LT^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(103);
+	close;
+case 2:
+	mes "^0000cdDrooping Agony of Thanatos-LT^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(104);
+	close;
+case 3:
+	mes "^0000cdRed & Blue Pendants-LT^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(105);
+	close;
+}
+OnInit:
+	waitingroom "Enchants Officer's Hat-LT & Drooping Agony of Thanatos-LT & Red & Blue Pendants-LT",0;	
+	end;
+}
+//============================================================
+// Enchants: Boots of Good and Evil
+//============================================================
+oasis,165,206,4	script	En_Boots_of_Good_Evil	4_EXJOB_NINJA,{
+	mes "Enchants: Boots of Good and Evil Equipment";
+	next;
+	switch( select( "Boots of Good and Evil (Cardinal)",
+					"Boots of Good and Evil (Inquisitor)",
+					"Boots of Good and Evil (Soul Ascetic)",
+					"Boots of Good and Evil (Biolo)",
+					"Boots of Good and Evil (Dragon Knight)",
+					"Boots of Good and Evil (Spirit Handler)",
+					"Boots of Good and Evil (Elemental Master))",
+					"Boots of Good and Evil (Windhawk)",
+					"Boots of Good and Evil (Sky Emperor)",
+					"Boots of Good and Evil (Meister)",
+					"Boots of Good and Evil (Shadow Cross)",
+					"Boots of Good and Evil (Shinkiro & Shiranui)",
+					"Boots of Good and Evil (Abyss Chaser))",
+					"Boots of Good and Evil (Troubadour & Trouvere)",
+					"Boots of Good and Evil (Hyper Novice)",
+					"Boots of Good and Evil (Imperial Guard)",
+					"Boots of Good and Evil (Arch Mage)",
+					"Boots of Good and Evil (Night Watch)"
+	) ) {
+case 1:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(106);
+	close;
+case 2:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(107);
+	close;
+case 3:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(108);
+	close;
+case 4:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(109);
+	close;
+case 5:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(110);
+	close;
+case 6:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(111);
+	close;
+case 7:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(114);
+	close;
+case 8:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(115);
+	close;
+case 9:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(116);
+	close;
+case 10:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(125);
+	close;
+case 11:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(126);
+	close;
+case 12:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(127);
+	close;
+case 13:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(129);
+	close;
+case 14:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(130);
+	close;
+case 15:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(131);
+	close;
+case 16:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(134);
+	close;
+case 17:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(135);
+	close;
+case 18:
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(136);
+	close;
+}
+OnInit:
+	waitingroom "Enchants Brilliant Light Weapons & Sinful Weapons & Good & Evil Headgears",0;	
+	end;
+}
+//============================================================
+// Enchants: Time Dimensions Rune Crowns
+//============================================================
+oasis,146,207,4	script	En_Time_Dimensions_Rune_Crowns	4_RAGFES_08,{
+	mes "Enchants: Time Dimensions Rune Crowns Equipment";
+	next;
+	switch( select( "Time Dimensions Rune Crowns") ) {
+case 1:
+	mes "^0000cdTime Dimensions Rune Crowns^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(132);
+	close;
+}
+OnInit:
+	waitingroom "Enchants Time Dimensions Rune Crowns",0;	
+	end;
+}
+//============================================================
+// Enchants: Dimensions Weapons
+//============================================================
+oasis,146,203,4	script	En_Dimensions_Weapons	HEROS_OUT_ORB,{
+	mes "Enchants: Dimensions Weapons Equipment";
+	next;
+	switch( select( "Dimensions Weapons") ) {
+case 1:
+	mes "^0000cdDimensions Weapons^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(133);
+	close;
+}
+OnInit:
+	waitingroom "Enchants Dimensions Weapons",0;	
+	end;
+}
+//============================================================
+// Enchants: Dimensional Wanderer's Accessories
+//============================================================
+oasis,135,202,4	script	En_Dimensional_Acc	4_EP21_WILHELM,{
+	mes "Enchants: Dimensional Wanderer's Accessories";
+	next;
+	switch( select( "Dimensional Wanderer's Accessories") ) {
+case 1:
+	mes "^0000cdDimensional Wanderer's Accessories^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(56);
+	close;
+}
+OnInit:
+	waitingroom "Enchants Dimensions Weapons",0;	
+	end;
+}
+//============================================================
+// Enchants: Manteau of Mystical Beast:
+//============================================================
+oasis,135,182,4	script	Subspace vending machine#3	HEROS_IN_ORB_3,{
+	mes "Enchants: Manteau of Mystical Beast";
+	next;
+	switch( select( "Divine Beast's Cloak - Spring", "Divine Beast's Cloak - Summer", "Divine Beast's Cloak - Fall", "Divine Beast's Cloak - Winter" ) ) {
+	case 1:
+		item_enchant(117);
+		break;
+	case 2:
+		item_enchant(119);
+		break;
+	case 3:
+		item_enchant(121);
+		break;
+	case 4:
+		item_enchant(123);
+		break;
+	}
+	end;
+
+OnInit:
+	setunittitle( getnpcid(0), "<Divine Cloak Enchantment>" );
+	waitingroom "Enchants Manteau of Mystical Beast",0;
+	end;
+}
+//============================================================
+// Enchants: Circulation of Life: Garments & Accessories
+//============================================================
+oasis,130,182,4	script	Subspace vending machine#4	HEROS_IN_ORB_4,{
+	mes "Enchants: Circulation of Life: Garments & Accessories";
+	next;
+	switch( select( "Circle of Life Accessories", "Circle of Life-Spring", "Circle of Life-Summer", "Circle of Life-Autumn", "Circle of Life-Winter" ) ) {
+	case 1:
+		item_enchant(142);
+		break;
+	case 2:
+		item_enchant(118);
+		break;
+	case 3:
+		item_enchant(120);
+		break;
+	case 4:
+		item_enchant(122);
+		break;
+	case 5:
+		item_enchant(124);
+		break;
+	}
+	end;
+
+OnInit:
+	setunittitle( getnpcid(0), "<Circle of Life Ingent>" );
+	waitingroom "Enchants Circulation of Life Garments & Accessories",0;
+	end;
+}

@@ -1,0 +1,147 @@
+herosria	mapflag	novending
+herosria	mapflag	nochat
+herosria	mapflag	noteleport
+herosria	mapflag	nowarp
+herosria	mapflag	nowarpto
+herosria	mapflag	nosave
+herosria	mapflag	nobranch
+herosria	mapflag	notomb
+herosria	mapflag	noexp
+herosria	mapflag	noloot
+herosria	mapflag	monster_noteleport
+
+new_event	mapflag	novending
+new_event	mapflag	nochat
+new_event	mapflag	noteleport
+new_event	mapflag	nowarp
+new_event	mapflag	nowarpto
+new_event	mapflag	nosave
+new_event	mapflag	nobranch
+new_event	mapflag	notomb
+new_event	mapflag	noexp
+new_event	mapflag	noloot
+new_event	mapflag	monster_noteleport
+
+-	script	simpel_ro	-1,{
+OnMonsterDead:
+	if(!playerattached())
+	end;
+	monster .mapName$,0,0,"--ja--",31500,1,strnpcinfo(0) + "::OnMonsterDead";
+	getitem 7227,100;
+	//getitem 10000000,600;
+	// Mark dead day
+	$simpel_roDeadDay = gettime(DT_DAYOFMONTH);
+	$simpel_roKiller$ = NameFixer(strcharinfo(0));
+	announce NameFixer(strcharinfo(0)) + " กำจัด Simpel-RO BOSS ได้! รับ 100 TCG",bc_all;
+	$simpel_roDeadCount++;
+	end;
+	
+	L_Spawn:
+	// Limit 1 per day
+	if(gettime(DT_DAYOFMONTH) == $simpel_roDeadDay){
+		end;
+	}
+	monster .mapName$,0,0,"--ja--",31500,1,strnpcinfo(0) + "::OnMonsterDead";
+	$simpel_roGID = $@mobid[0];
+	setunitdata $@mobid[0],UMOB_DYNAMIC,66 * max(100,$simpel_roDeadCount);	// บอสจะได้รับดาเมจจากผู้เล่น 66*100 %
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,66 * max(100,$simpel_roDeadCount); // บอสจะได้รับดาเมจจากผู้เล่น 66*100 %
+	return;
+	
+OnHour00:
+OnInit:
+	.mapName$ = "herosria";
+	callsub L_Spawn;
+	end;
+}
+
+-	script	simpel_roSlave	-1,{
+OnMonsterDead:
+	if(!playerattached())
+	end;
+	monster .mapName$,0,0,"--ja--",$mvpIds[rand(getarraysize($mvpIds))],1,strnpcinfo(0) + "::OnMonsterDead";
+	end;
+	
+	L_Spawn:
+	for(.@i = 0; .@i < .spawn_amount; .@i++)
+	monster .mapName$,0,0,"--ja--",$mvpIds[rand(getarraysize($mvpIds))],1,strnpcinfo(0) + "::OnMonsterDead";
+	return;
+	
+OnInit:
+	.spawn_amount = 66;
+	.mapName$ = "herosria";
+	callsub L_Spawn;
+	end;
+}
+
+oasis,158,89,3	script	ห้อง Simpel-RO BOSS	10582,{
+	// Limit 1 per day
+	if(gettime(DT_DAYOFMONTH) == $simpel_roDeadDay){
+		mes Red("--- [โปรดรอวันถัดไป] ---");
+		mes "Simpel-RO BOSS ระดับ (" + (66 * max(100,$simpel_roDeadCount - 1)) + ") วันนี้ถูกกำจัดโดย " + $simpel_roKiller$;
+		menu "ลองทดสอบตี (ไม่ได้อะไรเลยทั้งนั้น)",-;
+		if(!.isTestMonsterAlive){
+			.isTestMonsterAlive = 1;
+			monster "new_event",61,150,"--ja--",31500,1,strnpcinfo(0) + "::OnMonsterDead";
+			setunitdata $@mobid[0],UMOB_DYNAMIC,66 * max(100,$simpel_roDeadCount);            // บอสจะได้รับดาเมจจากผู้เล่น 66*100 %
+			setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,66 * max(100,$simpel_roDeadCount);         // บอสจะได้รับดาเมจจากผู้เล่น 66*100 %
+		}
+		warp "new_event",61,135;
+		close;
+	}
+	mes Blue("--- [วิธีเล่น] ---");
+	mes "• กำจัด Simpel-RO BOSS ระดับ (" + (66 * max(100,$simpel_roDeadCount)) + ") Simpel-RO BOSS ได้! รับ 100 TCG";
+	mes "• Teleport ไม่ได้";
+	next;
+	menu
+	"เข้า (" + Red(F_InsertComma(.price)) + "z)",L_Solo
+	,"เข้าทั้ง Party (" + Red(F_InsertComma(.price)) + "z)",L_Party
+	;
+	L_Party:
+	.@partyId = getcharid(1);
+	if(!.@partyId){
+		mes "ไม่พบ Party";
+		close;
+	}
+	L_Solo:
+	if(Zeny < .price){
+		mes "Zeny ไม่เพียงพอ";
+		close;
+	}
+	ZenyPay(.price);
+	announce NameFixer(strcharinfo(0)) + (.@partyId ? " และ Party" : "") + " เข้าห้อง Simpel-RO BOSS",bc_all;
+	if(.@partyId){
+		getfreecell "herosria",.@x,.@y;
+		warpparty "herosria",.@x,.@y,.@partyId;
+	}
+	else
+	warp "herosria",0,0;
+	end;
+	
+OnMonsterDead:
+	.isTestMonsterAlive = 0;
+	end;
+	
+OnMinute00:
+OnMinute15:
+OnMinute30:
+OnMinute45:
+	killmonsterall "new_event";
+	.isTestMonsterAlive = 0;
+	end;
+	
+OnInit:
+	waitingroom strnpcinfo(0),0;
+	.price = 6600;
+	.isTestMonsterAlive = 0;
+	end;
+}
+
+herosria,1,1,0	script	Minimap Marker	10386,500,500,{
+	end;
+	
+OnTouch:
+	RefreshDebuff(.@debuff);
+	getunitdata $simpel_roGID,.@datas;
+	viewpoint 1,.@datas[UMOB_X],.@datas[UMOB_Y],0,0xF7FF00;
+	end;
+}

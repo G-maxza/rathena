@@ -1,0 +1,161 @@
+//===== instances77 monster=================================
+oasis,193,134,4	script	Instance77_Controller#1	406,{
+	set .@gm_level, 99; // ระดับ GM ต้องใช้เพื่อเริ่ม / หยุดกิจกรรม
+
+	mes "[Instance77]";
+	mes "ยินดีต้อนรับสู่ Instance77!";
+	next;
+	switch(select("^FF0000•^000000 เข้าสู่Instance77.:" + ((getgmlevel() >= .@gm_level) ? "^FF0000•^000000 GM Menu." : "") + ":^FF0000•^000000 ยกเลิก.")) {
+	case 1:
+		if (.start != 1) { // ระยะเวลาการลงทะเบียน
+			mes "[Instance77]";
+			mes "Instance77 ถูกปิดแล้ว.";
+			mes "มันจะเปิดในเวลาเหล่านี้:";
+			mes "18:30 และ 22.30"; // แสดงเวลาของคุณที่นี่
+			close;
+		}
+		if (BaseLevel < 240 || Zeny < 1000000 || countitem(7227) < 1) {
+			mes "คุณไม่สามารถเข้าสู่ Instance77 ได้เพราะไม่ตรงตามเงื่อนไข";
+			mes "ข้อกำหนด:";
+			mes " - Base Level ต้อง 240 ขึ้นไป";
+			mes " - ใช้ Zeny 1,000,000";
+			mes " - ใช้ไอเท็ม ID 7227 จำนวน 1 ชิ้น";
+		}
+		Zeny -= 1000000;
+		delitem 7227, 1;
+		announce strcharinfo(0) + " ได้เข้าสู่ Instance77.", bc_npc;
+		warp "3@ch_t", 31, 94;
+		close;
+	case 2:
+		mes "[Instance77]";
+		switch (.start) { // event states
+			case 0: mes "Instance77 ยังไม่ได้เริ่ม."; break;
+			case 1: mes "Instance77 กำลังรับผู้เข้าร่วม."; break;
+		}
+		next;
+		switch(select("^FF0000•^000000 เริ่มกิจกรรม.:^FF0000•^000000 หยุดกิจกรรม.:^FF0000•^000000 ยกเลิก.")) {
+		case 1:
+			mes "[Instance77]";
+			if (.start)
+				mes "Instance77 เริ่มแล้ว.";
+			else {
+				mes "ที่เริ่มต้น Instance77...";
+				donpcevent strnpcinfo(0)+"::OnStartEvent";
+			}
+			close;
+		case 2:
+			mes "[Instance77]";
+			if (!.start)
+				mes "Instance77 ยังไม่ได้เริ่ม.";
+			else {
+				mes "การหยุด Instance77...";
+				donpcevent strnpcinfo(0)+"::OnStopEvent";
+			}
+			close;
+		case 3:
+			break;
+		}
+		break;
+	case 3:
+		break;
+	}
+	mes "[Instance77]";
+	mes "ลาก่อน.";
+	close;
+	
+OnClock1830: // เปิดกิจกรรมครั้งแรกตอน 20:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1930: // ปิดกิจกรรมครั้งแรกตอน 21:00
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+
+OnClock2230: // เปิดกิจกรรมครั้งที่สองตอน 22:00
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock2330: // ปิดกิจกรรมครั้งที่สองตอน 23:00
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnSpawnMonsters:
+	.start = 2;
+	.round = 1;
+	set .mob, 2; // ตั้งค่าจำนวนมอนสเตอร์ที่ต้องการ
+	// สร้างมอนสเตอร์ ID 20994 จำนวน 30 ตัว
+	set .@monster_count1, 1;
+	for (set .@i, 0; .@i < .@monster_count1; set .@i, .@i + 1) {
+		monster "3@ch_t", 156 + rand(0), 95 + rand(0), "Boss Monster",20994,1,strnpcinfo(0)+"::OnMonsterKilled";
+	}
+	
+	// สร้างมอนสเตอร์ ID 21001 จำนวน 30 ตัว
+	set .@monster_count2, 1;
+	for (set .@i, 0; .@i < .@monster_count2; set .@i, .@i + 1) {
+		monster "3@ch_t", 0 + rand(0), 0 + rand(0), "Boss Monster",21044,1,strnpcinfo(0)+"::OnMonsterKilled";
+	}
+	end;
+	
+OnMonsterKilled:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "Boss Monster"+ .mob +"Bossที่เหลืออยู่ในแผนที่.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "Boss Monster ถูกำจัดหมดเเล้ว", bc_map;
+		goto OnSpawnMonsters;
+	}
+	end;
+	
+OnStartEvent:
+	.start = 1;
+	enablenpc "Instance77_Controller#1";
+	disablenpc "เควสInstance77#2"; // ปิด NPC ที่ใช้ในการออกจากกิจกรรม
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "3@ch_t", .@map$, .@x, .@y;
+	announce "Instance77 จะเริ่มใน 5 นาที.", bc_all;
+	sleep 60000*5;
+	announce "Instance77 ได้เริ่มขึ้นแล้ว!", bc_all;
+	disablenpc "Instance77_Controller#1"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	donpcevent strnpcinfo(0) + "::OnSpawnMonsters"; // เรียกใช้งานฟังก์ชันเกิดมอนสเตอร์
+	end;
+	
+OnStopEvent:
+	announce "Instance77ถูกปิดแล้ว.", bc_all;
+	killmonsterall "3@ch_t"; // ลบมอนสเตอร์ทั้งหมดในแผนที่
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "3@ch_t", .@map$, .@x, .@y;
+	disablenpc "Instance77_Controller#1"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	enablenpc "เควสInstance77#2";
+	.start = .round = .mob = 0; // รีเซ็ตสถานะของกิจกรรมทั้งหมด
+	end;
+	
+OnInit:
+	waitingroom "Instance77 เปิด 18:00 และ 23:00 น.",0;
+	end;
+}
+3@ch_t,156,93,4	script	เควสInstance77#2	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+}
+
+3@ch_t	mapflag	nowarp
+3@ch_t	mapflag	nowarpto
+3@ch_t	mapflag	noteleport
+3@ch_t	mapflag	monster_noteleport
+3@ch_t	mapflag	nosave	SavePoint
+3@ch_t	mapflag	nomemo
+3@ch_t	mapflag	nobranch
+3@ch_t	mapflag	nopenalty
+3@ch_t	mapflag	noicewall
+
+//===== instances77 monster=================================
+
+3@ch_t,0,0	monster	--ja--	21013,25,30000,30000
+3@ch_t,0,0	monster	--ja--	21001,25,30000,30000
+
+//= 3@ch_t warp ==============================================
+3@ch_t,31,100,0	warp	ch_t	2,1,3@ch_t,156,71
+3@ch_t,156,64,0	warp	ch_t-1	2,1,3@ch_t,31,94

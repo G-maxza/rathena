@@ -1,0 +1,63 @@
+prontera,143,179,8	script	เกวลิน	919,{
+	if(gethominfo(0) > 0){
+		addhomintimacy 100000;
+		atcommand "@homhungry 100";
+	}
+	end;
+	
+OnInit:
+	waitingroom "Homunculus อิ่มสนิท",0;
+	end;
+}
+
+prontera,140,182,8	script	เวจ 	920,{
+	if(gethominfo(0) > 0)
+	homevolution;
+	end;
+	
+OnInit:
+	waitingroom "Homunculus Evolution",0;
+	end;
+}
+
+prontera,137,185,8	script	แมรี่ 	915,{
+	if(gethominfo(0) > 0){
+		if (gethominfo(6) >= 99 && (gethominfo(1) >= 6009 && gethominfo(1) <= 6016)) {
+			switch(select("Eira:Sera:Dieter:Bayeri:Eleanor")) {
+			case 1:
+				cutin "Mer_Eira_Card",3;
+				.@Homunculus = 6048; //MER_EIRA
+				break;
+			case 2:
+				cutin "Mer_Sera_Card",3;
+				.@Homunculus = 6050; //MER_SERA
+				break;
+			case 3:
+				cutin "Mer_Dieter_Card",3;
+				.@Homunculus = 6051; //MER_DIETER
+				break;
+			case 4:
+				cutin "Mer_Bayeri_Card",3;
+				.@Homunculus = 6049; //MER_BAYERI
+				break;
+			case 5:
+				cutin "Mer_Eleanor_Card",3;
+				.@Homunculus = 6052; //MER_ELEANOR
+				break;
+			}
+			menu "ยืนยัน",-;
+			morphembryo;
+			hommutate .@Homunculus;
+			end;
+		}
+		else{
+			mes "ต้องมี Homunculus ปกติที่ Evolution แล้วและ Level 99 หรือมากกว่า";
+			close;
+		}
+	}
+	end;
+	
+OnInit:
+	waitingroom "Hom. S",0;
+	end;
+}

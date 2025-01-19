@@ -67,7 +67,7 @@ Body:
   - Id: 3
     Name: Orc's Memory
     Enter:
-      Map: 1@orcs
+      Map: 1@orcs 
       X: 179
       Y: 15
     AdditionalMaps:
@@ -375,31 +375,7 @@ Body:
       Map: 1@begi
       X: 100
       Y: 22
-  - Id: 49
-    Name: Old Glast Heim (Challenge Mode)
-    Enter:
-      Map: 1@gl_he
-      X: 150
-      Y: 28
   - Id: 50
-    Name: Old Glast Heim (Beginner)
-    Enter:
-      Map: 1@gl_k2
-      X: 150
-      Y: 20
-  - Id: 51
-    Name: Fall of Glast Heim (Normal)
-    Enter:
-      Map: 1@gl_prq
-      X: 299
-      Y: 19
-  - Id: 52
-    Name: Fall of Glast Heim (Advanced)
-    Enter:
-      Map: 1@gl_prq
-      X: 79
-      Y: 22
-  - Id: 53
     Name: Twilight Garden
     Enter:
       Map: 1@bamn
@@ -407,7 +383,7 @@ Body:
       Y: 320
     AdditionalMaps:
        1@bamq: true
-  - Id: 54
+  - Id: 51
     Name: Hey! Sweety
     Enter:
       Map: 1@bamq
@@ -415,42 +391,62 @@ Body:
       Y: 39
     AdditionalMaps:
        1@bamn: true
-  - Id: 55
+  - Id: 52
     Name: Farm Lost in Time
     Enter:
       Map: 1@lost
       X: 161
       Y: 42
-  - Id: 56
+  - Id: 53
     Name: Water Garden
     Enter:
       Map: 1@ghg
       X: 64
       Y: 69
-  - Id: 57
+  - Id: 54
     Name: Water Garden Hard
     Enter:
       Map: 1@ghg
       X: 64
       Y: 69
-  - Id: 58
+  - Id: 55
     Name: Hidden Flower Garden
     Enter:
       Map: 1@herbs
       X: 51
       Y: 273
-  - Id: 59
+  - Id: 56
     Name: Security Area 1
     Enter:
       Map: 1@herbs
       X: 45
       Y: 208
-  - Id: 60
+  - Id: 57
     Name: Security Area 2
     Enter:
       Map: 1@herbs
-      X: 59
-      Y: 214
+      X: 45
+      Y: 208
+  - Id: 58 
+    Name: Edda Bio
+    Enter:
+      Map: 1@gol1
+      X: 196
+      Y: 32
+    AdditionalMaps:
+      1@gol2: true
+#  - Id: 59
+#    Name: Security Area 1
+#    Enter:
+#      Map: 1@herbs
+#      X: 45
+#      Y: 208
+#  - Id: 60
+#    Name: Security Area 2
+#    Enter:
+#      Map: 1@herbs
+#      X: 59
+#      Y: 214
   - Id: 61
     Name: Sunken Tower
     Enter:

@@ -55,8 +55,8 @@ hugel,85,181,0	warp	hugel21	1,1,hu_in01,231,303
 hu_in01,231,301,0	warp	hugel22	1,1,hugel,83,181
 
 //Weapon Shop
-hugel,70,157,0	warp	hugel23	1,1,hu_in01,110,373
-hu_in01,110,369,0	warp	hugel24	1,1,hugel,73,155
+oasis,184,96,0	warp	hugel23	1,1,hu_in01,110,373
+hu_in01,110,369,0	warp	hugel24	1,1,oasis,181,94
 hu_in01,108,390,0	warp	hugel25	1,1,hu_in01,107,322
 hu_in01,114,322,0	warp	hugel26	1,1,hu_in01,113,389
 

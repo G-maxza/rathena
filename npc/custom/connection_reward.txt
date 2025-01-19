@@ -1,0 +1,73 @@
+//***********************************/
+//***********    Shakto      ********/
+//**    https://ronovelty.com/     **/
+//***********************************/
+
+function	script	F_connection_reward	{
+	.@allowCash = 1; // Allow to exchange connection reward points with cash points
+	.@cashRatio = 1; // 1 connection reward point = 1 cash point (set it to 1 minimum)
+	.@allowItems = 0; // Allow to exchange connection reward points with cash points
+
+	if(.@cashRatio < 1){
+		mes "Minimum ratio is 1";
+		close;
+	}
+
+	mes "[Connection Reward]";
+	mes "You have actually " + getcoreward() + " points";
+	mes "";
+	mes "What do you want to do ?";
+	.@menu$ = "";
+	if (.@allowCash) .@menu$ += "^33CC33On^000000 - Exchange with cash points:";
+	else .@menu$ += "^ff0000Off^000000 - Exchange with cash points:";
+	if (.@allowItems) .@menu$ += "^33CC33On^000000 - Exchange with items:";
+	else .@menu$ += "^ff0000Off^000000 - Exchange with items:";
+
+	.@selected = select(.@menu$) - 1;
+	next;
+
+	switch(.@selected){
+		case 0:
+			if(!.@allowCash){
+				mes "Exchange connection points for cash points is not allowed";
+				close;
+			}
+			mes "Ratio is 1 connection reward points = " + .@cashRatio + " cash points";
+			input .@exchangepoints;
+			if(getcoreward() < .@exchangepoints){
+				mes "You don't have enough connection reward points";
+				close;
+			}
+			if(.@exchangepoints < 0){
+				mes "You don't to enter a value more than 0";
+				close;
+			}
+			setcoreward(getcoreward() - .@exchangepoints);
+			.@exchangepoints = .@exchangepoints * .@cashRatio;
+			set #CASHPOINTS, #CASHPOINTS + .@exchangepoints;
+			break;
+		case 1:
+			if(!.@allowItems){
+				mes "Exchange connection points for items is not allowed";
+				close;
+			}
+			setarray .@itemReward[0],501,502,503,504,505; //item id
+			setarray .@itemAmount[0],1,2,3,4,5; //amount of items
+			setarray .@itemPrice[0],10,20,30,40,50; //price
+			.@items_menu$ = "";
+			for(set .@i,0; .@i<getarraysize(.@itemReward); set .@i,.@i+1){
+				.@items_menu$ = .@items_menu$ + .@itemPrice[.@i] + " points - " + .@itemAmount[.@i] + " " + getitemname(.@itemReward[.@i]) + ":";
+			}
+			.@value = select(.@items_menu$) - 1;
+
+			if(.@itemPrice[.@value] > getcoreward()){
+				mes "You don't have enough connection reward points";
+				close;
+			}
+			setcoreward(getcoreward() - .@itemPrice[.@value]);
+			getitem( .@itemReward[.@value] ),.@itemAmount[.@value];
+			break;
+	}
+
+	close;
+}

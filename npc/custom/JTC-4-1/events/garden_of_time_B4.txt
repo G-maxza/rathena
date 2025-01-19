@@ -1,0 +1,267 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : Mashle
+//==============================================
+oasis,120,182,4	script	เควสgarden_of_time_B4#1	MD_PRI_DRAGON_2,{
+	set .@gm_level, 99; // ระดับ GM ต้องใช้เพื่อเริ่ม / หยุดกิจกรรม
+
+	mes "[garden of time B4]";
+	mes "นี่คือทางเข้า ^FF0000garden of time B4^000000.";
+	mes "หากคุณล้มเหลวหรือตายไปประตูจะปิดและคุณต้องรอจนกว่าเหตุการณ์จะเริ่มอีกครั้งเพื่อกลับเข้ามาอีกครั้ง";
+	next;
+	switch(select("^FF0000•^000000 เข้าสู่garden of time B4.:^FF0000•^000000 ข้อมูล.:" + ((getgmlevel() >= .@gm_level) ? "^FF0000•^000000 GM Menu." : "") + ":^FF0000•^000000 ยกเลิก.")) {
+	case 1:
+		if (.start != 1) { // ระยะเวลาการลงทะเบียน
+			mes "[garden of time B4]";
+			mes "garden of time B4 ถูกปิดแล้ว.";
+			mes "มันจะเปิดในเวลาเหล่านี้:";
+			mes "วันพฤหัสบดี"; // แสดงเวลาของคุณที่นี่
+			mes "เวลา 19:00"; // แสดงเวลาของคุณที่นี่
+			close;
+		}
+		if (BaseLevel < 300 || Zeny < 20000000 || countitem(7227) < 10) {
+			mes "[garden of time B4]";
+			mes "คุณไม่เป็นไปตามข้อกำหนดที่จะเข้าร่วม garden of time B4.";
+			mes " ";
+			mes "ความต้องการ:";
+			mes " - Base Level 300";
+			mes " - ค่าลงทะเบียน 20,000,000z";
+			mes " - ใช้ไอเท็ม ID 7227 จำนวน 10 ชิ้น";
+			close;
+		}
+		Zeny -= 20000000;
+		delitem 7227, 10;
+		announce strcharinfo(0)+" ได้เข้าสู่ garden of time B4.", bc_npc;
+		percentheal 100,100;
+		warp "sp-ro-c01",167,108;
+		close;
+	case 2:
+		mes "[garden of time B4]";
+		mes "ข้างในคุณจะพบกับคลื่นBoss 3 คลื่น Bossจะเติบโตแข็งแกร่งขึ้นในแต่ละคลื่น.";
+		next;
+		mes "[garden of time B4]";
+		mes "หากคุณเอาชนะBossทั้งหมดคุณจะได้รับโอกาสในการเปิดหีบสมบัติ 1 ชิ้น";
+		close;
+	case 3:
+		mes "[garden of time B4]";
+		switch (.start) { // event states
+			case 0: mes "garden of time B4 ยังไม่ได้เริ่ม."; break;
+			case 1: mes "garden of time B4 กำลังรับผู้เข้าร่วม."; break;
+			case 2: mes "garden of time B4 กิจกรรมกำลังทำงานในรอบ "+ .round +" กับ "+ .mob +" Bossที่เหลือ."; break;
+		}
+		next;
+		switch(select("^FF0000•^000000 เริ่มกิจกรรม.:^FF0000•^000000 หยุดกิจกรรม.:^FF0000•^000000 ยกเลิก.")) {
+		case 1:
+			mes "[garden of time B4]";
+			if (.start)
+				mes "garden of time B4 เริ่มแล้ว.";
+			else {
+				mes "ที่เริ่มต้น garden of time B4...";
+				donpcevent strnpcinfo(0)+"::OnStartEvent";
+			}
+			close;
+		case 2:
+			mes "[garden of time B4]";
+			if (!.start)
+				mes "garden of time B4 ยังไม่ได้เริ่ม.";
+			else {
+				mes "การหยุด garden of time B4...";
+				donpcevent strnpcinfo(0)+"::OnStopEvent";
+			}
+			close;
+		case 3:
+			break;
+		}
+		break;
+	case 4:
+		break;
+	}
+	mes "[garden of time B4]";
+	mes "ลาก่อน.";
+	close;
+OnClock1900:
+	if(gettime(DT_DAYOFWEEK)==4 && (gettime(DT_HOUR)>=19 && gettime(DT_HOUR)<20)) {
+		donpcevent strnpcinfo(0) + "::OnStartEvent";
+		}else if(gettime(DT_DAYOFWEEK)==4 &&  (gettime(DT_HOUR)==20)) {
+			}
+		end;
+OnClock1930:
+	if(gettime(DT_DAYOFWEEK)==4 && (gettime(DT_HOUR)>=19 && gettime(DT_HOUR)<20)) {
+		donpcevent strnpcinfo(0) + "::OnStopEvent";
+		}else if(gettime(DT_DAYOFWEEK)==4 &&  (gettime(DT_HOUR)==20)) {
+			}
+		end;
+OnStartEvent:
+    .start = 1;
+    disablenpc "เควสgarden_of_time_B4#2";
+	disablenpc "เควสgarden_of_time_B4#3";
+	disablenpc "เควสgarden_of_time_B4#4";
+    mapannounce "sp-ro-c01","garden of time B4 ถูกปิดแล้ว.", bc_map;
+    getmapxy .@map$, .@x, .@y, BL_NPC;
+    mapwarp "sp-ro-c01", .@map$, .@x, .@y;
+	mapwarp "sp-ro-c02", .@map$, .@x, .@y;
+	mapwarp "sp-ro-c03", .@map$, .@x, .@y;
+    killmonsterall "sp-ro-c01";
+    killmonsterall "sp-ro-c02";
+    killmonsterall "sp-ro-c03";
+	announce "garden of time B4 เปิด. เหตุการณ์จะเริ่มใน 5 นาที.", bc_all;
+	sleep 60000;
+	announce "garden of time B4 จะเริ่มใน 4 นาที.", bc_all;
+	sleep 60000;
+	announce "garden of time B4 จะเริ่มใน 3 นาที.", bc_all;
+	sleep 60000;
+	announce "garden of time B4 จะเริ่มใน 2 นาที.", bc_all;
+	sleep 60000;
+	announce "garden of time B4 จะเริ่มใน 1 นาที.", bc_all;
+	sleep 60000;
+	announce "garden of time B4 ได้เริ่มขึ้นแล้ว!", bc_all;
+	if ( !getmapusers("sp-ro-c01") )
+        goto OnStopEvent;
+    .start = 2;
+    .round = 1;
+    .mob = 1;
+    // เริ่มกิจกรรม
+	monster "sp-ro-c01",77,123,"Coral Marine",22178,1,strnpcinfo(0)+"::OnDevilDead";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,1 * max(10);            // บอสจะได้รับดาเมจจากผู้เล่น 1*10 %
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,1 * max(10);         // บอสจะได้รับดาเมจจากผู้เล่น 1*10 %
+	end;
+
+OnDevilDead:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "garden of time B4 : "+ .mob +" Bossที่เหลืออยู่ในรอบที่ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "garden of time B4 กำลังเข้าสู่รอบ 2...", bc_map;
+		goto OnDevil2;
+	}
+	end;
+
+OnDevil2:
+	.round = 2;
+	.mob = 1;              
+	monster "sp-ro-c02",77,123,"Coral Marine",22178,1,strnpcinfo(0)+"::OnDevilDead2";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,2 * max(10);            // บอสจะได้รับดาเมจจากผู้เล่น 1*10 %
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,2 * max(10);         // บอสจะได้รับดาเมจจากผู้เล่น 1*10 %
+	enablenpc "เควสgarden_of_time_B4#3";
+	end;
+
+OnDevilDead2:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "garden of time B4 : "+ .mob +" Bossที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "garden of time B4 กำลังเข้าสู่รอบ 3...", bc_map;
+		goto OnDevil3;
+	}
+	end;
+
+OnDevil3:
+	.round = 3;
+	.mob = 1;              
+	monster "sp-ro-c03",77,123,"Coral Marine",22178,1,strnpcinfo(0)+"::OnDevilDead3";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,3 * max(10);            // บอสจะได้รับดาเมจจากผู้เล่น 3*10 %
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,3 * max(10);         // บอสจะได้รับดาเมจจากผู้เล่น 3*10 %
+	enablenpc "เควสgarden_of_time_B4#4";
+	end;
+
+OnDevilDead3:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "garden of time B4 : "+ .mob +" Bossที่เหลืออยู่ในรอบ 3.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "garden of time B4 กำลังเข้าสู่รอบ 4...", bc_map;
+		goto OnDevil4;
+	}
+	end;
+
+OnDevil4:
+	.round = 4;
+	.mob = 1;
+	monster "sp-ro-c03",61,137,"Box B4",1324,1,strnpcinfo(0)+"::OnTreasureDead";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,3 * max(10);            // บอสจะได้รับดาเมจจากผู้เล่น 3*10 %
+	setunitdata $@mobid[0],UMOB_DYNAMIC_DAMAGE,3 * max(10);         // บอสจะได้รับดาเมจจากผู้เล่น 3*10 %
+	end;
+
+OnTreasureDead:
+	.mob--;
+	announce "garden of time B4 : "+ strcharinfo(0) +" ได้เปิดหีบสมบัติที่ garden of time B4.", bc_all;
+	if ( .mob <= 0 )
+		goto OnStopEvent;
+		//getitem 5000033,100; // เพิ่มของรางวัลcc
+		//getitem 20000023,30; // เพิ่มของรางวัลเกลือ
+		//getitem 20000024,5; // เพิ่มของรางวัลใบกาชาทิกเก็ต
+		//set Zeny,Zeny + 3000000; // เพิ่มของรางวัลเงิน
+	end;
+
+OnStopEvent:
+    killmonsterall "sp-ro-c01";
+	killmonsterall "sp-ro-c02";
+	killmonsterall "sp-ro-c03";
+    getmapxy .@map$, .@x, .@y, BL_NPC;
+    mapwarp "sp-ro-c01", .@map$, .@x, .@y;
+	mapwarp "sp-ro-c02", .@map$, .@x, .@y;
+	mapwarp "sp-ro-c03", .@map$, .@x, .@y;
+    enablenpc "เควสgarden_of_time_B4#2";
+	disablenpc "เควสgarden_of_time_B4#3";
+	disablenpc "เควสgarden_of_time_B4#4";
+    .start = .round = .mob = 0;
+	announce "[ระบบ] : กิจกรรม garden of time B4 จบลงแล้ว!", bc_all;
+	end;
+	
+OnInit:
+	waitingroom "garden of time B4 19:00 น.",0;
+	end;
+}
+
+sp-ro-c03,68,125,4	script	เควสgarden_of_time_B4#2	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+}
+sp-ro-c01,68,125,4	script	เควสgarden_of_time_B4#3	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "sp-ro-c02",167,108;
+	end;
+}
+sp-ro-c02,68,125,4	script	เควสgarden_of_time_B4#4	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "sp-ro-c03",167,108;
+	end;
+}
+
+sp-ro-c01	mapflag	nowarp
+sp-ro-c01	mapflag	nowarpto
+sp-ro-c01	mapflag	noteleport
+sp-ro-c01	mapflag	monster_noteleport
+sp-ro-c01	mapflag	nosave	SavePoint
+sp-ro-c01	mapflag	nomemo
+sp-ro-c01	mapflag	nobranch
+sp-ro-c01	mapflag	nopenalty
+sp-ro-c01	mapflag	noicewall
+
+sp-ro-c02	mapflag	nowarp
+sp-ro-c02	mapflag	nowarpto
+sp-ro-c02	mapflag	noteleport
+sp-ro-c02	mapflag	monster_noteleport
+sp-ro-c02	mapflag	nosave	SavePoint
+sp-ro-c02	mapflag	nomemo
+sp-ro-c02	mapflag	nobranch
+sp-ro-c02	mapflag	nopenalty
+sp-ro-c02	mapflag	noicewall
+
+sp-ro-c03	mapflag	nowarp
+sp-ro-c03	mapflag	nowarpto
+sp-ro-c03	mapflag	noteleport
+sp-ro-c03	mapflag	monster_noteleport
+sp-ro-c03	mapflag	nosave	SavePoint
+sp-ro-c03	mapflag	nomemo
+sp-ro-c03	mapflag	nobranch
+sp-ro-c03	mapflag	nopenalty
+sp-ro-c03	mapflag	noicewall

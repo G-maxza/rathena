@@ -1,0 +1,253 @@
+// bartershop quest Costume DK RO
+//============================================================
+//CostumeGarment_PRO
+//============================================================
+-	script	#Tradeitem30	4_GEFFEN_02,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" CostumeGarment_PRO",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop30",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกquest CostumeGarment PRO",0;
+	end;
+}
+hu_in01,106,319,2	duplicate(#Tradeitem30)	ร้านเเลกquest CostumeGarment PRO#1	4_GEFFEN_02
+
+//CostumeLow DK RO S
+//============================================================
+-	script	#Tradeitem31	4_GEFFEN_03,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" CostumeLow_S",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop31",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกquest CostumeLow S",0;
+	end;
+}
+hu_in01,106,317,2	duplicate(#Tradeitem31)	ร้านเเลกquest CostumeLow S#1	4_GEFFEN_03
+
+//CostumeMid DK RO S
+//============================================================
+-	script	#Tradeitem32	4_GEFFEN_04,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" CostumeMid_S",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop32",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกquest CostumeMid S",0;
+	end;
+}
+hu_in01,106,315,2	duplicate(#Tradeitem32)	ร้านเเลกquest CostumeMid S#1	4_GEFFEN_04
+
+//CostumeTop DK RO S
+//============================================================
+-	script	#Tradeitem33	4_GEFFEN_05,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" CostumeTop_S",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop33",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกquest CostumeTop S",0;
+	end;
+}
+hu_in01,106,313,2	duplicate(#Tradeitem33)	ร้านเเลกquest CostumeTop S#1	4_GEFFEN_05
+
+//CostumeGarment_PRO_EN
+//============================================================
+-	script	#Tradeitem40	4_GEFFEN_06,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" CostumeGarment_PRO_EN",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop40",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกquest CostumeGarment PRO EN",0;
+	end;
+}
+hu_in01,110,319,2	duplicate(#Tradeitem40)	ร้านเเลกquest CostumeGarment PRO EN#1	4_GEFFEN_06
+
+//CostumeLow DK RO EN
+//============================================================
+-	script	#Tradeitem45	4_GEFFEN_07,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" CostumeLow_EN",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop45",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกquest CostumeLow EN",0;
+	end;
+}
+hu_in01,110,317,2	duplicate(#Tradeitem45)	ร้านเเลกquest CostumeLow EN#1	4_GEFFEN_07
+
+//CostumeMid DK RO EN
+//============================================================
+-	script	#Tradeitem50	4_GEFFEN_08,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" CostumeMid_EN",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop50",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกquest CostumeMid EN",0;
+	end;
+}
+hu_in01,110,315,2	duplicate(#Tradeitem50)	ร้านเเลกquest CostumeMid EN#1	4_GEFFEN_08
+
+//CostumeTop DK RO EN
+//============================================================
+-	script	#Tradeitem55	4_GEFFEN_09,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" CostumeTop_EN",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop55",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกquest CostumeTop EN",0;
+	end;
+}
+hu_in01,110,313,2	duplicate(#Tradeitem55)	ร้านเเลกquest CostumeTop EN#1	4_GEFFEN_09
+
+//CostumeTop DK RO EN
+//============================================================
+-	script	#Tradeitem100	4_GEFFEN_09,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" EventOBT_DK_RO",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop100",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกกิจกรรม",0;
+	end;
+}
+oasis,159,107,5	duplicate(#Tradeitem100)	กิจกรรมDK-PO#1	4_GEFFEN_09

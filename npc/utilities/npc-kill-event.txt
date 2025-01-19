@@ -1,0 +1,6 @@
+-	script	NPCKillEvent	-1,{
+	end;
+	
+OnNPCKillEvent:
+	end;
+}

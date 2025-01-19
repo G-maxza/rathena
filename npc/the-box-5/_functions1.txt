@@ -1,0 +1,264 @@
+// Red string
+function	script	Red	{ return "^FF0000" + getarg(0,"") + "^000000"; }
+
+// Blue string
+function	script	Blue	{ return "^0000FF" + getarg(0,"") + "^000000"; }
+
+// Pay by Zeny
+function	script	ZenyPay	{ Zeny = cap_value(Zeny - getarg(0,0),0,INT_MAX); dispbottom "จ่าย " + F_InsertComma(getarg(0,0)) + "z คงเหลือ " + F_InsertComma(Zeny) + "z"; return; }
+
+// Zeny received
+function	script	ZenyEarn	{ Zeny = cap_value(Zeny + getarg(0,0),0,INT_MAX); dispbottom "รับ " + F_InsertComma(getarg(0,0)) + "z คงเหลือ " + F_InsertComma(Zeny) + "z"; return; }
+
+// Self message
+function	script	SelfMes	{ message strcharinfo(0),getarg(0,""); return; }
+
+// Open storage
+function	script	TheBoxStorage	{
+	if(getcharid(2) > 0)
+	menu "คลังปกติ",-
+	,"คลัง Guild",L_GuildStorage
+	,"คลังปกติ #2",L_Storage2
+	,"คลังปกติ #3",L_Storage3
+	,"คลังปกติ #4",L_Storage4
+	,"คลังปกติ #5",L_Storage5
+	,"คลังปกติ #6",L_Storage6
+	,"คลังปกติ #7",L_Storage7
+	,"คลังปกติ #8",L_Storage8
+	,"คลังปกติ #9",L_Storage9
+	,"คลังปกติ #10",L_Storage10;
+	else
+	menu "คลังปกติ",-
+	,"คลังปกติ #2",L_Storage2
+	,"คลังปกติ #3",L_Storage3
+	,"คลังปกติ #4",L_Storage4
+	,"คลังปกติ #5",L_Storage5
+	,"คลังปกติ #6",L_Storage6
+	,"คลังปกติ #7",L_Storage7
+	,"คลังปกติ #8",L_Storage8
+	,"คลังปกติ #9",L_Storage9
+	,"คลังปกติ #10",L_Storage10;
+	openstorage;
+	end;
+	
+	L_GuildStorage:
+	guildopenstorage();
+	end;
+	
+	L_Storage2:
+	callsub(L_AdditionalStorage,2);
+	end;
+	
+	L_Storage3:
+	callsub(L_AdditionalStorage,3);
+	end;
+	
+	L_Storage4:
+	callsub(L_AdditionalStorage,4);
+	end;
+	
+	L_Storage5:
+	callsub(L_AdditionalStorage,5);
+	end;
+	
+	L_Storage6:
+	callsub(L_AdditionalStorage,6);
+	end;
+	
+	L_Storage7:
+	callsub(L_AdditionalStorage,7);
+	end;
+	
+	L_Storage8:
+	callsub(L_AdditionalStorage,8);
+	end;
+	
+	L_Storage9:
+	callsub(L_AdditionalStorage,9);
+	end;
+	
+	L_Storage10:
+	callsub(L_AdditionalStorage,10);
+	end;
+	
+	L_AdditionalStorage:
+	.@additonalStoragePrice = 10000000;
+	if(getd("#storage" + getarg(0)) <= 0){
+		mes "จ่าย " + Red(F_InsertComma(.@additonalStoragePrice)) + "z^000000 เพื่อใช้คลังปกติ #" + getarg(0) + "?";
+		next;
+		menu "จ่าย",-;
+		if(Zeny < .@additonalStoragePrice){
+			mes "Zeny ไม่เพียงพอ";
+			close;
+		}
+		ZenyPay(.@additonalStoragePrice);
+		set getd("#storage" + getarg(0)),1;
+	}
+	openstorage2 (getarg(0) - 1),STOR_MODE_GET|STOR_MODE_PUT;
+	
+	return;
+}
+
+// Get 100% based wording from 10000 amount
+function	script	F_PercentBase10000	{
+	.@v = getarg(0,0);
+	if(.@v < 10)
+	return "0.0" + .@v + "%";
+	else if(.@v < 100)
+	return "0." + .@v + "%";
+	else{
+		.@percent = (.@v / 100);
+		.@decimal = (.@v % 100) / 10;
+		return .@percent + "." + .@decimal + "%";
+	}
+	
+	return;
+}
+
+// Get grade naming
+function	script	GetGradeName	{
+	.@grade = getarg(0,0);
+	return (.@grade == 4) ? "A" : (.@grade == 3) ? "B" : (.@grade == 2) ? "C" : (.@grade == 1) ? "D" : "-";
+}
+
+// Is town map?
+function	script	IsTownMap	{
+	.@mapName$ = strcharinfo(3);
+	
+	.@isTownMap = (
+	(.@mapName$ == "prontera")		// Main town
+	|| (.@mapName$ == "tra_fild")	// Training Ground
+	|| (.@mapName$ == "pvp_y_1-1")	// PvP
+	)
+	;
+	
+	return .@isTownMap;
+}
+
+// Get THE BOX rewards
+function	script	GetTheBoxItem	{
+	.@overrideItemId = getarg(0,0);
+	.@itemType = getarg(1,0);
+	
+	.@itemId = 501;
+	
+	if(.@overrideItemId <= 0){
+		// Random reward
+		.@rand = (.@itemType > 0) ? -1: rand(10000);
+		
+		// 40%
+		if((.@rand >= 6000)
+				|| (.@itemType == 1))
+		.@itemId = $weaponIds[rand(getarraysize($weaponIds))];
+		// 45%
+		else if((.@rand >= 1500)
+				|| (.@itemType == 2))
+		.@itemId = $equipmentIds[rand(getarraysize($equipmentIds))];
+		// 10%
+		else if((.@rand >= 500)
+				|| (.@itemType == 3))
+		.@itemId = $costumeIds[rand(getarraysize($costumeIds))];
+		// 2.5%
+		else if((.@rand >= 250)
+				|| (.@itemType == 4))
+		.@itemId = $card2Ids[rand(getarraysize($card2Ids))];
+		// 2.5%
+		else if((.@itemType == 0)
+				|| (.@itemType == 5))
+		.@itemId = $enchant2Ids[rand(getarraysize($enchant2Ids))];
+	}
+	else
+	.@itemId = .@overrideItemId;
+	
+	.@type = getiteminfo(.@itemId,ITEMINFO_TYPE);
+	
+	if((.@type == 4)
+			|| (.@type == 5)
+			|| (.@type == 12)){
+		randomoptgroup(1);
+		
+		getitem3 .@itemId,1,1,0,0,0,0,0,0,.@opt_id,.@opt_value,.@opt_param;
+	}
+	else
+	getitem .@itemId,1;
+
+	return;
+}
+
+// Get time remaining wording from seconds
+function	script	GetTimerWording	{
+	.@s = getarg(0,0);
+	
+	if(.@s >= 3600)
+	{
+		.@minutes = .@s % 60;
+		return (.@s / 3600) + " ชั่วโมง" + ((.@minutes > 0) ? " " + .@minutes + " นาที" : "");
+	}
+	else if(.@s >= 60){
+		.@seconds = .@s % 60;
+		return (.@s / 60) + " นาที" + ((.@seconds > 0) ? " " + .@seconds + " วินาที" : "");
+	}
+	else
+	return .@s + " วินาที";
+	
+	return;
+}
+
+// Get random item from Special Refine Box
+function	script	SpecialRefineBox	{
+	setarray .@rewards[0]
+	,6241		// HD_Elunium
+	,7619		// Enriched_Elunium
+	,6225		// HD_Carnium
+	,1000331	// Ethernium
+	,1000333	// Enriched_Ethernium
+	,1000370	// Etel_Carnium
+	,1000335	// HD_Ethernium
+	,1000371	// HD_Etel_Carnium
+	,6240		// HD_Oridecon
+	,7620		// Enriched_Oridecon
+	,6226		// HD_Bradium
+	,1000332	// Etherdeocon
+	,1000334	// Enriched_Etherdeocon
+	,1000368	// Etel_Bradium
+	,1000336	// HD_Etherdeocon
+	,1000369	// HD_Etel_Bradium
+	,6635		// Blacksmith_Blessing
+	;
+	
+	.@rewardId = .@rewards[rand(getarraysize(.@rewards))];
+	
+	// Blacksmith_Blessing will get 1~10ea
+	if(.@rewardId == 6635)
+	.@rewardAmount = rand(1,10);
+	// Otherwise 1ea
+	else
+	.@rewardAmount = 1;
+
+	getitem .@rewardId,.@rewardAmount; 
+	
+	return;
+}
+
+// Refresh debuff
+function	script	RefreshDebuff	{
+	bonus_script_clear 1;
+	.@percentage = cap_value(getarg(0,0),0,100);
+	if(!.@percentage)
+	return;
+	bonus_script
+	"bonus bAllStats,-" + .@percentage + ";"
+	+ "bonus bAllTraitStats,-" + .@percentage + ";"
+	+ "bonus bFleeRate,-" + .@percentage + ";"
+	+ "bonus bFlee2Rate,-" + .@percentage + ";"
+	+ "bonus bAtkRate,-" + (.@percentage) + ";"
+	+ "bonus bWeaponAtkRate,-" + (.@percentage) + ";"
+	+ "bonus bMatkRate,-" + (.@percentage) + ";"
+	+ "bonus bWeaponMatkRate,-" + (.@percentage) + ";"
+	+ "bonus bDefRate,-" + (.@percentage) + ";"
+	+ "bonus bDef2Rate,-" + (.@percentage) + ";"
+	+ "bonus bMdefRate,-" + (.@percentage) + ";"
+	+ "bonus bMdef2Rate,-" + (.@percentage) + ";"
+	,8640000000,512,2,EFST_THE_BOX_DEBUFF;
+	return;
+}

@@ -7,8 +7,8 @@
 #include <iostream>
 #include <ostream>
 
-#include <common/showmsg.hpp>
-#include <common/socket.hpp>
+#include "../common/showmsg.hpp"
+#include "../common/socket.hpp"
 
 #include "auth.hpp"
 #include "http.hpp"
@@ -48,15 +48,16 @@ HANDLER_FUNC(emblem_download) {
 	SQLLock sl(WEB_SQL_LOCK);
 	sl.lock();
 	auto handle = sl.getHandle();
-	SqlStmt stmt{ *handle };
-	if (SQL_SUCCESS != stmt.Prepare(
+	SqlStmt * stmt = SqlStmt_Malloc(handle);
+	if (SQL_SUCCESS != SqlStmt_Prepare(stmt,
 			"SELECT `version`, `file_type`, `file_data` FROM `%s` WHERE (`guild_id` = ? AND `world_name` = ?)",
 			guild_emblems_table)
-		|| SQL_SUCCESS != stmt.BindParam( 0, SQLDT_INT, &guild_id, sizeof(guild_id))
-		|| SQL_SUCCESS != stmt.BindParam( 1, SQLDT_STRING, (void *)world_name, strlen(world_name))
-		|| SQL_SUCCESS != stmt.Execute()
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_INT, &guild_id, sizeof(guild_id))
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 1, SQLDT_STRING, (void *)world_name, strlen(world_name))
+		|| SQL_SUCCESS != SqlStmt_Execute(stmt)
 	) {
 		SqlStmt_ShowDebug(stmt);
+		SqlStmt_Free(stmt);
 		sl.unlock();
 		res.status = HTTP_BAD_REQUEST;
 		res.set_content("Error", "text/plain");
@@ -68,7 +69,8 @@ HANDLER_FUNC(emblem_download) {
 	char blob[MAX_EMBLEM_SIZE]; // yikes
 	uint32 emblem_size;
 
-	if (stmt.NumRows() <= 0) {
+	if (SqlStmt_NumRows(stmt) <= 0) {
+		SqlStmt_Free(stmt);
 		ShowError("[GuildID: %d / World: \"%s\"] Not found in table\n", guild_id, world_name);
 		sl.unlock();
 		res.status = HTTP_NOT_FOUND;
@@ -77,18 +79,20 @@ HANDLER_FUNC(emblem_download) {
 	}
 
 
-	if (SQL_SUCCESS != stmt.BindColumn( 0, SQLDT_UINT32, &version, sizeof(version), nullptr, nullptr)
-		|| SQL_SUCCESS != stmt.BindColumn( 1, SQLDT_STRING, &filetype, sizeof(filetype), nullptr, nullptr)
-		|| SQL_SUCCESS != stmt.BindColumn( 2, SQLDT_BLOB, &blob, MAX_EMBLEM_SIZE, &emblem_size, nullptr)
-		|| SQL_SUCCESS != stmt.NextRow()
+	if (SQL_SUCCESS != SqlStmt_BindColumn(stmt, 0, SQLDT_UINT32, &version, sizeof(version), nullptr, nullptr)
+		|| SQL_SUCCESS != SqlStmt_BindColumn(stmt, 1, SQLDT_STRING, &filetype, sizeof(filetype), nullptr, nullptr)
+		|| SQL_SUCCESS != SqlStmt_BindColumn(stmt, 2, SQLDT_BLOB, &blob, MAX_EMBLEM_SIZE, &emblem_size, nullptr)
+		|| SQL_SUCCESS != SqlStmt_NextRow(stmt)
 	) {
 		SqlStmt_ShowDebug(stmt);
+		SqlStmt_Free(stmt);
 		sl.unlock();
 		res.status = HTTP_BAD_REQUEST;
 		res.set_content("Error", "text/plain");
 		return;
 	}
 
+	SqlStmt_Free(stmt);
 	sl.unlock();
 
 	if (emblem_size > MAX_EMBLEM_SIZE) {
@@ -204,9 +208,9 @@ HANDLER_FUNC(emblem_upload) {
 
 		if (inter_config.emblem_transparency_limit < 100) {
 			uint32 offset = RBUFL(img_cstr, 0x0A);
-			int32 i, transcount = 1, tmp[3];
+			int i, transcount = 1, tmp[3];
 			for (i = offset; i < length - 1; i++) {
-				int32 j = i % 3;
+				int j = i % 3;
 				tmp[j] = RBUFL(img_cstr, i);
 				if (j == 2 && (tmp[0] == 0xFFFF00FF) && (tmp[1] == 0xFFFF00) && (tmp[2] == 0xFF00FFFF)) //if pixel is transparent
 					transcount++;
@@ -223,15 +227,16 @@ HANDLER_FUNC(emblem_upload) {
 	SQLLock sl(WEB_SQL_LOCK);
 	sl.lock();
 	auto handle = sl.getHandle();
-	SqlStmt stmt{ *handle };
-	if (SQL_SUCCESS != stmt.Prepare(
+	SqlStmt * stmt = SqlStmt_Malloc(handle);
+	if (SQL_SUCCESS != SqlStmt_Prepare(stmt,
 			"SELECT `version` FROM `%s` WHERE (`guild_id` = ? AND `world_name` = ?)",
 			guild_emblems_table)
-		|| SQL_SUCCESS != stmt.BindParam(0, SQLDT_INT, &guild_id, sizeof(guild_id))
-		|| SQL_SUCCESS != stmt.BindParam(1, SQLDT_STRING, (void *)world_name, strlen(world_name))
-		|| SQL_SUCCESS != stmt.Execute()
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_INT, &guild_id, sizeof(guild_id))
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 1, SQLDT_STRING, (void *)world_name, strlen(world_name))
+		|| SQL_SUCCESS != SqlStmt_Execute(stmt)
 	) {
 		SqlStmt_ShowDebug(stmt);
+		SqlStmt_Free(stmt);
 		sl.unlock();
 		res.status = HTTP_BAD_REQUEST;
 		res.set_content("Error", "text/plain");
@@ -240,11 +245,12 @@ HANDLER_FUNC(emblem_upload) {
 
 	uint32 version = START_VERSION;
 
-	if (stmt.NumRows() > 0) {
-		if (SQL_SUCCESS != stmt.BindColumn(0, SQLDT_UINT32, &version, sizeof(version), nullptr, nullptr)
-			|| SQL_SUCCESS != stmt.NextRow()
+	if (SqlStmt_NumRows(stmt) > 0) {
+		if (SQL_SUCCESS != SqlStmt_BindColumn(stmt, 0, SQLDT_UINT32, &version, sizeof(version), NULL, NULL)
+			|| SQL_SUCCESS != SqlStmt_NextRow(stmt)
 		) {
 			SqlStmt_ShowDebug(stmt);
+			SqlStmt_Free(stmt);
 			sl.unlock();
 			res.status = HTTP_BAD_REQUEST;
 			res.set_content("Error", "text/plain");
@@ -254,23 +260,25 @@ HANDLER_FUNC(emblem_upload) {
 	}
 
 	// insert new
-	if (SQL_SUCCESS != stmt.Prepare(
+	if (SQL_SUCCESS != SqlStmt_Prepare(stmt,
 		"REPLACE INTO `%s` (`version`, `file_type`, `guild_id`, `world_name`, `file_data`) VALUES (?, ?, ?, ?, ?)",
 		guild_emblems_table)
-		|| SQL_SUCCESS != stmt.BindParam(0, SQLDT_UINT32, &version, sizeof(version))
-		|| SQL_SUCCESS != stmt.BindParam(1, SQLDT_STRING, (void *)imgtype, strlen(imgtype))
-		|| SQL_SUCCESS != stmt.BindParam(2, SQLDT_INT, &guild_id, sizeof(guild_id))
-		|| SQL_SUCCESS != stmt.BindParam(3, SQLDT_STRING, (void *)world_name, strlen(world_name))
-		|| SQL_SUCCESS != stmt.BindParam(4, SQLDT_BLOB, (void *)img.c_str(), length)
-		|| SQL_SUCCESS != stmt.Execute()
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_UINT32, &version, sizeof(version))
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 1, SQLDT_STRING, (void *)imgtype, strlen(imgtype))
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 2, SQLDT_INT, &guild_id, sizeof(guild_id))
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 3, SQLDT_STRING, (void *)world_name, strlen(world_name))
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 4, SQLDT_BLOB, (void *)img.c_str(), length)
+		|| SQL_SUCCESS != SqlStmt_Execute(stmt)
 	) {
 		SqlStmt_ShowDebug(stmt);
+		SqlStmt_Free(stmt);
 		sl.unlock();
 		res.status = HTTP_BAD_REQUEST;
 		res.set_content("Error", "text/plain");
 		return;
 	}
 
+	SqlStmt_Free(stmt);
 	sl.unlock();
 
 	std::ostringstream stream;

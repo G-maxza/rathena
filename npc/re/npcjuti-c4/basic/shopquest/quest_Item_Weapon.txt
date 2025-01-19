@@ -1,0 +1,83 @@
+// quest อาวุท เสท Crown of Good
+//============================================================
+-	script	#Tradeitem5	4_GEFFEN_08,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" Weapon",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop5",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกquest Item Weapon Good",0;
+	end;
+}
+hu_in01,103,388,4	duplicate(#Tradeitem5)	ร้านเเลกquest Item Weapon Good#1	4_GEFFEN_08
+
+// quest อาวุท เสท Crown of Evil
+//============================================================
+-	script	#Tradeitem6	4_TOWER_05,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" Weapon",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop6",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกquest Item Weapon Evil",0;
+	end;
+}
+hu_in01,103,391,4	duplicate(#Tradeitem6)	ร้านเเลกquest Item Weapon Evil#1	4_TOWER_05
+
+// quest Top Crown of Good and Evil
+//============================================================
+-	script	#Tradeitem7	4_GEFFEN_09,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" Top",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop7",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกquest Item Crown",0;
+	end;
+}
+hu_in01,99,385,4	duplicate(#Tradeitem7)	ร้านเเลกquest Item Crown#1	4_GEFFEN_09

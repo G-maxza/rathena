@@ -50,3 +50,4 @@ Footer:
   - Path: npc/re/merchants/barters.yml
     Mode: Renewal
   - Path: npc/custom/barters.yml
+  - Path: npc/custom/JTC-4-1/shop/garden_of_time.yml

@@ -1,0 +1,27 @@
+// Bosscoin
+//============================================================
+-	script	#Tradeitem3	4_M_MELODY,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" ของสวมใส่",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop3",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกquest Varmundt V2",0;
+	end;
+}
+hu_in01,105,374,4	duplicate(#Tradeitem3)	ร้านเเลกquest Varmundt V2#1	4_M_MELODY

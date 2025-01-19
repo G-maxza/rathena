@@ -900,6 +900,7 @@ Body:
           - Level: 15
             Bonus: 3000
             RandomBonus: 2400
+            BlacksmithBlessingAmount: 33
             BroadcastSuccess: true
             BroadcastFailure: true
             Chances:
@@ -917,6 +918,7 @@ Body:
           - Level: 16
             Bonus: 4800
             RandomBonus: 2700
+            BlacksmithBlessingAmount: 44
             BroadcastSuccess: true
             BroadcastFailure: true
             Chances:
@@ -1241,6 +1243,7 @@ Body:
           - Level: 15
             Bonus: 4500
             RandomBonus: 4500
+            BlacksmithBlessingAmount: 33
             BroadcastSuccess: true
             BroadcastFailure: true
             Chances:
@@ -1258,6 +1261,7 @@ Body:
           - Level: 16
             Bonus: 8000
             RandomBonus: 5000
+            BlacksmithBlessingAmount: 44
             BroadcastSuccess: true
             BroadcastFailure: true
             Chances:
@@ -1586,6 +1590,7 @@ Body:
           - Level: 15
             Bonus: 7500
             RandomBonus: 8000
+            BlacksmithBlessingAmount: 33
             BroadcastSuccess: true
             BroadcastFailure: true
             Chances:
@@ -1603,6 +1608,7 @@ Body:
           - Level: 16
             Bonus: 11200
             RandomBonus: 8800
+            BlacksmithBlessingAmount: 44
             BroadcastSuccess: true
             BroadcastFailure: true
             Chances:
@@ -1935,6 +1941,7 @@ Body:
           - Level: 15
             Bonus: 10500
             RandomBonus: 15400
+            BlacksmithBlessingAmount: 33
             BroadcastSuccess: true
             BroadcastFailure: true
             Chances:
@@ -1952,6 +1959,7 @@ Body:
           - Level: 16
             Bonus: 16000
             RandomBonus: 16800
+            BlacksmithBlessingAmount: 33
             BroadcastSuccess: true
             BroadcastFailure: true
             Chances:
@@ -2225,6 +2233,7 @@ Body:
                 BreakingRate: 10000
           - Level: 15
             Bonus: 12000
+            BlacksmithBlessingAmount: 33
             BroadcastSuccess: true
             BroadcastFailure: true
             Chances:
@@ -2240,6 +2249,7 @@ Body:
                 BreakingRate: 10000
           - Level: 16
             Bonus: 12800
+            BlacksmithBlessingAmount: 44
             BroadcastSuccess: true
             BroadcastFailure: true
             Chances:
@@ -2425,6 +2435,7 @@ Body:
                 Material: Enriched_Elunium
                 BreakingRate: 10000
           - Level: 8
+            BlacksmithBlessingAmount: 5
             Chances:
               - Type: Normal
                 Rate: 2000
@@ -2442,6 +2453,7 @@ Body:
                 Material: Enriched_Elunium
                 BreakingRate: 10000
           - Level: 9
+            BlacksmithBlessingAmount: 10
             Chances:
               - Type: Normal
                 Rate: 2000
@@ -2459,6 +2471,7 @@ Body:
                 Material: Enriched_Elunium
                 BreakingRate: 10000
           - Level: 10
+            BlacksmithBlessingAmount: 15
             Chances:
               - Type: Normal
                 Rate: 900
@@ -2587,6 +2600,7 @@ Body:
                 Material: Enriched_Oridecon
                 BreakingRate: 10000
           - Level: 8
+            BlacksmithBlessingAmount: 5
             Chances:
               - Type: Normal
                 Rate: 2000
@@ -2604,6 +2618,7 @@ Body:
                 Material: Enriched_Oridecon
                 BreakingRate: 10000
           - Level: 9
+            BlacksmithBlessingAmount: 10
             Chances:
               - Type: Normal
                 Rate: 2000
@@ -2621,6 +2636,7 @@ Body:
                 Material: Enriched_Oridecon
                 BreakingRate: 10000
           - Level: 10
+            BlacksmithBlessingAmount: 15
             Chances:
               - Type: Normal
                 Rate: 900

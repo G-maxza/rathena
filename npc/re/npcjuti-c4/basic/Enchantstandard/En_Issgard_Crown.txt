@@ -1,0 +1,20 @@
+oasis,135,75,4	script	En_Issgard_Crown	4_EP19_LUNCH,{
+	mes "Issgard_Crown Enchantment";
+	mes "^FF0000Enchant Success Chance: 100%^000000";
+	mes "^FF0000Reset Chance: 70%^000000";
+	next;
+	switch( select( "Issgard_Crown") ) {
+case 1:
+	mes "^0000cdIssgard_Crown^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(98);
+	close;
+}
+OnInit:
+	waitingroom "Enchant Issgard_Crown",0;	
+	end;
+}

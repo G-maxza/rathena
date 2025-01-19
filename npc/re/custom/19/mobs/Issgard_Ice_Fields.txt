@@ -1,0 +1,98 @@
+//===== rAthena Script =======================================
+//= Clock Tower Monster Spawn Script
+//===== By: ==================================================
+//= Athena (1.0)
+//===== Current Version: =====================================
+//= 1.2
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Additional Comments: =================================
+//= 1.0 Split from combined Alde and CT spawn file. [L0ne_W0lf]
+//= 1.1 Added nightmare clock tower. [Ridley8819]
+//= 1.2 Correct Spawn by Navigation's mob data. [attackjom]
+//============================================================
+
+//==================================================
+// jor_tail - Frozen Tail
+//==================================================
+jor_tail,0,0	monster	Ice Gangu	21525,70,5000
+jor_tail,0,0	monster	Shining Seaweed	21524,60,5000
+
+//==================================================
+// jor_back1 - Frozen Scale Hills
+//==================================================
+jor_back1,0,0	monster	Ice Gangu	21525,45,5000
+jor_back1,0,0	monster	Shining Seaweed	21524,45,5000
+jor_back1,0,0	monster	Ice Straw	21523,65,5000
+
+//==================================================
+// jor_back2 - Frozen Scale Plains
+//==================================================
+jor_back2,0,0	monster	Ice Gangu	21525,20,5000
+jor_back2,0,0	monster	Ice Straw	21523,30,5000
+jor_back2,0,0	monster	Unfrost Flower	21521,60,5000
+jor_back2,0,0	monster	Limacina	21520,60,5000
+
+//==================================================
+// jor_back3 - Frozen Scale Glaciers
+//==================================================
+jor_back3,0,0	monster	Ice Gangu	21525,35,5000
+jor_back3,0,0	monster	Calmaring	21522,30,5000
+jor_back3,0,0	monster	Primitive Rgan	21526,30,5000
+jor_back3,0,0	monster	Lowest Rgan	21527,12,5000
+jor_back3,0,0	monster	Limacina	21520,5,5000
+jor_back3,0,0,0,0	boss_monster	Ultra Limacina	21537,1,7200000,0,0
+
+//==================================================
+// jor_maze - EP 20
+//==================================================
+jor_maze,0,0	monster	Jormungandr Guardian-P	21972,30,5000
+jor_maze,0,0	monster	Jormungandr Guardian-Y	21973,30,5000
+jor_maze,0,0	monster	Jormungandr Sanctuary Guardian	21989,30,5000
+
+//==================================================
+// jor_twig - EP 20
+//==================================================
+jor_twig,0,0	monster	Jormungandr Guardian-P	21972,20,5000
+jor_twig,0,0	monster	Jormungandr Guardian-Y	21973,20,5000
+
+//==================================================
+// jor_twice - EP 20
+//==================================================
+jor_twice,0,0	monster	Snow Rabbit Slug	21969,50,5000
+jor_twice,0,0	monster	Jormungandr Guardian-P	21972,20,5000
+jor_twice,0,0	monster	Jormungandr Guardian-Y	21973,20,5000
+jor_twice,0,0	monster	Angel Iceslug	21983,50,5000
+jor_twice,0,0	monster	Jormungandr Church Warlock	21987,40,5000
+
+//==================================================
+// jor_back4 - EP 20
+//==================================================
+jor_back4,0,0	monster	Calmaring	21522,10,5000
+jor_back4,0,0	monster	Ice Straw	21523,10,5000
+jor_back4,0,0	monster	Snow Rabbit Slug	21969,50,5000
+jor_back4,0,0	monster	Angel Iceslug	21983,50,5000
+jor_back4,0,0	monster	Suspicious Iwin Soldier SB	21976,30,5000
+jor_back4,0,0	monster	Suspicious Iwin Soldier SG	21977,30,5000
+jor_back4,0,0	monster	Suspicious Iwin Soldier SR	21978,30,5000
+jor_back4,0,0,0,0	boss_monster	Snowstorm Angel	21996,1,7200000,0,0
+
+//==================================================
+// jor_back5 - EP 20
+//==================================================
+jor_back5,0,0	monster	Shining Seaweed	21524,10,5000
+//jor_back5,0,0	monster	EP20_ICEEGG	21984,10,5000
+jor_back5,0,0	monster	Copo	21965,40,5000
+jor_back5,0,0	monster	Grey Icewind	21966,50,5000
+jor_back5,0,0	monster	Suspicious Iwin Soldier SN	21974,20,5000
+jor_back5,0,0	monster	Suspicious Iwin Soldier SY	21975,20,5000
+jor_back5,0,0	monster	Icewind Egg	21968,40,5000
+
+//==================================================
+// jor_back6 - EP 20
+//==================================================
+jor_back6,0,0	monster	Shining Seaweed	21524,10,5000
+jor_back6,0,0	monster	Suspicious Iwin Soldier SR	21978,20,5000
+jor_back6,0,0	monster	Bear Bug	21971,70,5000
+jor_back6,0,0	monster	Armoerdcopo	23060,50,5000
+jor_back6,0,0	monster	Piece of Spirit	21967,90,5000

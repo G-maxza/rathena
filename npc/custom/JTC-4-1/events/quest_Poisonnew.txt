@@ -1,0 +1,528 @@
+//===== quest_Poison=================================
+oasis,114,37,4	script	QuestPoisonnew	sp_monster_184,{
+	set .@gm_level, 99; // ระดับ GM ต้องใช้เพื่อเริ่ม / หยุดกิจกรรม
+
+	mes "[Quest Poison]";
+	mes "นี่คือทางเข้า ^FF0000Quest Poison^000000.";
+	next;
+	switch(select("^FF0000•^000000 เลือกระดับการเล่น.:^FF0000•^000000 ข้อมูล.:^FF0000•^000000 ยกเลิก.")) {
+	case 1:
+		if (.start != 1) {
+			mes "[Quest Poison]";
+			mes "Quest Poisonปิดอยู่ในขณะนี้. เวลาทำการคือ:";
+			mes "07:00 น. ถึง 07:30 น.";
+			mes "11:00 น. ถึง 11:30 น.";
+			mes "15:00 น. ถึง 15:30 น.";
+			mes "19:00 น. ถึง 19:30 น.";
+			close;
+		}
+
+		if (.difficulty > 0) {
+			mes "[Quest Poison]";
+			mes "ผู้เล่นคนแรกได้เลือกระดับแล้ว: "+(.difficulty == 1 ? "ทั่วไป" : .difficulty == 2 ? "ยาก" : "ยากมาก")+".";
+			mes "คุณสามารถเข้าร่วมได้เฉพาะระดับนี้เท่านั้น.";
+			if (.difficulty == 1) {
+				set .zeny_cost, 50000000;
+				set .item_cost, 200;
+			} else if (.difficulty == 2) {
+				set .zeny_cost, 20000000;
+				set .item_cost, 150;
+			} else if (.difficulty == 3) {
+				set .zeny_cost, 10000000;
+				set .item_cost, 100;
+			}
+		} else {
+			mes "[Quest Poison]";
+			mes "เลือกระดับการเล่นที่คุณต้องการ:";
+			switch(select("^FF0000•^000000 ทั่วไป:^FF0000•^000000 ยาก:^FF0000•^000000 ยากมาก:")) {
+			case 1:
+				set .difficulty, 1;
+				set .zeny_cost, 50000000;
+				set .item_cost, 200;
+				break;
+			case 2:
+				set .difficulty, 2;
+				set .zeny_cost, 20000000;
+				set .item_cost, 150;
+				break;
+			case 3:
+				set .difficulty, 3;
+				set .zeny_cost, 10000000;
+				set .item_cost, 100;
+				break;
+			}
+		}
+
+		if (Zeny < .zeny_cost || countitem(7227) < .item_cost) {
+			mes "[Quest Poison]";
+			mes "คุณไม่มี Zeny หรือ Item 7227 เพียงพอสำหรับระดับนี้.";
+			mes "";
+			mes "ต้องการ:";
+			mes " - Zeny: "+.zeny_cost+"";
+			mes " - Item 7227: "+.item_cost+" ชิ้น";
+			close;
+		}
+
+		Zeny -= .zeny_cost;
+		delitem 7227, .item_cost;
+		announce strcharinfo(0)+" ได้เข้าสู่ Quest Poison (ระดับ "+(.difficulty == 1 ? "ทั่วไป" : .difficulty == 2 ? "ยาก" : "ยากมาก")+").", bc_npc;
+		percentheal 100,100;
+		warp "jor_sanct", 149, 45;
+		close;
+
+	case 2:
+		mes "[Quest Poison]";
+		mes "ภายในคุณจะพบกับสัตว์ประหลาดหลายคลื่นที่แข็งแกร่งขึ้นในแต่ละระดับ.";
+		mes "";
+		mes "ระดับการเล่น:";
+		mes "แบ่งเป็น: 3 คลื่น";
+		mes " - ทั่วไป: monster 9 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes " - ทั่วไป: 3 กล่องสมบัติ";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยาก: monster 18 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยาก: 6 กล่องสมบัติ";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยากมาก: monster 30 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes " - ยากมาก: 10 กล่องสมบัติ";
+		mes "ระดับการเล่น:";
+		mes "ทุกระดับการเล่น:";
+		mes "Boss 1 ตัว";
+		mes "ต่อ 1 คลื่น";
+		mes "";
+		mes "รางวัลในแต่ละระดับจะขึ้นอยู่กับระดับความยากที่เลือก.";
+		close;
+	case 3:
+		mes "[Quest Poison]";
+		mes "ลาก่อน.";
+		close;
+	}
+OnStartEvent:
+OnClock0700:
+OnClock1100:
+OnClock1500:
+OnClock1900:
+	.start = 1;
+	enablenpc "QuestPoisonnew";
+	disablenpc "quest_Poisonnew#2";
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "jor_sanct", .@map$, .@x, .@y;
+	killmonsterall "jor_sanct";
+	announce "Quest Poison เปิด. เหตุการณ์จะเริ่มใน 5 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Poison จะเริ่มใน 4 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Poison จะเริ่มใน 3 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Poison จะเริ่มใน 2 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Poison จะเริ่มใน 1 นาที.", bc_all;
+	sleep 60000;
+	announce "Quest Poison ได้เริ่มขึ้นแล้ว!", bc_all;
+	disablenpc "QuestPoisonnew"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	if ( !getmapusers("jor_sanct") )
+		goto OnStopEvent;
+
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "jor_sanct",169,126,216,81,"monster",30982,1,strnpcinfo(0)+"::OnquestPSDead";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestPSDead:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "jor_sanct","Quest Poison : "+ .mob +" monsterที่เหลืออยู่ในรอบที่ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "jor_sanct","Quest Poison กำลังเข้าสู่รอบ 2...", bc_map;
+		sleep 5000;
+		goto OnquestPS2;
+	}
+	end;
+	
+OnquestPS2:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "jor_sanct",187,200,214,145,"monster",30981,1,strnpcinfo(0)+"::OnquestPSDead2";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestPSDead2:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "jor_sanct","Quest Poison : "+ .mob +" monsterที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "jor_sanct","Quest Poison กำลังเข้าสู่รอบ 3...", bc_map;
+		sleep 5000;
+		goto OnquestPS3;
+	}
+	end;
+
+OnquestPS3:
+	if (.difficulty == 1) {
+		set .mob, 1;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 1;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 1;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "jor_sanct",216,158,259,114,"Boss",30972,1,strnpcinfo(0)+"::OnquestPSDead3";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+	
+OnquestPSDead3:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "jor_sanct","Quest Poison : "+ .mob +" Bossที่เหลืออยู่ในรอบ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "jor_sanct","Quest Poison กำลังเข้าสู่รอบ 4...", bc_map;
+		sleep 5000;
+		goto OnquestPS4;
+	}
+	end;
+	
+OnquestPS4:
+	if (.difficulty == 1) {
+		set .mob, 3;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 6;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 10;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "jor_sanct",216,158,259,114,"Box",1324,1,strnpcinfo(0)+"::OnquestPSDead4";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestPSDead4:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "jor_sanct","Quest Poison : "+ .mob +" Boxที่เหลืออยู่ในรอบ 1.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "jor_sanct","Quest Poison กำลังเข้าสู่รอบ 5...", bc_map;
+		sleep 5000;
+		goto OnquestPS5;
+	}
+	end;
+	
+OnquestPS5:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "jor_sanct",86,119,117,76,"monster",30086,1,strnpcinfo(0)+"::OnquestPSDead5";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestPSDead5:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "jor_sanct","Quest Poison : "+ .mob +" monsterที่เหลืออยู่ในรอบ 3.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "jor_sanct","Quest Poison กำลังเข้าสู่รอบ 6...", bc_map;
+		sleep 5000;
+		goto OnquestPS6;
+	}
+	end;
+
+OnquestPS6:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "jor_sanct",78,185,127,148,"monster",30078,1,strnpcinfo(0)+"::OnquestPSDead6";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestPSDead6:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "jor_sanct","Quest Poison : "+ .mob +" monsterที่เหลืออยู่ในรอบ 4.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "jor_sanct","Quest Poison กำลังเข้าสู่รอบ 7...", bc_map;
+		sleep 5000;
+		goto OnquestPS7;
+	}
+	end;
+
+OnquestPS7:
+	if (.difficulty == 1) {
+		set .mob, 1;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 1;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 1;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "jor_sanct",35,135,82,98,"Boss",31424,1,strnpcinfo(0)+"::OnquestPSDead7";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestPSDead7:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "jor_sanct","Quest Poison : "+ .mob +" Bossที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "jor_sanct","Quest Poison กำลังเข้าสู่รอบ 8...", bc_map;
+		sleep 5000;
+		goto OnquestPS8;
+	}
+	end;
+
+OnquestPS8:
+	if (.difficulty == 1) {
+		set .mob, 3;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 6;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 10;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "jor_sanct",35,135,82,98,"Box",1324,1,strnpcinfo(0)+"::OnquestPSDead8";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestPSDead8:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "jor_sanct","Quest Poison : "+ .mob +" Boxที่เหลืออยู่ในรอบ 2.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "jor_sanct","Quest Poison กำลังเข้าสู่รอบ 9...", bc_map;
+		sleep 5000;
+		goto OnquestPS9;
+	}
+	end;
+OnquestPS9:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "jor_sanct",134,87,163,42,"monster",30039,1,strnpcinfo(0)+"::OnquestPSDead9";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestPSDead9:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "jor_sanct","Quest Poison : "+ .mob +" monsterที่เหลืออยู่ในรอบ 5.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "jor_sanct","Quest Poison กำลังเข้าสู่รอบ 10...", bc_map;
+		sleep 5000;
+		goto OnquestPS10;
+	}
+	end;
+
+OnquestPS10:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "jor_sanct",134,152,164,104,"monster",30094,1,strnpcinfo(0)+"::OnquestPSDead10";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestPSDead10:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "jor_sanct","Quest Poison : "+ .mob +" monsterที่เหลืออยู่ในรอบ6.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "jor_sanct","Quest Poison กำลังเข้าสู่รอบ 11...", bc_map;
+		sleep 5000;
+		goto OnquestPS11;
+	}
+	end;
+
+OnquestPS11:
+	if (.difficulty == 1) {
+		set .mob, 9;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 18;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 30;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "jor_sanct",124,227,174,186,"monster",30092,1,strnpcinfo(0)+"::OnquestPSDead11";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestPSDead11:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		mapannounce "jor_sanct","Quest Poison : "+ .mob +" monsterที่เหลืออยู่ในรอบ7.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "jor_sanct","Quest Poison กำลังเข้าสู่รอบ 12...", bc_map;
+		sleep 5000;
+		goto OnquestPS12;
+	}
+	end;
+OnquestPS12:
+	if (.difficulty == 1) {
+		set .mob, 1;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 1;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 1;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "jor_sanct",129,185,169,264,"Boss",30971,1,strnpcinfo(0)+"::OnquestPSDead12";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+
+OnquestPSDead12:
+	.mob--;
+	if ( .mob == 25 || .mob == 1 )
+		mapannounce "jor_sanct","Quest Poison : "+ .mob +" Bossที่เหลืออยู่ในรอบสุดท้าย.", bc_map;
+	else if ( .mob <= 0 ) {
+		mapannounce "jor_sanct","Quest Poison : ขอแสดงความยินดี หีบสมบัติเหล่านี้เป็นของคุณ.", bc_map;
+		sleep 5000;
+		goto OnquestPS13;
+	}
+	end;
+
+OnquestPS13:
+	if (.difficulty == 1) {
+		set .mob, 3;
+		set .rank, 100;
+	} else if (.difficulty == 2) {
+		set .mob, 6;
+		set .rank, 300;
+	} else if (.difficulty == 3) {
+		set .mob, 20;
+		set .rank, 500;
+	}
+	for(.@i = 0; .@i < .mob; .@i++){
+	areamonster "jor_sanct",129,185,169,264,"Box",1324,1,strnpcinfo(0)+"::OnPSBoxDead";
+	setunitdata $@mobid[0],UMOB_DYNAMIC,.rank;
+	}
+	return;
+	
+OnPSBoxDead:
+	.mob--;
+	mapannounce "jor_sanct","Quest Poison : "+ strcharinfo(0) +" ได้เปิดหีบสมบัติที่ Quest Poison.", bc_all;
+	if ( .mob <= 0 )
+		goto OnStopEvent;
+	end;
+	
+OnStopEvent:
+	killmonsterall "jor_sanct";
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "jor_sanct", .@map$, .@x, .@y;
+	.start = .round = .difficulty = .mob = 0;
+	announce "[ระบบ] : Quest Poison  จบลงแล้ว!", bc_all;
+	enablenpc "quest_Poisonnew#2";
+	disablenpc "QuestPoisonnew"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	end;
+	
+OnClock0730:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1130:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1530:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnClock1930:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+}
+jor_sanct,149,283,6	script	quest_Poisonnew#2	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+}
+
+jor_sanct	mapflag	nowarp
+jor_sanct	mapflag	nowarpto
+jor_sanct	mapflag	noteleport
+jor_sanct	mapflag	monster_noteleport
+jor_sanct	mapflag	nosave	SavePoint
+jor_sanct	mapflag	nomemo
+jor_sanct	mapflag	nobranch
+jor_sanct	mapflag	nopenalty
+jor_sanct	mapflag	noicewall

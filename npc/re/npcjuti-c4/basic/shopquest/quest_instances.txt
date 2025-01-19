@@ -1,0 +1,53 @@
+// quest_instances OGH_Challenge
+//============================================================
+-	script	#Tradeitem150	2_DROP_MACHINE,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" ของสวมใส่หัว",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop150",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกของสวมใส่ Temporal",0;
+	end;
+}
+glast_01,139,291,4	duplicate(#Tradeitem150)	ร้านเเลกของสวมใส่ Temporal#1	2_DROP_MACHINE
+//============================================================
+-	script	#Tradeitem151	2_VENDING_MACHINE1,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+"ETC&Weapon Temporal",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop151",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกETC&Weapon Temporal",0;
+	end;
+}
+glast_01,141,290,4	duplicate(#Tradeitem151)	ร้านเเลกETC&Weapon Temporal#1	2_VENDING_MACHINE1

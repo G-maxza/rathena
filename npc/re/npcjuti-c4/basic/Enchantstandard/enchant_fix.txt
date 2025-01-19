@@ -1,0 +1,353 @@
+/*
+=================================================================
+					Credit : Readparam(bStr);
+=================================================================
+	Line : 29		ใส่จำนวน % ในการออฟชั่นสำเร็จ
+	Line : 31		ใส่รหัส ไอเทมกันแตก ใช้สำหรับป้องกันอุปกรณ์ และ วัตถุดิบ เงิน แคช บลา ๆ เมื่อออฟชั่นไม่สำเร็จได้นะ
+	Line : 32		ใส่รหัส ไอเทมเพิ่ม % สำเร็จ
+	Line : 33		ใส่จำนวน % ที่ได้รับจากการใช้ไอเทมเพิ่ม % สำเร็จ
+	Line : 35		ใส่จำนวน CASH ที่ใช้ออฟชั่น หากไม่ต้องการใช้ CASH ให้ใส่ 0
+	Line : 36		ใส่จำนวน Zeny ที่ใช้ออฟชั่น หากไม่ต้องการใช้ zeny ให้ใส่ 0
+	Line : 38		หากต้องการออฟชั่นของอุปกรณ์ ใส่ 0 / หากต้องการออฟชั่นของคอสตูมหรือชาโดว์ ใส่ 1
+	Line : 85-105	ใส่รหัสของหินออฟชั่นที่จะสุ่มออกมา
+=================================================================
+*/
+
+-	shop	shop_stone	-1,501:-1
+
+oasis,173,93,4	script	ออฟชั่นเลือกหิน	115,{
+Start:
+	
+	npcshopattach "shop_stone";
+	callshop "shop_stone",2;
+	end;
+
+OnSellItem:
+	
+	.@namenpc$ = ""+strnpcinfo(0)+"";
+	
+	.@rate_win = 80;				//	ตั้งค่า % ความสำเร็จอุปกรณ์
+	
+	.@broken_item = 985;			//	ตั้งค่ารหัสไอเทม สำหรับ ใบกันแตก
+	.@percent_item = 984;			//	ตั้งค่ารหัสไอเทม สำหรับ ใบเพิ่มโอกาส
+	.@percent_plus = 20;			//	ตั้ง % สำหรับใบเพิ่มโอกาส 20 = 20%
+	
+	.@cash_use = 0;				//	ตั้งค่าการใช้ CASHPOINTS หากไม่ต้องการใส่ 0
+	.@zeny_use = 50000;			//	ตั้งค่าการใช้ Zeny หากไม่ต้องการใส่ 0
+								
+	.@select_equip = 0;				//	ต้องการให้ออฟชั่นหินอุปกรณ์ ใส่ 0	ต้องการให้ออฟชั่นคอสตูม ใส่ 1
+	
+	if(.@select_equip == 0){
+		setarray .@EQI[0],EQI_ARMOR;
+		setarray .@EQI$[0], "ชุดเกาะ";
+		.@max_eqi = getarraysize(.@EQI);
+	}
+	
+	if(.@select_equip == 1){
+		setarray .@EQI[0],EQI_COSTUME_HEAD_TOP, EQI_COSTUME_HEAD_MID, EQI_COSTUME_HEAD_LOW, EQI_COSTUME_GARMENT, EQI_SHADOW_ARMOR, EQI_SHADOW_WEAPON, EQI_SHADOW_SHIELD, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_R, EQI_SHADOW_ACC_L;
+		setarray .@EQI$[0], "คอสหมวก", "คอสหู", "คอสปาก", "คอสผ้าคลุม", "คอสชุดเกาะ", "คอสอาวุธ", "คอสโล่", "คอสรองเท้า", "คอสประดับ 1", "คอสประดับ 2";
+		.@max_eqi = getarraysize(.@EQI);
+	}
+	
+	mes "^FF3300[ "+.@namenpc$+" ]^000000";
+	mes "^FF9900** โอกาสสำเร็จ : "+.@rate_win+"% **^000000";
+	mes "<ITEM>"+getitemname(.@broken_item)+"<INFO>"+.@broken_item+"</INFO></ITEM>";
+	mes "- สามารถป้องกันวัตถุดิบเสียหายได้";
+	mes "<ITEM>"+getitemname(.@percent_item)+"<INFO>"+.@percent_item+"</INFO></ITEM>";
+	mes "- เพิ่มโอกาสสำเร็จอีก "+.@percent_plus+" %";
+	
+	next;
+	
+	mes "^FF3300[ "+.@namenpc$+" ]^000000";
+	
+	mes "ข้าสามารถเพิ่มความแข็งแกร่งให้แก่เจ้า";
+	mes "โดยเพิ่มอัญมณีเข้าไปในอุปกรณ์";
+	mes "เงื่อนไขของข้า คือ";
+	
+	if(.@cash_use > 0){ mes "- CASHPOINTS จำนวน "+callfunc("F_InsertComma",.@cash_use)+" POINTS"; }
+	if(.@zeny_use > 0){ mes "- เงิน จำนวน "+callfunc("F_InsertComma",.@zeny_use)+" Zeny"; }
+	
+	mes "กรุณาเลือกอุปกรณ์ของเจ้า";
+	
+	for (set .@i, 0; .@i < .@max_eqi; set .@i, .@i + 1) {
+			
+		set .@menu$, .@menu$ + "["+.@EQI$[.@i]+"] - "+getequipname(.@EQI[.@i])+"";
+		set .@menu$, .@menu$ + ":";
+	
+	}
+	
+	set .@part, select(.@menu$) - 1;
+	
+	set .@part2, .@EQI[.@part];
+	
+	.@id_item = getequipid(.@part2);
+	
+	if(.@part2 == EQI_HEAD_TOP){	setarray .@enchant_stone[0],4700; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Headgear
+	if(.@part2 == EQI_HEAD_TOP1){	setarray .@enchant_stone[1],4701; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Headgear
+	if(.@part2 == EQI_HEAD_TOP2){	setarray .@enchant_stone[2],4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Headgear
+	if(.@part2 == EQI_HEAD_TOP3){	setarray .@enchant_stone[3],4703; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Headgear
+	if(.@part2 == EQI_HEAD_MID){	setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Mid
+	if(.@part2 == EQI_HEAD_LOW){	setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Low
+	if(.@part2 == EQI_ARMOR){		setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Armor
+	if(.@part2 == EQI_HAND_R){		setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Weapon
+	if(.@part2 == EQI_HAND_L){		setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Shield
+	if(.@part2 == EQI_GARMENT){		setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Garment
+	if(.@part2 == EQI_SHOES){		setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน FootGear
+	if(.@part2 == EQI_ACC_L){		setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Acc L
+	if(.@part2 == EQI_ACC_R){		setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Acc R
+	
+	if(.@part2 == EQI_COSTUME_HEAD_TOP){	setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Costume Headgear
+	if(.@part2 == EQI_COSTUME_HEAD_MID){	setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Costume Mid
+	if(.@part2 == EQI_COSTUME_HEAD_LOW){	setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Costume Low
+	if(.@part2 == EQI_COSTUME_GARMENT){		setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Costume Garment
+	if(.@part2 == EQI_SHADOW_ARMOR){		setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Shadow Armor
+	if(.@part2 == EQI_SHADOW_WEAPON){		setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Shadow Weapon
+	if(.@part2 == EQI_SHADOW_SHIELD){		setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Shadow Shield
+	if(.@part2 == EQI_SHADOW_SHOES){		setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Shadow Shoes
+	if(.@part2 == EQI_SHADOW_ACC_R){		setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Shadow Acc R
+	if(.@part2 == EQI_SHADOW_ACC_L){		setarray .@enchant_stone[0],4700,4701,4702; }		//	ใส่เลขหินที่สามารถเสริมได้ ส่วน Shadow Acc L
+	
+	if(!getequipisequiped(.@part2)){
+		next;
+		mes "^FF3300[ "+.@namenpc$+" ]^000000";
+		mes "เจ้าไม่ได้สวมใส่อะไรในส่วนนี้.";
+		end;
+	}
+	
+	if(countitem(.@id_item) > 1){
+		next;
+		mes "^FF3300[ "+.@namenpc$+" ]^000000";
+		mes "ไอเทม ^0000FF"+getitemname(.@id_item)+"^000000 มีมากกว่า 1 ชิ้น";
+		end;
+	}
+	
+	for ( .@i = 0; .@i < getarraysize(.@enchant_stone); .@i ++ ){
+		if(@sold_nameid == .@enchant_stone[.@i]){ goto recheck_local; end; }
+	}
+	
+	next;
+	mes "^FF3300[ "+.@namenpc$+" ]^000000";
+	mes "อุปกรณ์ ^0000FF"+getitemname(.@id_item)+"^000000 ไม่สามารถใช้งาน";
+	mes "ไอเทม ^FF9900"+getitemname(@sold_nameid)+"^000000 ได้";
+	end;
+		
+	recheck_local:
+	
+	.@select = getiteminfo(.@id_item,10);
+	
+	.@refineuse = getequiprefinerycnt(.@part2);
+	.@opt01 = getequiprandomoption(.@part2,0,ROA_ID);
+	.@val01 = getequiprandomoption(.@part2,0,ROA_VALUE);
+	.@opt02 = getequiprandomoption(.@part2,1,ROA_ID);
+	.@val02 = getequiprandomoption(.@part2,1,ROA_VALUE);
+	.@opt03 = getequiprandomoption(.@part2,2,ROA_ID);
+	.@val03 = getequiprandomoption(.@part2,2,ROA_VALUE);
+	.@opt04 = getequiprandomoption(.@part2,3,ROA_ID);
+	.@val04 = getequiprandomoption(.@part2,3,ROA_VALUE);
+	.@opt05 = getequiprandomoption(.@part2,4,ROA_ID);
+	.@val05 = getequiprandomoption(.@part2,4,ROA_VALUE);
+	.@cardslot01 = getequipcardid(.@part2,0);
+	.@cardslot02 = getequipcardid(.@part2,1);
+	.@cardslot03 = getequipcardid(.@part2,2);
+	.@cardslot04 = getequipcardid(.@part2,3);
+	
+	if(.@cardslot01 > 0){	.@message_01$ = ""+getitemname(.@cardslot01)+""; }
+	if(.@cardslot01 <= 0){	.@message_01$ = "ว่าง"; }
+	if(.@cardslot02 > 1){	.@message_02$ = ""+getitemname(.@cardslot02)+""; }
+	if(.@cardslot02 <= 1){	.@message_02$ = "ว่าง"; }
+	if(.@cardslot03 > 2){	.@message_03$ = ""+getitemname(.@cardslot03)+""; }
+	if(.@cardslot03 <= 2){	.@message_03$ = "ว่าง"; }
+	if(.@cardslot04 > 3){	.@message_04$ = ""+getitemname(.@cardslot04)+""; }
+	if(.@cardslot04 <= 3){	.@message_04$ = "ว่าง"; }
+	
+	Switch(Select("- [1] ^009900("+.@message_01$+")^000000:- [2] ^009900("+.@message_02$+")^000000:- [3] ^009900("+.@message_03$+")^000000:- [4] ^009900("+.@message_04$+")^000000")){
+		case 1:
+			.@use_slot = 1;
+			goto next_to_slot;
+			end;
+		case 2:
+			.@use_slot = 2;
+			goto next_to_slot;
+			end;
+		case 3:
+			.@use_slot = 3;
+			goto next_to_slot;
+			end;
+		case 4:
+			.@use_slot = 4;
+			goto next_to_slot;
+			end;	
+	}
+	
+	end;
+	
+	next_to_slot:
+	
+	if(.@use_slot <= .@select){
+		next;
+		mes "^FF3300[ "+.@namenpc$+" ]^000000";
+		mes "ไอเทม "+getitemname(.@id_item)+" ชิ้นนี้";
+		mes "ไม่สามารถออฟชั่นได้";
+		mes "เนื่องจากไม่สามารถออฟ";
+		mes "ทับช่องการืดได้";
+		end;
+	}
+	
+	if(countitem(.@broken_item) > 0){
+		next;
+		mes "^FF3300[ "+.@namenpc$+" ]^000000";
+		mes "เจ้าพก ^0099FF"+getitemname(.@broken_item)+"^000000 มาด้วยนิ";
+		mes "มันสามารถป้องกันอุปกรณ์";
+		mes "เมื่อออฟชั่นไม่สำเร็จได้นะ";
+		mes "ต้องการใช่มันไหม ?";
+		
+		Switch(Select("- ใช้ ^0000FF"+getitemname(.@broken_item)+"^000000:- ยังก่อน ข้ามั่นใจในดวงของข้า")){
+			case 1:
+				.@broken = 1;
+				goto check_percent;
+				end;
+			case 2:
+				.@broken = 0;
+				goto check_percent;
+				end;
+		}
+	}
+	
+	check_percent:
+	
+	if(countitem(.@percent_item) > 0){
+		next;
+		mes "^FF3300[ "+.@namenpc$+" ]^000000";
+		mes "เจ้าพก ^0099FF"+getitemname(.@percent_item)+"^000000 มาด้วยนิ";
+		mes "มันสามารถเพิ่มโอกาสสำเร็จเพิ่มขึ้น";
+		mes "ต้องการใช่มันไหม ?";
+		
+		Switch(Select("- ใช้ ^0000FF"+getitemname(.@percent_item)+"^000000:- ยังก่อน ข้ามั่นใจในดวงของข้า")){
+			case 1:
+				.@up_plus = .@percent_plus;
+				goto recheck3;
+				end;
+			
+			case 2:
+				.@up_plus = 0;
+				goto recheck3;
+				end;
+		}
+	}
+	
+	recheck3:
+	
+	next;
+	
+	mes "^FF3300[ "+.@namenpc$+" ]^000000";
+	mes "ITEM # "+getitemname(.@id_item)+" ^0000FF["+getiteminfo(.@id_item,ITEMINFO_SLOT)+"]^000000";
+	mes "STONE # "+getitemname(@sold_nameid)+"";
+	mes "ยืนยันการออฟชั่นใช่ไหม ?";
+	
+	Switch(Select("- ยืนยันการออฟชั่น")){
+		
+		case 1:
+			
+			if(.@cash_use > 0){
+				
+				if(#CASHPOINTS < .@cash_use){
+					
+					next;
+					mes "^FF3300[ "+.@namenpc$+" ]^000000";
+					mes "คุณมี CASH ไม่เพียงพอ";
+					mes "ยังขาดอีก "+callfunc("F_InsertComma",(.@cash_use-#CASHPOINTS))+" POINTS";
+					end;
+					
+				}
+				
+			}
+			
+			if(.@zeny_use > 0){
+				
+				if(Zeny < .@zeny_use){
+					
+					next;
+					mes "^FF3300[ "+.@namenpc$+" ]^000000";
+					mes "คุณมี Zeny ไม่เพียงพอ";
+					mes "ยังขาดอีก "+callfunc("F_InsertComma",(.@zeny_use-Zeny))+" Zeny";
+					end;
+					
+				}
+				
+			}
+			
+			if(.@zeny_use > 0){ Zeny = Zeny -.@zeny_use; }
+			if(.@cash_use > 0){ #CASHPOINTS = #CASHPOINTS -.@cash_use; }
+			
+			goto next_to_stone;
+			end;
+		
+	}
+	
+	next_to_stone:
+	
+	.@r = rand(1,100);
+	
+	//dispbottom "สุ่มได้ "+.@r+" % / "+.@rate_win+" "+.@up_plus+" "+(.@rate_win+.@up_plus)+"";
+	
+	if(.@r <= (.@rate_win+.@up_plus)){ goto last_recheck; end; }
+	
+	if(.@r > (.@rate_win+.@up_plus)){
+		
+		next;
+		
+		if(.@up_plus == .@percent_plus){ delitem .@percent_item,1; }
+			
+		if(.@broken == 1){	
+			mes "แต่ข้ารักษาวัตถุดิบไว้ให้เจ้าแล้วนะ";
+			delitem .@broken_item,1;
+			specialeffect2 155;
+			end;	
+		}
+		
+		delitem .@id_item,1;
+		specialeffect2 155;
+		
+	}	
+	
+	end;
+	
+	last_recheck:
+	
+	if(.@use_slot == 1){ .@cardslot01 = @sold_nameid; dispbottom ""+getitemname(.@id_item)+" ช่องที่ 1 ได้รับ "+getitemname(.@cardslot01)+""; }
+	if(.@use_slot == 2){ .@cardslot02 = @sold_nameid; dispbottom ""+getitemname(.@id_item)+" ช่องที่ 2 ได้รับ "+getitemname(.@cardslot02)+""; }
+	if(.@use_slot == 3){ .@cardslot03 = @sold_nameid; dispbottom ""+getitemname(.@id_item)+" ช่องที่ 3 ได้รับ "+getitemname(.@cardslot03)+""; }
+	if(.@use_slot == 4){ .@cardslot04 = @sold_nameid; dispbottom ""+getitemname(.@id_item)+" ช่องที่ 4 ได้รับ "+getitemname(.@cardslot04)+""; }
+	
+	recheck_lastest:
+		
+		if(.@up_plus == .@percent_plus){ delitem .@percent_item,1; }
+			
+		if(.@broken == 1){ delitem .@broken_item,1; }
+		
+		specialeffect2 154;
+		
+		delitem .@id_item,1;
+		
+		delitem @sold_nameid,1;
+		
+		setarray .@OptID[0],.@opt01,.@opt02,.@opt03,.@opt04,.@opt05;
+		setarray .@OptVal[0],.@val01,.@val02,.@val03,.@val04,.@val05;
+	
+		getitem3 .@id_item,1,1,.@refineuse,0,.@cardslot01,.@cardslot02,.@cardslot03,.@cardslot04,.@OptID,.@OptVal,.@param;
+		
+		equip .@id_item;
+		
+		end;
+
+OnInit:
+waitingroom "[#] "+strnpcinfo(0)+"",0;
+end;
+}
+
+
+
+
+
+
+

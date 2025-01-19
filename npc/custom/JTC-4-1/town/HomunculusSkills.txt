@@ -1,0 +1,34 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : แม่มดน้อย จอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : rAthena & Hercules
+// Contacts
+// Facebook https://www.facebook.com/appleroplus2
+// Gmail appleroplus@gmail.com
+// Skype appleroplus@hotmail.com
+//==============================================
+//==============================================
+//==============================================
+hu_in01,103,382,5	script	รับสกิล โฮมุนครุส	760,{
+
+	if(Class == Job_Alchemist || Class == Job_Creator || Class == Job_Genetic) {
+		if (getskilllv(238) > 0 || getskilllv(243) > 0 || getskilllv(244) > 0 || getskilllv(247) > 0) end;
+		skill 238,1,0;
+		skill 243,1,0;
+		skill 244,1,0;
+		skill 247,1,0;
+		mes "[ Homunculus Skills ]";
+		mes " ขอให้พลังนี้จงอยู่กับท่านตลอดไป...";
+		close;
+	}
+
+	mes "[ Homunculus Skills ]";
+	mes " ท่านไม่สามารถรับสกิลนี้ได้";
+	close;
+
+	OnInit: 
+	waitingroom "รับสกิล โฮมุนครุส",0; 
+	end;
+	}

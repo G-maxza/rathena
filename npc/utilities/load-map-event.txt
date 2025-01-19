@@ -1,0 +1,8 @@
+prontera	mapflag	loadevent
+
+-	script	LoadMapEvent	-1,{
+	end;
+	
+OnPCLoadMapEvent:
+	end;
+}

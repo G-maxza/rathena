@@ -6,8 +6,8 @@
 #include <string>
 #include <nlohmann/json.hpp>
 
-#include <common/showmsg.hpp>
-#include <common/sql.hpp>
+#include "../common/showmsg.hpp"
+#include "../common/sql.hpp"
 
 #include "auth.hpp"
 #include "http.hpp"
@@ -36,35 +36,37 @@ HANDLER_FUNC(merchantstore_save) {
 	SQLLock sl(WEB_SQL_LOCK);
 	sl.lock();
 	auto handle = sl.getHandle();
-	SqlStmt stmt{ *handle };
-	if (SQL_SUCCESS != stmt.Prepare(
+	SqlStmt* stmt = SqlStmt_Malloc(handle);
+	if (SQL_SUCCESS != SqlStmt_Prepare(stmt,
 			"SELECT `account_id` FROM `%s` WHERE (`account_id` = ? AND `char_id` = ? AND `world_name` = ? AND `store_type` = ?) LIMIT 1",
 			merchant_configs_table)
-		|| SQL_SUCCESS != stmt.BindParam(0, SQLDT_INT, &account_id, sizeof(account_id))
-		|| SQL_SUCCESS != stmt.BindParam(1, SQLDT_INT, &char_id, sizeof(char_id))
-		|| SQL_SUCCESS != stmt.BindParam(2, SQLDT_STRING, (void *)world_name, strlen(world_name))
-		|| SQL_SUCCESS != stmt.BindParam(3, SQLDT_INT, &store_type, sizeof(store_type))
-		|| SQL_SUCCESS != stmt.Execute()
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_INT, &account_id, sizeof(account_id))
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 1, SQLDT_INT, &char_id, sizeof(char_id))
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 2, SQLDT_STRING, (void *)world_name, strlen(world_name))
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 3, SQLDT_INT, &store_type, sizeof(store_type))
+		|| SQL_SUCCESS != SqlStmt_Execute(stmt)
 	) {
 		SqlStmt_ShowDebug(stmt);
+		SqlStmt_Free(stmt);
 		sl.unlock();
 		res.status = HTTP_BAD_REQUEST;
 		res.set_content("Error", "text/plain");
 		return;
 	}
 
-	if (stmt.NumRows() <= 0) {
-		if (SQL_SUCCESS != stmt.Prepare(
+	if (SqlStmt_NumRows(stmt) <= 0) {
+		if (SQL_SUCCESS != SqlStmt_Prepare(stmt,
 				"INSERT INTO `%s` (`account_id`, `char_id`, `world_name`, `store_type`, `data`) VALUES (?, ?, ?, ?, ?)",
 				merchant_configs_table)
-			|| SQL_SUCCESS != stmt.BindParam(0, SQLDT_INT, &account_id, sizeof(account_id))
-			|| SQL_SUCCESS != stmt.BindParam(1, SQLDT_INT, &char_id, sizeof(char_id))
-			|| SQL_SUCCESS != stmt.BindParam(2, SQLDT_STRING, (void *)world_name, strlen(world_name))
-			|| SQL_SUCCESS != stmt.BindParam(3, SQLDT_INT, &store_type, sizeof(store_type))
-			|| SQL_SUCCESS != stmt.BindParam(4, SQLDT_STRING, (void *)data.c_str(), strlen(data.c_str()))
-			|| SQL_SUCCESS != stmt.Execute()
+			|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_INT, &account_id, sizeof(account_id))
+			|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 1, SQLDT_INT, &char_id, sizeof(char_id))
+			|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 2, SQLDT_STRING, (void *)world_name, strlen(world_name))
+			|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 3, SQLDT_INT, &store_type, sizeof(store_type))
+			|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 4, SQLDT_STRING, (void *)data.c_str(), strlen(data.c_str()))
+			|| SQL_SUCCESS != SqlStmt_Execute(stmt)
 		) {
 			SqlStmt_ShowDebug(stmt);
+			SqlStmt_Free(stmt);
 			sl.unlock();
 			res.status = HTTP_BAD_REQUEST;
 			res.set_content("Error", "text/plain");
@@ -72,17 +74,18 @@ HANDLER_FUNC(merchantstore_save) {
 		}
 	}
 	else {
-		if (SQL_SUCCESS != stmt.Prepare(
+		if (SQL_SUCCESS != SqlStmt_Prepare(stmt,
 				"UPDATE `%s` SET `data` = ? WHERE (`account_id` = ? AND `char_id` = ? AND `world_name` = ? AND `store_type` = ?)",
 				merchant_configs_table)
-			|| SQL_SUCCESS != stmt.BindParam(0, SQLDT_STRING, (void *)data.c_str(), strlen(data.c_str()))
-			|| SQL_SUCCESS != stmt.BindParam(1, SQLDT_INT, &account_id, sizeof(account_id))
-			|| SQL_SUCCESS != stmt.BindParam(2, SQLDT_INT, &char_id, sizeof(char_id))
-			|| SQL_SUCCESS != stmt.BindParam(3, SQLDT_STRING, (void *)world_name, strlen(world_name))
-			|| SQL_SUCCESS != stmt.BindParam(4, SQLDT_INT, &store_type, sizeof(store_type))
-			|| SQL_SUCCESS != stmt.Execute()
+			|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_STRING, (void *)data.c_str(), strlen(data.c_str()))
+			|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 1, SQLDT_INT, &account_id, sizeof(account_id))
+			|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 2, SQLDT_INT, &char_id, sizeof(char_id))
+			|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 3, SQLDT_STRING, (void *)world_name, strlen(world_name))
+			|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 4, SQLDT_INT, &store_type, sizeof(store_type))
+			|| SQL_SUCCESS != SqlStmt_Execute(stmt)
 		) {
 			SqlStmt_ShowDebug(stmt);
+			SqlStmt_Free(stmt);
 			sl.unlock();
 			res.status = HTTP_BAD_REQUEST;
 			res.set_content("Error", "text/plain");
@@ -90,6 +93,7 @@ HANDLER_FUNC(merchantstore_save) {
 		}
 	}
 
+	SqlStmt_Free(stmt);
 	sl.unlock();
 	res.set_content(data, "application/json");
 }
@@ -117,24 +121,26 @@ HANDLER_FUNC(merchantstore_load) {
 	SQLLock sl(WEB_SQL_LOCK);
 	sl.lock();
 	auto handle = sl.getHandle();
-	SqlStmt stmt{ *handle };
-	if (SQL_SUCCESS != stmt.Prepare(
+	SqlStmt* stmt = SqlStmt_Malloc(handle);
+	if (SQL_SUCCESS != SqlStmt_Prepare(stmt,
 			"SELECT `data` FROM `%s` WHERE (`account_id` = ? AND `char_id` = ? AND `world_name` = ? AND `store_type` = ?) LIMIT 1",
 			merchant_configs_table)
-		|| SQL_SUCCESS != stmt.BindParam(0, SQLDT_INT, &account_id, sizeof(account_id))
-		|| SQL_SUCCESS != stmt.BindParam(1, SQLDT_INT, &char_id, sizeof(char_id))
-		|| SQL_SUCCESS != stmt.BindParam(2, SQLDT_STRING, (void *)world_name, strlen(world_name))
-		|| SQL_SUCCESS != stmt.BindParam(3, SQLDT_INT, &store_type, sizeof(store_type))
-		|| SQL_SUCCESS != stmt.Execute()
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_INT, &account_id, sizeof(account_id))
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 1, SQLDT_INT, &char_id, sizeof(char_id))
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 2, SQLDT_STRING, (void *)world_name, strlen(world_name))
+		|| SQL_SUCCESS != SqlStmt_BindParam(stmt, 3, SQLDT_INT, &store_type, sizeof(store_type))
+		|| SQL_SUCCESS != SqlStmt_Execute(stmt)
 	) {
 		SqlStmt_ShowDebug(stmt);
+		SqlStmt_Free(stmt);
 		sl.unlock();
 		res.status = HTTP_BAD_REQUEST;
 		res.set_content("Error", "text/plain");
 		return;
 	}
 
-	if (stmt.NumRows() <= 0) {
+	if (SqlStmt_NumRows(stmt) <= 0) {
+		SqlStmt_Free(stmt);
 		ShowDebug("[AccountID: %d, World: \"%s\"] Not found in table, sending new info.\n", account_id, world_name);
 		sl.unlock();
 		res.set_content("{\"Type\": 1}", "application/json");
@@ -143,16 +149,18 @@ HANDLER_FUNC(merchantstore_load) {
 
 	char databuf[SQL_BUFFER_SIZE] = { 0 };
 
-	if (SQL_SUCCESS != stmt.BindColumn(0, SQLDT_STRING, &databuf, sizeof(databuf), nullptr, nullptr)
-		|| SQL_SUCCESS != stmt.NextRow()
+	if (SQL_SUCCESS != SqlStmt_BindColumn(stmt, 0, SQLDT_STRING, &databuf, sizeof(databuf), NULL, NULL)
+		|| SQL_SUCCESS != SqlStmt_NextRow(stmt)
 	) {
 		SqlStmt_ShowDebug(stmt);
+		SqlStmt_Free(stmt);
 		sl.unlock();
 		res.status = HTTP_BAD_REQUEST;
 		res.set_content("Error", "text/plain");
 		return;
 	}
 
+	SqlStmt_Free(stmt);
 	sl.unlock();
 
 	databuf[sizeof(databuf) - 1] = 0;

@@ -1,0 +1,414 @@
+//============================================================
+//= Cash Coin Function
+//============================================================
+
+function	script	CC_Function	{
+
+	.CashCoin = 5000033;
+	.Amounts = countitem(.CashCoin);
+	delitem .CashCoin,.Amounts;
+	.Counts = .Amounts+1;
+	#CASHPOINTS += .Amounts+1;
+	dispbottom "[ระบบ] : คุณได้รับ "+callfunc("F_InsertComma",.Counts)+" Cash Points | คงเหลือทั้งหมด "+callfunc("F_InsertComma",#CASHPOINTS)+" Cash Points.";
+	end;
+}
+//mem_points
+function	script	mem_points2	{
+
+	.memCoin = 5001001;
+	.Amounts = countitem(.memCoin);
+	delitem .memCoin,.Amounts;
+	.Counts = .Amounts+1;
+	#MEMBERPOINTS += .Amounts+1;
+	dispbottom "[ระบบ] : คุณได้รับ "+callfunc("F_InsertComma",.Counts)+" Member Points | คงเหลือทั้งหมด "+callfunc("F_InsertComma",#MEMBERPOINTS)+" Member Points.";
+
+			sc_end SC_MEMBER_10;
+			sc_end SC_MEMBER_9;
+			sc_end SC_MEMBER_8;
+			sc_end SC_MEMBER_7;
+			sc_end SC_MEMBER_6;
+			sc_end SC_MEMBER_5;
+			sc_end SC_MEMBER_4;
+			sc_end SC_MEMBER_3;
+			sc_end SC_MEMBER_2;
+			sc_end SC_MEMBER_1;
+			sc_end SC_MEMBER_0;
+			bonus_script_clear EFST_MEMBER_0;
+			bonus_script_clear EFST_MEMBER_10;
+			bonus_script_clear EFST_MEMBER_9;
+			bonus_script_clear EFST_MEMBER_8;
+			bonus_script_clear EFST_MEMBER_7;
+			bonus_script_clear EFST_MEMBER_6;
+			bonus_script_clear EFST_MEMBER_5;
+			bonus_script_clear EFST_MEMBER_4;
+			bonus_script_clear EFST_MEMBER_3;
+			bonus_script_clear EFST_MEMBER_2;
+			bonus_script_clear EFST_MEMBER_1;
+    
+			set .@accid, getcharid(3);
+			set .@member_points, #MEMBERPOINTS;
+    
+			if (.@member_points < 500) {
+				message strcharinfo(0), "Member Lv.0 ";
+				query_sql "UPDATE `tbl_member` SET `member_lv`='0' WHERE `account_id` = " + .@accid;
+			}
+			else if (.@member_points >= 5000) {
+				sc_end SC_MEMBER_9;
+				bonus_script_clear EFST_MEMBER_9;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='10' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.10";
+				bonus_script "{ bonus bAllStats,10; bonus2 bDropAddRace,RC_All,300; bonus2 bExpAddRace,RC_All,300; bonus bAddMaxWeight,50000; bonus2 bAddClass,Class_Boss,100; bonus2 bMagicAddClass,Class_Boss,100; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_10;
+				sc_start SC_MEMBER_10,864000 * 100000 * 100000000,1;
+			}
+			else if (.@member_points >= 4500) {
+				sc_end SC_MEMBER_8;
+				bonus_script_clear EFST_MEMBER_8;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='9' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.9";
+				bonus_script "{ bonus bAllStats,9; bonus2 bDropAddRace,RC_All,250; bonus2 bExpAddRace,RC_All,250; bonus bAddMaxWeight,45000; bonus2 bAddClass,Class_Boss,90; bonus2 bMagicAddClass,Class_Boss,90; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_9;
+				sc_start SC_MEMBER_9,864000 * 100000 * 100000000,1;
+			}
+			else if (.@member_points >= 4000) {
+				sc_end SC_MEMBER_7;
+				bonus_script_clear EFST_MEMBER_7;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='8' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.8";
+				bonus_script "{ bonus bAllStats,8; bonus2 bDropAddRace,RC_All,230; bonus2 bExpAddRace,RC_All,230; bonus bAddMaxWeight,40000; bonus2 bAddClass,Class_Boss,80; bonus2 bMagicAddClass,Class_Boss,80; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_8;
+				sc_start SC_MEMBER_8,864000 * 100000 * 100000000,1;
+			}
+			else if (.@member_points >= 3500) {
+				sc_end SC_MEMBER_6;
+				bonus_script_clear EFST_MEMBER_6;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='7' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.7";
+				bonus_script "{ bonus bAllStats,7; bonus2 bDropAddRace,RC_All,200; bonus2 bExpAddRace,RC_All,200; bonus bAddMaxWeight,35000; bonus2 bAddClass,Class_Boss,70; bonus2 bMagicAddClass,Class_Boss,70; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_7;
+				sc_start SC_MEMBER_7,864000 * 100000 * 100000000,1;
+			}
+			else if (.@member_points >= 3000) {
+				sc_end SC_MEMBER_5;
+				bonus_script_clear EFST_MEMBER_5;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='6' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.6";
+				bonus_script "{ bonus bAllStats,6; bonus2 bDropAddRace,RC_All,170; bonus2 bExpAddRace,RC_All,170; bonus bAddMaxWeight,30000; bonus2 bAddClass,Class_Boss,60; bonus2 bMagicAddClass,Class_Boss,60; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_6;
+				sc_start SC_MEMBER_6,864000 * 100000 * 100000000,1;
+			}
+			else if (.@member_points >= 2500) {
+				sc_end SC_MEMBER_4;
+				bonus_script_clear EFST_MEMBER_4;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='5' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.5";
+				bonus_script "{ bonus bAllStats,5; bonus2 bDropAddRace,RC_All,150; bonus2 bExpAddRace,RC_All,150; bonus bAddMaxWeight,25000; bonus2 bAddClass,Class_Boss,50; bonus2 bMagicAddClass,Class_Boss,50; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_5;
+				sc_start SC_MEMBER_5,864000 * 100000 * 100000000,1;
+			}
+			else if (.@member_points >= 2000) {
+				sc_end SC_MEMBER_3;
+				bonus_script_clear EFST_MEMBER_3;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='4' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.4";
+				bonus_script "{ bonus bAllStats,4; bonus2 bDropAddRace,RC_All,130; bonus2 bExpAddRace,RC_All,130; bonus bAddMaxWeight,20000; bonus2 bAddClass,Class_Boss,40; bonus2 bMagicAddClass,Class_Boss,40; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_4;
+				sc_start SC_MEMBER_4,864000 * 100000 * 100000000,1;
+			}
+			else if (.@member_points >= 1500) {
+				sc_end SC_MEMBER_2;
+				bonus_script_clear EFST_MEMBER_2;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='3' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.3";
+				bonus_script "{ bonus bAllStats,3; bonus2 bDropAddRace,RC_All,100; bonus2 bExpAddRace,RC_All,100; bonus bAddMaxWeight,15000; bonus2 bAddClass,Class_Boss,30; bonus2 bMagicAddClass,Class_Boss,30; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_3;
+				sc_start SC_MEMBER_3,864000 * 100000 * 100000000,1;
+			}
+			else if (.@member_points >= 1000) {
+				sc_end SC_MEMBER_1;
+				bonus_script_clear EFST_MEMBER_1;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='2' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.2";
+				bonus_script "{ bonus bAllStats,2; bonus2 bDropAddRace,RC_All,70; bonus2 bExpAddRace,RC_All,70; bonus bAddMaxWeight,10000; bonus2 bAddClass,Class_Boss,20; bonus2 bMagicAddClass,Class_Boss,20; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_2;
+				sc_start SC_MEMBER_2,864000 * 100000 * 100000000,1;
+			}
+			else if (.@member_points >= 500) {
+				sc_end SC_MEMBER_0;
+				bonus_script_clear EFST_MEMBER_0;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='1' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.1";
+				bonus_script "{ bonus bAllStats,1; bonus2 bDropAddRace,RC_All,50; bonus2 bExpAddRace,RC_All,50; bonus bAddMaxWeight,5000; bonus2 bAddClass,Class_Boss,10; bonus2 bMagicAddClass,Class_Boss,10; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_1;
+				sc_start SC_MEMBER_1,864000 * 100000 * 100000000,1;
+			}
+			end;
+	
+			if (.@member_points < 500) {
+				sc_end SC_MEMBER_1;
+				bonus_script_clear EFST_MEMBER_1;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='0' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.0 ";
+				sc_start SC_MEMBER_0,1000 * 1000,1;
+			} 
+			else if (.@member_points < 5000 && .@member_points >= 4500) {
+				// เคลียร์โบนัส Lv.10 เมื่อแต้มลดลงต่ำกว่า 5000
+				sc_end SC_MEMBER_10;
+				bonus_script_clear EFST_MEMBER_10;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='9' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.9";
+				bonus_script "{ bonus bAllStats,9; bonus2 bDropAddRace,RC_All,250; bonus2 bExpAddRace,RC_All,250; bonus bAddMaxWeight,45000; bonus2 bAddClass,Class_Boss,90; bonus2 bMagicAddClass,Class_Boss,90; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_9;
+				sc_start SC_MEMBER_9,864000 * 100000 * 100000000,1;
+			} 
+			else if (.@member_points < 4500 && .@member_points >= 4000) {
+				sc_end SC_MEMBER_9;
+				bonus_script_clear EFST_MEMBER_9;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='8' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.8";
+				bonus_script "{ bonus bAllStats,8; bonus2 bDropAddRace,RC_All,230; bonus2 bExpAddRace,RC_All,230; bonus bAddMaxWeight,40000; bonus2 bAddClass,Class_Boss,80; bonus2 bMagicAddClass,Class_Boss,80; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_8;
+				sc_start SC_MEMBER_8,864000 * 100000 * 100000000,1;
+			} 
+			else if (.@member_points < 4000 && .@member_points >= 3500) {
+				sc_end SC_MEMBER_8;
+				bonus_script_clear EFST_MEMBER_8;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='7' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.7";
+				bonus_script "{ bonus bAllStats,7; bonus2 bDropAddRace,RC_All,200; bonus2 bExpAddRace,RC_All,200; bonus bAddMaxWeight,35000; bonus2 bAddClass,Class_Boss,70; bonus2 bMagicAddClass,Class_Boss,70; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_7;
+				sc_start SC_MEMBER_7,864000 * 100000 * 100000000,1;
+			} 
+			else if (.@member_points < 3500 && .@member_points >= 3000) {
+				sc_end SC_MEMBER_7;
+				bonus_script_clear EFST_MEMBER_7;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='6' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.6";
+				bonus_script "{ bonus bAllStats,6; bonus2 bDropAddRace,RC_All,170; bonus2 bExpAddRace,RC_All,170; bonus bAddMaxWeight,30000; bonus2 bAddClass,Class_Boss,60; bonus2 bMagicAddClass,Class_Boss,60; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_6;
+				sc_start SC_MEMBER_6,864000 * 100000 * 100000000,1;
+			} 
+			else if (.@member_points < 3000 && .@member_points >= 2500) {
+				sc_end SC_MEMBER_6;
+				bonus_script_clear EFST_MEMBER_6;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='5' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.5";
+				bonus_script "{ bonus bAllStats,5; bonus2 bDropAddRace,RC_All,150; bonus2 bExpAddRace,RC_All,150; bonus bAddMaxWeight,25000; bonus2 bAddClass,Class_Boss,50; bonus2 bMagicAddClass,Class_Boss,50; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_5;
+				sc_start SC_MEMBER_5,864000 * 100000 * 100000000,1;
+			} 
+			else if (.@member_points < 2500 && .@member_points >= 2000) {
+				sc_end SC_MEMBER_5;
+				bonus_script_clear EFST_MEMBER_5;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='4' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.4";
+				bonus_script "{ bonus bAllStats,4; bonus2 bDropAddRace,RC_All,130; bonus2 bExpAddRace,RC_All,130; bonus bAddMaxWeight,20000; bonus2 bAddClass,Class_Boss,40; bonus2 bMagicAddClass,Class_Boss,40; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_4;
+				sc_start SC_MEMBER_4,864000 * 100000 * 100000000,1;
+			} 
+			else if (.@member_points < 2000 && .@member_points >= 1500) {
+				sc_end SC_MEMBER_4;
+				bonus_script_clear EFST_MEMBER_4;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='3' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.3";
+				bonus_script "{ bonus bAllStats,3; bonus2 bDropAddRace,RC_All,100; bonus2 bExpAddRace,RC_All,100; bonus bAddMaxWeight,15000; bonus2 bAddClass,Class_Boss,30; bonus2 bMagicAddClass,Class_Boss,30; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_3;
+				sc_start SC_MEMBER_3,864000 * 100000 * 100000000,1;
+			}
+			else if (.@member_points < 1500 && .@member_points >= 1000) {
+				sc_end SC_MEMBER_3;
+				bonus_script_clear EFST_MEMBER_3;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='2' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.2";
+				bonus_script "{ bonus bAllStats,2; bonus2 bDropAddRace,RC_All,70; bonus2 bExpAddRace,RC_All,70; bonus bAddMaxWeight,10000; bonus2 bAddClass,Class_Boss,20; bonus2 bMagicAddClass,Class_Boss,20; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_2;
+				sc_start SC_MEMBER_2,864000 * 100000 * 100000000,1;
+			}
+			else if (.@member_points < 1000 && .@member_points >= 500) {
+				sc_end SC_MEMBER_2;
+				bonus_script_clear EFST_MEMBER_2;
+				query_sql "UPDATE `tbl_member` SET `member_lv`='1' WHERE `account_id` = " + .@accid;
+				message strcharinfo(0), "Member Lv.1";
+				bonus_script "{ bonus bAllStats,1; bonus2 bDropAddRace,RC_All,50; bonus2 bExpAddRace,RC_All,50; bonus bAddMaxWeight,5000; bonus2 bAddClass,Class_Boss,10; bonus2 bMagicAddClass,Class_Boss,10; }",864000 * 100000 * 100000,0,0,EFST_MEMBER_1;
+				sc_start SC_MEMBER_1,864000 * 100000 * 100000000,1;
+			} 	
+			// ดำเนินการตรวจสอบอื่นๆ เช่นเดียวกัน
+			end;
+}
+//mem_points
+function	script	Cashbonus_points	{
+
+	.bonusCoin = 5001002;
+	.Amounts = countitem(.bonusCoin);
+	delitem .bonusCoin,.Amounts;
+	.Counts = .Amounts+1;
+	#CASHBONUS += .Amounts+1;
+	dispbottom "[ระบบ] : คุณได้รับ "+callfunc("F_InsertComma",.Counts)+" Bonus Points | คงเหลือทั้งหมด "+callfunc("F_InsertComma",#CASHBONUS)+" bonus Points.";
+	end;
+}
+// Increase Zeny
+function	script	Z	{
+
+	atcommand "@Zeny 1000";
+	delitem "Zeny_Coin",0;
+	specialeffect2 805;
+	return;
+}
+function	script	Z1	{
+
+	atcommand "@Zeny 10000000";
+	delitem "Zeny_Coin1",0;
+	specialeffect2 805;
+	return;
+}
+function	script	Z2	{
+
+	atcommand "@Zeny 10000";
+	delitem "Zeny_Coin2",0;
+	specialeffect2 805;
+	return;
+}
+function	script	Z3	{
+
+	atcommand "@Zeny 100000";
+	delitem "Zeny_Coin3",0;
+	specialeffect2 805;
+	return;
+}
+function	script	Z4	{
+
+	atcommand "@Zeny 1000000";
+	delitem "Zeny_Coin4",0;
+	specialeffect2 805;
+	return;
+}
+// Increase grade
+function	script	GradeOrb1	{
+	atcommand "@grade 0 1";
+	specialeffect2 805;
+	return;
+}
+// Increase refine
+function	script	RefineOrb1	{
+	atcommand "@refine 0 1";
+	specialeffect2 842;
+	return;
+}
+// Gaining mem points
+//function	script	memPoints1	{
+//	.@itemId = 5001001;
+//	.@amount = countitem(.@itemId);
+//	sum_donate = cap_value(sum_donate + .@amount + 1,0,INT_MAX);
+//	delitem .@itemId,.@amount;
+//	
+//	dispbottom "รับ " + F_InsertComma(.@amount + 1) + " mem Points";
+//	dispbottom "ขณะนี้คุณมี " + F_InsertComma(sum_donate) + " mem Points";
+//	
+//	return;
+//}
+// Increase trpoint
+function	script	Trait_Stats	{
+	atcommand "@trpoint 1";
+	delitem "Craft_Trait_Stats",1;
+	specialeffect2 805;
+	return;
+}
+// Increase skpoint
+function	script	SoulOrb1	{
+	atcommand "@skpoint 1 1";
+	delitem "Concentrated_B_P1",1;
+	specialeffect2 805;
+	return;
+}
+// Increase stpoint
+function	script	Base_stats	{
+	atcommand "@stpoint 1000";
+	delitem "Craft_Base_stats",1;
+	specialeffect2 805;
+	return;
+}
+// Increase C4 EX
+function	script	C4SkyEmperor	{
+	atcommand "@jobchange 4302";
+	specialeffect2 805;
+	return;
+}
+function	script	C4SoulAscetic	{
+	atcommand "@jobchange 4303";
+	specialeffect2 805;
+	return;
+}
+function	script	C4Shinkiro	{
+	atcommand "@jobchange 4304";
+	specialeffect2 805;
+	return;
+}
+function	script	C4Shiranui	{
+	atcommand "@jobchange 4305";
+	specialeffect2 805;
+	return;
+}
+function	script	C4NightWatch	{
+	atcommand "@jobchange 4306";
+	specialeffect2 805;
+	return;
+}
+function	script	C4HyperNovice	{
+	atcommand "@jobchange 4307";
+	specialeffect2 805;
+	return;
+}
+function	script	C4SpiritHandler	{
+	atcommand "@allskill";
+	atcommand "@jobchange 4308";
+	specialeffect2 805;
+	return;
+}
+// Increase C4 Fourth class jobs
+function	script	C4DragonKnight	{
+	atcommand "@jobchange 4252";
+	specialeffect2 805;
+	return;
+}
+function	script	C4Meister	{
+	atcommand "@jobchange 4253";
+	specialeffect2 805;
+	return;
+}
+function	script	C4ShadowCross	{
+	atcommand "@jobchange 4254";
+	specialeffect2 805;
+	return;
+}
+function	script	C4ArchMage	{
+	atcommand "@jobchange 4255";
+	specialeffect2 805;
+	return;
+}
+function	script	C4Cardinal	{
+	atcommand "@jobchange 4256";
+	specialeffect2 805;
+	return;
+}
+function	script	C4Windhawk	{
+	atcommand "@jobchange 4257";
+	specialeffect2 805;
+	return;
+}
+function	script	C4ImperialGuard	{
+	atcommand "@jobchange 4258";
+	specialeffect2 805;
+	return;
+}
+function	script	C4Biolo	{
+	atcommand "@jobchange 4259";
+	specialeffect2 805;
+	return;
+}
+function	script	C4AbyssChaser	{
+	atcommand "@jobchange 4260";
+	specialeffect2 805;
+	return;
+}
+function	script	C4ElementalMaster	{
+	atcommand "@jobchange 4261";
+	specialeffect2 805;
+	return;
+}
+function	script	C4Inquisitor	{
+	atcommand "@jobchange 4262";
+	specialeffect2 805;
+	return;
+}
+function	script	C4Troubadour	{
+	atcommand "@jobchange 4263";
+	specialeffect2 805;
+	return;
+}
+function	script	C4Trouvere	{
+	atcommand "@jobchange 4264";
+	specialeffect2 805;
+	return;
+}

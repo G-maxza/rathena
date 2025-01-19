@@ -1,0 +1,111 @@
+// Bosscoin
+//============================================================
+-	script	#Tradeitem4	GRYPHON,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" ของEtc",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop4",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกquest Item Etc",0;
+	end;
+}
+hu_in01,117,378,2	duplicate(#Tradeitem4)	ร้านเเลกquest Item Etc#1	GRYPHON
+//============================================================
+// Dim Glacier ETC
+//============================================================
+//-	script	#Tradeitem152	4_EP19_IWIN,{
+//	mes .NPC$;
+//	mes "สวัสดี!";
+//	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+//	next;
+//	switch ( select(
+//		""+.sb$+" Etc&BOXWeapon&Armor Dim Glacier",
+//		""+.sb$+" ยกเลิก"
+//	)) {
+//		case 1:
+//			close2;
+//			callshop "Bartershop152",1;
+//			end;
+//		case 2:
+//			mes .NPC$;
+//			mes "แล้วพบกันใหม่.";
+//			close;
+//	}
+//	end;
+//	
+//OnInit:
+//	waitingroom "ร้านเเลกquestDim Glacier",0;
+//	end;
+//}
+//hu_in01,90,382,5	duplicate(#Tradeitem152)	ร้านเเลกquestDim Glacier#1	4_EP19_IWIN
+//============================================================
+// Mแลกเปลี่ยนCC
+//============================================================
+-	script	#Tradeitem153	4_EP18_WAGON,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" Zeny to CC",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop153",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกZeny to CC",0;
+	end;
+}
+oasis,179,102,5	duplicate(#Tradeitem153)	ร้านเเลกZeny to CC#1	4_EP18_WAGON
+//============================================================
+// Snow-Glacier ETC
+//============================================================
+-	script	#Tradeitem154	4_EP19_IWIN,{
+	mes .NPC$;
+	mes "สวัสดี!";
+	mes "ต้องการแลกเปลี่ยนผสมของ ?";
+	next;
+	switch ( select(
+		""+.sb$+" Etc&BOX&Armor&Glacier Weapon",
+		""+.sb$+" ยกเลิก"
+	)) {
+		case 1:
+			close2;
+			callshop "Bartershop154",1;
+			end;
+		case 2:
+			mes .NPC$;
+			mes "แล้วพบกันใหม่.";
+			close;
+	}
+	end;
+	
+OnInit:
+	waitingroom "ร้านเเลกquestEP19",0;
+	end;
+}
+hu_in01,96,382,4	duplicate(#Tradeitem154)	ร้านเเลกquestEP19#1	4_EP19_IWIN

@@ -1,0 +1,80 @@
+###########################################################################
+# Job bonus Database
+###########################################################################
+#
+# Job bonus Settings
+#
+###########################################################################
+# - Job : Use constant JOB_* from src/map/script_constants.hpp
+#   Script : Script like used for items
+#
+#   OR
+#
+# - Char : Put a char ID to give him specials bonus
+#   Script : Script like used for items
+#
+#   OR
+#
+# - Account : Put an account ID to give to all his chars specials bonus
+#   Script : Script like used for items
+###########################################################################
+
+Header:
+  Type: JOB_BONUS
+  Version: 1
+
+Body:
+#   For all jobs
+#  - Id: 0
+#    Job: All
+#    Script: |
+#      bonus bSpeedRate,35;
+#   For choosen jobs
+#  - Id: 1
+#    Job: JOB_NOVICE
+#    Script: |
+#      bonus bAllStats,10;
+#  - Id: 2
+#    Job: JOB_SWORDMAN
+#    Script: |
+#      bonus bBaseAtk,20;
+#      bonus bMaxSP,100;
+#  - Id: 3
+#    Job: JOB_MAGE
+#    Script: |
+#      bonus bMatk,50;
+#      bonus bMaxHP,300;
+#  - Id: 4
+#    Job: JOB_ARCHER
+#    Script: |
+#      bonus bDex,10;
+#      bonus bMaxSP,200;
+#  - Id: 5
+#    Job: JOB_ACOLYTE
+#    Script: |
+#      bonus bInt,10;
+#      bonus bVariableCastrate,-20;
+#      bonus bDef,10;
+#  - Id: 6
+#    Job: JOB_MERCHANT
+#    Script: |
+#      bonus bDoubleRate,50;
+#      bonus bAgi,10;
+#  - Id: 7
+#    Job: JOB_THIEF
+#    Script: |
+#      bonus bDex,5;
+#      bonus bAgi,5;
+# Give bonus only to chosen char
+#  - Id: 8
+#    Char: 150000
+#    Script: |
+#      bonus2 bExpAddRace,RC_ALL,5;
+#      bonus bMdef,50;
+# Give bonus only to chosen account
+#  - Id: 9
+#    Account: 2000001
+#    Script: |
+#      bonus2 bSkillAtk,"CR_SHIELDBOOMERANG",60;
+#      bonus bMaxHP,5000;
+

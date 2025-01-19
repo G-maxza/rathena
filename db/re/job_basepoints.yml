@@ -19398,55 +19398,105 @@ Body:
       - Level: 250
         Hp: 31625
       - Level: 251
-        Hp: 31625
+        Hp: 31800
       - Level: 252
-        Hp: 31625
+        Hp: 31975
       - Level: 253
-        Hp: 31625
+        Hp: 32150
       - Level: 254
-        Hp: 31625
+        Hp: 32325
       - Level: 255
-        Hp: 31625
+        Hp: 32500
       - Level: 256
-        Hp: 31625
+        Hp: 32675
       - Level: 257
-        Hp: 31625
+        Hp: 32850
       - Level: 258
-        Hp: 31625
+        Hp: 33025
       - Level: 259
-        Hp: 31625
+        Hp: 33200
       - Level: 260
-        Hp: 31625
+        Hp: 33375
       - Level: 261
-        Hp: 31625
+        Hp: 33550
       - Level: 262
-        Hp: 31625
+        Hp: 33725
       - Level: 263
-        Hp: 31625
+        Hp: 33900
       - Level: 264
-        Hp: 31625
+        Hp: 34075
       - Level: 265
-        Hp: 31625
+        Hp: 34250
       - Level: 266
-        Hp: 31625
+        Hp: 34425
       - Level: 267
-        Hp: 31625
+        Hp: 34600
       - Level: 268
-        Hp: 31625
+        Hp: 34775
       - Level: 269
-        Hp: 31625
+        Hp: 34950
       - Level: 270
-        Hp: 31625
+        Hp: 35125
       - Level: 271
-        Hp: 31625
+        Hp: 35300
       - Level: 272
-        Hp: 31625
+        Hp: 35475
       - Level: 273
-        Hp: 31625
+        Hp: 35650
       - Level: 274
-        Hp: 31625
+        Hp: 35825
       - Level: 275
-        Hp: 31625
+        Hp: 36000
+      - Level: 276
+        Hp: 36175
+      - Level: 277
+        Hp: 36350
+      - Level: 278
+        Hp: 36525
+      - Level: 279
+        Hp: 36700
+      - Level: 280
+        Hp: 36875
+      - Level: 281
+        Hp: 37050
+      - Level: 282
+        Hp: 37225
+      - Level: 283
+        Hp: 37400
+      - Level: 284
+        Hp: 37575
+      - Level: 285
+        Hp: 37750
+      - Level: 286
+        Hp: 37925
+      - Level: 287
+        Hp: 38100
+      - Level: 288
+        Hp: 38275
+      - Level: 289
+        Hp: 38450
+      - Level: 290
+        Hp: 38625
+      - Level: 291
+        Hp: 38800
+      - Level: 292
+        Hp: 38975
+      - Level: 293
+        Hp: 39150
+      - Level: 294
+        Hp: 39325
+      - Level: 295
+        Hp: 39500
+      - Level: 296
+        Hp: 39675
+      - Level: 297
+        Hp: 39850
+      - Level: 298
+        Hp: 40025
+      - Level: 299
+        Hp: 40200
+      - Level: 300
+        Hp: 40375
   - Jobs:
       Meister: true
       Meister2: true
@@ -19554,55 +19604,105 @@ Body:
       - Level: 250
         Hp: 29750
       - Level: 251
-        Hp: 29750
+        Hp: 29925
       - Level: 252
-        Hp: 29750
+        Hp: 30100
       - Level: 253
-        Hp: 29750
+        Hp: 30275
       - Level: 254
-        Hp: 29750
+        Hp: 30450
       - Level: 255
-        Hp: 29750
+        Hp: 30625
       - Level: 256
-        Hp: 29750
+        Hp: 30800
       - Level: 257
-        Hp: 29750
+        Hp: 30975
       - Level: 258
-        Hp: 29750
+        Hp: 31150
       - Level: 259
-        Hp: 29750
+        Hp: 31325
       - Level: 260
-        Hp: 29750
+        Hp: 31500
       - Level: 261
-        Hp: 29750
+        Hp: 31675
       - Level: 262
-        Hp: 29750
+        Hp: 31850
       - Level: 263
-        Hp: 29750
+        Hp: 32025
       - Level: 264
-        Hp: 29750
+        Hp: 32200
       - Level: 265
-        Hp: 29750
+        Hp: 32375
       - Level: 266
-        Hp: 29750
+        Hp: 32550
       - Level: 267
-        Hp: 29750
+        Hp: 32725
       - Level: 268
-        Hp: 29750
+        Hp: 32900
       - Level: 269
-        Hp: 29750
+        Hp: 33075
       - Level: 270
-        Hp: 29750
+        Hp: 33250
       - Level: 271
-        Hp: 29750
+        Hp: 33425
       - Level: 272
-        Hp: 29750
+        Hp: 33600
       - Level: 273
-        Hp: 29750
+        Hp: 33775
       - Level: 274
-        Hp: 29750
+        Hp: 33950
       - Level: 275
-        Hp: 29750
+        Hp: 34125
+      - Level: 276
+        Hp: 34300
+      - Level: 277
+        Hp: 34475
+      - Level: 278
+        Hp: 34650
+      - Level: 279
+        Hp: 34825
+      - Level: 280
+        Hp: 35000
+      - Level: 281
+        Hp: 35175
+      - Level: 282
+        Hp: 35350
+      - Level: 283
+        Hp: 35525
+      - Level: 284
+        Hp: 35700
+      - Level: 285
+        Hp: 35875
+      - Level: 286
+        Hp: 36050
+      - Level: 287
+        Hp: 36225
+      - Level: 288
+        Hp: 36400
+      - Level: 289
+        Hp: 36575
+      - Level: 290
+        Hp: 36750
+      - Level: 291
+        Hp: 36925
+      - Level: 292
+        Hp: 37100
+      - Level: 293
+        Hp: 37275
+      - Level: 294
+        Hp: 37450
+      - Level: 295
+        Hp: 37625
+      - Level: 296
+        Hp: 37800
+      - Level: 297
+        Hp: 37975
+      - Level: 298
+        Hp: 38150
+      - Level: 299
+        Hp: 38325
+      - Level: 300
+        Hp: 38500
   - Jobs:
       Shadow_Cross: true
     BaseHp:
@@ -19709,55 +19809,105 @@ Body:
       - Level: 250
         Hp: 28225
       - Level: 251
-        Hp: 28225
+        Hp: 28375
       - Level: 252
-        Hp: 28225
+        Hp: 28525
       - Level: 253
-        Hp: 28225
+        Hp: 28675
       - Level: 254
-        Hp: 28225
+        Hp: 28825
       - Level: 255
-        Hp: 28225
+        Hp: 28975
       - Level: 256
-        Hp: 28225
+        Hp: 29125
       - Level: 257
-        Hp: 28225
+        Hp: 29275
       - Level: 258
-        Hp: 28225
+        Hp: 29425
       - Level: 259
-        Hp: 28225
+        Hp: 29575
       - Level: 260
-        Hp: 28225
+        Hp: 29725
       - Level: 261
-        Hp: 28225
+        Hp: 29875
       - Level: 262
-        Hp: 28225
+        Hp: 30025
       - Level: 263
-        Hp: 28225
+        Hp: 30175
       - Level: 264
-        Hp: 28225
+        Hp: 30325
       - Level: 265
-        Hp: 28225
+        Hp: 30475
       - Level: 266
-        Hp: 28225
+        Hp: 30625
       - Level: 267
-        Hp: 28225
+        Hp: 30775
       - Level: 268
-        Hp: 28225
+        Hp: 30925
       - Level: 269
-        Hp: 28225
+        Hp: 31075
       - Level: 270
-        Hp: 28225
+        Hp: 31225
       - Level: 271
-        Hp: 28225
+        Hp: 31375
       - Level: 272
-        Hp: 28225
+        Hp: 31525
       - Level: 273
-        Hp: 28225
+        Hp: 31675
       - Level: 274
-        Hp: 28225
+        Hp: 31825
       - Level: 275
-        Hp: 28225
+        Hp: 31975
+      - Level: 276
+        Hp: 32125
+      - Level: 277
+        Hp: 32275
+      - Level: 278
+        Hp: 32425
+      - Level: 279
+        Hp: 32575
+      - Level: 280
+        Hp: 32725
+      - Level: 281
+        Hp: 32875
+      - Level: 282
+        Hp: 33025
+      - Level: 283
+        Hp: 33175
+      - Level: 284
+        Hp: 33325
+      - Level: 285
+        Hp: 33475
+      - Level: 286
+        Hp: 33625
+      - Level: 287
+        Hp: 33775
+      - Level: 288
+        Hp: 33925
+      - Level: 289
+        Hp: 34075
+      - Level: 290
+        Hp: 34225
+      - Level: 291
+        Hp: 34375
+      - Level: 292
+        Hp: 34525
+      - Level: 293
+        Hp: 34675
+      - Level: 294
+        Hp: 34825
+      - Level: 295
+        Hp: 34975
+      - Level: 296
+        Hp: 35125
+      - Level: 297
+        Hp: 35275
+      - Level: 298
+        Hp: 35425
+      - Level: 299
+        Hp: 35575
+      - Level: 300
+        Hp: 35725
   - Jobs:
       Arch_Mage: true
     BaseHp:
@@ -19864,55 +20014,105 @@ Body:
       - Level: 250
         Hp: 24375
       - Level: 251
-        Hp: 24375
+        Hp: 24550
       - Level: 252
-        Hp: 24375
+        Hp: 24725
       - Level: 253
-        Hp: 24375
+        Hp: 24900
       - Level: 254
-        Hp: 24375
+        Hp: 25075
       - Level: 255
-        Hp: 24375
+        Hp: 25250
       - Level: 256
-        Hp: 24375
+        Hp: 25425
       - Level: 257
-        Hp: 24375
+        Hp: 25600
       - Level: 258
-        Hp: 24375
+        Hp: 25775
       - Level: 259
-        Hp: 24375
+        Hp: 25950
       - Level: 260
-        Hp: 24375
+        Hp: 26125
       - Level: 261
-        Hp: 24375
+        Hp: 26125
       - Level: 262
-        Hp: 24375
+        Hp: 26300
       - Level: 263
-        Hp: 24375
+        Hp: 26475
       - Level: 264
-        Hp: 24375
+        Hp: 26650
       - Level: 265
-        Hp: 24375
+        Hp: 26825
       - Level: 266
-        Hp: 24375
+        Hp: 27000
       - Level: 267
-        Hp: 24375
+        Hp: 27175
       - Level: 268
-        Hp: 24375
+        Hp: 27350
       - Level: 269
-        Hp: 24375
+        Hp: 27525
       - Level: 270
-        Hp: 24375
+        Hp: 27700
       - Level: 271
-        Hp: 24375
+        Hp: 27875
       - Level: 272
-        Hp: 24375
+        Hp: 28050
       - Level: 273
-        Hp: 24375
+        Hp: 28225
       - Level: 274
-        Hp: 24375
+        Hp: 28400
       - Level: 275
-        Hp: 24375
+        Hp: 28575
+      - Level: 276
+        Hp: 28750
+      - Level: 277
+        Hp: 28925
+      - Level: 278
+        Hp: 29100
+      - Level: 279
+        Hp: 29275
+      - Level: 280
+        Hp: 29450
+      - Level: 281
+        Hp: 29625
+      - Level: 282
+        Hp: 29800
+      - Level: 283
+        Hp: 29975
+      - Level: 284
+        Hp: 30150
+      - Level: 285
+        Hp: 30325
+      - Level: 286
+        Hp: 30500
+      - Level: 287
+        Hp: 30675
+      - Level: 288
+        Hp: 30850
+      - Level: 289
+        Hp: 31025
+      - Level: 290
+        Hp: 31200
+      - Level: 291
+        Hp: 31375
+      - Level: 292
+        Hp: 31550
+      - Level: 293
+        Hp: 31725
+      - Level: 294
+        Hp: 31900
+      - Level: 295
+        Hp: 32075
+      - Level: 296
+        Hp: 32250
+      - Level: 297
+        Hp: 32425
+      - Level: 298
+        Hp: 32600
+      - Level: 299
+        Hp: 32775
+      - Level: 300
+        Hp: 32950
   - Jobs:
       Cardinal: true
     BaseHp:
@@ -20019,55 +20219,105 @@ Body:
       - Level: 250
         Hp: 24760
       - Level: 251
-        Hp: 24760
+        Hp: 24935
       - Level: 252
-        Hp: 24760
+        Hp: 25110
       - Level: 253
-        Hp: 24760
+        Hp: 25285
       - Level: 254
-        Hp: 24760
+        Hp: 25460
       - Level: 255
-        Hp: 24760
+        Hp: 25635
       - Level: 256
-        Hp: 24760
+        Hp: 25810
       - Level: 257
-        Hp: 24760
+        Hp: 25985
       - Level: 258
-        Hp: 24760
+        Hp: 26160
       - Level: 259
-        Hp: 24760
+        Hp: 26335
       - Level: 260
-        Hp: 24760
+        Hp: 26510
       - Level: 261
-        Hp: 24760
+        Hp: 26685
       - Level: 262
-        Hp: 24760
+        Hp: 26860
       - Level: 263
-        Hp: 24760
+        Hp: 27035
       - Level: 264
-        Hp: 24760
+        Hp: 27210
       - Level: 265
-        Hp: 24760
+        Hp: 27385
       - Level: 266
-        Hp: 24760
+        Hp: 27560
       - Level: 267
-        Hp: 24760
+        Hp: 27735
       - Level: 268
-        Hp: 24760
+        Hp: 27910
       - Level: 269
-        Hp: 24760
+        Hp: 28085
       - Level: 270
-        Hp: 24760
+        Hp: 28260
       - Level: 271
-        Hp: 24760
+        Hp: 28435
       - Level: 272
-        Hp: 24760
+        Hp: 28610
       - Level: 273
-        Hp: 24760
+        Hp: 28785
       - Level: 274
-        Hp: 24760
+        Hp: 28960
       - Level: 275
-        Hp: 24760
+        Hp: 29135
+      - Level: 276
+        Hp: 29310
+      - Level: 277
+        Hp: 29485
+      - Level: 278
+        Hp: 29660
+      - Level: 279
+        Hp: 29835
+      - Level: 280
+        Hp: 30010
+      - Level: 281
+        Hp: 30185
+      - Level: 282
+        Hp: 30360
+      - Level: 283
+        Hp: 30535
+      - Level: 284
+        Hp: 30710
+      - Level: 285
+        Hp: 30885
+      - Level: 286
+        Hp: 31060
+      - Level: 287
+        Hp: 31235
+      - Level: 288
+        Hp: 31410
+      - Level: 289
+        Hp: 31585
+      - Level: 290
+        Hp: 31760
+      - Level: 291
+        Hp: 31935
+      - Level: 292
+        Hp: 32110
+      - Level: 293
+        Hp: 32285
+      - Level: 294
+        Hp: 32460
+      - Level: 295
+        Hp: 32635
+      - Level: 296
+        Hp: 32810
+      - Level: 297
+        Hp: 32985
+      - Level: 298
+        Hp: 33160
+      - Level: 299
+        Hp: 33335
+      - Level: 300
+        Hp: 33510
   - Jobs:
       Windhawk: true
       Windhawk2: true
@@ -20175,55 +20425,105 @@ Body:
       - Level: 250
         Hp: 25185
       - Level: 251
-        Hp: 25185
+        Hp: 25335
       - Level: 252
-        Hp: 25185
+        Hp: 25485
       - Level: 253
-        Hp: 25185
+        Hp: 25635
       - Level: 254
-        Hp: 25185
+        Hp: 25785
       - Level: 255
-        Hp: 25185
+        Hp: 25935
       - Level: 256
-        Hp: 25185
+        Hp: 26085
       - Level: 257
-        Hp: 25185
+        Hp: 26235
       - Level: 258
-        Hp: 25185
+        Hp: 26385
       - Level: 259
-        Hp: 25185
+        Hp: 26535
       - Level: 260
-        Hp: 25185
+        Hp: 26685
       - Level: 261
-        Hp: 25185
+        Hp: 26835
       - Level: 262
-        Hp: 25185
+        Hp: 26985
       - Level: 263
-        Hp: 25185
+        Hp: 27135
       - Level: 264
-        Hp: 25185
+        Hp: 27285
       - Level: 265
-        Hp: 25185
+        Hp: 27435
       - Level: 266
-        Hp: 25185
+        Hp: 27585
       - Level: 267
-        Hp: 25185
+        Hp: 27735
       - Level: 268
-        Hp: 25185
+        Hp: 27885
       - Level: 269
-        Hp: 25185
+        Hp: 28035
       - Level: 270
-        Hp: 25185
+        Hp: 28185
       - Level: 271
-        Hp: 25185
+        Hp: 28335
       - Level: 272
-        Hp: 25185
+        Hp: 28485
       - Level: 273
-        Hp: 25185
+        Hp: 28635
       - Level: 274
-        Hp: 25185
+        Hp: 28785
       - Level: 275
-        Hp: 25185
+        Hp: 28935
+      - Level: 276
+        Hp: 29085
+      - Level: 277
+        Hp: 29235
+      - Level: 278
+        Hp: 29385
+      - Level: 279
+        Hp: 29535
+      - Level: 280
+        Hp: 29685
+      - Level: 281
+        Hp: 29835
+      - Level: 282
+        Hp: 29985
+      - Level: 283
+        Hp: 30135
+      - Level: 284
+        Hp: 30285
+      - Level: 285
+        Hp: 30435
+      - Level: 286
+        Hp: 30585
+      - Level: 287
+        Hp: 30735
+      - Level: 288
+        Hp: 30885
+      - Level: 289
+        Hp: 31035
+      - Level: 290
+        Hp: 31185
+      - Level: 291
+        Hp: 31335
+      - Level: 292
+        Hp: 31485
+      - Level: 293
+        Hp: 31635
+      - Level: 294
+        Hp: 31785
+      - Level: 295
+        Hp: 31935
+      - Level: 296
+        Hp: 32085
+      - Level: 297
+        Hp: 32235
+      - Level: 298
+        Hp: 32385
+      - Level: 299
+        Hp: 32535
+      - Level: 300
+        Hp: 32685
   - Jobs:
       Imperial_Guard: true
       Imperial_Guard2: true
@@ -20331,55 +20631,105 @@ Body:
       - Level: 250
         Hp: 30505
       - Level: 251
-        Hp: 30505
+        Hp: 30680
       - Level: 252
-        Hp: 30505
+        Hp: 30855
       - Level: 253
-        Hp: 30505
+        Hp: 31030
       - Level: 254
-        Hp: 30505
+        Hp: 31205
       - Level: 255
-        Hp: 30505
+        Hp: 31380
       - Level: 256
-        Hp: 30505
+        Hp: 31555
       - Level: 257
-        Hp: 30505
+        Hp: 31730
       - Level: 258
-        Hp: 30505
+        Hp: 31905
       - Level: 259
-        Hp: 30505
+        Hp: 32080
       - Level: 260
-        Hp: 30505
+        Hp: 32255
       - Level: 261
-        Hp: 30505
+        Hp: 32430
       - Level: 262
-        Hp: 30505
+        Hp: 32605
       - Level: 263
-        Hp: 30505
+        Hp: 32780
       - Level: 264
-        Hp: 30505
+        Hp: 32955
       - Level: 265
-        Hp: 30505
+        Hp: 33130
       - Level: 266
-        Hp: 30505
+        Hp: 33305
       - Level: 267
-        Hp: 30505
+        Hp: 33480
       - Level: 268
-        Hp: 30505
+        Hp: 33655
       - Level: 269
-        Hp: 30505
+        Hp: 33830
       - Level: 270
-        Hp: 30505
+        Hp: 34005
       - Level: 271
-        Hp: 30505
+        Hp: 34180
       - Level: 272
-        Hp: 30505
+        Hp: 34355
       - Level: 273
-        Hp: 30505
+        Hp: 34530
       - Level: 274
-        Hp: 30505
+        Hp: 34705
       - Level: 275
-        Hp: 30505
+        Hp: 34880
+      - Level: 276
+        Hp: 35055
+      - Level: 277
+        Hp: 35230
+      - Level: 278
+        Hp: 35405
+      - Level: 279
+        Hp: 35580
+      - Level: 280
+        Hp: 35755
+      - Level: 281
+        Hp: 35930
+      - Level: 282
+        Hp: 36105
+      - Level: 283
+        Hp: 36280
+      - Level: 284
+        Hp: 36455
+      - Level: 285
+        Hp: 36630
+      - Level: 286
+        Hp: 36805
+      - Level: 287
+        Hp: 36980
+      - Level: 288
+        Hp: 37155
+      - Level: 289
+        Hp: 37330
+      - Level: 290
+        Hp: 37505
+      - Level: 291
+        Hp: 37680
+      - Level: 292
+        Hp: 37855
+      - Level: 293
+        Hp: 38030
+      - Level: 294
+        Hp: 38205
+      - Level: 295
+        Hp: 38380
+      - Level: 296
+        Hp: 38555
+      - Level: 297
+        Hp: 38730
+      - Level: 298
+        Hp: 38905
+      - Level: 299
+        Hp: 39080
+      - Level: 300
+        Hp: 39255
   - Jobs:
       Biolo: true
     BaseHp:
@@ -20486,55 +20836,105 @@ Body:
       - Level: 250
         Hp: 25625
       - Level: 251
-        Hp: 25625
+        Hp: 25800
       - Level: 252
-        Hp: 25625
+        Hp: 25975
       - Level: 253
-        Hp: 25625
+        Hp: 26150
       - Level: 254
-        Hp: 25625
+        Hp: 26325
       - Level: 255
-        Hp: 25625
+        Hp: 26500
       - Level: 256
-        Hp: 25625
+        Hp: 26675
       - Level: 257
-        Hp: 25625
+        Hp: 26850
       - Level: 258
-        Hp: 25625
+        Hp: 27025
       - Level: 259
-        Hp: 25625
+        Hp: 27200
       - Level: 260
-        Hp: 25625
+        Hp: 27375
       - Level: 261
-        Hp: 25625
+        Hp: 27550
       - Level: 262
-        Hp: 25625
+        Hp: 27725
       - Level: 263
-        Hp: 25625
+        Hp: 27900
       - Level: 264
-        Hp: 25625
+        Hp: 28075
       - Level: 265
-        Hp: 25625
+        Hp: 28250
       - Level: 266
-        Hp: 25625
+        Hp: 28425
       - Level: 267
-        Hp: 25625
+        Hp: 28600
       - Level: 268
-        Hp: 25625
+        Hp: 28775
       - Level: 269
-        Hp: 25625
+        Hp: 28950
       - Level: 270
-        Hp: 25625
+        Hp: 29125
       - Level: 271
-        Hp: 25625
+        Hp: 29300
       - Level: 272
-        Hp: 25625
+        Hp: 29475
       - Level: 273
-        Hp: 25625
+        Hp: 29650
       - Level: 274
-        Hp: 25625
+        Hp: 29825
       - Level: 275
-        Hp: 25625
+        Hp: 30000
+      - Level: 276
+        Hp: 30175
+      - Level: 277
+        Hp: 30350
+      - Level: 278
+        Hp: 30525
+      - Level: 279
+        Hp: 30700
+      - Level: 280
+        Hp: 30875
+      - Level: 281
+        Hp: 31050
+      - Level: 282
+        Hp: 31225
+      - Level: 283
+        Hp: 31400
+      - Level: 284
+        Hp: 31575
+      - Level: 285
+        Hp: 31750
+      - Level: 286
+        Hp: 31925
+      - Level: 287
+        Hp: 32100
+      - Level: 288
+        Hp: 32275
+      - Level: 289
+        Hp: 32450
+      - Level: 290
+        Hp: 32625
+      - Level: 291
+        Hp: 32800
+      - Level: 292
+        Hp: 32975
+      - Level: 293
+        Hp: 33150
+      - Level: 294
+        Hp: 33325
+      - Level: 295
+        Hp: 33500
+      - Level: 296
+        Hp: 33675
+      - Level: 297
+        Hp: 33850
+      - Level: 298
+        Hp: 34025
+      - Level: 299
+        Hp: 34200
+      - Level: 300
+        Hp: 34375
   - Jobs:
       Abyss_Chaser: true
     BaseHp:
@@ -20641,55 +21041,105 @@ Body:
       - Level: 250
         Hp: 24445
       - Level: 251
-        Hp: 24445
+        Hp: 24560
       - Level: 252
-        Hp: 24445
+        Hp: 24675
       - Level: 253
-        Hp: 24445
+        Hp: 24790
       - Level: 254
-        Hp: 24445
+        Hp: 24905
       - Level: 255
-        Hp: 24445
+        Hp: 25020
       - Level: 256
-        Hp: 24445
+        Hp: 25135
       - Level: 257
-        Hp: 24445
+        Hp: 25250
       - Level: 258
-        Hp: 24445
+        Hp: 25365
       - Level: 259
-        Hp: 24445
+        Hp: 25480
       - Level: 260
-        Hp: 24445
+        Hp: 25595
       - Level: 261
-        Hp: 24445
+        Hp: 25710
       - Level: 262
-        Hp: 24445
+        Hp: 25825
       - Level: 263
-        Hp: 24445
+        Hp: 25940
       - Level: 264
-        Hp: 24445
+        Hp: 26055
       - Level: 265
-        Hp: 24445
+        Hp: 26170
       - Level: 266
-        Hp: 24445
+        Hp: 26285
       - Level: 267
-        Hp: 24445
+        Hp: 26400
       - Level: 268
-        Hp: 24445
+        Hp: 26515
       - Level: 269
-        Hp: 24445
+        Hp: 26630
       - Level: 270
-        Hp: 24445
+        Hp: 26745
       - Level: 271
-        Hp: 24445
+        Hp: 26860
       - Level: 272
-        Hp: 24445
+        Hp: 26975
       - Level: 273
-        Hp: 24445
+        Hp: 27090
       - Level: 274
-        Hp: 24445
+        Hp: 27205
       - Level: 275
-        Hp: 24445
+        Hp: 27320
+      - Level: 276
+        Hp: 27435
+      - Level: 277
+        Hp: 27550
+      - Level: 278
+        Hp: 27665
+      - Level: 279
+        Hp: 27780
+      - Level: 280
+        Hp: 27895
+      - Level: 281
+        Hp: 28010
+      - Level: 282
+        Hp: 28125
+      - Level: 283
+        Hp: 28240
+      - Level: 284
+        Hp: 28355
+      - Level: 285
+        Hp: 28470
+      - Level: 286
+        Hp: 28585
+      - Level: 287
+        Hp: 28700
+      - Level: 288
+        Hp: 28815
+      - Level: 289
+        Hp: 28930
+      - Level: 290
+        Hp: 29045
+      - Level: 291
+        Hp: 29160
+      - Level: 292
+        Hp: 29275
+      - Level: 293
+        Hp: 29390
+      - Level: 294
+        Hp: 29505
+      - Level: 295
+        Hp: 29620
+      - Level: 296
+        Hp: 29735
+      - Level: 297
+        Hp: 29850
+      - Level: 298
+        Hp: 29965
+      - Level: 299
+        Hp: 30080
+      - Level: 300
+        Hp: 30195
   - Jobs:
       Elemental_Master: true
     BaseHp:
@@ -20796,55 +21246,105 @@ Body:
       - Level: 250
         Hp: 21960
       - Level: 251
-        Hp: 21960
+        Hp: 22095
       - Level: 252
-        Hp: 21960
+        Hp: 22230
       - Level: 253
-        Hp: 21960
+        Hp: 22365
       - Level: 254
-        Hp: 21960
+        Hp: 22500
       - Level: 255
-        Hp: 21960
+        Hp: 22635
       - Level: 256
-        Hp: 21960
+        Hp: 22770
       - Level: 257
-        Hp: 21960
+        Hp: 22905
       - Level: 258
-        Hp: 21960
+        Hp: 23040
       - Level: 259
-        Hp: 21960
+        Hp: 23175
       - Level: 260
-        Hp: 21960
+        Hp: 23310
       - Level: 261
-        Hp: 21960
+        Hp: 23445
       - Level: 262
-        Hp: 21960
+        Hp: 23580
       - Level: 263
-        Hp: 21960
+        Hp: 23715
       - Level: 264
-        Hp: 21960
+        Hp: 23850
       - Level: 265
-        Hp: 21960
+        Hp: 23985
       - Level: 266
-        Hp: 21960
+        Hp: 24120
       - Level: 267
-        Hp: 21960
+        Hp: 24255
       - Level: 268
-        Hp: 21960
+        Hp: 24390
       - Level: 269
-        Hp: 21960
+        Hp: 24525
       - Level: 270
-        Hp: 21960
+        Hp: 24660
       - Level: 271
-        Hp: 21960
+        Hp: 24795
       - Level: 272
-        Hp: 21960
+        Hp: 24930
       - Level: 273
-        Hp: 21960
+        Hp: 25065
       - Level: 274
-        Hp: 21960
+        Hp: 25200
       - Level: 275
-        Hp: 21960
+        Hp: 25335
+      - Level: 276
+        Hp: 25470
+      - Level: 277
+        Hp: 25605
+      - Level: 278
+        Hp: 25740
+      - Level: 279
+        Hp: 25875
+      - Level: 280
+        Hp: 26010
+      - Level: 281
+        Hp: 26145
+      - Level: 282
+        Hp: 26280
+      - Level: 283
+        Hp: 26415
+      - Level: 284
+        Hp: 26550
+      - Level: 285
+        Hp: 26685
+      - Level: 286
+        Hp: 26820
+      - Level: 287
+        Hp: 26955
+      - Level: 288
+        Hp: 27090
+      - Level: 289
+        Hp: 27225
+      - Level: 290
+        Hp: 27360
+      - Level: 291
+        Hp: 27495
+      - Level: 292
+        Hp: 27630
+      - Level: 293
+        Hp: 27765
+      - Level: 294
+        Hp: 27900
+      - Level: 295
+        Hp: 28035
+      - Level: 296
+        Hp: 28170
+      - Level: 297
+        Hp: 28305
+      - Level: 298
+        Hp: 28440
+      - Level: 299
+        Hp: 28575
+      - Level: 300
+        Hp: 28710
   - Jobs:
       Inquisitor: true
     BaseHp:
@@ -20951,55 +21451,105 @@ Body:
       - Level: 250
         Hp: 26110
       - Level: 251
-        Hp: 26110
+        Hp: 26265
       - Level: 252
-        Hp: 26110
+        Hp: 26420
       - Level: 253
-        Hp: 26110
+        Hp: 26575
       - Level: 254
-        Hp: 26110
+        Hp: 26730
       - Level: 255
-        Hp: 26110
+        Hp: 26885
       - Level: 256
-        Hp: 26110
+        Hp: 27040
       - Level: 257
-        Hp: 26110
+        Hp: 27195
       - Level: 258
-        Hp: 26110
+        Hp: 27350
       - Level: 259
-        Hp: 26110
+        Hp: 27505
       - Level: 260
-        Hp: 26110
+        Hp: 27660
       - Level: 261
-        Hp: 26110
+        Hp: 27815
       - Level: 262
-        Hp: 26110
+        Hp: 27970
       - Level: 263
-        Hp: 26110
+        Hp: 28125
       - Level: 264
-        Hp: 26110
+        Hp: 28280
       - Level: 265
-        Hp: 26110
+        Hp: 28435
       - Level: 266
-        Hp: 26110
+        Hp: 28590
       - Level: 267
-        Hp: 26110
+        Hp: 28745
       - Level: 268
-        Hp: 26110
+        Hp: 28900
       - Level: 269
-        Hp: 26110
+        Hp: 29055
       - Level: 270
-        Hp: 26110
+        Hp: 29210
       - Level: 271
-        Hp: 26110
+        Hp: 29365
       - Level: 272
-        Hp: 26110
+        Hp: 29520
       - Level: 273
-        Hp: 26110
+        Hp: 29675
       - Level: 274
-        Hp: 26110
+        Hp: 29830
       - Level: 275
-        Hp: 26110
+        Hp: 29985
+      - Level: 276
+        Hp: 30140
+      - Level: 277
+        Hp: 30295
+      - Level: 278
+        Hp: 30450
+      - Level: 279
+        Hp: 30605
+      - Level: 280
+        Hp: 30760
+      - Level: 281
+        Hp: 30915
+      - Level: 282
+        Hp: 31070
+      - Level: 283
+        Hp: 31225
+      - Level: 284
+        Hp: 31380
+      - Level: 285
+        Hp: 31535
+      - Level: 286
+        Hp: 31690
+      - Level: 287
+        Hp: 31845
+      - Level: 288
+        Hp: 32000
+      - Level: 289
+        Hp: 32155
+      - Level: 290
+        Hp: 32310
+      - Level: 291
+        Hp: 32465
+      - Level: 292
+        Hp: 32620
+      - Level: 293
+        Hp: 32775
+      - Level: 294
+        Hp: 32930
+      - Level: 295
+        Hp: 33085
+      - Level: 296
+        Hp: 33240
+      - Level: 297
+        Hp: 33395
+      - Level: 298
+        Hp: 33550
+      - Level: 299
+        Hp: 33705
+      - Level: 300
+        Hp: 33860
   - Jobs:
       Troubadour: true
     BaseHp:
@@ -21106,55 +21656,105 @@ Body:
       - Level: 250
         Hp: 25180
       - Level: 251
-        Hp: 25180
+        Hp: 25330
       - Level: 252
-        Hp: 25180
+        Hp: 25480
       - Level: 253
-        Hp: 25180
+        Hp: 25630
       - Level: 254
-        Hp: 25180
+        Hp: 25780
       - Level: 255
-        Hp: 25180
+        Hp: 25930
       - Level: 256
-        Hp: 25180
+        Hp: 26080
       - Level: 257
-        Hp: 25180
+        Hp: 26230
       - Level: 258
-        Hp: 25180
+        Hp: 26380
       - Level: 259
-        Hp: 25180
+        Hp: 26530
       - Level: 260
-        Hp: 25180
+        Hp: 26680
       - Level: 261
-        Hp: 25180
+        Hp: 26830
       - Level: 262
-        Hp: 25180
+        Hp: 26980
       - Level: 263
-        Hp: 25180
+        Hp: 27130
       - Level: 264
-        Hp: 25180
+        Hp: 27280
       - Level: 265
-        Hp: 25180
+        Hp: 27430
       - Level: 266
-        Hp: 25180
+        Hp: 27580
       - Level: 267
-        Hp: 25180
+        Hp: 27730
       - Level: 268
-        Hp: 25180
+        Hp: 27880
       - Level: 269
-        Hp: 25180
+        Hp: 28030
       - Level: 270
-        Hp: 25180
+        Hp: 28180
       - Level: 271
-        Hp: 25180
+        Hp: 28330
       - Level: 272
-        Hp: 25180
+        Hp: 28480
       - Level: 273
-        Hp: 25180
+        Hp: 28630
       - Level: 274
-        Hp: 25180
+        Hp: 28780
       - Level: 275
-        Hp: 25180
+        Hp: 28930
+      - Level: 276
+        Hp: 29080
+      - Level: 277
+        Hp: 29230
+      - Level: 278
+        Hp: 29380
+      - Level: 279
+        Hp: 29530
+      - Level: 280
+        Hp: 29680
+      - Level: 281
+        Hp: 29830
+      - Level: 282
+        Hp: 29980
+      - Level: 283
+        Hp: 30130
+      - Level: 284
+        Hp: 30280
+      - Level: 285
+        Hp: 30430
+      - Level: 286
+        Hp: 30580
+      - Level: 287
+        Hp: 30730
+      - Level: 288
+        Hp: 30880
+      - Level: 289
+        Hp: 31030
+      - Level: 290
+        Hp: 31180
+      - Level: 291
+        Hp: 31330
+      - Level: 292
+        Hp: 31480
+      - Level: 293
+        Hp: 31630
+      - Level: 294
+        Hp: 31780
+      - Level: 295
+        Hp: 31930
+      - Level: 296
+        Hp: 32080
+      - Level: 297
+        Hp: 32230
+      - Level: 298
+        Hp: 32380
+      - Level: 299
+        Hp: 32530
+      - Level: 300
+        Hp: 32680
   - Jobs:
       Trouvere: true
     BaseHp:
@@ -21261,55 +21861,105 @@ Body:
       - Level: 250
         Hp: 25180
       - Level: 251
-        Hp: 25180
+        Hp: 25330
       - Level: 252
-        Hp: 25180
+        Hp: 25480
       - Level: 253
-        Hp: 25180
+        Hp: 25630
       - Level: 254
-        Hp: 25180
+        Hp: 25780
       - Level: 255
-        Hp: 25180
+        Hp: 25930
       - Level: 256
-        Hp: 25180
+        Hp: 26080
       - Level: 257
-        Hp: 25180
+        Hp: 26230
       - Level: 258
-        Hp: 25180
+        Hp: 26380
       - Level: 259
-        Hp: 25180
+        Hp: 26530
       - Level: 260
-        Hp: 25180
+        Hp: 26680
       - Level: 261
-        Hp: 25180
+        Hp: 26830
       - Level: 262
-        Hp: 25180
+        Hp: 26980
       - Level: 263
-        Hp: 25180
+        Hp: 27130
       - Level: 264
-        Hp: 25180
+        Hp: 27280
       - Level: 265
-        Hp: 25180
+        Hp: 27430
       - Level: 266
-        Hp: 25180
+        Hp: 27580
       - Level: 267
-        Hp: 25180
+        Hp: 27730
       - Level: 268
-        Hp: 25180
+        Hp: 27880
       - Level: 269
-        Hp: 25180
+        Hp: 28030
       - Level: 270
-        Hp: 25180
+        Hp: 28180
       - Level: 271
-        Hp: 25180
+        Hp: 28330
       - Level: 272
-        Hp: 25180
+        Hp: 28480
       - Level: 273
-        Hp: 25180
+        Hp: 28630
       - Level: 274
-        Hp: 25180
+        Hp: 28780
       - Level: 275
-        Hp: 25180
+        Hp: 28930
+      - Level: 276
+        Hp: 29080
+      - Level: 277
+        Hp: 29230
+      - Level: 278
+        Hp: 29380
+      - Level: 279
+        Hp: 29530
+      - Level: 280
+        Hp: 29680
+      - Level: 281
+        Hp: 29830
+      - Level: 282
+        Hp: 29980
+      - Level: 283
+        Hp: 30130
+      - Level: 284
+        Hp: 30280
+      - Level: 285
+        Hp: 30430
+      - Level: 286
+        Hp: 30580
+      - Level: 287
+        Hp: 30730
+      - Level: 288
+        Hp: 30880
+      - Level: 289
+        Hp: 31030
+      - Level: 290
+        Hp: 31180
+      - Level: 291
+        Hp: 31330
+      - Level: 292
+        Hp: 31480
+      - Level: 293
+        Hp: 31630
+      - Level: 294
+        Hp: 31780
+      - Level: 295
+        Hp: 31930
+      - Level: 296
+        Hp: 32080
+      - Level: 297
+        Hp: 32230
+      - Level: 298
+        Hp: 32380
+      - Level: 299
+        Hp: 32530
+      - Level: 300
+        Hp: 32680
   - Jobs:
       Sky_Emperor: true
       Sky_Emperor2: true
@@ -21417,55 +22067,105 @@ Body:
       - Level: 250
         Hp: 13862
       - Level: 251
-        Hp: 13862
+        Hp: 13924
       - Level: 252
-        Hp: 13862
+        Hp: 13986
       - Level: 253
-        Hp: 13862
+        Hp: 14048
       - Level: 254
-        Hp: 13862
+        Hp: 14110
       - Level: 255
-        Hp: 13862
+        Hp: 14172
       - Level: 256
-        Hp: 13862
+        Hp: 14234
       - Level: 257
-        Hp: 13862
+        Hp: 14296
       - Level: 258
-        Hp: 13862
+        Hp: 14358
       - Level: 259
-        Hp: 13862
+        Hp: 14420
       - Level: 260
-        Hp: 13862
+        Hp: 14482
       - Level: 261
-        Hp: 13862
+        Hp: 14544
       - Level: 262
-        Hp: 13862
+        Hp: 14606
       - Level: 263
-        Hp: 13862
+        Hp: 14668
       - Level: 264
-        Hp: 13862
+        Hp: 14730
       - Level: 265
-        Hp: 13862
+        Hp: 14792
       - Level: 266
-        Hp: 13862
+        Hp: 14854
       - Level: 267
-        Hp: 13862
+        Hp: 14916
       - Level: 268
-        Hp: 13862
+        Hp: 14978
       - Level: 269
-        Hp: 13862
+        Hp: 15040
       - Level: 270
-        Hp: 13862
+        Hp: 15102
       - Level: 271
-        Hp: 13862
+        Hp: 15164
       - Level: 272
-        Hp: 13862
+        Hp: 15226
       - Level: 273
-        Hp: 13862
+        Hp: 15288
       - Level: 274
-        Hp: 13862
+        Hp: 15350
       - Level: 275
-        Hp: 13862
+        Hp: 15412
+      - Level: 276
+        Hp: 15474
+      - Level: 277
+        Hp: 15536
+      - Level: 278
+        Hp: 15598
+      - Level: 279
+        Hp: 15660
+      - Level: 280
+        Hp: 15722
+      - Level: 281
+        Hp: 15784
+      - Level: 282
+        Hp: 15846
+      - Level: 283
+        Hp: 15908
+      - Level: 284
+        Hp: 15970
+      - Level: 285
+        Hp: 16032
+      - Level: 286
+        Hp: 16094
+      - Level: 287
+        Hp: 16156
+      - Level: 288
+        Hp: 16218
+      - Level: 289
+        Hp: 16280
+      - Level: 290
+        Hp: 16342
+      - Level: 291
+        Hp: 16404
+      - Level: 292
+        Hp: 16466
+      - Level: 293
+        Hp: 16528
+      - Level: 294
+        Hp: 16590
+      - Level: 295
+        Hp: 16652
+      - Level: 296
+        Hp: 16714
+      - Level: 297
+        Hp: 16776
+      - Level: 298
+        Hp: 16838
+      - Level: 299
+        Hp: 16900
+      - Level: 300
+        Hp: 16962
   - Jobs:
       Soul_Ascetic: true
     BaseHp:
@@ -21572,55 +22272,105 @@ Body:
       - Level: 250
         Hp: 12555
       - Level: 251
-        Hp: 12555
+        Hp: 12610
       - Level: 252
-        Hp: 12555
+        Hp: 12665
       - Level: 253
-        Hp: 12555
+        Hp: 12720
       - Level: 254
-        Hp: 12555
+        Hp: 12775
       - Level: 255
-        Hp: 12555
+        Hp: 12830
       - Level: 256
-        Hp: 12555
+        Hp: 12885
       - Level: 257
-        Hp: 12555
+        Hp: 12940
       - Level: 258
-        Hp: 12555
+        Hp: 12995
       - Level: 259
-        Hp: 12555
+        Hp: 13050
       - Level: 260
-        Hp: 12555
+        Hp: 13105
       - Level: 261
-        Hp: 12555
+        Hp: 13160
       - Level: 262
-        Hp: 12555
+        Hp: 13215
       - Level: 263
-        Hp: 12555
+        Hp: 13270
       - Level: 264
-        Hp: 12555
+        Hp: 13325
       - Level: 265
-        Hp: 12555
+        Hp: 13380
       - Level: 266
-        Hp: 12555
+        Hp: 13435
       - Level: 267
-        Hp: 12555
+        Hp: 13490
       - Level: 268
-        Hp: 12555
+        Hp: 13545
       - Level: 269
-        Hp: 12555
+        Hp: 13600
       - Level: 270
-        Hp: 12555
+        Hp: 13655
       - Level: 271
-        Hp: 12555
+        Hp: 13710
       - Level: 272
-        Hp: 12555
+        Hp: 13765
       - Level: 273
-        Hp: 12555
+        Hp: 13820
       - Level: 274
-        Hp: 12555
+        Hp: 13875
       - Level: 275
-        Hp: 12555
+        Hp: 13930
+      - Level: 276
+        Hp: 13985
+      - Level: 277
+        Hp: 14040
+      - Level: 278
+        Hp: 14095
+      - Level: 279
+        Hp: 14150
+      - Level: 280
+        Hp: 14205
+      - Level: 281
+        Hp: 14260
+      - Level: 282
+        Hp: 14315
+      - Level: 283
+        Hp: 14370
+      - Level: 284
+        Hp: 14425
+      - Level: 285
+        Hp: 14480
+      - Level: 286
+        Hp: 14535
+      - Level: 287
+        Hp: 14590
+      - Level: 288
+        Hp: 14645
+      - Level: 289
+        Hp: 14700
+      - Level: 290
+        Hp: 14755
+      - Level: 291
+        Hp: 14810
+      - Level: 292
+        Hp: 14865
+      - Level: 293
+        Hp: 14920
+      - Level: 294
+        Hp: 14975
+      - Level: 295
+        Hp: 15030
+      - Level: 296
+        Hp: 15085
+      - Level: 297
+        Hp: 15140
+      - Level: 298
+        Hp: 15195
+      - Level: 299
+        Hp: 15250
+      - Level: 300
+        Hp: 15305
   - Jobs:
       Shinkiro: true
     BaseHp:
@@ -21727,55 +22477,105 @@ Body:
       - Level: 250
         Hp: 22955
       - Level: 251
-        Hp: 22955
+        Hp: 23110
       - Level: 252
-        Hp: 22955
+        Hp: 23265
       - Level: 253
-        Hp: 22955
+        Hp: 23420
       - Level: 254
-        Hp: 22955
+        Hp: 23575
       - Level: 255
-        Hp: 22955
+        Hp: 23730
       - Level: 256
-        Hp: 22955
+        Hp: 23885
       - Level: 257
-        Hp: 22955
+        Hp: 24040
       - Level: 258
-        Hp: 22955
+        Hp: 24195
       - Level: 259
-        Hp: 22955
+        Hp: 24350
       - Level: 260
-        Hp: 22955
+        Hp: 24505
       - Level: 261
-        Hp: 22955
+        Hp: 24660
       - Level: 262
-        Hp: 22955
+        Hp: 24815
       - Level: 263
-        Hp: 22955
+        Hp: 24970
       - Level: 264
-        Hp: 22955
+        Hp: 25125
       - Level: 265
-        Hp: 22955
+        Hp: 25280
       - Level: 266
-        Hp: 22955
+        Hp: 25435
       - Level: 267
-        Hp: 22955
+        Hp: 25590
       - Level: 268
-        Hp: 22955
+        Hp: 25745
       - Level: 269
-        Hp: 22955
+        Hp: 25900
       - Level: 270
-        Hp: 22955
+        Hp: 26055
       - Level: 271
-        Hp: 22955
+        Hp: 26210
       - Level: 272
-        Hp: 22955
+        Hp: 26365
       - Level: 273
-        Hp: 22955
+        Hp: 26520
       - Level: 274
-        Hp: 22955
+        Hp: 26675
       - Level: 275
-        Hp: 22955
+        Hp: 26830
+      - Level: 276
+        Hp: 26985
+      - Level: 277
+        Hp: 27140
+      - Level: 278
+        Hp: 27295
+      - Level: 279
+        Hp: 27450
+      - Level: 280
+        Hp: 27605
+      - Level: 281
+        Hp: 27760
+      - Level: 282
+        Hp: 27915
+      - Level: 283
+        Hp: 28070
+      - Level: 284
+        Hp: 28225
+      - Level: 285
+        Hp: 28380
+      - Level: 286
+        Hp: 28535
+      - Level: 287
+        Hp: 28690
+      - Level: 288
+        Hp: 28845
+      - Level: 289
+        Hp: 29000
+      - Level: 290
+        Hp: 29155
+      - Level: 291
+        Hp: 29310
+      - Level: 292
+        Hp: 29465
+      - Level: 293
+        Hp: 29620
+      - Level: 294
+        Hp: 29775
+      - Level: 295
+        Hp: 29930
+      - Level: 296
+        Hp: 30085
+      - Level: 297
+        Hp: 30240
+      - Level: 298
+        Hp: 30395
+      - Level: 299
+        Hp: 30550
+      - Level: 300
+        Hp: 30705
   - Jobs:
       Shiranui: true
     BaseHp:
@@ -21882,55 +22682,105 @@ Body:
       - Level: 250
         Hp: 22655
       - Level: 251
-        Hp: 22655
+        Hp: 22810
       - Level: 252
-        Hp: 22655
+        Hp: 22965
       - Level: 253
-        Hp: 22655
+        Hp: 23120
       - Level: 254
-        Hp: 22655
+        Hp: 23275
       - Level: 255
-        Hp: 22655
+        Hp: 23430
       - Level: 256
-        Hp: 22655
+        Hp: 23585
       - Level: 257
-        Hp: 22655
+        Hp: 23740
       - Level: 258
-        Hp: 22655
+        Hp: 23895
       - Level: 259
-        Hp: 22655
+        Hp: 24050
       - Level: 260
-        Hp: 22655
+        Hp: 24205
       - Level: 261
-        Hp: 22655
+        Hp: 24360
       - Level: 262
-        Hp: 22655
+        Hp: 24515
       - Level: 263
-        Hp: 22655
+        Hp: 24670
       - Level: 264
-        Hp: 22655
+        Hp: 24825
       - Level: 265
-        Hp: 22655
+        Hp: 24980
       - Level: 266
-        Hp: 22655
+        Hp: 25135
       - Level: 267
-        Hp: 22655
+        Hp: 25290
       - Level: 268
-        Hp: 22655
+        Hp: 25445
       - Level: 269
-        Hp: 22655
+        Hp: 25600
       - Level: 270
-        Hp: 22655
+        Hp: 25755
       - Level: 271
-        Hp: 22655
+        Hp: 25910
       - Level: 272
-        Hp: 22655
+        Hp: 26065
       - Level: 273
-        Hp: 22655
+        Hp: 26220
       - Level: 274
-        Hp: 22655
+        Hp: 26375
       - Level: 275
-        Hp: 22655
+        Hp: 26530
+      - Level: 276
+        Hp: 26685
+      - Level: 277
+        Hp: 26840
+      - Level: 278
+        Hp: 26995
+      - Level: 279
+        Hp: 27150
+      - Level: 280
+        Hp: 27305
+      - Level: 281
+        Hp: 27460
+      - Level: 282
+        Hp: 27615
+      - Level: 283
+        Hp: 27770
+      - Level: 284
+        Hp: 27925
+      - Level: 285
+        Hp: 28080
+      - Level: 286
+        Hp: 28235
+      - Level: 287
+        Hp: 28390
+      - Level: 288
+        Hp: 28545
+      - Level: 289
+        Hp: 28700
+      - Level: 290
+        Hp: 28855
+      - Level: 291
+        Hp: 29010
+      - Level: 292
+        Hp: 29165
+      - Level: 293
+        Hp: 29320
+      - Level: 294
+        Hp: 29475
+      - Level: 295
+        Hp: 29630
+      - Level: 296
+        Hp: 29785
+      - Level: 297
+        Hp: 29940
+      - Level: 298
+        Hp: 30095
+      - Level: 299
+        Hp: 30250
+      - Level: 300
+        Hp: 30405
   - Jobs:
       Night_Watch: true
     BaseHp:
@@ -22037,55 +22887,105 @@ Body:
       - Level: 250
         Hp: 26467
       - Level: 251
-        Hp: 26467
+        Hp: 26608
       - Level: 252
-        Hp: 26467
+        Hp: 26749
       - Level: 253
-        Hp: 26467
+        Hp: 26890
       - Level: 254
-        Hp: 26467
+        Hp: 27031
       - Level: 255
-        Hp: 26467
+        Hp: 27172
       - Level: 256
-        Hp: 26467
+        Hp: 27313
       - Level: 257
-        Hp: 26467
+        Hp: 27454
       - Level: 258
-        Hp: 26467
+        Hp: 27595
       - Level: 259
-        Hp: 26467
+        Hp: 27736
       - Level: 260
-        Hp: 26467
+        Hp: 27877
       - Level: 261
-        Hp: 26467
+        Hp: 28018
       - Level: 262
-        Hp: 26467
+        Hp: 28159
       - Level: 263
-        Hp: 26467
+        Hp: 28300
       - Level: 264
-        Hp: 26467
+        Hp: 28441
       - Level: 265
-        Hp: 26467
+        Hp: 28582
       - Level: 266
-        Hp: 26467
+        Hp: 28723
       - Level: 267
-        Hp: 26467
+        Hp: 28864
       - Level: 268
-        Hp: 26467
+        Hp: 29005
       - Level: 269
-        Hp: 26467
+        Hp: 29146
       - Level: 270
-        Hp: 26467
+        Hp: 29287
       - Level: 271
-        Hp: 26467
+        Hp: 29428
       - Level: 272
-        Hp: 26467
+        Hp: 29569
       - Level: 273
-        Hp: 26467
+        Hp: 29710
       - Level: 274
-        Hp: 26467
+        Hp: 29851
       - Level: 275
-        Hp: 26467
+        Hp: 29992
+      - Level: 276
+        Hp: 30133
+      - Level: 277
+        Hp: 30274
+      - Level: 278
+        Hp: 30415
+      - Level: 279
+        Hp: 30556
+      - Level: 280
+        Hp: 30697
+      - Level: 281
+        Hp: 30838
+      - Level: 282
+        Hp: 30979
+      - Level: 283
+        Hp: 31120
+      - Level: 284
+        Hp: 31261
+      - Level: 285
+        Hp: 31402
+      - Level: 286
+        Hp: 31543
+      - Level: 287
+        Hp: 31684
+      - Level: 288
+        Hp: 31825
+      - Level: 289
+        Hp: 31966
+      - Level: 290
+        Hp: 32107
+      - Level: 291
+        Hp: 32248
+      - Level: 292
+        Hp: 32389
+      - Level: 293
+        Hp: 32530
+      - Level: 294
+        Hp: 32671
+      - Level: 295
+        Hp: 32812
+      - Level: 296
+        Hp: 32953
+      - Level: 297
+        Hp: 33094
+      - Level: 298
+        Hp: 33235
+      - Level: 299
+        Hp: 33376
+      - Level: 300
+        Hp: 33517
   - Jobs:
       Hyper_Novice: true
     BaseHp:
@@ -22192,55 +23092,105 @@ Body:
       - Level: 250
         Hp: 5285
       - Level: 251
-        Hp: 5285
+        Hp: 5290
       - Level: 252
-        Hp: 5285
+        Hp: 5295
       - Level: 253
-        Hp: 5285
+        Hp: 5300
       - Level: 254
-        Hp: 5285
+        Hp: 5305
       - Level: 255
-        Hp: 5285
+        Hp: 5310
       - Level: 256
-        Hp: 5285
+        Hp: 5315
       - Level: 257
-        Hp: 5285
+        Hp: 5320
       - Level: 258
-        Hp: 5285
+        Hp: 5325
       - Level: 259
-        Hp: 5285
+        Hp: 5330
       - Level: 260
-        Hp: 5285
+        Hp: 5335
       - Level: 261
-        Hp: 5285
+        Hp: 5340
       - Level: 262
-        Hp: 5285
+        Hp: 5345
       - Level: 263
-        Hp: 5285
+        Hp: 5350
       - Level: 264
-        Hp: 5285
+        Hp: 5355
       - Level: 265
-        Hp: 5285
+        Hp: 5360
       - Level: 266
-        Hp: 5285
+        Hp: 5365
       - Level: 267
-        Hp: 5285
+        Hp: 5370
       - Level: 268
-        Hp: 5285
+        Hp: 5375
       - Level: 269
-        Hp: 5285
+        Hp: 5380
       - Level: 270
-        Hp: 5285
+        Hp: 5385
       - Level: 271
-        Hp: 5285
+        Hp: 5390
       - Level: 272
-        Hp: 5285
+        Hp: 5395
       - Level: 273
-        Hp: 5285
+        Hp: 5400
       - Level: 274
-        Hp: 5285
+        Hp: 5405
       - Level: 275
-        Hp: 5285
+        Hp: 5410
+      - Level: 276
+        Hp: 5415
+      - Level: 277
+        Hp: 5420
+      - Level: 278
+        Hp: 5425
+      - Level: 279
+        Hp: 5430
+      - Level: 280
+        Hp: 5435
+      - Level: 281
+        Hp: 5440
+      - Level: 282
+        Hp: 5445
+      - Level: 283
+        Hp: 5450
+      - Level: 284
+        Hp: 5455
+      - Level: 285
+        Hp: 5460
+      - Level: 286
+        Hp: 5465
+      - Level: 287
+        Hp: 5470
+      - Level: 288
+        Hp: 5475
+      - Level: 289
+        Hp: 5480
+      - Level: 290
+        Hp: 5485
+      - Level: 291
+        Hp: 5490
+      - Level: 292
+        Hp: 5495
+      - Level: 293
+        Hp: 5500
+      - Level: 294
+        Hp: 5505
+      - Level: 295
+        Hp: 5510
+      - Level: 296
+        Hp: 5515
+      - Level: 297
+        Hp: 5520
+      - Level: 298
+        Hp: 5525
+      - Level: 299
+        Hp: 5530
+      - Level: 300
+        Hp: 5535
   - Jobs:
       Spirit_Handler: true
     BaseHp:
@@ -22347,55 +23297,105 @@ Body:
       - Level: 250
         Hp: 31947
       - Level: 251
-        Hp: 31947
+        Hp: 32119
       - Level: 252
-        Hp: 31947
+        Hp: 32291
       - Level: 253
-        Hp: 31947
+        Hp: 32463
       - Level: 254
-        Hp: 31947
+        Hp: 32635
       - Level: 255
-        Hp: 31947
+        Hp: 32807
       - Level: 256
-        Hp: 31947
+        Hp: 32979
       - Level: 257
-        Hp: 31947
+        Hp: 33151
       - Level: 258
-        Hp: 31947
+        Hp: 33323
       - Level: 259
-        Hp: 31947
+        Hp: 33495
       - Level: 260
-        Hp: 31947
+        Hp: 33667
       - Level: 261
-        Hp: 31947
+        Hp: 33839
       - Level: 262
-        Hp: 31947
+        Hp: 34011
       - Level: 263
-        Hp: 31947
+        Hp: 34183
       - Level: 264
-        Hp: 31947
+        Hp: 34355
       - Level: 265
-        Hp: 31947
+        Hp: 34527
       - Level: 266
-        Hp: 31947
+        Hp: 34699
       - Level: 267
-        Hp: 31947
+        Hp: 34871
       - Level: 268
-        Hp: 31947
+        Hp: 35043
       - Level: 269
-        Hp: 31947
+        Hp: 35215
       - Level: 270
-        Hp: 31947
+        Hp: 35387
       - Level: 271
-        Hp: 31947
+        Hp: 35559
       - Level: 272
-        Hp: 31947
+        Hp: 35731
       - Level: 273
-        Hp: 31947
+        Hp: 35903
       - Level: 274
-        Hp: 31947
+        Hp: 36075
       - Level: 275
-        Hp: 31947
+        Hp: 36247
+      - Level: 276
+        Hp: 36419
+      - Level: 277
+        Hp: 36591
+      - Level: 278
+        Hp: 36763
+      - Level: 279
+        Hp: 36935
+      - Level: 280
+        Hp: 37107
+      - Level: 281
+        Hp: 37279
+      - Level: 282
+        Hp: 37451
+      - Level: 283
+        Hp: 37623
+      - Level: 284
+        Hp: 37795
+      - Level: 285
+        Hp: 37967
+      - Level: 286
+        Hp: 38139
+      - Level: 287
+        Hp: 38311
+      - Level: 288
+        Hp: 38483
+      - Level: 289
+        Hp: 38655
+      - Level: 290
+        Hp: 38827
+      - Level: 291
+        Hp: 38999
+      - Level: 292
+        Hp: 39171
+      - Level: 293
+        Hp: 39343
+      - Level: 294
+        Hp: 39515
+      - Level: 295
+        Hp: 39687
+      - Level: 296
+        Hp: 39859
+      - Level: 297
+        Hp: 40031
+      - Level: 298
+        Hp: 40203
+      - Level: 299
+        Hp: 40375
+      - Level: 300
+        Hp: 40547
   - Jobs:
       Dragon_Knight: true
       Dragon_Knight2: true
@@ -22503,55 +23503,105 @@ Body:
       - Level: 250
         Sp: 1415
       - Level: 251
-        Sp: 1415
+        Sp: 1421
       - Level: 252
-        Sp: 1415
+        Sp: 1427
       - Level: 253
-        Sp: 1415
+        Sp: 1433
       - Level: 254
-        Sp: 1415
+        Sp: 1439
       - Level: 255
-        Sp: 1415
+        Sp: 1445
       - Level: 256
-        Sp: 1415
+        Sp: 1451
       - Level: 257
-        Sp: 1415
+        Sp: 1457
       - Level: 258
-        Sp: 1415
+        Sp: 1463
       - Level: 259
-        Sp: 1415
+        Sp: 1469
       - Level: 260
-        Sp: 1415
+        Sp: 1475
       - Level: 261
-        Sp: 1415
+        Sp: 1475
       - Level: 262
-        Sp: 1415
+        Sp: 1475
       - Level: 263
-        Sp: 1415
+        Sp: 1475
       - Level: 264
-        Sp: 1415
+        Sp: 1475
       - Level: 265
-        Sp: 1415
+        Sp: 1475
       - Level: 266
-        Sp: 1415
+        Sp: 1475
       - Level: 267
-        Sp: 1415
+        Sp: 1475
       - Level: 268
-        Sp: 1415
+        Sp: 1475
       - Level: 269
-        Sp: 1415
+        Sp: 1475
       - Level: 270
-        Sp: 1415
+        Sp: 1475
       - Level: 271
-        Sp: 1415
+        Sp: 1475
       - Level: 272
-        Sp: 1415
+        Sp: 1475
       - Level: 273
-        Sp: 1415
+        Sp: 1475
       - Level: 274
-        Sp: 1415
+        Sp: 1475
       - Level: 275
-        Sp: 1415
+        Sp: 1475
+      - Level: 276
+        Sp: 1475
+      - Level: 277
+        Sp: 1475
+      - Level: 278
+        Sp: 1475
+      - Level: 279
+        Sp: 1475
+      - Level: 280
+        Sp: 1475
+      - Level: 281
+        Sp: 1475
+      - Level: 282
+        Sp: 1475
+      - Level: 283
+        Sp: 1475
+      - Level: 284
+        Sp: 1475
+      - Level: 285
+        Sp: 1475
+      - Level: 286
+        Sp: 1475
+      - Level: 287
+        Sp: 1475
+      - Level: 288
+        Sp: 1475
+      - Level: 289
+        Sp: 1475
+      - Level: 290
+        Sp: 1475
+      - Level: 291
+        Sp: 1475
+      - Level: 292
+        Sp: 1475
+      - Level: 293
+        Sp: 1475
+      - Level: 294
+        Sp: 1475
+      - Level: 295
+        Sp: 1475
+      - Level: 296
+        Sp: 1475
+      - Level: 297
+        Sp: 1475
+      - Level: 298
+        Sp: 1475
+      - Level: 299
+        Sp: 1475
+      - Level: 300
+        Sp: 1475
   - Jobs:
       Meister: true
       Meister2: true
@@ -22659,55 +23709,105 @@ Body:
       - Level: 250
         Sp: 1845
       - Level: 251
-        Sp: 1845
+        Sp: 1852
       - Level: 252
-        Sp: 1845
+        Sp: 1859
       - Level: 253
-        Sp: 1845
+        Sp: 1866
       - Level: 254
-        Sp: 1845
+        Sp: 1873
       - Level: 255
-        Sp: 1845
+        Sp: 1880
       - Level: 256
-        Sp: 1845
+        Sp: 1887
       - Level: 257
-        Sp: 1845
+        Sp: 1894
       - Level: 258
-        Sp: 1845
+        Sp: 1901
       - Level: 259
-        Sp: 1845
+        Sp: 1908
       - Level: 260
-        Sp: 1845
+        Sp: 1915
       - Level: 261
-        Sp: 1845
+        Sp: 1915
       - Level: 262
-        Sp: 1845
+        Sp: 1915
       - Level: 263
-        Sp: 1845
+        Sp: 1915
       - Level: 264
-        Sp: 1845
+        Sp: 1915
       - Level: 265
-        Sp: 1845
+        Sp: 1915
       - Level: 266
-        Sp: 1845
+        Sp: 1915
       - Level: 267
-        Sp: 1845
+        Sp: 1915
       - Level: 268
-        Sp: 1845
+        Sp: 1915
       - Level: 269
-        Sp: 1845
+        Sp: 1915
       - Level: 270
-        Sp: 1845
+        Sp: 1915
       - Level: 271
-        Sp: 1845
+        Sp: 1915
       - Level: 272
-        Sp: 1845
+        Sp: 1915
       - Level: 273
-        Sp: 1845
+        Sp: 1915
       - Level: 274
-        Sp: 1845
+        Sp: 1915
       - Level: 275
-        Sp: 1845
+        Sp: 1915
+      - Level: 276
+        Sp: 1915
+      - Level: 277
+        Sp: 1915
+      - Level: 278
+        Sp: 1915
+      - Level: 279
+        Sp: 1915
+      - Level: 280
+        Sp: 1915
+      - Level: 281
+        Sp: 1915
+      - Level: 282
+        Sp: 1915
+      - Level: 283
+        Sp: 1915
+      - Level: 284
+        Sp: 1915
+      - Level: 285
+        Sp: 1915
+      - Level: 286
+        Sp: 1915
+      - Level: 287
+        Sp: 1915
+      - Level: 288
+        Sp: 1915
+      - Level: 289
+        Sp: 1915
+      - Level: 290
+        Sp: 1915
+      - Level: 291
+        Sp: 1915
+      - Level: 292
+        Sp: 1915
+      - Level: 293
+        Sp: 1915
+      - Level: 294
+        Sp: 1915
+      - Level: 295
+        Sp: 1915
+      - Level: 296
+        Sp: 1915
+      - Level: 297
+        Sp: 1915
+      - Level: 298
+        Sp: 1915
+      - Level: 299
+        Sp: 1915
+      - Level: 300
+        Sp: 1915
   - Jobs:
       Shadow_Cross: true
     BaseSp:
@@ -22814,55 +23914,105 @@ Body:
       - Level: 250
         Sp: 1420
       - Level: 251
-        Sp: 1420
+        Sp: 1427
       - Level: 252
-        Sp: 1420
+        Sp: 1434
       - Level: 253
-        Sp: 1420
+        Sp: 1441
       - Level: 254
-        Sp: 1420
+        Sp: 1448
       - Level: 255
-        Sp: 1420
+        Sp: 1455
       - Level: 256
-        Sp: 1420
+        Sp: 1462
       - Level: 257
-        Sp: 1420
+        Sp: 1469
       - Level: 258
-        Sp: 1420
+        Sp: 1476
       - Level: 259
-        Sp: 1420
+        Sp: 1483
       - Level: 260
-        Sp: 1420
+        Sp: 1490
       - Level: 261
-        Sp: 1420
+        Sp: 1490
       - Level: 262
-        Sp: 1420
+        Sp: 1490
       - Level: 263
-        Sp: 1420
+        Sp: 1490
       - Level: 264
-        Sp: 1420
+        Sp: 1490
       - Level: 265
-        Sp: 1420
+        Sp: 1490
       - Level: 266
-        Sp: 1420
+        Sp: 1490
       - Level: 267
-        Sp: 1420
+        Sp: 1490
       - Level: 268
-        Sp: 1420
+        Sp: 1490
       - Level: 269
-        Sp: 1420
+        Sp: 1490
       - Level: 270
-        Sp: 1420
+        Sp: 1490
       - Level: 271
-        Sp: 1420
+        Sp: 1490
       - Level: 272
-        Sp: 1420
+        Sp: 1490
       - Level: 273
-        Sp: 1420
+        Sp: 1490
       - Level: 274
-        Sp: 1420
+        Sp: 1490
       - Level: 275
-        Sp: 1420
+        Sp: 1490
+      - Level: 276
+        Sp: 1490
+      - Level: 277
+        Sp: 1490
+      - Level: 278
+        Sp: 1490
+      - Level: 279
+        Sp: 1490
+      - Level: 280
+        Sp: 1490
+      - Level: 281
+        Sp: 1490
+      - Level: 282
+        Sp: 1490
+      - Level: 283
+        Sp: 1490
+      - Level: 284
+        Sp: 1490
+      - Level: 285
+        Sp: 1490
+      - Level: 286
+        Sp: 1490
+      - Level: 287
+        Sp: 1490
+      - Level: 288
+        Sp: 1490
+      - Level: 289
+        Sp: 1490
+      - Level: 290
+        Sp: 1490
+      - Level: 291
+        Sp: 1490
+      - Level: 292
+        Sp: 1490
+      - Level: 293
+        Sp: 1490
+      - Level: 294
+        Sp: 1490
+      - Level: 295
+        Sp: 1490
+      - Level: 296
+        Sp: 1490
+      - Level: 297
+        Sp: 1490
+      - Level: 298
+        Sp: 1490
+      - Level: 299
+        Sp: 1490
+      - Level: 300
+        Sp: 1490
   - Jobs:
       Arch_Mage: true
     BaseSp:
@@ -22969,55 +24119,105 @@ Body:
       - Level: 250
         Sp: 2515
       - Level: 251
-        Sp: 2515
+        Sp: 2527
       - Level: 252
-        Sp: 2515
+        Sp: 2539
       - Level: 253
-        Sp: 2515
+        Sp: 2551
       - Level: 254
-        Sp: 2515
+        Sp: 2563
       - Level: 255
-        Sp: 2515
+        Sp: 2575
       - Level: 256
-        Sp: 2515
+        Sp: 2587
       - Level: 257
-        Sp: 2515
+        Sp: 2599
       - Level: 258
-        Sp: 2515
+        Sp: 2611
       - Level: 259
-        Sp: 2515
+        Sp: 2623
       - Level: 260
-        Sp: 2515
+        Sp: 2635
       - Level: 261
-        Sp: 2515
+        Sp: 2635
       - Level: 262
-        Sp: 2515
+        Sp: 2635
       - Level: 263
-        Sp: 2515
+        Sp: 2635
       - Level: 264
-        Sp: 2515
+        Sp: 2635
       - Level: 265
-        Sp: 2515
+        Sp: 2635
       - Level: 266
-        Sp: 2515
+        Sp: 2635
       - Level: 267
-        Sp: 2515
+        Sp: 2635
       - Level: 268
-        Sp: 2515
+        Sp: 2635
       - Level: 269
-        Sp: 2515
+        Sp: 2635
       - Level: 270
-        Sp: 2515
+        Sp: 2635
       - Level: 271
-        Sp: 2515
+        Sp: 2635
       - Level: 272
-        Sp: 2515
+        Sp: 2635
       - Level: 273
-        Sp: 2515
+        Sp: 2635
       - Level: 274
-        Sp: 2515
+        Sp: 2635
       - Level: 275
-        Sp: 2515
+        Sp: 2635
+      - Level: 276
+        Sp: 2635
+      - Level: 277
+        Sp: 2635
+      - Level: 278
+        Sp: 2635
+      - Level: 279
+        Sp: 2635
+      - Level: 280
+        Sp: 2635
+      - Level: 281
+        Sp: 2635
+      - Level: 282
+        Sp: 2635
+      - Level: 283
+        Sp: 2635
+      - Level: 284
+        Sp: 2635
+      - Level: 285
+        Sp: 2635
+      - Level: 286
+        Sp: 2635
+      - Level: 287
+        Sp: 2635
+      - Level: 288
+        Sp: 2635
+      - Level: 289
+        Sp: 2635
+      - Level: 290
+        Sp: 2635
+      - Level: 291
+        Sp: 2635
+      - Level: 292
+        Sp: 2635
+      - Level: 293
+        Sp: 2635
+      - Level: 294
+        Sp: 2635
+      - Level: 295
+        Sp: 2635
+      - Level: 296
+        Sp: 2635
+      - Level: 297
+        Sp: 2635
+      - Level: 298
+        Sp: 2635
+      - Level: 299
+        Sp: 2635
+      - Level: 300
+        Sp: 2635
   - Jobs:
       Cardinal: true
     BaseSp:
@@ -23124,55 +24324,105 @@ Body:
       - Level: 250
         Sp: 2465
       - Level: 251
-        Sp: 2465
+        Sp: 2476
       - Level: 252
-        Sp: 2465
+        Sp: 2487
       - Level: 253
-        Sp: 2465
+        Sp: 2498
       - Level: 254
-        Sp: 2465
+        Sp: 2509
       - Level: 255
-        Sp: 2465
+        Sp: 2520
       - Level: 256
-        Sp: 2465
+        Sp: 2531
       - Level: 257
-        Sp: 2465
+        Sp: 2542
       - Level: 258
-        Sp: 2465
+        Sp: 2553
       - Level: 259
-        Sp: 2465
+        Sp: 2564
       - Level: 260
-        Sp: 2465
+        Sp: 2575
       - Level: 261
-        Sp: 2465
+        Sp: 2575
       - Level: 262
-        Sp: 2465
+        Sp: 2575
       - Level: 263
-        Sp: 2465
+        Sp: 2575
       - Level: 264
-        Sp: 2465
+        Sp: 2575
       - Level: 265
-        Sp: 2465
+        Sp: 2575
       - Level: 266
-        Sp: 2465
+        Sp: 2575
       - Level: 267
-        Sp: 2465
+        Sp: 2575
       - Level: 268
-        Sp: 2465
+        Sp: 2575
       - Level: 269
-        Sp: 2465
+        Sp: 2575
       - Level: 270
-        Sp: 2465
+        Sp: 2575
       - Level: 271
-        Sp: 2465
+        Sp: 2575
       - Level: 272
-        Sp: 2465
+        Sp: 2575
       - Level: 273
-        Sp: 2465
+        Sp: 2575
       - Level: 274
-        Sp: 2465
+        Sp: 2575
       - Level: 275
-        Sp: 2465
+        Sp: 2575
+      - Level: 276
+        Sp: 2575
+      - Level: 277
+        Sp: 2575
+      - Level: 278
+        Sp: 2575
+      - Level: 279
+        Sp: 2575
+      - Level: 280
+        Sp: 2575
+      - Level: 281
+        Sp: 2575
+      - Level: 282
+        Sp: 2575
+      - Level: 283
+        Sp: 2575
+      - Level: 284
+        Sp: 2575
+      - Level: 285
+        Sp: 2575
+      - Level: 286
+        Sp: 2575
+      - Level: 287
+        Sp: 2575
+      - Level: 288
+        Sp: 2575
+      - Level: 289
+        Sp: 2575
+      - Level: 290
+        Sp: 2575
+      - Level: 291
+        Sp: 2575
+      - Level: 292
+        Sp: 2575
+      - Level: 293
+        Sp: 2575
+      - Level: 294
+        Sp: 2575
+      - Level: 295
+        Sp: 2575
+      - Level: 296
+        Sp: 2575
+      - Level: 297
+        Sp: 2575
+      - Level: 298
+        Sp: 2575
+      - Level: 299
+        Sp: 2575
+      - Level: 300
+        Sp: 2575
   - Jobs:
       Windhawk: true
       Windhawk2: true
@@ -23280,55 +24530,105 @@ Body:
       - Level: 250
         Sp: 1400
       - Level: 251
-        Sp: 1400
+        Sp: 1407
       - Level: 252
-        Sp: 1400
+        Sp: 1414
       - Level: 253
-        Sp: 1400
+        Sp: 1421
       - Level: 254
-        Sp: 1400
+        Sp: 1428
       - Level: 255
-        Sp: 1400
+        Sp: 1435
       - Level: 256
-        Sp: 1400
+        Sp: 1442
       - Level: 257
-        Sp: 1400
+        Sp: 1449
       - Level: 258
-        Sp: 1400
+        Sp: 1456
       - Level: 259
-        Sp: 1400
+        Sp: 1463
       - Level: 260
-        Sp: 1400
+        Sp: 1470
       - Level: 261
-        Sp: 1400
+        Sp: 1470
       - Level: 262
-        Sp: 1400
+        Sp: 1470
       - Level: 263
-        Sp: 1400
+        Sp: 1470
       - Level: 264
-        Sp: 1400
+        Sp: 1470
       - Level: 265
-        Sp: 1400
+        Sp: 1470
       - Level: 266
-        Sp: 1400
+        Sp: 1470
       - Level: 267
-        Sp: 1400
+        Sp: 1470
       - Level: 268
-        Sp: 1400
+        Sp: 1470
       - Level: 269
-        Sp: 1400
+        Sp: 1470
       - Level: 270
-        Sp: 1400
+        Sp: 1470
       - Level: 271
-        Sp: 1400
+        Sp: 1470
       - Level: 272
-        Sp: 1400
+        Sp: 1470
       - Level: 273
-        Sp: 1400
+        Sp: 1470
       - Level: 274
-        Sp: 1400
+        Sp: 1470
       - Level: 275
-        Sp: 1400
+        Sp: 1470
+      - Level: 276
+        Sp: 1470
+      - Level: 277
+        Sp: 1470
+      - Level: 278
+        Sp: 1470
+      - Level: 279
+        Sp: 1470
+      - Level: 280
+        Sp: 1470
+      - Level: 281
+        Sp: 1470
+      - Level: 282
+        Sp: 1470
+      - Level: 283
+        Sp: 1470
+      - Level: 284
+        Sp: 1470
+      - Level: 285
+        Sp: 1470
+      - Level: 286
+        Sp: 1470
+      - Level: 287
+        Sp: 1470
+      - Level: 288
+        Sp: 1470
+      - Level: 289
+        Sp: 1470
+      - Level: 290
+        Sp: 1470
+      - Level: 291
+        Sp: 1470
+      - Level: 292
+        Sp: 1470
+      - Level: 293
+        Sp: 1470
+      - Level: 294
+        Sp: 1470
+      - Level: 295
+        Sp: 1470
+      - Level: 296
+        Sp: 1470
+      - Level: 297
+        Sp: 1470
+      - Level: 298
+        Sp: 1470
+      - Level: 299
+        Sp: 1470
+      - Level: 300
+        Sp: 1470
   - Jobs:
       Imperial_Guard: true
       Imperial_Guard2: true
@@ -23436,55 +24736,105 @@ Body:
       - Level: 250
         Sp: 1845
       - Level: 251
-        Sp: 1845
+        Sp: 1852
       - Level: 252
-        Sp: 1845
+        Sp: 1859
       - Level: 253
-        Sp: 1845
+        Sp: 1866
       - Level: 254
-        Sp: 1845
+        Sp: 1873
       - Level: 255
-        Sp: 1845
+        Sp: 1880
       - Level: 256
-        Sp: 1845
+        Sp: 1887
       - Level: 257
-        Sp: 1845
+        Sp: 1894
       - Level: 258
-        Sp: 1845
+        Sp: 1901
       - Level: 259
-        Sp: 1845
+        Sp: 1908
       - Level: 260
-        Sp: 1845
+        Sp: 1915
       - Level: 261
-        Sp: 1845
+        Sp: 1915
       - Level: 262
-        Sp: 1845
+        Sp: 1915
       - Level: 263
-        Sp: 1845
+        Sp: 1915
       - Level: 264
-        Sp: 1845
+        Sp: 1915
       - Level: 265
-        Sp: 1845
+        Sp: 1915
       - Level: 266
-        Sp: 1845
+        Sp: 1915
       - Level: 267
-        Sp: 1845
+        Sp: 1915
       - Level: 268
-        Sp: 1845
+        Sp: 1915
       - Level: 269
-        Sp: 1845
+        Sp: 1915
       - Level: 270
-        Sp: 1845
+        Sp: 1915
       - Level: 271
-        Sp: 1845
+        Sp: 1915
       - Level: 272
-        Sp: 1845
+        Sp: 1915
       - Level: 273
-        Sp: 1845
+        Sp: 1915
       - Level: 274
-        Sp: 1845
+        Sp: 1915
       - Level: 275
-        Sp: 1845
+        Sp: 1915
+      - Level: 276
+        Sp: 1915
+      - Level: 277
+        Sp: 1915
+      - Level: 278
+        Sp: 1915
+      - Level: 279
+        Sp: 1915
+      - Level: 280
+        Sp: 1915
+      - Level: 281
+        Sp: 1915
+      - Level: 282
+        Sp: 1915
+      - Level: 283
+        Sp: 1915
+      - Level: 284
+        Sp: 1915
+      - Level: 285
+        Sp: 1915
+      - Level: 286
+        Sp: 1915
+      - Level: 287
+        Sp: 1915
+      - Level: 288
+        Sp: 1915
+      - Level: 289
+        Sp: 1915
+      - Level: 290
+        Sp: 1915
+      - Level: 291
+        Sp: 1915
+      - Level: 292
+        Sp: 1915
+      - Level: 293
+        Sp: 1915
+      - Level: 294
+        Sp: 1915
+      - Level: 295
+        Sp: 1915
+      - Level: 296
+        Sp: 1915
+      - Level: 297
+        Sp: 1915
+      - Level: 298
+        Sp: 1915
+      - Level: 299
+        Sp: 1915
+      - Level: 300
+        Sp: 1915
   - Jobs:
       Biolo: true
     BaseSp:
@@ -23591,55 +24941,105 @@ Body:
       - Level: 250
         Sp: 2515
       - Level: 251
-        Sp: 2515
+        Sp: 2527
       - Level: 252
-        Sp: 2515
+        Sp: 2539
       - Level: 253
-        Sp: 2515
+        Sp: 2551
       - Level: 254
-        Sp: 2515
+        Sp: 2563
       - Level: 255
-        Sp: 2515
+        Sp: 2575
       - Level: 256
-        Sp: 2515
+        Sp: 2587
       - Level: 257
-        Sp: 2515
+        Sp: 2599
       - Level: 258
-        Sp: 2515
+        Sp: 2611
       - Level: 259
-        Sp: 2515
+        Sp: 2623
       - Level: 260
-        Sp: 2515
+        Sp: 2635
       - Level: 261
-        Sp: 2515
+        Sp: 2635
       - Level: 262
-        Sp: 2515
+        Sp: 2635
       - Level: 263
-        Sp: 2515
+        Sp: 2635
       - Level: 264
-        Sp: 2515
+        Sp: 2635
       - Level: 265
-        Sp: 2515
+        Sp: 2635
       - Level: 266
-        Sp: 2515
+        Sp: 2635
       - Level: 267
-        Sp: 2515
+        Sp: 2635
       - Level: 268
-        Sp: 2515
+        Sp: 2635
       - Level: 269
-        Sp: 2515
+        Sp: 2635
       - Level: 270
-        Sp: 2515
+        Sp: 2635
       - Level: 271
-        Sp: 2515
+        Sp: 2635
       - Level: 272
-        Sp: 2515
+        Sp: 2635
       - Level: 273
-        Sp: 2515
+        Sp: 2635
       - Level: 274
-        Sp: 2515
+        Sp: 2635
       - Level: 275
-        Sp: 2515
+        Sp: 2635
+      - Level: 276
+        Sp: 2635
+      - Level: 277
+        Sp: 2635
+      - Level: 278
+        Sp: 2635
+      - Level: 279
+        Sp: 2635
+      - Level: 280
+        Sp: 2635
+      - Level: 281
+        Sp: 2635
+      - Level: 282
+        Sp: 2635
+      - Level: 283
+        Sp: 2635
+      - Level: 284
+        Sp: 2635
+      - Level: 285
+        Sp: 2635
+      - Level: 286
+        Sp: 2635
+      - Level: 287
+        Sp: 2635
+      - Level: 288
+        Sp: 2635
+      - Level: 289
+        Sp: 2635
+      - Level: 290
+        Sp: 2635
+      - Level: 291
+        Sp: 2635
+      - Level: 292
+        Sp: 2635
+      - Level: 293
+        Sp: 2635
+      - Level: 294
+        Sp: 2635
+      - Level: 295
+        Sp: 2635
+      - Level: 296
+        Sp: 2635
+      - Level: 297
+        Sp: 2635
+      - Level: 298
+        Sp: 2635
+      - Level: 299
+        Sp: 2635
+      - Level: 300
+        Sp: 2635
   - Jobs:
       Abyss_Chaser: true
     BaseSp:
@@ -23746,55 +25146,105 @@ Body:
       - Level: 250
         Sp: 1265
       - Level: 251
-        Sp: 1265
+        Sp: 1272
       - Level: 252
-        Sp: 1265
+        Sp: 1279
       - Level: 253
-        Sp: 1265
+        Sp: 1286
       - Level: 254
-        Sp: 1265
+        Sp: 1293
       - Level: 255
-        Sp: 1265
+        Sp: 1300
       - Level: 256
-        Sp: 1265
+        Sp: 1307
       - Level: 257
-        Sp: 1265
+        Sp: 1314
       - Level: 258
-        Sp: 1265
+        Sp: 1321
       - Level: 259
-        Sp: 1265
+        Sp: 1328
       - Level: 260
-        Sp: 1265
+        Sp: 1335
       - Level: 261
-        Sp: 1265
+        Sp: 1335
       - Level: 262
-        Sp: 1265
+        Sp: 1335
       - Level: 263
-        Sp: 1265
+        Sp: 1335
       - Level: 264
-        Sp: 1265
+        Sp: 1335
       - Level: 265
-        Sp: 1265
+        Sp: 1335
       - Level: 266
-        Sp: 1265
+        Sp: 1335
       - Level: 267
-        Sp: 1265
+        Sp: 1335
       - Level: 268
-        Sp: 1265
+        Sp: 1335
       - Level: 269
-        Sp: 1265
+        Sp: 1335
       - Level: 270
-        Sp: 1265
+        Sp: 1335
       - Level: 271
-        Sp: 1265
+        Sp: 1335
       - Level: 272
-        Sp: 1265
+        Sp: 1335
       - Level: 273
-        Sp: 1265
+        Sp: 1335
       - Level: 274
-        Sp: 1265
+        Sp: 1335
       - Level: 275
-        Sp: 1265
+        Sp: 1335
+      - Level: 276
+        Sp: 1335
+      - Level: 277
+        Sp: 1335
+      - Level: 278
+        Sp: 1335
+      - Level: 279
+        Sp: 1335
+      - Level: 280
+        Sp: 1335
+      - Level: 281
+        Sp: 1335
+      - Level: 282
+        Sp: 1335
+      - Level: 283
+        Sp: 1335
+      - Level: 284
+        Sp: 1335
+      - Level: 285
+        Sp: 1335
+      - Level: 286
+        Sp: 1335
+      - Level: 287
+        Sp: 1335
+      - Level: 288
+        Sp: 1335
+      - Level: 289
+        Sp: 1335
+      - Level: 290
+        Sp: 1335
+      - Level: 291
+        Sp: 1335
+      - Level: 292
+        Sp: 1335
+      - Level: 293
+        Sp: 1335
+      - Level: 294
+        Sp: 1335
+      - Level: 295
+        Sp: 1335
+      - Level: 296
+        Sp: 1335
+      - Level: 297
+        Sp: 1335
+      - Level: 298
+        Sp: 1335
+      - Level: 299
+        Sp: 1335
+      - Level: 300
+        Sp: 1335
   - Jobs:
       Elemental_Master: true
     BaseSp:
@@ -23901,55 +25351,105 @@ Body:
       - Level: 250
         Sp: 2515
       - Level: 251
-        Sp: 2515
+        Sp: 2527
       - Level: 252
-        Sp: 2515
+        Sp: 2539
       - Level: 253
-        Sp: 2515
+        Sp: 2551
       - Level: 254
-        Sp: 2515
+        Sp: 2563
       - Level: 255
-        Sp: 2515
+        Sp: 2575
       - Level: 256
-        Sp: 2515
+        Sp: 2587
       - Level: 257
-        Sp: 2515
+        Sp: 2599
       - Level: 258
-        Sp: 2515
+        Sp: 2611
       - Level: 259
-        Sp: 2515
+        Sp: 2623
       - Level: 260
-        Sp: 2515
+        Sp: 2635
       - Level: 261
-        Sp: 2515
+        Sp: 2635
       - Level: 262
-        Sp: 2515
+        Sp: 2635
       - Level: 263
-        Sp: 2515
+        Sp: 2635
       - Level: 264
-        Sp: 2515
+        Sp: 2635
       - Level: 265
-        Sp: 2515
+        Sp: 2635
       - Level: 266
-        Sp: 2515
+        Sp: 2635
       - Level: 267
-        Sp: 2515
+        Sp: 2635
       - Level: 268
-        Sp: 2515
+        Sp: 2635
       - Level: 269
-        Sp: 2515
+        Sp: 2635
       - Level: 270
-        Sp: 2515
+        Sp: 2635
       - Level: 271
-        Sp: 2515
+        Sp: 2635
       - Level: 272
-        Sp: 2515
+        Sp: 2635
       - Level: 273
-        Sp: 2515
+        Sp: 2635
       - Level: 274
-        Sp: 2515
+        Sp: 2635
       - Level: 275
-        Sp: 2515
+        Sp: 2635
+      - Level: 276
+        Sp: 2635
+      - Level: 277
+        Sp: 2635
+      - Level: 278
+        Sp: 2635
+      - Level: 279
+        Sp: 2635
+      - Level: 280
+        Sp: 2635
+      - Level: 281
+        Sp: 2635
+      - Level: 282
+        Sp: 2635
+      - Level: 283
+        Sp: 2635
+      - Level: 284
+        Sp: 2635
+      - Level: 285
+        Sp: 2635
+      - Level: 286
+        Sp: 2635
+      - Level: 287
+        Sp: 2635
+      - Level: 288
+        Sp: 2635
+      - Level: 289
+        Sp: 2635
+      - Level: 290
+        Sp: 2635
+      - Level: 291
+        Sp: 2635
+      - Level: 292
+        Sp: 2635
+      - Level: 293
+        Sp: 2635
+      - Level: 294
+        Sp: 2635
+      - Level: 295
+        Sp: 2635
+      - Level: 296
+        Sp: 2635
+      - Level: 297
+        Sp: 2635
+      - Level: 298
+        Sp: 2635
+      - Level: 299
+        Sp: 2635
+      - Level: 300
+        Sp: 2635
   - Jobs:
       Inquisitor: true
     BaseSp:
@@ -24056,55 +25556,105 @@ Body:
       - Level: 250
         Sp: 1265
       - Level: 251
-        Sp: 1265
+        Sp: 1272
       - Level: 252
-        Sp: 1265
+        Sp: 1279
       - Level: 253
-        Sp: 1265
+        Sp: 1286
       - Level: 254
-        Sp: 1265
+        Sp: 1293
       - Level: 255
-        Sp: 1265
+        Sp: 1300
       - Level: 256
-        Sp: 1265
+        Sp: 1307
       - Level: 257
-        Sp: 1265
+        Sp: 1314
       - Level: 258
-        Sp: 1265
+        Sp: 1321
       - Level: 259
-        Sp: 1265
+        Sp: 1328
       - Level: 260
-        Sp: 1265
+        Sp: 1335
       - Level: 261
-        Sp: 1265
+        Sp: 1335
       - Level: 262
-        Sp: 1265
+        Sp: 1335
       - Level: 263
-        Sp: 1265
+        Sp: 1335
       - Level: 264
-        Sp: 1265
+        Sp: 1335
       - Level: 265
-        Sp: 1265
+        Sp: 1335
       - Level: 266
-        Sp: 1265
+        Sp: 1335
       - Level: 267
-        Sp: 1265
+        Sp: 1335
       - Level: 268
-        Sp: 1265
+        Sp: 1335
       - Level: 269
-        Sp: 1265
+        Sp: 1335
       - Level: 270
-        Sp: 1265
+        Sp: 1335
       - Level: 271
-        Sp: 1265
+        Sp: 1335
       - Level: 272
-        Sp: 1265
+        Sp: 1335
       - Level: 273
-        Sp: 1265
+        Sp: 1335
       - Level: 274
-        Sp: 1265
+        Sp: 1335
       - Level: 275
-        Sp: 1265
+        Sp: 1335
+      - Level: 276
+        Sp: 1335
+      - Level: 277
+        Sp: 1335
+      - Level: 278
+        Sp: 1335
+      - Level: 279
+        Sp: 1335
+      - Level: 280
+        Sp: 1335
+      - Level: 281
+        Sp: 1335
+      - Level: 282
+        Sp: 1335
+      - Level: 283
+        Sp: 1335
+      - Level: 284
+        Sp: 1335
+      - Level: 285
+        Sp: 1335
+      - Level: 286
+        Sp: 1335
+      - Level: 287
+        Sp: 1335
+      - Level: 288
+        Sp: 1335
+      - Level: 289
+        Sp: 1335
+      - Level: 290
+        Sp: 1335
+      - Level: 291
+        Sp: 1335
+      - Level: 292
+        Sp: 1335
+      - Level: 293
+        Sp: 1335
+      - Level: 294
+        Sp: 1335
+      - Level: 295
+        Sp: 1335
+      - Level: 296
+        Sp: 1335
+      - Level: 297
+        Sp: 1335
+      - Level: 298
+        Sp: 1335
+      - Level: 299
+        Sp: 1335
+      - Level: 300
+        Sp: 1335
   - Jobs:
       Troubadour: true
     BaseSp:
@@ -24211,55 +25761,105 @@ Body:
       - Level: 250
         Sp: 1465
       - Level: 251
-        Sp: 1465
+        Sp: 1472
       - Level: 252
-        Sp: 1465
+        Sp: 1479
       - Level: 253
-        Sp: 1465
+        Sp: 1486
       - Level: 254
-        Sp: 1465
+        Sp: 1493
       - Level: 255
-        Sp: 1465
+        Sp: 1500
       - Level: 256
-        Sp: 1465
+        Sp: 1507
       - Level: 257
-        Sp: 1465
+        Sp: 1514
       - Level: 258
-        Sp: 1465
+        Sp: 1521
       - Level: 259
-        Sp: 1465
+        Sp: 1528
       - Level: 260
-        Sp: 1465
+        Sp: 1535
       - Level: 261
-        Sp: 1465
+        Sp: 1535
       - Level: 262
-        Sp: 1465
+        Sp: 1535
       - Level: 263
-        Sp: 1465
+        Sp: 1535
       - Level: 264
-        Sp: 1465
+        Sp: 1535
       - Level: 265
-        Sp: 1465
+        Sp: 1535
       - Level: 266
-        Sp: 1465
+        Sp: 1535
       - Level: 267
-        Sp: 1465
+        Sp: 1535
       - Level: 268
-        Sp: 1465
+        Sp: 1535
       - Level: 269
-        Sp: 1465
+        Sp: 1535
       - Level: 270
-        Sp: 1465
+        Sp: 1535
       - Level: 271
-        Sp: 1465
+        Sp: 1535
       - Level: 272
-        Sp: 1465
+        Sp: 1535
       - Level: 273
-        Sp: 1465
+        Sp: 1535
       - Level: 274
-        Sp: 1465
+        Sp: 1535
       - Level: 275
-        Sp: 1465
+        Sp: 1535
+      - Level: 276
+        Sp: 1535
+      - Level: 277
+        Sp: 1535
+      - Level: 278
+        Sp: 1535
+      - Level: 279
+        Sp: 1535
+      - Level: 280
+        Sp: 1535
+      - Level: 281
+        Sp: 1535
+      - Level: 282
+        Sp: 1535
+      - Level: 283
+        Sp: 1535
+      - Level: 284
+        Sp: 1535
+      - Level: 285
+        Sp: 1535
+      - Level: 286
+        Sp: 1535
+      - Level: 287
+        Sp: 1535
+      - Level: 288
+        Sp: 1535
+      - Level: 289
+        Sp: 1535
+      - Level: 290
+        Sp: 1535
+      - Level: 291
+        Sp: 1535
+      - Level: 292
+        Sp: 1535
+      - Level: 293
+        Sp: 1535
+      - Level: 294
+        Sp: 1535
+      - Level: 295
+        Sp: 1535
+      - Level: 296
+        Sp: 1535
+      - Level: 297
+        Sp: 1535
+      - Level: 298
+        Sp: 1535
+      - Level: 299
+        Sp: 1535
+      - Level: 300
+        Sp: 1535
   - Jobs:
       Trouvere: true
     BaseSp:
@@ -24366,55 +25966,105 @@ Body:
       - Level: 250
         Sp: 1465
       - Level: 251
-        Sp: 1465
+        Sp: 1472
       - Level: 252
-        Sp: 1465
+        Sp: 1479
       - Level: 253
-        Sp: 1465
+        Sp: 1486
       - Level: 254
-        Sp: 1465
+        Sp: 1493
       - Level: 255
-        Sp: 1465
+        Sp: 1500
       - Level: 256
-        Sp: 1465
+        Sp: 1507
       - Level: 257
-        Sp: 1465
+        Sp: 1514
       - Level: 258
-        Sp: 1465
+        Sp: 1521
       - Level: 259
-        Sp: 1465
+        Sp: 1528
       - Level: 260
-        Sp: 1465
+        Sp: 1535
       - Level: 261
-        Sp: 1465
+        Sp: 1535
       - Level: 262
-        Sp: 1465
+        Sp: 1535
       - Level: 263
-        Sp: 1465
+        Sp: 1535
       - Level: 264
-        Sp: 1465
+        Sp: 1535
       - Level: 265
-        Sp: 1465
+        Sp: 1535
       - Level: 266
-        Sp: 1465
+        Sp: 1535
       - Level: 267
-        Sp: 1465
+        Sp: 1535
       - Level: 268
-        Sp: 1465
+        Sp: 1535
       - Level: 269
-        Sp: 1465
+        Sp: 1535
       - Level: 270
-        Sp: 1465
+        Sp: 1535
       - Level: 271
-        Sp: 1465
+        Sp: 1535
       - Level: 272
-        Sp: 1465
+        Sp: 1535
       - Level: 273
-        Sp: 1465
+        Sp: 1535
       - Level: 274
-        Sp: 1465
+        Sp: 1535
       - Level: 275
-        Sp: 1465
+        Sp: 1535
+      - Level: 276
+        Sp: 1535
+      - Level: 277
+        Sp: 1535
+      - Level: 278
+        Sp: 1535
+      - Level: 279
+        Sp: 1535
+      - Level: 280
+        Sp: 1535
+      - Level: 281
+        Sp: 1535
+      - Level: 282
+        Sp: 1535
+      - Level: 283
+        Sp: 1535
+      - Level: 284
+        Sp: 1535
+      - Level: 285
+        Sp: 1535
+      - Level: 286
+        Sp: 1535
+      - Level: 287
+        Sp: 1535
+      - Level: 288
+        Sp: 1535
+      - Level: 289
+        Sp: 1535
+      - Level: 290
+        Sp: 1535
+      - Level: 291
+        Sp: 1535
+      - Level: 292
+        Sp: 1535
+      - Level: 293
+        Sp: 1535
+      - Level: 294
+        Sp: 1535
+      - Level: 295
+        Sp: 1535
+      - Level: 296
+        Sp: 1535
+      - Level: 297
+        Sp: 1535
+      - Level: 298
+        Sp: 1535
+      - Level: 299
+        Sp: 1535
+      - Level: 300
+        Sp: 1535
   - Jobs:
       Sky_Emperor: true
       Sky_Emperor2: true
@@ -24571,6 +26221,56 @@ Body:
         Sp: 500
       - Level: 275
         Sp: 500
+      - Level: 276
+        Sp: 500
+      - Level: 277
+        Sp: 500
+      - Level: 278
+        Sp: 500
+      - Level: 279
+        Sp: 500
+      - Level: 280
+        Sp: 500
+      - Level: 281
+        Sp: 500
+      - Level: 282
+        Sp: 500
+      - Level: 283
+        Sp: 500
+      - Level: 284
+        Sp: 500
+      - Level: 285
+        Sp: 500
+      - Level: 286
+        Sp: 500
+      - Level: 287
+        Sp: 500
+      - Level: 288
+        Sp: 500
+      - Level: 289
+        Sp: 500
+      - Level: 290
+        Sp: 500
+      - Level: 291
+        Sp: 500
+      - Level: 292
+        Sp: 500
+      - Level: 293
+        Sp: 500
+      - Level: 294
+        Sp: 500
+      - Level: 295
+        Sp: 500
+      - Level: 296
+        Sp: 500
+      - Level: 297
+        Sp: 500
+      - Level: 298
+        Sp: 500
+      - Level: 299
+        Sp: 500
+      - Level: 300
+        Sp: 500
   - Jobs:
       Soul_Ascetic: true
     BaseSp:
@@ -24726,6 +26426,56 @@ Body:
         Sp: 900
       - Level: 275
         Sp: 900
+      - Level: 276
+        Sp: 900
+      - Level: 277
+        Sp: 900
+      - Level: 278
+        Sp: 900
+      - Level: 279
+        Sp: 900
+      - Level: 280
+        Sp: 900
+      - Level: 281
+        Sp: 900
+      - Level: 282
+        Sp: 900
+      - Level: 283
+        Sp: 900
+      - Level: 284
+        Sp: 900
+      - Level: 285
+        Sp: 900
+      - Level: 286
+        Sp: 900
+      - Level: 287
+        Sp: 900
+      - Level: 288
+        Sp: 900
+      - Level: 289
+        Sp: 900
+      - Level: 290
+        Sp: 900
+      - Level: 291
+        Sp: 900
+      - Level: 292
+        Sp: 900
+      - Level: 293
+        Sp: 900
+      - Level: 294
+        Sp: 900
+      - Level: 295
+        Sp: 900
+      - Level: 296
+        Sp: 900
+      - Level: 297
+        Sp: 900
+      - Level: 298
+        Sp: 900
+      - Level: 299
+        Sp: 900
+      - Level: 300
+        Sp: 900
   - Jobs:
       Shinkiro: true
     BaseSp:
@@ -24832,55 +26582,105 @@ Body:
       - Level: 250
         Sp: 1730
       - Level: 251
-        Sp: 1730
+        Sp: 1738
       - Level: 252
-        Sp: 1730
+        Sp: 1746
       - Level: 253
-        Sp: 1730
+        Sp: 1754
       - Level: 254
-        Sp: 1730
+        Sp: 1762
       - Level: 255
-        Sp: 1730
+        Sp: 1777
       - Level: 256
-        Sp: 1730
+        Sp: 1778
       - Level: 257
-        Sp: 1730
+        Sp: 1786
       - Level: 258
-        Sp: 1730
+        Sp: 1794
       - Level: 259
-        Sp: 1730
+        Sp: 1802
       - Level: 260
-        Sp: 1730
+        Sp: 1810
       - Level: 261
-        Sp: 1730
+        Sp: 1810
       - Level: 262
-        Sp: 1730
+        Sp: 1810
       - Level: 263
-        Sp: 1730
+        Sp: 1810
       - Level: 264
-        Sp: 1730
+        Sp: 1810
       - Level: 265
-        Sp: 1730
+        Sp: 1810
       - Level: 266
-        Sp: 1730
+        Sp: 1810
       - Level: 267
-        Sp: 1730
+        Sp: 1810
       - Level: 268
-        Sp: 1730
+        Sp: 1810
       - Level: 269
-        Sp: 1730
+        Sp: 1810
       - Level: 270
-        Sp: 1730
+        Sp: 1810
       - Level: 271
-        Sp: 1730
+        Sp: 1810
       - Level: 272
-        Sp: 1730
+        Sp: 1810
       - Level: 273
-        Sp: 1730
+        Sp: 1810
       - Level: 274
-        Sp: 1730
+        Sp: 1810
       - Level: 275
-        Sp: 1730
+        Sp: 1810
+      - Level: 276
+        Sp: 1810
+      - Level: 277
+        Sp: 1810
+      - Level: 278
+        Sp: 1810
+      - Level: 279
+        Sp: 1810
+      - Level: 280
+        Sp: 1810
+      - Level: 281
+        Sp: 1810
+      - Level: 282
+        Sp: 1810
+      - Level: 283
+        Sp: 1810
+      - Level: 284
+        Sp: 1810
+      - Level: 285
+        Sp: 1810
+      - Level: 286
+        Sp: 1810
+      - Level: 287
+        Sp: 1810
+      - Level: 288
+        Sp: 1810
+      - Level: 289
+        Sp: 1810
+      - Level: 290
+        Sp: 1810
+      - Level: 291
+        Sp: 1810
+      - Level: 292
+        Sp: 1810
+      - Level: 293
+        Sp: 1810
+      - Level: 294
+        Sp: 1810
+      - Level: 295
+        Sp: 1810
+      - Level: 296
+        Sp: 1810
+      - Level: 297
+        Sp: 1810
+      - Level: 298
+        Sp: 1810
+      - Level: 299
+        Sp: 1810
+      - Level: 300
+        Sp: 1810
   - Jobs:
       Shiranui: true
     BaseSp:
@@ -24987,55 +26787,105 @@ Body:
       - Level: 250
         Sp: 1820
       - Level: 251
-        Sp: 1820
+        Sp: 1828
       - Level: 252
-        Sp: 1820
+        Sp: 1836
       - Level: 253
-        Sp: 1820
+        Sp: 1844
       - Level: 254
-        Sp: 1820
+        Sp: 1852
       - Level: 255
-        Sp: 1820
+        Sp: 1860
       - Level: 256
-        Sp: 1820
+        Sp: 1868
       - Level: 257
-        Sp: 1820
+        Sp: 1876
       - Level: 258
-        Sp: 1820
+        Sp: 1884
       - Level: 259
-        Sp: 1820
+        Sp: 1892
       - Level: 260
-        Sp: 1820
+        Sp: 1900
       - Level: 261
-        Sp: 1820
+        Sp: 1900
       - Level: 262
-        Sp: 1820
+        Sp: 1900
       - Level: 263
-        Sp: 1820
+        Sp: 1900
       - Level: 264
-        Sp: 1820
+        Sp: 1900
       - Level: 265
-        Sp: 1820
+        Sp: 1900
       - Level: 266
-        Sp: 1820
+        Sp: 1900
       - Level: 267
-        Sp: 1820
+        Sp: 1900
       - Level: 268
-        Sp: 1820
+        Sp: 1900
       - Level: 269
-        Sp: 1820
+        Sp: 1900
       - Level: 270
-        Sp: 1820
+        Sp: 1900
       - Level: 271
-        Sp: 1820
+        Sp: 1900
       - Level: 272
-        Sp: 1820
+        Sp: 1900
       - Level: 273
-        Sp: 1820
+        Sp: 1900
       - Level: 274
-        Sp: 1820
+        Sp: 1900
       - Level: 275
-        Sp: 1820
+        Sp: 1900
+      - Level: 276
+        Sp: 1900
+      - Level: 277
+        Sp: 1900
+      - Level: 278
+        Sp: 1900
+      - Level: 279
+        Sp: 1900
+      - Level: 280
+        Sp: 1900
+      - Level: 281
+        Sp: 1900
+      - Level: 282
+        Sp: 1900
+      - Level: 283
+        Sp: 1900
+      - Level: 284
+        Sp: 1900
+      - Level: 285
+        Sp: 1900
+      - Level: 286
+        Sp: 1900
+      - Level: 287
+        Sp: 1900
+      - Level: 288
+        Sp: 1900
+      - Level: 289
+        Sp: 1900
+      - Level: 290
+        Sp: 1900
+      - Level: 291
+        Sp: 1900
+      - Level: 292
+        Sp: 1900
+      - Level: 293
+        Sp: 1900
+      - Level: 294
+        Sp: 1900
+      - Level: 295
+        Sp: 1900
+      - Level: 296
+        Sp: 1900
+      - Level: 297
+        Sp: 1900
+      - Level: 298
+        Sp: 1900
+      - Level: 299
+        Sp: 1900
+      - Level: 300
+        Sp: 1900
   - Jobs:
       Night_Watch: true
     BaseSp:
@@ -25142,55 +26992,105 @@ Body:
       - Level: 250
         Sp: 1362
       - Level: 251
-        Sp: 1362
+        Sp: 1368
       - Level: 252
-        Sp: 1362
+        Sp: 1374
       - Level: 253
-        Sp: 1362
+        Sp: 1380
       - Level: 254
-        Sp: 1362
+        Sp: 1386
       - Level: 255
-        Sp: 1362
+        Sp: 1392
       - Level: 256
-        Sp: 1362
+        Sp: 1398
       - Level: 257
-        Sp: 1362
+        Sp: 1404
       - Level: 258
-        Sp: 1362
+        Sp: 1410
       - Level: 259
-        Sp: 1362
+        Sp: 1416
       - Level: 260
-        Sp: 1362
+        Sp: 1422
       - Level: 261
-        Sp: 1362
+        Sp: 1422
       - Level: 262
-        Sp: 1362
+        Sp: 1422
       - Level: 263
-        Sp: 1362
+        Sp: 1422
       - Level: 264
-        Sp: 1362
+        Sp: 1422
       - Level: 265
-        Sp: 1362
+        Sp: 1422
       - Level: 266
-        Sp: 1362
+        Sp: 1422
       - Level: 267
-        Sp: 1362
+        Sp: 1422
       - Level: 268
-        Sp: 1362
+        Sp: 1422
       - Level: 269
-        Sp: 1362
+        Sp: 1422
       - Level: 270
-        Sp: 1362
+        Sp: 1422
       - Level: 271
-        Sp: 1362
+        Sp: 1422
       - Level: 272
-        Sp: 1362
+        Sp: 1422
       - Level: 273
-        Sp: 1362
+        Sp: 1422
       - Level: 274
-        Sp: 1362
+        Sp: 1422
       - Level: 275
-        Sp: 1362
+        Sp: 1422
+      - Level: 276
+        Sp: 1422
+      - Level: 277
+        Sp: 1422
+      - Level: 278
+        Sp: 1422
+      - Level: 279
+        Sp: 1422
+      - Level: 280
+        Sp: 1422
+      - Level: 281
+        Sp: 1422
+      - Level: 282
+        Sp: 1422
+      - Level: 283
+        Sp: 1422
+      - Level: 284
+        Sp: 1422
+      - Level: 285
+        Sp: 1422
+      - Level: 286
+        Sp: 1422
+      - Level: 287
+        Sp: 1422
+      - Level: 288
+        Sp: 1422
+      - Level: 289
+        Sp: 1422
+      - Level: 290
+        Sp: 1422
+      - Level: 291
+        Sp: 1422
+      - Level: 292
+        Sp: 1422
+      - Level: 293
+        Sp: 1422
+      - Level: 294
+        Sp: 1422
+      - Level: 295
+        Sp: 1422
+      - Level: 296
+        Sp: 1422
+      - Level: 297
+        Sp: 1422
+      - Level: 298
+        Sp: 1422
+      - Level: 299
+        Sp: 1422
+      - Level: 300
+        Sp: 1422
   - Jobs:
       Hyper_Novice: true
     BaseSp:
@@ -25297,55 +27197,105 @@ Body:
       - Level: 250
         Sp: 250
       - Level: 251
-        Sp: 250
+        Sp: 251
       - Level: 252
-        Sp: 250
+        Sp: 252
       - Level: 253
-        Sp: 250
+        Sp: 253
       - Level: 254
-        Sp: 250
+        Sp: 254
       - Level: 255
-        Sp: 250
+        Sp: 255
       - Level: 256
-        Sp: 250
+        Sp: 256
       - Level: 257
-        Sp: 250
+        Sp: 257
       - Level: 258
-        Sp: 250
+        Sp: 258
       - Level: 259
-        Sp: 250
+        Sp: 259
       - Level: 260
-        Sp: 250
+        Sp: 260
       - Level: 261
-        Sp: 250
+        Sp: 260
       - Level: 262
-        Sp: 250
+        Sp: 260
       - Level: 263
-        Sp: 250
+        Sp: 260
       - Level: 264
-        Sp: 250
+        Sp: 260
       - Level: 265
-        Sp: 250
+        Sp: 260
       - Level: 266
-        Sp: 250
+        Sp: 260
       - Level: 267
-        Sp: 250
+        Sp: 260
       - Level: 268
-        Sp: 250
+        Sp: 260
       - Level: 269
-        Sp: 250
+        Sp: 260
       - Level: 270
-        Sp: 250
+        Sp: 260
       - Level: 271
-        Sp: 250
+        Sp: 260
       - Level: 272
-        Sp: 250
+        Sp: 260
       - Level: 273
-        Sp: 250
+        Sp: 260
       - Level: 274
-        Sp: 250
+        Sp: 260
       - Level: 275
-        Sp: 250
+        Sp: 260
+      - Level: 276
+        Sp: 260
+      - Level: 277
+        Sp: 260
+      - Level: 278
+        Sp: 260
+      - Level: 279
+        Sp: 260
+      - Level: 280
+        Sp: 260
+      - Level: 281
+        Sp: 260
+      - Level: 282
+        Sp: 260
+      - Level: 283
+        Sp: 260
+      - Level: 284
+        Sp: 260
+      - Level: 285
+        Sp: 260
+      - Level: 286
+        Sp: 260
+      - Level: 287
+        Sp: 260
+      - Level: 288
+        Sp: 260
+      - Level: 289
+        Sp: 260
+      - Level: 290
+        Sp: 260
+      - Level: 291
+        Sp: 260
+      - Level: 292
+        Sp: 260
+      - Level: 293
+        Sp: 260
+      - Level: 294
+        Sp: 260
+      - Level: 295
+        Sp: 260
+      - Level: 296
+        Sp: 260
+      - Level: 297
+        Sp: 260
+      - Level: 298
+        Sp: 260
+      - Level: 299
+        Sp: 260
+      - Level: 300
+        Sp: 260
   - Jobs:
       Spirit_Handler: true
     BaseSp:
@@ -25452,52 +27402,102 @@ Body:
       - Level: 250
         Sp: 630
       - Level: 251
-        Sp: 630
+        Sp: 632
       - Level: 252
-        Sp: 630
+        Sp: 634
       - Level: 253
-        Sp: 630
+        Sp: 636
       - Level: 254
-        Sp: 630
+        Sp: 638
       - Level: 255
-        Sp: 630
+        Sp: 640
       - Level: 256
-        Sp: 630
+        Sp: 642
       - Level: 257
-        Sp: 630
+        Sp: 644
       - Level: 258
-        Sp: 630
+        Sp: 646
       - Level: 259
-        Sp: 630
+        Sp: 648
       - Level: 260
-        Sp: 630
+        Sp: 650
       - Level: 261
-        Sp: 630
+        Sp: 650
       - Level: 262
-        Sp: 630
+        Sp: 650
       - Level: 263
-        Sp: 630
+        Sp: 650
       - Level: 264
-        Sp: 630
+        Sp: 650
       - Level: 265
-        Sp: 630
+        Sp: 650
       - Level: 266
-        Sp: 630
+        Sp: 650
       - Level: 267
-        Sp: 630
+        Sp: 650
       - Level: 268
-        Sp: 630
+        Sp: 650
       - Level: 269
-        Sp: 630
+        Sp: 650
       - Level: 270
-        Sp: 630
+        Sp: 650
       - Level: 271
-        Sp: 630
+        Sp: 650
       - Level: 272
-        Sp: 630
+        Sp: 650
       - Level: 273
-        Sp: 630
+        Sp: 650
       - Level: 274
-        Sp: 630
+        Sp: 650
       - Level: 275
-        Sp: 630
+        Sp: 650
+      - Level: 276
+        Sp: 650
+      - Level: 277
+        Sp: 650
+      - Level: 278
+        Sp: 650
+      - Level: 279
+        Sp: 650
+      - Level: 280
+        Sp: 650
+      - Level: 281
+        Sp: 650
+      - Level: 282
+        Sp: 650
+      - Level: 283
+        Sp: 650
+      - Level: 284
+        Sp: 650
+      - Level: 285
+        Sp: 650
+      - Level: 286
+        Sp: 650
+      - Level: 287
+        Sp: 650
+      - Level: 288
+        Sp: 650
+      - Level: 289
+        Sp: 650
+      - Level: 290
+        Sp: 650
+      - Level: 291
+        Sp: 650
+      - Level: 292
+        Sp: 650
+      - Level: 293
+        Sp: 650
+      - Level: 294
+        Sp: 650
+      - Level: 295
+        Sp: 650
+      - Level: 296
+        Sp: 650
+      - Level: 297
+        Sp: 650
+      - Level: 298
+        Sp: 650
+      - Level: 299
+        Sp: 650
+      - Level: 300
+        Sp: 650

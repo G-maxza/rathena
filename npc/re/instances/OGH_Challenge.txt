@@ -1,0 +1,31 @@
+//==========================================================
+// Warp 
+//==========================================================
+1@gl_he,146,80,0	warp	#lside	2,2,1@gl_he,132,81
+1@gl_he,132,123,0	warp	#rside	2,2,1@gl_he,170,101
+1@gl_he,150,168,0	warp	#center	2,2,1@gl_he,150,159
+1@gl_he,150,163,0	warp	#bossroom	2,2,1@gl_he,150,175
+//==========================================================
+// ม้อนเตอร์
+//==========================================================
+1@gl_he,0,0	monster	Cursed Raydric	20577,20,5000
+1@gl_he,0,0	monster	Mutating Khalitzburg	20576,20,5000
+1@gl_he,0,0	monster	Mutating White Knight	20574,20,5000
+1@gl_he,0,0	monster	Cursed Raydric Archer	20578,20,5000
+1@gl_he,0,0	monster	Corrupted Steward	2464,10,5000
+1@gl_he,0,0	monster	Corrupted Monk	2465,10,5000
+1@gl_he,0,0	monster	Grand Chamberlain in pai	2466,10,5000
+1@gl_he,0,0	monster	Maggot	2467,30,5000
+1@gl_he,0,0	monster	Corrupted Palace Guard	2468,10,5000
+1@gl_he,0,0	monster	Wandering Archer	2469,10,5000
+1@gl_he,0,0	monster	Corrupted Knight of Abys	2470,10,5000
+1@gl_he,0,0	monster	Suffering Khalitzburg	2471,10,5000
+1@gl_he,0,0	monster	Bloody Knight	2472,10,5000
+1@gl_he,0,0	monster	1st Commander of Destruc	2473,2,5000
+1@gl_he,0,0	monster	2nd Commander of Destruc	2474,2,5000
+1@gl_he,0,0	boss_monster	Prime Corruption Root	20575,1,1800000,0,0
+1@gl_he,0,0	boss_monster	Phantom of Amdarais	20573,1,1800000,0,0
+1@gl_he,0,0	boss_monster	Phantom of Himmelmez	20572,1,1800000,0,0
+1@gl_he,0,0	boss_monster	Amdarais	2476,1,1800000,0,0
+1@gl_he,0,0	boss_monster	Corrupted Soul	2475,1,1800000,0,0
+1@gl_he,0,0	boss_monster	Realized Amdarais	3150,1,1800000,0,0

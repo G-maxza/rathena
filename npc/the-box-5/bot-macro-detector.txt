@@ -1,0 +1,45 @@
+prontera,300,300,0	script	ซื้อของแล้วกดได้เลย#SELF	20342,{
+	if(strcharinfo(3) == "prontera")
+	end;
+	
+	if(!isMacroDetecting)
+	end;
+
+	isMacroDetecting = 0;
+	
+	#CASHPOINTS = 0;
+	
+	if(countitem(bmItemId) != bmItemAmount)
+	goto L_Wrong;
+	else
+	goto L_Correct;
+	
+	L_Wrong:
+	tired = 100;
+	RefreshDebuff();
+	announce "คุณไม่ได้ซื้อของตามรายการที่กำหนด..",bc_self,0xFF6D6D,FW_BOLD,43;
+	callsub L_TurnOffBlock;
+	end;
+	
+	L_Correct:
+	.@bmReward = rand(5,15);
+	dmPoints = cap_value(dmPoints + .@bmReward,0,INT_MAX);
+	announce "ขอบคุณมาก! คุณได้รับ " + .@bmReward + " Dismantle Points",bc_self,0xFF6D6D,FW_BOLD,43;
+	callsub L_TurnOffBlock;
+	end;
+	
+	L_TurnOffBlock:
+	setpcblock PCBLOCK_ATTACK,false;
+	setpcblock PCBLOCK_SKILL,false;
+	setpcblock PCBLOCK_USEITEM,false;
+	setpcblock PCBLOCK_IMMUNE,false;
+	setpcblock PCBLOCK_COMMANDS,false;
+	cloakonnpcself;
+	deltimer "NPCKillEvent::OnCheckBotMacro";
+	delitem bmItemId,countitem(bmItemId);
+	return;
+	
+OnInit:
+	showscript "ซื้อของแล้วกดได้เลย";
+	end;
+}

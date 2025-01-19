@@ -1,0 +1,151 @@
+//===== Mjolnir Underground Cave monster=================================
+oasis,171,165,4	script	Mjolnir_Un_Ca_Controller#1	406,{
+	set .@gm_level, 99; // ระดับ GM ต้องใช้เพื่อเริ่ม / หยุดกิจกรรม
+
+	mes "[Mjolnir Underground Cave]";
+	mes "ยินดีต้อนรับสู่ Mjolnir Underground Cave!";
+	next;
+	switch(select("^FF0000•^000000 เข้าสู่Mjolnir Underground Cave.:" + ((getgmlevel() >= .@gm_level) ? "^FF0000•^000000 GM Menu." : "") + ":^FF0000•^000000 ยกเลิก.")) {
+	case 1:
+		if (.start != 1) { // ระยะเวลาการลงทะเบียน
+			mes "[Mjolnir Underground Cave]";
+			mes "Mjolnir Underground Cave ถูกปิดแล้ว.";
+			mes "มันจะเปิดในเวลาเหล่านี้:";
+			mes "01:00 และ 13.00"; // แสดงเวลาของคุณที่นี่
+			close;
+		}
+		if (BaseLevel < 240 || Zeny < 1000000 || countitem(7227) < 5) {
+			mes "คุณไม่สามารถเข้าสู่ Mjolnir Underground Cave ได้เพราะไม่ตรงตามเงื่อนไข";
+			mes "ข้อกำหนด:";
+			mes " - Base Level ต้อง 250 ขึ้นไป";
+			mes " - ใช้ Zeny 1,000,000";
+			mes " - ใช้ไอเท็ม ID 7227 จำนวน 5 ชิ้น";
+		}
+		Zeny -= 1000000;
+		delitem 7227, 5;
+		announce strcharinfo(0) + " ได้เข้าสู่ Mjolnir Underground Cave.", bc_npc;
+		warp "mjo_wst01", 206, 365;
+		close;
+	case 2:
+		mes "[Mjolnir Underground Cave]";
+		switch (.start) { // event states
+			case 0: mes "Mjolnir Underground Caveยังไม่ได้เริ่ม."; break;
+			case 1: mes "Mjolnir Underground Cave กำลังรับผู้เข้าร่วม."; break;
+		}
+		next;
+		switch(select("^FF0000•^000000 เริ่มกิจกรรม.:^FF0000•^000000 หยุดกิจกรรม.:^FF0000•^000000 ยกเลิก.")) {
+		case 1:
+			mes "[Mjolnir Underground Cave]";
+			if (.start)
+				mes "Mjolnir Underground Cave เริ่มแล้ว.";
+			else {
+				mes "ที่เริ่มต้น Mjolnir Underground Cave...";
+				donpcevent strnpcinfo(0)+"::OnStartEvent";
+			}
+			close;
+		case 2:
+			mes "[Mjolnir Underground Cave]";
+			if (!.start)
+				mes "Mjolnir Underground Cave ยังไม่ได้เริ่ม.";
+			else {
+				mes "การหยุด Mjolnir Underground Cave...";
+				donpcevent strnpcinfo(0)+"::OnStopEvent";
+			}
+			close;
+		case 3:
+			break;
+		}
+		break;
+	case 3:
+		break;
+	}
+	mes "[Power Twisted Plains]";
+	mes "ลาก่อน.";
+	close;
+	
+OnClock1300:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock1500:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+
+OnClock0100:
+	donpcevent strnpcinfo(0) + "::OnStartEvent";
+	end;
+
+OnClock0300:
+	donpcevent strnpcinfo(0) + "::OnStopEvent";
+	end;
+	
+OnSpawnMonsters:
+	.start = 2;
+	.round = 1;
+	set .mob, 1; // ตั้งค่าจำนวนมอนสเตอร์ที่ต้องการ
+	// สร้างมอนสเตอร์ ID 21955 จำนวน 30 ตัว
+	set .@monster_count1, 1;
+	for (set .@i, 0; .@i < .@monster_count1; set .@i, .@i + 1) {
+		monster "mjo_wst01", 0 + rand(0), 0 + rand(0), "Boss Monster",21955,1,strnpcinfo(0)+"::OnMonsterKilled";
+	}
+	end;
+	
+OnMonsterKilled:
+	.mob--;
+	if ( .mob == 25 || .mob == 5 )
+		announce "Boss Monster"+ .mob +"Bossที่เหลืออยู่ในแผนที่.", bc_map;
+	else if ( .mob <= 0 ) {
+		announce "Boss Monster ถูกำจัดหมดเเล้ว", bc_map;
+		goto OnSpawnMonsters;
+	}
+	end;
+	
+OnStartEvent:
+	.start = 1;
+	enablenpc "Mjolnir_Un_Ca_Controller#1";
+	disablenpc "เควสMjolnir Underground Cave#2"; // ปิด NPC ที่ใช้ในการออกจากกิจกรรม
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "mjo_wst01", .@map$, .@x, .@y;
+	announce "Mjolnir Underground Cave จะเริ่มใน 5 นาที.", bc_all;
+	sleep 60000*5;
+	announce "Mjolnir Underground Cave ได้เริ่มขึ้นแล้ว!", bc_all;
+	disablenpc "Mjolnir_Un_Ca_Controller#1"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	donpcevent strnpcinfo(0) + "::OnSpawnMonsters"; // เรียกใช้งานฟังก์ชันเกิดมอนสเตอร์
+	end;
+	
+OnStopEvent:
+	announce "Mjolnir Underground Caveถูกปิดแล้ว.", bc_all;
+	killmonsterall "mjo_wst01"; // ลบมอนสเตอร์ทั้งหมดในแผนที่
+	getmapxy .@map$, .@x, .@y, BL_NPC;
+	mapwarp "mjo_wst01", .@map$, .@x, .@y;
+	disablenpc "Mjolnir_Un_Ca_Controller#1"; // ปิด NPC ที่ใช้ในการเข้าร่วม
+	enablenpc "เควสMjolnir Underground Cave#2";
+	.start = .round = .mob = 0; // รีเซ็ตสถานะของกิจกรรมทั้งหมด
+	end;
+	
+OnInit:
+	waitingroom "Mjolnir Underground Cave เปิด 01:00 และ 13:00 น.",0;
+	end;
+}
+mjo_wst01,206,365,4	script	เควสMjolnir Underground Cave#2	406,{
+	mes "[ออก]";
+	mes "ล่าก่อน.";
+	close2;
+	warp "SavePoint",0,0;
+	end;
+}
+
+mjo_wst01	mapflag	nowarp
+mjo_wst01	mapflag	nowarpto
+mjo_wst01	mapflag	nosave	SavePoint
+mjo_wst01	mapflag	nomemo
+mjo_wst01	mapflag	nobranch
+mjo_wst01	mapflag	nopenalty
+mjo_wst01	mapflag	noicewall
+
+//===== Mjolnir Underground Cave monster=================================
+
+mjo_wst01,0,0	monster	Punch Bug	21951,90,3000,3000
+mjo_wst01,0,0	monster	Aferde	21952,90,3000,3000
+mjo_wst01,0,0	monster	Dispol	21953,90,3000,3000
+mjo_wst01,0,0	monster	Timbers	21954,90,3000,3000

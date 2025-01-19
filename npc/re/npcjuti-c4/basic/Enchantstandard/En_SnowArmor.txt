@@ -1,0 +1,55 @@
+oasis,127,75,4	script	En_SnowArmor	4_EP19_LUNCH,{
+	mes "Snow Flower Armor and Garment and Shoes and Accessory Enchantment";
+	mes "^FF0000Enchant cannot be reset^000000";
+	next;
+	switch( select( "Armor", "Garment", "Shoes", "Accessory_R", "Accessory_L") ) {
+case 1:
+	mes "^0000cdArmor^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(150);
+	close;
+case 2:
+	mes "^0000cdGarment^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(27);
+	close;
+case 3:
+	mes "^0000cdShoes^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(28);
+	close;
+case 4:
+	mes "^0000cdAccessory_R^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(29);
+	close;
+case 5:
+	mes "^0000cdAccessory_L^000000";
+	next;
+	if (select( "Start.", "Exit." ) == 2) {
+		mes "I'm always waiting for you.";
+		close;
+	}
+	item_enchant(30);
+	close;
+}
+OnInit:
+	waitingroom "Enchant Snow",0;	
+	end;
+}

@@ -1,0 +1,28 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : แม่มดน้อย จอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : rAthena & Hercules
+// Contacts
+// Facebook https://www.facebook.com/appleroplus2
+// Gmail appleroplus@gmail.com
+// Skype appleroplus@hotmail.com
+//==============================================
+//==============================================
+//==============================================
+-	script	refineui	-1,{
+callfunc "refineui";
+	end;
+OnInit:
+	waitingroom	"อัพเกรด  ระบบใหม่",0;
+	end;
+}
+
+function	script	refineui	{
+dispbottom "เปิดใช้งานระบบ อัพเกรด UI เรียบร้อยแล้ว ";
+atcommand "@refineui";
+end;
+}
+
+morocc_in,129,71,5	duplicate(refineui)	อัพเกรด  ระบบใหม่#01	63

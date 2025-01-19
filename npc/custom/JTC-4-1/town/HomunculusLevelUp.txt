@@ -1,0 +1,24 @@
+//==============================================
+//==============================================
+//==============================================
+// - Script By : แม่มดน้อย จอมป่วน
+// - Script City : Thailand 
+// - Script Support Server : rAthena & Hercules
+// Contacts
+// Facebook https://www.facebook.com/appleroplus2
+// Gmail appleroplus@gmail.com
+// Skype appleroplus@hotmail.com
+//==============================================
+//==============================================
+//==============================================
+hu_in01,103,385,5	script	homluup	761,{
+
+mes "เพิ่มเลเวลของโฮมุนครุสคุณเรียบร้อยแล้ว";
+atcommand "@homlvup 99";
+end;
+OnInit:
+waitingroom "เพิ่มเลเวลของโฮมุนครุส",0;
+end;
+}
+
+//hu_in01,103,385,5	duplicate(homluup)	เพิ่มเลเวลของโฮมุนครุส#01	761
